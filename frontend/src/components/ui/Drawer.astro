@@ -1,0 +1,64 @@
+---
+import { cn } from '@/lib/utils';
+
+type Placement = 'left' | 'right' | 'bottom';
+
+type Props = {
+  id: string;
+  placement?: Placement;
+  class?: string;
+  dialogClass?: string;
+  shellClass?: string;
+  closeLabel?: string;
+};
+
+const {
+  id,
+  placement = 'left',
+  class: panelClass,
+  dialogClass,
+  shellClass,
+  closeLabel = '关闭抽屉',
+} = Astro.props;
+
+const motion = placement === 'bottom' ? 'bottom' : placement === 'right' ? 'right' : 'left';
+
+const shellBaseClass = {
+  left: 'relative flex h-full w-full justify-start',
+  right: 'relative flex h-full w-full justify-end',
+  bottom: 'relative flex h-full w-full items-end justify-center',
+}[placement];
+
+const panelBaseClass = {
+  left:
+    'relative z-[1] flex h-full w-[min(78vw,18.5rem)] flex-col border-r border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))]',
+  right:
+    'relative z-[1] flex h-full w-[min(78vw,18.5rem)] flex-col border-l border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))]',
+  bottom:
+    'relative z-[1] flex max-h-[min(85vh,42rem)] w-full flex-col rounded-t-[1.25rem] border border-b-0 border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))]',
+}[placement];
+---
+
+<dialog
+  id={id}
+  class={cn('fixed inset-0 z-[90] hidden bg-transparent', dialogClass)}
+  data-drawer-root
+  data-overlay-backdrop-style="dim"
+  data-overlay-shell
+  data-overlay-dialog
+  data-overlay-motion={motion}
+  data-state="closed"
+>
+  <div class={cn(shellBaseClass, shellClass)}>
+    <button class="absolute inset-0" aria-label={closeLabel} data-overlay-backdrop data-drawer-close />
+    <div class={cn(panelBaseClass, panelClass)} data-overlay-panel>
+      <slot />
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import { initDrawers } from '@/scripts/drawer';
+
+  initDrawers();
+</script>

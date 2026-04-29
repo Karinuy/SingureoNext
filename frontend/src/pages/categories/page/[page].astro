@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Card from '../../../components/ui/Card.astro';
+import Pagination from '../../../components/ui/Pagination.astro';
+import Tag from '../../../components/ui/Tag.astro';
+import { getEntryCategories, getPosts } from '../../../lib/content';
+import { slugifySegment } from '../../../lib/slug';
+import { getPageCount, paginate } from '../../../lib/paginate';
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 21;
+  const posts = await getPosts();
+  const counts = new Map<string, number>();
+  for (const p of posts) {
+    for (const c of getEntryCategories(p)) {
+      counts.set(c, (counts.get(c) ?? 0) + 1);
+    }
+  }
+  const categories = Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+  const pageCount = getPageCount(categories.length, PAGE_SIZE);
+  return Array.from({ length: Math.max(0, pageCount - 1) }, (_, i) => {
+    const page = i + 2;
+    return { params: { page: String(page) } };
+  });
+}
+
+const PAGE_SIZE = 21;
+const page = Number(Astro.params.page ?? '1');
+const posts = await getPosts();
+const counts = new Map<string, number>();
+for (const p of posts) {
+  for (const c of getEntryCategories(p)) {
+    counts.set(c, (counts.get(c) ?? 0) + 1);
+  }
+}
+const categories = Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+const pageData = paginate(categories, page, PAGE_SIZE);
+const categoriesPageHref = (targetPage: number) =>
+  targetPage === 1 ? '/categories' : `/categories/page/${targetPage}/`;
+---
+
+<BaseLayout
+  title={`分类 - 第 ${pageData.page} 页`}
+  description="文章分类"
+  breadcrumbs={[{ label: '首页', href: '/' }, { label: '分类', href: '/categories' }, { label: `第 ${pageData.page} 页` }]}
+>
+  <div class="flex items-end gap-4">
+    <h1 class="title-with-accent text-2xl font-semibold tracking-tight">分类</h1>
+  </div>
+
+  <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    {pageData.items.map(([c, n]) => (
+      <Card class="p-0">
+        <a class="flex min-h-[4.75rem] flex-col justify-center gap-1.5 px-4 py-3.5" href={`/category/${slugifySegment(c)}/`}>
+          <h3 class="truncate text-[15px] font-medium leading-snug tracking-tight sm:text-base">
+            {c}
+          </h3>
+          <Tag class="w-fit text-[11px] font-medium sm:text-xs">共 {n} 篇</Tag>
+        </a>
+      </Card>
+    ))}
+  </div>
+
+  {pageData.pageCount > 1 ? (
+    <div class="mt-8 flex justify-center">
+      <Pagination current={pageData.page} pageCount={pageData.pageCount} hrefBuilder={categoriesPageHref} />
+    </div>
+  ) : null}
+</BaseLayout>
+

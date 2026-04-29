@@ -1,0 +1,35 @@
+---
+import { CircleAlert } from '@lucide/astro';
+import { cn } from '@/lib/utils';
+
+type Props = {
+  title: string;
+  description?: string;
+  variant?: 'info' | 'warning';
+  class?: string;
+};
+
+const { title, description, variant = 'info', class: className } = Astro.props;
+
+const toneClass = {
+  info: 'border-[rgb(var(--color-primary)_/_0.18)] bg-[rgb(var(--color-primary-muted)_/_0.72)] text-[rgb(var(--color-text))] dark:border-[rgb(var(--color-primary)_/_0.28)] dark:bg-[rgb(var(--color-primary-muted)_/_0.82)]',
+  warning: 'border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] text-[rgb(var(--color-text))]',
+}[variant];
+
+const iconClass = {
+  info: 'text-[rgb(var(--color-primary))]',
+  warning: 'text-[rgb(var(--color-text-muted))]',
+}[variant];
+---
+
+<div class={cn('rounded-xl border px-4 py-3', toneClass, className)}>
+  <div class="flex items-center gap-3">
+    <div class={cn('shrink-0 text-[1.05rem]', iconClass)}>
+      <CircleAlert class="size-[18px]" />
+    </div>
+    <div class="min-w-0 font-semibold">{title}</div>
+  </div>
+  {description ? (
+    <p class="mt-1 text-sm leading-6 text-[rgb(var(--color-text-muted))]">{description}</p>
+  ) : null}
+</div>

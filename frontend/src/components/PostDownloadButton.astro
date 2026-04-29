@@ -1,0 +1,44 @@
+---
+import { Download } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+import { resolveLink } from '@/lib/redirect';
+import { cn } from '@/lib/utils';
+
+type Props = {
+  label: string;
+  href?: string;
+  disabled?: boolean;
+  class?: string;
+};
+
+const { label, href, disabled = false, class: className } = Astro.props;
+const riskHint = '下载资源可能存在风险，请自行确定安全性，本站无法保证所有资源的安全性';
+const resolvedLink = href ? resolveLink(href) : undefined;
+---
+
+{
+  disabled || !resolvedLink ? (
+    <Button
+      variant="outline"
+      disabled
+      class={cn('w-full whitespace-normal break-all sm:w-auto', className)}
+      ariaLabel="当前暂无可用下载链接"
+    >
+      <Download class="size-4" />
+      {label}
+    </Button>
+  ) : (
+    <Button
+      href={resolvedLink.href}
+      target={resolvedLink.target}
+      rel={resolvedLink.rel}
+      variant="outline"
+      class={cn('w-full whitespace-normal break-all sm:w-auto', className)}
+      ariaLabel={label}
+      title={riskHint}
+    >
+      <Download class="size-4" />
+      {label}
+    </Button>
+  )
+}

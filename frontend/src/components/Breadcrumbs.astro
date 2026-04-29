@@ -1,0 +1,12 @@
+---
+import Breadcrumb from '@/components/ui/Breadcrumb.astro';
+import type { BreadcrumbItemData } from '@/types/breadcrumb';
+
+type Props = {
+  items: BreadcrumbItemData[];
+};
+
+const { items } = Astro.props;
+---
+
+<Breadcrumb items={items} class="text-sm" />

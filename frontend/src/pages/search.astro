@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LocalSearch from '../components/LocalSearch.astro';
+---
+
+<BaseLayout
+  title="搜索"
+  description="搜索文章"
+  breadcrumbs={[{ label: '首页', href: '/' }, { label: '搜索' }]}
+>
+  <h1 class="title-with-accent text-2xl font-semibold tracking-tight">搜索</h1>
+  <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]">
+    支持搜索标题、标签、分类、简介与正文内容；可用空格分隔多个关键词（会同时匹配），输入后点击按钮即可搜索，并会保留本地历史记录。
+  </p>
+  <div class="mt-6">
+    <LocalSearch />
+  </div>
+</BaseLayout>
+

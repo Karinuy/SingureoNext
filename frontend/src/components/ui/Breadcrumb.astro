@@ -1,0 +1,39 @@
+---
+type Item = {
+  label: string;
+  href?: string;
+};
+
+type Props = {
+  items: Item[];
+  class?: string;
+};
+
+const { items = [], class: className } = Astro.props;
+---
+
+{
+  items.length ? (
+    <nav aria-label="面包屑" class={className}>
+      <ol class="flex flex-wrap items-center gap-2 text-sm text-[rgb(var(--color-text-muted))]">
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1;
+          return (
+            <>
+              <li>
+                {item.href && !isLast ? (
+                  <a class="transition-colors hover:text-[rgb(var(--color-text))]" href={item.href}>
+                    {item.label}
+                  </a>
+                ) : (
+                  <span class="text-[rgb(var(--color-text))]">{item.label}</span>
+                )}
+              </li>
+              {!isLast ? <li aria-hidden="true">/</li> : null}
+            </>
+          );
+        })}
+      </ol>
+    </nav>
+  ) : null
+}

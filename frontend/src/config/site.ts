@@ -1,0 +1,92 @@
+export const site = {
+  name: 'Singureo',
+  tagline: 'Singureo是以Galgame为主的资源分享网站，贯彻简洁美观人性化的理念，给用户提供优质的体验！',
+  tabTagline: '简洁·美观·人性化！',
+  keywords: ['Singureo', 'ACG资源站', '免费galgame', 'galgame', '东方project', 'galgame汉化', '不限速下载', 'galgame资源站'],
+  logoText: 'Singureo',
+  nav: [
+    { label: '首页', href: '/' },
+    {
+      label: '分类',
+      href: '/categories',
+      children: [
+        { label: '东方Project', href: '/category/东方Project/' },
+        { label: 'GalGame', href: '/category/GalGame/' },
+        { label: 'PC资源', href: '/category/PC资源/' },
+        { label: 'PE资源', href: '/category/PE资源/' },
+      ],
+    },
+    { label: '标签', href: '/tags' },
+    {
+      label: '文档',
+      href: '/docs',
+      children: [
+        { label: '公告板', href: '/docs/notice/' },
+        { label: '关于本站', href: '/docs/about/' },
+      ],
+    },
+    { label: '收藏', href: '/favorites' },
+    { label: '每日推荐', href: '/daily' },
+  ],
+  home: {
+    announcement: '由于上游OneDrive存储提供商封禁了我们的存储，所以...全新自建云盘上线！全面替换旧OneDrive下载通道，新存储上线不久，如果有问题请前往TG群组反馈https://t.me/+CxG9sIUsCJ8wMjU0',
+    carousel: [
+      { title: '公告', href: '/docs/notice/', image: 'https://res.sin0.cc/2026/01/15/b1164004480187607aabff69fe7c703a/1768463067-banner.avif' },
+      { title: '关于本站', href: '/docs/about/', image: 'https://res.sin0.cc/2025/07/24/de21a67d06b330c2f1473d4637f07c84/1753339274-cover.avif' },
+    ],
+    ads: {
+      enabled: true,
+      items: [
+        { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },
+        { title: '蓝莓加速器', href: 'https://url.sin0.cc/tv2gbj', image: 'https://res.sin0.cc/2026/04/15/bd3e364c1815addb3d3ad6521b1d36e2/1776253685-lanm.avif' },
+        // { title: 'Game0', href: 'https://url.sin0.cc/vyrg5p', image: 'https://res.sin0.cc/2026/03/27/ed4d824977f5f1c614da1262fc501a77/1774601876-20260327-155413.gif' },
+        { title: '魔法喵', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2025/09/15/229f1ed5f177c4e7054fb1da2dd66c4a/1757931263-magicmao.avif' },
+        // { title: '电子魅魔', href: 'https://url.sin0.cc/drpz5w', image: 'https://res.sin0.cc/2025/08/19/17eca4ebe880e12f7892f04bdcb4cf33/1755574107-ai.avif' },
+        { title: 'AI风月', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2025/09/04/487d3be1b1f2307c97dca5a9600694d8/1756945283-afy.gif' },
+      ],
+    },
+  },
+  friendLinks: [
+    { label: 'Sharotto', href: 'https://www.sharotto.com/' },
+    { label: 'ACG导航站', href: 'https://www.acgdhz.com/' },
+    { label: 'Angelmoe', href: 'https://www.angelmoe.com/' },
+    { label: '月瑶galgame', href: 'https://www.sayafx.space/' },
+    { label: 'GGS', href: 'https://gal.saop.cc/' },
+    { label: 'Hikarinagi', href: 'https://www.hikarinagi.org/' },
+    { label: 'Shionlib', href: 'https://shionlib.com/' },
+    { label: 'Touchgal', href: 'https://www.touchgal.top/' },
+    { label: '梓澪的妙妙屋', href: 'https://zi0.cc/' },
+    { label: '紫缘社', href: 'https://www.galzy.moe/' },
+    { label: '绮梦ACG', href: 'https://acgs.one/' },
+    { label: '萌哩', href: 'https://www.moely.link/' },
+    { label: '鲲galgame论坛', href: 'https://www.kungal.com/' },
+    { label: '初音社', href: 'https://www.mikuclub.win/' },
+    { label: '次元城动画', href: 'https://www.ciyuancheng.net/' },
+    { label: '鸟白岛演绎厅', href: 'https://www.summerpockets.com/' },
+    { label: 'Nysoure', href: 'https://res.nyne.dev/' },
+    { label: '桃花源', href: 'https://peach.sslswwdx.top' },
+    { label: 'Acgngame', href: 'https://acgn.games/' },
+    { label: 'MikuGame初音游戏库', href: 'https://mikugame.icu/' },
+    { label: '喵普拉斯', href: 'https://www.neko-plus.net/' },
+  ],
+  footerLinks: [
+    { label: '联系站长', href: 'https://t.me/Miolasan' },
+    { label: 'Telegram群组', href: 'https://t.me/+CxG9sIUsCJ8wMjU0' },
+    { label: '关于本站', href: '/docs/about/' },
+  ],
+  redirect: {
+    enabled: true,
+    countdown: 3,
+    whitelist: [
+      'www.singureo.com',
+      'res.sin0.cc',
+      'ays.sin0.cc',
+      'url.sin0.cc',
+    ],
+    message: '您即将离开本站，前往第三方网站。请注意您的账号和财产安全。',
+  },
+  api: {
+    searchBaseUrl: 'https://api.sin0.cc',
+  },
+};
+

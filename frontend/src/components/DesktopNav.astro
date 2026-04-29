@@ -1,0 +1,84 @@
+---
+import { ChevronDown } from '@lucide/astro';
+
+type NavItem = { label: string; href: string; target?: string; rel?: string; children?: NavItem[] };
+
+type Props = {
+  items: NavItem[];
+  pathname: string;
+};
+
+const { items, pathname } = Astro.props;
+
+function matchesPath(currentPath: string, href: string) {
+  if (!href.startsWith('/')) return false;
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+
+function isActive(currentPath: string, item: NavItem): boolean {
+  return matchesPath(currentPath, item.href) || Boolean(item.children?.some((child) => isActive(currentPath, child)));
+}
+---
+
+<nav class="hidden items-center gap-0.5 md:flex">
+  {items.map((item) => {
+    const active = isActive(pathname, item);
+    const hasChildren = Boolean(item.children?.length);
+    const triggerClass = [
+      'relative overflow-hidden rounded-xl px-3.5 py-2 text-[0.93rem] font-medium tracking-[-0.005em]',
+      active
+        ? 'bg-[rgb(var(--color-surface-muted))] text-[rgb(var(--color-text))] dark:bg-[rgb(var(--color-surface-muted))] dark:text-[rgb(var(--color-text))]'
+        : 'text-[rgb(var(--color-text)_/_0.68)]',
+    ];
+
+    return hasChildren ? (
+      <div class="group/nav relative">
+        <a
+          href={item.href}
+          target={item.target}
+          rel={item.rel}
+          aria-current={active ? 'page' : undefined}
+          aria-haspopup="menu"
+          class:list={[...triggerClass, 'inline-flex items-center gap-1.5']}
+        >
+          <span>{item.label}</span>
+          <ChevronDown class="size-4 shrink-0 transition-transform duration-150 group-hover/nav:rotate-180 group-focus-within/nav:rotate-180" />
+        </a>
+        <div class="pointer-events-none absolute left-0 top-full z-20 pt-2 opacity-0 transition duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-focus-within/nav:pointer-events-auto group-focus-within/nav:opacity-100">
+          <div class="min-w-[11rem] rounded-2xl border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] p-1.5 shadow-lg">
+            {item.children?.map((child) => {
+              const childActive = isActive(pathname, child);
+              return (
+                <a
+                  href={child.href}
+                  target={child.target}
+                  rel={child.rel}
+                  aria-current={childActive ? 'page' : undefined}
+                  class:list={[
+                    'block rounded-xl px-3 py-2 text-[0.9rem] font-medium tracking-[-0.005em]',
+                    childActive
+                      ? 'bg-[rgb(var(--color-surface-muted))] text-[rgb(var(--color-text))]'
+                      : 'text-[rgb(var(--color-text)_/_0.72)] hover:bg-[rgb(var(--color-surface-muted)_/_0.8)]',
+                  ]}
+                >
+                  {child.label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    ) : (
+      <a
+        href={item.href}
+        target={item.target}
+        rel={item.rel}
+        aria-current={active ? 'page' : undefined}
+        class:list={triggerClass}
+      >
+        {item.label}
+      </a>
+    );
+  })}
+</nav>

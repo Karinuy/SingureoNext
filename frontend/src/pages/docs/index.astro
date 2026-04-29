@@ -1,0 +1,88 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import { getCollection } from 'astro:content';
+import Card from '../../components/ui/Card.astro';
+import { Type } from '@lucide/astro';
+
+type DocEntry = Awaited<ReturnType<typeof getCollection<'docs'>>>[number];
+
+function estimateWordCount(raw: string) {
+  const text = raw
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`]*`/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\[(.*?)\]\((.*?)\)/g, '$1')
+    .replace(/[#>*_~-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!text) return 0;
+  return text.replace(/\s/g, '').length;
+}
+
+const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a, b) => {
+  const at = (a.data.date ?? a.data.updatedDate)?.getTime() ?? 0;
+  const bt = (b.data.date ?? b.data.updatedDate)?.getTime() ?? 0;
+  return bt - at;
+});
+---
+
+<DocsLayout
+  title="帮助文档"
+  description="如果你在网站遇到任何问题，都可以来此处查看帮助文档"
+  breadcrumbs={[{ label: '首页', href: '/' }, { label: '文档' }]}
+>
+  <div class="flex items-end justify-between gap-4">
+    <div>
+      <h1 class="title-with-accent text-2xl font-semibold tracking-tight">帮助文档</h1>
+      <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]">
+        如果你在网站遇到任何问题，都可以来此处查看帮助文档
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3">
+    {entries.map((e: DocEntry) => {
+      const wc = estimateWordCount(e.body ?? '');
+      const href = `/docs/${encodeURIComponent(String(e.data.abbrlink ?? e.id))}`;
+      return (
+        <Card class="group h-full rounded-2xl p-0" hoverable>
+          <a class="relative flex h-full flex-col no-underline" href={href}>
+            <div class="relative aspect-[16/9] overflow-hidden bg-[rgb(var(--color-surface-muted))]">
+              {e.data.cover ? (
+                <img
+                  src={e.data.cover}
+                  alt={e.data.title}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="flex h-full w-full items-center justify-center text-sm text-[rgb(var(--color-text-muted))]">
+                  暂无封面
+                </div>
+              )}
+            </div>
+
+            <div class="flex flex-1 flex-col gap-3 p-4">
+              <div class="min-w-0">
+                <h2 class="line-clamp-2 text-[0.98rem] font-semibold leading-[1.45] tracking-[-0.02em] sm:text-[1.06rem]">
+                  {e.data.title}
+                </h2>
+              </div>
+
+              <div class="mt-auto flex items-center gap-1.5 text-[0.78rem] text-[rgb(var(--color-text-muted))]">
+                {wc ? (
+                  <span class="inline-flex items-center gap-1.5">
+                    <Type class="size-3 shrink-0" aria-hidden="true" />
+                    <span>{wc} 字</span>
+                  </span>
+                ) : null}
+              </div>
+            </div>
+          </a>
+        </Card>
+      );
+    })}
+  </div>
+</DocsLayout>
+

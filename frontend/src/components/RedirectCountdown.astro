@@ -1,0 +1,141 @@
+---
+import { ArrowLeft, CircleAlert, ExternalLink, LoaderCircle } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+
+type Props = {
+  countdown: number;
+  siteName: string;
+  message: string;
+};
+
+const { countdown, siteName, message } = Astro.props;
+---
+
+<div class="flex flex-1 items-center justify-center" data-redirect-countdown data-countdown={countdown}>
+  <Card class="mx-auto w-full max-w-md rounded-2xl p-6">
+    <div class="flex flex-col items-center gap-0 text-center" data-redirect-loading>
+      <LoaderCircle class="size-5 animate-spin text-[rgb(var(--color-text-muted))]" />
+    </div>
+
+    <div class="hidden flex-col items-center gap-0 text-center" data-redirect-invalid>
+      <div class="mb-3 flex size-11 items-center justify-center rounded-full bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-200">
+        <CircleAlert class="size-5" />
+      </div>
+      <h1 class="mb-1.5 text-lg font-semibold tracking-tight">无效的跳转链接</h1>
+      <p class="mb-4 text-sm leading-relaxed text-[rgb(var(--color-text-muted))]">该链接无法解析，请检查来源是否正确</p>
+      <Button href="/" variant="outline" class="h-10 w-full">
+        <ArrowLeft class="size-4" />
+        返回首页
+      </Button>
+    </div>
+
+    <div class="hidden flex-col items-center gap-0 text-center" data-redirect-ready>
+      <div class="mb-3 flex size-11 items-center justify-center rounded-full bg-[rgb(var(--color-primary)_/_0.12)] text-[rgb(var(--color-primary))] dark:bg-[rgb(var(--color-primary)_/_0.16)] dark:text-[rgb(var(--color-primary))]">
+        <CircleAlert class="size-5" />
+      </div>
+
+      <h1 class="mb-1.5 text-lg font-semibold tracking-tight">即将离开 {siteName}</h1>
+      <p class="mb-4 text-sm leading-relaxed text-[rgb(var(--color-text-muted))]">{message}</p>
+
+      <div class="mb-4 flex w-full items-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 dark:border-neutral-700">
+        <ExternalLink class="size-4 shrink-0" />
+        <span class="min-w-0 truncate text-sm" data-redirect-target></span>
+      </div>
+
+      <div class="mb-5 h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-neutral-800">
+        <div class="h-full rounded-full bg-[rgb(var(--color-primary))] transition-[width] duration-700" data-redirect-progress style="width:0%"></div>
+      </div>
+
+      <a
+        href="#"
+        class="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-4 text-sm font-medium text-[rgb(var(--color-text))]"
+        data-redirect-link
+        aria-disabled="true"
+      >
+        <span data-redirect-link-label>请稍候</span>
+        <ExternalLink class="size-4" />
+      </a>
+    </div>
+  </Card>
+</div>
+
+<script>
+  (() => {
+    const decodeTarget = (raw) => {
+      try {
+        return decodeURIComponent(escape(atob(raw)));
+      } catch {
+        try {
+          return decodeURIComponent(raw);
+        } catch {
+          return raw;
+        }
+      }
+    };
+
+    const init = () => {
+      document.querySelectorAll('[data-redirect-countdown]').forEach((root) => {
+        if (!(root instanceof HTMLElement) || root.dataset.bound === 'true') return;
+        root.dataset.bound = 'true';
+
+        const loading = root.querySelector('[data-redirect-loading]');
+        const invalid = root.querySelector('[data-redirect-invalid]');
+        const ready = root.querySelector('[data-redirect-ready]');
+        const targetNode = root.querySelector('[data-redirect-target]');
+        const progressNode = root.querySelector('[data-redirect-progress]');
+        const linkNode = root.querySelector('[data-redirect-link]');
+        const linkLabelNode = root.querySelector('[data-redirect-link-label]');
+        const countdown = Number(root.dataset.countdown || '3');
+        const raw = new URLSearchParams(window.location.search).get('url') ?? '';
+        const decoded = decodeTarget(raw);
+        const target = /^https?:\/\//i.test(decoded) ? decoded : '';
+
+        loading?.classList.add('hidden');
+        if (!target) {
+          invalid?.classList.remove('hidden');
+          invalid?.classList.add('flex');
+          return;
+        }
+
+        ready?.classList.remove('hidden');
+        ready?.classList.add('flex');
+        if (targetNode) targetNode.textContent = target;
+
+        let remaining = countdown;
+
+        const sync = () => {
+          const progress = ((countdown - remaining) / countdown) * 100;
+          if (progressNode instanceof HTMLElement) progressNode.style.width = `${Math.max(0, Math.min(100, progress))}%`;
+          if (linkNode instanceof HTMLAnchorElement) {
+            if (remaining <= 0) {
+              linkNode.href = target;
+              linkNode.target = '_self';
+              linkNode.removeAttribute('rel');
+              linkNode.removeAttribute('aria-disabled');
+              linkNode.classList.remove('cursor-not-allowed', 'opacity-70');
+              if (linkLabelNode) linkLabelNode.textContent = '继续访问';
+            } else {
+              linkNode.href = '#';
+              linkNode.target = '_self';
+              linkNode.removeAttribute('rel');
+              linkNode.setAttribute('aria-disabled', 'true');
+              linkNode.classList.add('cursor-not-allowed', 'opacity-70');
+              if (linkLabelNode) linkLabelNode.textContent = `请等待 ${remaining} 秒`;
+            }
+          }
+        };
+
+        sync();
+        const timer = window.setInterval(() => {
+          remaining -= 1;
+          sync();
+          if (remaining <= 0) window.clearInterval(timer);
+        }, 1000);
+      });
+    };
+
+    init();
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>

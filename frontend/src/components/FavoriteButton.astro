@@ -1,0 +1,73 @@
+---
+import { Star } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+
+type Props = {
+  slug: string;
+};
+
+const { slug } = Astro.props;
+---
+
+<Button variant="outline" data-favorite-button data-slug={slug} ariaLabel="收藏">
+  <span class="relative h-4 w-4">
+    <span data-favorite-icon="filled" class="absolute inset-0 hidden items-center justify-center text-amber-400">
+      <Star class="size-4 fill-current" fill="currentColor" />
+    </span>
+    <span data-favorite-icon="outline" class="absolute inset-0 flex items-center justify-center">
+      <Star class="size-4" />
+    </span>
+  </span>
+  <span data-favorite-label>收藏</span>
+</Button>
+
+<script>
+  import { getFavorite, removeFavorite, upsertFavorite } from '@/lib/favorites-db';
+  import { showToast } from '@/scripts/sweetalert';
+
+  const syncButton = (button, favorite) => {
+    button.dataset.favorite = favorite ? 'true' : 'false';
+    button.setAttribute('aria-label', favorite ? '已收藏' : '收藏');
+    button.querySelector('[data-favorite-label]')?.replaceChildren(document.createTextNode(favorite ? '已收藏' : '收藏'));
+    button.querySelector('[data-favorite-icon="filled"]')?.classList.toggle('hidden', !favorite);
+    button.querySelector('[data-favorite-icon="filled"]')?.classList.toggle('flex', favorite);
+    button.querySelector('[data-favorite-icon="outline"]')?.classList.toggle('hidden', favorite);
+    button.querySelector('[data-favorite-icon="outline"]')?.classList.toggle('flex', !favorite);
+  };
+
+  const init = () => {
+    document.querySelectorAll('[data-favorite-button]').forEach((button) => {
+      if (!(button instanceof HTMLButtonElement) || button.dataset.bound === 'true') return;
+      button.dataset.bound = 'true';
+      const slug = button.dataset.slug || '';
+      syncButton(button, false);
+
+      getFavorite(slug)
+        .then((favorite) => syncButton(button, Boolean(favorite)))
+        .catch((error) => showToast(error instanceof Error ? error.message : '无法读取收藏数据', 'error'));
+
+      button.addEventListener('click', async () => {
+        if (!slug || button.disabled) return;
+        button.disabled = true;
+        try {
+          if (button.dataset.favorite === 'true') {
+            await removeFavorite(slug);
+            syncButton(button, false);
+            showToast('已取消收藏', 'success');
+          } else {
+            await upsertFavorite({ slug });
+            syncButton(button, true);
+            showToast('已收藏', 'success');
+          }
+        } catch (error) {
+          showToast(error instanceof Error ? error.message : '收藏操作失败', 'error');
+        } finally {
+          button.disabled = false;
+        }
+      });
+    });
+  };
+
+  init();
+  document.addEventListener('astro:page-load', init);
+</script>

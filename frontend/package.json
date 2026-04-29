@@ -1,0 +1,30 @@
+{
+  "name": "singureo",
+  "type": "module",
+  "version": "1.6.1",
+  "scripts": {
+    "predev": "node scripts/ensure-abbrlink.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/ensure-abbrlink.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "ensure:abbrlink": "node scripts/ensure-abbrlink.mjs",
+    "worker:deploy": "npx wrangler deploy --config workers/search-api/wrangler.toml",
+    "worker:dev": "npx wrangler dev --config workers/search-api/wrangler.toml"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.2",
+    "@lucide/astro": "^1.8.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "astro": "^6.1.1",
+    "autoprefixer": "^10.4.23",
+    "clsx": "^2.1.1",
+    "postcss": "^8.5.6",
+    "sweetalert2": "^11.26.24",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^3.4.19",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}

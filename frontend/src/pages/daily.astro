@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import DailyRecommendPage from "../components/DailyRecommendPage.astro"
+---
+
+<BaseLayout
+  title="每日推荐"
+  description="根据你的本地收藏标签生成的每日文章推荐"
+  breadcrumbs={[{ label: "首页", href: "/" }, { label: "每日推荐" }]}
+>
+  <section class="space-y-5">
+    <div class="space-y-2">
+      <h1 class="title-with-accent text-2xl font-semibold tracking-tight">每日推荐</h1>
+      <p class="text-sm text-[rgb(var(--color-text-muted))]">
+        每日推荐会优先基于你的本地收藏标签随机抽取同类文章，最多展示 21 篇；若无收藏记录则随机推荐全站文章，并每 24 小时自动刷新一次。
+      </p>
+    </div>
+    <DailyRecommendPage />
+  </section>
+</BaseLayout>

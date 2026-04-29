@@ -1,0 +1,181 @@
+---
+import { Font } from 'astro:assets';
+import { site } from '../config/site';
+import Navbar from '../components/Navbar.astro';
+import FriendLinks from '../components/FriendLinks.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import type { BreadcrumbItemData } from '../types/breadcrumb';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import '../styles/globals.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  keywords?: string[] | string;
+  image?: string;
+  breadcrumbs?: BreadcrumbItemData[];
+  hideBreadcrumbs?: boolean;
+};
+
+const { title, description, keywords, image, breadcrumbs, hideBreadcrumbs } = Astro.props;
+const isHome = Astro.url.pathname === '/';
+const pageTitle = isHome
+  ? `${site.name} - ${site.tabTagline ?? site.tagline}`
+  : title
+    ? `${title} - ${site.name}`
+    : site.name;
+const pageDescription = description ?? site.tagline;
+const showFriendLinks = isHome;
+
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.toString();
+const mergedKeywords = Array.from(
+  new Set(
+    [
+      ...(Array.isArray(site.keywords) ? site.keywords : []),
+      ...(typeof keywords === 'string' ? keywords.split(',') : keywords ?? []),
+    ]
+      .map((s) => String(s).trim())
+      .filter(Boolean)
+  )
+);
+const keywordsContent = mergedKeywords.join(', ');
+const ogImage = image || undefined;
+
+function defaultBreadcrumbs(pathname: string): BreadcrumbItemData[] {
+  const out: BreadcrumbItemData[] = [{ label: '首页', href: '/' }];
+  const trimmed = pathname.replace(/\/+$/, '');
+  if (!trimmed || trimmed === '') return out;
+
+  const segments = trimmed.split('/').filter(Boolean);
+  const labelMap: Record<string, string> = {
+    categories: '分类',
+    tags: '标签',
+    search: '搜索',
+    docs: '文档',
+    category: '分类',
+    tag: '标签',
+    page: '分页',
+  };
+
+  let href = '';
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i];
+    href += `/${seg}`;
+
+    const prev = segments[i - 1];
+    if (prev === 'page') {
+      const n = Number(seg);
+      out.push({ label: Number.isFinite(n) ? `第 ${n} 页` : decodeURIComponent(seg), href });
+      continue;
+    }
+
+    const label = labelMap[seg] ?? decodeURIComponent(seg).replace(/-/g, ' ');
+    out.push({ label, href });
+  }
+
+  if (out.length) out[out.length - 1] = { label: out[out.length - 1].label };
+  return out;
+}
+
+const breadcrumbItems = breadcrumbs ?? defaultBreadcrumbs(Astro.url.pathname);
+const showBreadcrumbs = !isHome && !hideBreadcrumbs;
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script defer src="https://ays.sin0.cc/script.js" data-website-id="7bf402eb-d3a3-468c-84b7-3c6a9b2a54dc"></script>
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={keywordsContent} />
+    <meta name="robots" content="index,follow" />
+
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:type" content={isHome ? 'website' : 'article'} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImage ? <meta property="og:image" content={ogImage} /> : null}
+
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    {ogImage ? <meta name="twitter:image" content={ogImage} /> : null}
+    <Font cssVariable="--font-noto-sans-sc" />
+    <Font cssVariable="--font-noto-sans-jp" />
+    <Font cssVariable="--font-noto-sans-mono" />
+    <Font cssVariable="--font-outfit" />
+    <meta name="color-scheme" content="dark light" />
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const theme =
+            stored === 'dark' || stored === 'light'
+              ? stored
+              : window.matchMedia?.('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          const root = document.documentElement;
+          root.classList.toggle('dark', theme === 'dark');
+          root.style.colorScheme = theme;
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen antialiased flex flex-col">
+    <div id="page-loading-bar" aria-hidden="true"></div>
+    <Navbar />
+    <main class="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pb-4 pt-[4.5rem] md:pb-5 md:pt-20">
+      {showBreadcrumbs ? (
+        <div class="mb-4">
+          <Breadcrumbs items={breadcrumbItems} />
+        </div>
+      ) : null}
+      <slot />
+    </main>
+    <BackToTop />
+    {showFriendLinks ? <FriendLinks /> : null}
+    <Footer />
+    <script is:inline>
+      (() => {
+        const bar = document.getElementById('page-loading-bar');
+        if (!bar) return;
+
+        const start = () => {
+          bar.style.opacity = '1';
+          bar.style.transform = 'scaleX(0.2)';
+          requestAnimationFrame(() => {
+            bar.style.transform = 'scaleX(0.85)';
+          });
+        };
+
+        const end = () => {
+          bar.style.transform = 'scaleX(1)';
+          setTimeout(() => {
+            bar.style.opacity = '0';
+            bar.style.transform = 'scaleX(0)';
+          }, 250);
+        };
+
+        document.addEventListener('astro:before-swap', start);
+        document.addEventListener('astro:page-load', end);
+        window.addEventListener('beforeunload', start);
+      })();
+    </script>
+    <script>
+      import { installExternalLinkNormalizer } from '../lib/redirect';
+
+      installExternalLinkNormalizer();
+    </script>
+  </body>
+</html>
+

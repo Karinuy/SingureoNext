@@ -1,0 +1,30 @@
+---
+import { site } from '../config/site';
+import { resolveLink } from '../lib/redirect';
+
+const friendLinks = site.friendLinks.map((item) => ({
+  ...item,
+  link: resolveLink(item.href),
+}));
+---
+
+{site.friendLinks?.length ? (
+  <section>
+    <div class="mx-auto max-w-6xl px-4 py-8">
+      <div class="text-sm font-medium">友情链接</div>
+      <div class="mt-4 flex flex-wrap gap-3">
+        {friendLinks.map((item) => (
+          <a
+            class="rounded-md border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-3 py-2 text-sm text-[rgb(var(--color-text-muted))] transition-colors hover:bg-[rgb(var(--color-surface-muted))] hover:text-[rgb(var(--color-text))] dark:border-[rgb(var(--color-border))] dark:bg-[rgb(var(--color-surface))] dark:text-[rgb(var(--color-text-muted))] dark:hover:bg-[rgb(var(--color-surface-muted))] dark:hover:text-[rgb(var(--color-text))]"
+            href={item.link.href}
+            target={item.link.target}
+            rel={item.link.rel}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+) : null}
+

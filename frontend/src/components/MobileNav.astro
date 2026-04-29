@@ -1,0 +1,130 @@
+---
+import { ChevronDown, Menu, X } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+import Drawer from '@/components/ui/Drawer.astro';
+
+type NavItem = { label: string; href: string; target?: string; rel?: string; children?: NavItem[] };
+
+type Props = {
+  logoText: string;
+  nav: NavItem[];
+};
+
+const { logoText, nav } = Astro.props;
+const panelId = 'mobile-nav-panel';
+---
+
+<>
+  <Button
+    variant="ghost"
+    size="icon"
+    class="rounded-full md:hidden"
+    ariaLabel="打开菜单"
+    title="打开导航菜单"
+    data-drawer-open={panelId}
+  >
+    <Menu class="size-[18px]" />
+  </Button>
+
+  <Drawer
+    id={panelId}
+    dialogClass="md:hidden"
+    class="p-4"
+    closeLabel="关闭菜单"
+  >
+    <div class="flex items-center justify-between gap-3 pb-4">
+      <span class="brand-wordmark text-base tracking-tight">{logoText}</span>
+      <Button variant="ghost" size="icon" class="rounded-full" ariaLabel="关闭菜单" data-drawer-close>
+        <X class="size-[18px]" />
+      </Button>
+    </div>
+    <div class="flex min-h-0 flex-1 flex-col gap-1 overflow-auto px-1 pb-[max(env(safe-area-inset-bottom),1rem)] pt-1">
+      {nav.map((item, index) => {
+        const hasChildren = Boolean(item.children?.length);
+        const submenuId = `mobile-nav-submenu-${index}`;
+        return hasChildren ? (
+          <div class="rounded-xl">
+            <div class="flex items-center gap-1">
+              <a
+                href={item.href}
+                target={item.target}
+                rel={item.rel}
+                class="min-w-0 flex-1 rounded-lg px-3 py-2.5 text-[0.94rem] font-medium tracking-[-0.005em] text-[rgb(var(--color-text)_/_0.78)]"
+                data-drawer-close
+              >
+                {item.label}
+              </a>
+              <button
+                type="button"
+                class="inline-flex size-10 shrink-0 items-center justify-center rounded-lg text-[rgb(var(--color-text)_/_0.72)]"
+                aria-label={`展开${item.label}子菜单`}
+                aria-controls={submenuId}
+                aria-expanded="false"
+                data-subnav-toggle={submenuId}
+              >
+                <ChevronDown class="size-4 shrink-0 transition-transform duration-150" />
+              </button>
+            </div>
+            <div id={submenuId} class="mt-1 hidden flex-col gap-1 pl-3" data-subnav-panel>
+              {item.children?.map((child) => (
+                <a
+                  href={child.href}
+                  target={child.target}
+                  rel={child.rel}
+                  class="block rounded-lg px-3 py-2 text-[0.88rem] font-medium text-[rgb(var(--color-text)_/_0.72)]"
+                  data-drawer-close
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            target={item.target}
+            rel={item.rel}
+            class="block rounded-lg px-3 py-2.5 text-[0.94rem] font-medium tracking-[-0.005em] text-[rgb(var(--color-text)_/_0.78)]"
+            data-drawer-close
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </div>
+  </Drawer>
+</>
+
+<script is:inline>
+  (() => {
+    const key = '__mobileSubnavToggleBound';
+    if (window[key]) return;
+
+    const syncToggleState = (button, expanded) => {
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      const icon = button.querySelector('svg');
+      icon?.classList.toggle('rotate-180', expanded);
+    };
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const button = target.closest('[data-subnav-toggle]');
+      if (!(button instanceof HTMLButtonElement)) return;
+
+      const panelId = button.dataset.subnavToggle;
+      if (!panelId) return;
+
+      const panel = document.getElementById(panelId);
+      if (!panel) return;
+
+      const willExpand = panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', !willExpand);
+      panel.classList.toggle('flex', willExpand);
+      syncToggleState(button, willExpand);
+    });
+
+    window[key] = true;
+  })();
+</script>

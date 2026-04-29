@@ -1,0 +1,13 @@
+---
+---
+
+<div class="space-y-4" data-daily-recommend-page>
+  <div data-daily-recommend-results></div>
+</div>
+
+<script>
+  import { initDailyRecommendPage } from '@/scripts/daily-recommend-page';
+
+  initDailyRecommendPage();
+  document.addEventListener('astro:page-load', initDailyRecommendPage);
+</script>

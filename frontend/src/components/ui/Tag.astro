@@ -1,0 +1,26 @@
+---
+import { cn } from '@/lib/utils';
+
+type Props = {
+  href?: string;
+  class?: string;
+};
+
+const { href, class: className } = Astro.props;
+const classes = cn(
+  'inline-flex items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-2.5 py-1 text-xs font-medium text-[rgb(var(--color-text-muted))]',
+  className
+);
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <span class={classes}>
+      <slot />
+    </span>
+  )
+}

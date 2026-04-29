@@ -1,0 +1,24 @@
+---
+import PostCard from '@/components/PostCard.astro';
+import type { PostCardData } from '@/types/post-card';
+
+type Props = {
+  items: PostCardData[];
+  class?: string;
+  hideCoverPlaceholder?: boolean;
+};
+
+const { items, class: className, hideCoverPlaceholder = false } = Astro.props;
+---
+
+{
+  items?.length ? (
+    <div class={className ?? 'grid grid-cols-2 items-stretch gap-3 sm:gap-4 lg:grid-cols-3 lg:gap-5 xl:grid-cols-3'}>
+      {items.map((item) => (
+        <div class="h-full">
+          <PostCard data={item} hideCoverPlaceholder={hideCoverPlaceholder} />
+        </div>
+      ))}
+    </div>
+  ) : null
+}

@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Pagination from '../../../../components/ui/Pagination.astro';
+import PostList from '../../../../components/PostList.astro';
+import { getEntryTags, getPosts } from '../../../../lib/content';
+import { slugifySegment } from '../../../../lib/slug';
+import { postToCardData } from '../../../../lib/post-card';
+import { getPageCount, paginate } from '../../../../lib/paginate';
+
+const PAGE_SIZE = 24;
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 24;
+  const posts = await getPosts();
+  const tags = Array.from(new Set(posts.flatMap((p) => getEntryTags(p))));
+
+  const paths: Array<{ params: { slug: string; page: string }; props: { tag: string } }> = [];
+
+  for (const tag of tags) {
+    const list = posts.filter((p) => getEntryTags(p).includes(tag));
+    const pageCount = getPageCount(list.length, PAGE_SIZE);
+    for (let page = 2; page <= pageCount; page++) {
+      paths.push({
+        params: { slug: slugifySegment(tag), page: String(page) },
+        props: { tag },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const page = Number(Astro.params.page ?? '1');
+const { tag } = Astro.props as { tag: string };
+const posts = await getPosts();
+const list = posts.filter((p) => getEntryTags(p).includes(tag));
+const pageData = paginate(list, page, PAGE_SIZE);
+const base = `/tag/${slugifySegment(tag)}`;
+const postCards = pageData.items.map((entry) => postToCardData(entry));
+const tagPageHref = (targetPage: number) => (targetPage === 1 ? `${base}/` : `${base}/page/${targetPage}/`);
+---
+
+<BaseLayout
+  title={`标签：${tag}（第 ${pageData.page} 页）`}
+  description={`标签 ${tag} 的文章`}
+  breadcrumbs={[
+    { label: '首页', href: '/' },
+    { label: '标签', href: '/tags' },
+    { label: `#${tag}`, href: `${base}/` },
+    { label: `第 ${pageData.page} 页` },
+  ]}
+>
+  <div class="flex items-end gap-4">
+    <div>
+      <h1 class="title-with-accent text-2xl font-semibold tracking-tight">标签：{tag}</h1>
+      <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]">共 {pageData.total} 篇</p>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <PostList items={postCards} />
+  </div>
+
+  {pageData.pageCount > 1 ? (
+    <div class="mt-8 flex justify-center">
+      <Pagination current={pageData.page} pageCount={pageData.pageCount} hrefBuilder={tagPageHref} />
+    </div>
+  ) : null}
+</BaseLayout>
+

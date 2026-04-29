@@ -1,0 +1,36 @@
+---
+import { site } from '../config/site';
+import { resolveLink } from '../lib/redirect';
+
+const currentYear = new Date().getFullYear();
+const footerLinks = site.footerLinks.map((item) => ({
+  ...item,
+  link: resolveLink(item.href),
+}));
+---
+
+<footer class="bg-transparent">
+  <div class="mx-auto max-w-6xl px-4 pb-10 pt-12">
+    <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+      <div>
+        <div class="text-sm text-[rgb(var(--color-text-muted))]">
+          © {currentYear} {site.name}
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+        {footerLinks.map((item) => (
+          <a
+            class="inline-flex items-center gap-1.5 text-[rgb(var(--color-text-muted))]"
+            href={item.link.href}
+            target={item.link.target}
+            rel={item.link.rel}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+

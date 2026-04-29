@@ -1,0 +1,48 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { extractSummaryFromMarkdown } from '../../lib/markdown-summary';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('docs', ({ data }) => !data.draft);
+  return entries
+    .filter((entry) => entry.data.abbrlink !== undefined && entry.data.abbrlink !== null && entry.data.abbrlink !== '')
+    .map((entry) => ({
+      params: { slug: String(entry.data.abbrlink) },
+      props: { abbrlink: String(entry.data.abbrlink) },
+    }));
+}
+
+const { abbrlink } = Astro.props as { abbrlink: string };
+
+const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a, b) => {
+  const at = (a.data.date ?? a.data.updatedDate)?.getTime() ?? 0;
+  const bt = (b.data.date ?? b.data.updatedDate)?.getTime() ?? 0;
+  return bt - at;
+});
+
+const current = entries.find((e) => String(e.data.abbrlink ?? '') === abbrlink);
+if (!current) throw new Error(`Doc not found for abbrlink: ${abbrlink}`);
+
+const rendered = await render(current);
+const { Content } = rendered;
+
+const pageDescription =
+  (current.data.description ?? '').trim() ||
+  extractSummaryFromMarkdown(current.body ?? '', { maxLength: 160 });
+---
+
+<DocsLayout
+  title={current.data.title}
+  description={pageDescription}
+  breadcrumbs={[
+    { label: '首页', href: '/' },
+    { label: '文档', href: '/docs' },
+    { label: current.data.title },
+  ]}
+>
+  <div class="prose prose-neutral dark:prose-invert max-w-none">
+    <Content />
+  </div>
+</DocsLayout>
+

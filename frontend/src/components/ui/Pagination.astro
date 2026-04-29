@@ -1,0 +1,142 @@
+---
+import { cn } from '@/lib/utils';
+
+type Props = {
+  current: number;
+  pageCount: number;
+  hrefBuilder: (page: number) => string;
+  class?: string;
+};
+
+const { current, pageCount, hrefBuilder, class: className } = Astro.props;
+
+function buildPages(total: number, page: number) {
+  const pages = new Set<number>([1, total, page - 1, page, page + 1].filter((value) => value >= 1 && value <= total));
+  const ordered = [...pages].sort((a, b) => a - b);
+  const items: Array<number | 'ellipsis'> = [];
+  for (let index = 0; index < ordered.length; index += 1) {
+    const value = ordered[index];
+    const previous = ordered[index - 1];
+    if (previous && value - previous > 1) {
+      items.push('ellipsis');
+    }
+    items.push(value);
+  }
+  return items;
+}
+
+function buildMobilePages(total: number, page: number) {
+  return [...new Set([1, page - 1, page, page + 1, total])].filter((value) => value >= 1 && value <= total);
+}
+
+const items = buildPages(pageCount, current);
+const mobileItems = buildMobilePages(pageCount, current);
+const previousPage = current > 1 ? current - 1 : null;
+const nextPage = current < pageCount ? current + 1 : null;
+---
+
+{
+  pageCount > 1 ? (
+    <nav aria-label="分页导航" class={cn('w-full', className)}>
+      <ol class="flex items-center justify-center gap-2 text-sm sm:hidden">
+        <li>
+          {previousPage ? (
+            <a
+              href={hrefBuilder(previousPage)}
+              class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-3 font-medium text-[rgb(var(--color-text))]"
+            >
+              上一页
+            </a>
+          ) : (
+            <span class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-3 font-medium text-[rgb(var(--color-text-muted))]">
+              上一页
+            </span>
+          )}
+        </li>
+
+        {mobileItems.map((item) => (
+          <li>
+            {item === current ? (
+              <span class="inline-flex size-10 items-center justify-center rounded-lg bg-[rgb(var(--color-primary))] font-semibold text-[rgb(var(--color-primary-foreground))]">
+                {item}
+              </span>
+            ) : (
+              <a
+                href={hrefBuilder(item)}
+                class="inline-flex size-10 items-center justify-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] font-medium text-[rgb(var(--color-text))]"
+              >
+                {item}
+              </a>
+            )}
+          </li>
+        ))}
+
+        <li>
+          {nextPage ? (
+            <a
+              href={hrefBuilder(nextPage)}
+              class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-3 font-medium text-[rgb(var(--color-text))]"
+            >
+              下一页
+            </a>
+          ) : (
+            <span class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-3 font-medium text-[rgb(var(--color-text-muted))]">
+              下一页
+            </span>
+          )}
+        </li>
+      </ol>
+
+      <ol class="hidden items-center justify-center gap-2 text-sm sm:flex">
+        <li>
+          {previousPage ? (
+            <a
+              href={hrefBuilder(previousPage)}
+              class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-4 font-medium text-[rgb(var(--color-text))]"
+            >
+              上一页
+            </a>
+          ) : (
+            <span class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-4 font-medium text-[rgb(var(--color-text-muted))]">
+              上一页
+            </span>
+          )}
+        </li>
+
+        {items.map((item) => (
+          <li>
+            {item === 'ellipsis' ? (
+              <span class="inline-flex size-10 items-center justify-center text-[rgb(var(--color-text-muted))]">…</span>
+            ) : item === current ? (
+              <span class="inline-flex size-10 items-center justify-center rounded-lg bg-[rgb(var(--color-primary))] font-semibold text-[rgb(var(--color-primary-foreground))]">
+                {item}
+              </span>
+            ) : (
+              <a
+                href={hrefBuilder(item)}
+                class="inline-flex size-10 items-center justify-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] font-medium text-[rgb(var(--color-text))]"
+              >
+                {item}
+              </a>
+            )}
+          </li>
+        ))}
+
+        <li>
+          {nextPage ? (
+            <a
+              href={hrefBuilder(nextPage)}
+              class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-4 font-medium text-[rgb(var(--color-text))]"
+            >
+              下一页
+            </a>
+          ) : (
+            <span class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-4 font-medium text-[rgb(var(--color-text-muted))]">
+              下一页
+            </span>
+          )}
+        </li>
+      </ol>
+    </nav>
+  ) : null
+}

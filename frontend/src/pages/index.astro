@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+import Alert from '../components/ui/Alert.astro';
+import Pagination from '../components/ui/Pagination.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts } from '../lib/content';
+import { postToCardData } from '../lib/post-card';
+import { paginate } from '../lib/paginate';
+import HomeCarousel from '../components/HomeCarousel.astro';
+import HomeAds from '../components/HomeAds.astro';
+
+const PAGE_SIZE = 24;
+const games = await getPosts();
+const pageData = paginate(games, 1, PAGE_SIZE);
+const postCards = pageData.items.map((entry) => postToCardData(entry));
+const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
+---
+
+<BaseLayout title="首页" description={site.tagline}>
+	<section>
+		<Alert title="公告" description={site.home.announcement} />
+	</section>
+
+	<section class="mt-4">
+		<HomeCarousel items={site.home.carousel} />
+	</section>
+
+	<section class="mt-4">
+		{site.home.ads.enabled ? <HomeAds items={site.home.ads.items} /> : null}
+	</section>
+
+	<section class="mt-10">
+		<div class="flex items-end gap-4">
+			<h2 class="title-with-accent text-lg font-semibold tracking-tight">最新文章</h2>
+		</div>
+		<div class="mt-4">
+			<PostList items={postCards} />
+		</div>
+
+		{pageData.pageCount > 1 ? (
+			<div class="mt-8 flex justify-center">
+				<Pagination current={1} pageCount={pageData.pageCount} hrefBuilder={homePageHref} />
+			</div>
+		) : null}
+	</section>
+</BaseLayout>

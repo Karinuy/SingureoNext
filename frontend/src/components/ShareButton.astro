@@ -1,0 +1,86 @@
+---
+import { Share2 } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+
+type Props = {
+  title: string;
+  url: string;
+  text?: string;
+};
+
+const { title, url, text = '' } = Astro.props;
+---
+
+<Button
+  variant="outline"
+  data-share-button
+  data-share-title={title}
+  data-share-url={url}
+  data-share-text={text}
+  ariaLabel="分享"
+>
+  <Share2 class="size-4" />
+  <span>分享</span>
+</Button>
+
+<script>
+  import { showToast } from '@/scripts/sweetalert';
+
+  const copyText = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      try {
+        const el = document.createElement('textarea');
+        el.value = text;
+        el.setAttribute('readonly', 'true');
+        el.style.position = 'fixed';
+        el.style.top = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(el);
+        return ok;
+      } catch {
+        return false;
+      }
+    }
+  };
+
+  const init = () => {
+    document.querySelectorAll('[data-share-button]').forEach((button) => {
+      if (!(button instanceof HTMLButtonElement) || button.dataset.bound === 'true') return;
+      button.dataset.bound = 'true';
+      button.addEventListener('click', async () => {
+        if (button.disabled) return;
+        button.disabled = true;
+        try {
+          const shareTitle = button.dataset.shareTitle || '';
+          const shareText = button.dataset.shareText || '';
+          const shareUrl = button.dataset.shareUrl || '';
+          if (typeof navigator !== 'undefined' && 'share' in navigator) {
+            try {
+              await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
+              showToast('分享成功', 'success');
+              return;
+            } catch (error) {
+              if (error && typeof error === 'object' && 'name' in error && error.name === 'AbortError') {
+                showToast('已取消分享', 'info');
+                return;
+              }
+            }
+          }
+
+          const ok = await copyText(shareUrl);
+          showToast(ok ? '链接已复制' : '分享失败：无法复制链接', ok ? 'success' : 'error');
+        } finally {
+          button.disabled = false;
+        }
+      });
+    });
+  };
+
+  init();
+  document.addEventListener('astro:page-load', init);
+</script>

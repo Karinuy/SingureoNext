@@ -1,0 +1,113 @@
+---
+import { site } from '../config/site';
+import { resolveLink } from '../lib/redirect';
+import RandomButton from './RandomButton.astro';
+import SearchButton from './SearchButton.astro';
+import MobileNav from './MobileNav.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import DesktopNav from './DesktopNav.astro';
+
+type NavItem = {
+  label: string;
+  href: string;
+  children?: NavItem[];
+};
+
+type ResolvedNavItem = {
+  label: string;
+  href: string;
+  target?: string;
+  rel?: string;
+  children?: ResolvedNavItem[];
+};
+
+function resolveNavItem(item: NavItem): ResolvedNavItem {
+  return {
+    label: item.label,
+    ...resolveLink(item.href),
+    children: item.children?.map(resolveNavItem),
+  };
+}
+
+const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-[70]">
+  <div class="mx-auto max-w-6xl md:hidden">
+    <div class="flex items-center justify-between gap-2 bg-[rgb(var(--color-surface)_/_0.54)] px-3 py-3 backdrop-blur-2xl supports-[backdrop-filter]:bg-[rgb(var(--color-surface)_/_0.42)]">
+      <div class="flex min-w-0 items-center gap-2">
+        <MobileNav logoText={site.logoText} nav={navItems} />
+        <a href="/" class="min-w-0 px-1 py-1">
+          <span class="brand-wordmark block whitespace-nowrap text-sm tracking-tight leading-none translate-y-[0.04em]">
+            {site.logoText}
+          </span>
+        </a>
+      </div>
+      <div class="flex items-center gap-0.5">
+        <RandomButton />
+        <SearchButton />
+        <ThemeToggle />
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto hidden max-w-[74rem] px-3 pt-2 md:block">
+    <div
+      id="desktop-nav-shell"
+      data-scrolled="true"
+      data-transitioning="true"
+      class="relative flex items-center justify-between gap-3 rounded-2xl bg-[rgb(var(--color-surface)_/_0.56)] px-3 py-2 backdrop-blur-2xl supports-[backdrop-filter]:bg-[rgb(var(--color-surface)_/_0.44)] md:gap-4 data-[scrolled=true]:bg-[rgb(var(--color-surface)_/_0.62)]"
+    >
+      <div class="flex min-w-0 items-center gap-3">
+        <a href="/" class="flex min-w-0 items-center px-2 py-1">
+          <span class="brand-wordmark block whitespace-nowrap text-sm tracking-tight leading-none translate-y-[0.04em] md:text-[0.96rem]">
+            {site.logoText}
+          </span>
+        </a>
+        <DesktopNav items={navItems} pathname={Astro.url.pathname} />
+      </div>
+
+      <div class="flex items-center gap-0.5">
+        <RandomButton />
+        <SearchButton />
+        <ThemeToggle />
+      </div>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const globalKey = '__siteHeaderController';
+    if (window[globalKey]?.bound) return;
+
+    const setScrolled = (value) => {
+      const shell = document.getElementById('desktop-nav-shell');
+      if (!shell) return;
+      shell.dataset.scrolled = value ? 'true' : 'false';
+    };
+
+    const setTransitioning = (value) => {
+      const shell = document.getElementById('desktop-nav-shell');
+      if (!shell) return;
+      shell.dataset.transitioning = value ? 'true' : 'false';
+    };
+
+    const onPageLoad = () => {
+      setScrolled(true);
+      requestAnimationFrame(() => setTransitioning(false));
+    };
+
+    const onBeforeSwap = () => setTransitioning(true);
+
+    setScrolled(true);
+    requestAnimationFrame(() => setTransitioning(false));
+    document.addEventListener('astro:before-swap', onBeforeSwap);
+    document.addEventListener('astro:page-load', onPageLoad);
+
+    window[globalKey] = {
+      bound: true,
+    };
+  })();
+</script>
+

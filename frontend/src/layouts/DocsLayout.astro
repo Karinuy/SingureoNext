@@ -1,0 +1,18 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+type Props = {
+  title?: string;
+  description?: string;
+  breadcrumbs?: { label: string; href?: string }[];
+};
+
+const { title, description, breadcrumbs } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <article class="min-w-0">
+    <slot />
+  </article>
+</BaseLayout>
+

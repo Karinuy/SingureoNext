@@ -1,0 +1,70 @@
+---
+import { ArrowUp } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+import { cn } from '@/lib/utils';
+
+type Props = {
+  threshold?: number;
+  className?: string;
+};
+
+const { threshold = 320, className } = Astro.props;
+---
+
+<div
+  class={cn(
+    'fixed bottom-6 right-5 z-50 pointer-events-none opacity-0 transition-opacity duration-200 md:right-6 lg:bottom-16 lg:right-8',
+    className
+  )}
+  data-back-to-top-wrapper
+>
+  <Button
+    variant="outline"
+    size="icon"
+    class="size-14 rounded-full shadow-xl"
+    ariaLabel="返回顶部"
+    data-back-to-top={threshold}
+  >
+    <ArrowUp class="size-5" />
+  </Button>
+</div>
+
+<script>
+  (() => {
+    const key = '__backToTopBound';
+    if (window[key]) return;
+
+    let raf = 0;
+
+    const sync = () => {
+      document.querySelectorAll('[data-back-to-top]').forEach((button) => {
+        const wrapper = button.closest('[data-back-to-top-wrapper]');
+        if (!(button instanceof HTMLElement) || !(wrapper instanceof HTMLElement)) return;
+        const threshold = Number(button.dataset.backToTop || '320');
+        const visible = window.scrollY >= threshold;
+        wrapper.classList.toggle('pointer-events-none', !visible);
+        wrapper.classList.toggle('opacity-0', !visible);
+        wrapper.classList.toggle('opacity-100', visible);
+      });
+    };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        sync();
+      });
+    };
+
+    document.addEventListener('click', (event) => {
+      const button = event.target instanceof Element ? event.target.closest('[data-back-to-top]') : null;
+      if (!button) return;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    sync();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('astro:page-load', sync);
+    window[key] = true;
+  })();
+</script>

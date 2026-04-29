@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FavoritesPage from "../components/FavoritesPage.astro";
+import Button from "../components/ui/Button.astro";
+import { Download, Upload } from '@lucide/astro';
+---
+
+<BaseLayout
+  title="收藏"
+  description="本地收藏的文章"
+  breadcrumbs={[{ label: "首页", href: "/" }, { label: "收藏" }]}
+>
+  <section class="space-y-5" data-favorites-page>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div class="space-y-2">
+        <h1 class="title-with-accent text-2xl font-semibold tracking-tight">收藏</h1>
+        <p class="text-sm text-[rgb(var(--color-text-muted))]">收藏内容仅保存在当前浏览器中，可通过导入/导出进行备份与迁移。</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 sm:justify-end">
+        <Button type="button" variant="outline" data-favorites-export>
+          <Download class="size-4" />
+          导出
+        </Button>
+        <Button type="button" variant="solid" data-favorites-import-open>
+          <Upload class="size-4" />
+          导入
+        </Button>
+      </div>
+    </div>
+    <FavoritesPage />
+  </section>
+</BaseLayout>

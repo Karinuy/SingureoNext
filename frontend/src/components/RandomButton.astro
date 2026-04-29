@@ -1,0 +1,45 @@
+---
+import { Shuffle } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<Button
+  variant="ghost"
+  size="icon"
+  class="rounded-full md:size-11"
+  ariaLabel="随机文章"
+  title="随机文章"
+  data-random-button
+>
+  <span class="relative z-10 h-5 w-5">
+    <span class="absolute inset-0 flex items-center justify-center">
+      <Shuffle class="size-[18px]" />
+    </span>
+  </span>
+</Button>
+
+<script>
+  import { getRandomPost } from '@/api/search';
+
+  (() => {
+    const key = '__randomArticleButtonBound';
+    if (window[key]) return;
+
+    const onClick = async (event) => {
+      const button = event.target instanceof Element ? event.target.closest('[data-random-button]') : null;
+      if (!(button instanceof HTMLButtonElement) || button.dataset.busy === 'true') return;
+      try {
+        button.dataset.busy = 'true';
+        const { item: pick } = await getRandomPost();
+        if (pick?.slug) {
+          window.location.href = `/posts/${encodeURIComponent(pick.slug)}/`;
+        }
+      } finally {
+        delete button.dataset.busy;
+      }
+    };
+
+    document.addEventListener('click', onClick);
+    window[key] = true;
+  })();
+</script>

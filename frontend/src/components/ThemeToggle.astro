@@ -1,0 +1,136 @@
+---
+import { Moon, Sun } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<Button
+  variant="ghost"
+  size="icon"
+  class="rounded-full md:size-11"
+  ariaLabel="切换主题"
+  title="切换明暗主题"
+  data-theme-toggle
+>
+  <span class="relative z-10 h-5 w-5">
+    <span data-theme-icon="sun" class="absolute inset-0 hidden items-center justify-center">
+      <Sun class="size-[18px]" />
+    </span>
+    <span data-theme-icon="moon" class="absolute inset-0 flex items-center justify-center">
+      <Moon class="size-[18px]" />
+    </span>
+  </span>
+</Button>
+
+<script>
+  (() => {
+    const key = '__themeToggleBound';
+    if (window[key]) return;
+    let isAnimating = false;
+    const root = document.documentElement;
+
+    const getPreferredTheme = () => {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || stored === 'light') return stored;
+      return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    const applyTheme = (theme) => {
+      root.classList.toggle('dark', theme === 'dark');
+      root.style.colorScheme = theme;
+    };
+
+    const syncButtons = (theme) => {
+      document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+        const isDark = theme === 'dark';
+        button.setAttribute('aria-label', isDark ? '切换到浅色模式' : '切换到深色模式');
+        button.querySelector('[data-theme-icon="sun"]')?.classList.toggle('hidden', !isDark);
+        button.querySelector('[data-theme-icon="sun"]')?.classList.toggle('flex', isDark);
+        button.querySelector('[data-theme-icon="moon"]')?.classList.toggle('hidden', isDark);
+        button.querySelector('[data-theme-icon="moon"]')?.classList.toggle('flex', !isDark);
+      });
+    };
+
+    const setTheme = (theme) => {
+      localStorage.setItem('theme', theme);
+      applyTheme(theme);
+      syncButtons(theme);
+    };
+
+    const resetTransitionState = () => {
+      root.classList.remove('theme-transition-dark', 'theme-transition-light');
+      root.style.removeProperty('--theme-transition-x');
+      root.style.removeProperty('--theme-transition-y');
+      root.style.removeProperty('--theme-transition-radius');
+    };
+
+    const animateTheme = async (button, nextTheme) => {
+      const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      const canTransition = typeof document.startViewTransition === 'function';
+      if (reduceMotion || !canTransition) {
+        setTheme(nextTheme);
+        return;
+      }
+
+      const rect = button.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      const maxX = Math.max(x, window.innerWidth - x);
+      const maxY = Math.max(y, window.innerHeight - y);
+      const radius = Math.hypot(maxX, maxY);
+      const isToDark = nextTheme === 'dark';
+      const duration = isToDark ? 700 : 820;
+      const easing = isToDark ? 'cubic-bezier(0.22, 1, 0.36, 1)' : 'cubic-bezier(0.2, 0.9, 0.28, 1)';
+      const keyframes = isToDark
+        ? [
+            { clipPath: `circle(0px at ${x}px ${y}px)` },
+            { clipPath: `circle(${radius}px at ${x}px ${y}px)` },
+          ]
+        : [
+            { clipPath: `circle(${radius}px at ${x}px ${y}px)` },
+            { clipPath: `circle(0px at ${x}px ${y}px)` },
+          ];
+      const pseudoElement = isToDark ? '::view-transition-new(root)' : '::view-transition-old(root)';
+
+      root.style.setProperty('--theme-transition-x', `${x}px`);
+      root.style.setProperty('--theme-transition-y', `${y}px`);
+      root.style.setProperty('--theme-transition-radius', `${radius}px`);
+      root.classList.add(isToDark ? 'theme-transition-dark' : 'theme-transition-light');
+
+      const transition = document.startViewTransition(() => {
+        setTheme(nextTheme);
+      });
+
+      try {
+        await transition.ready;
+        const animation = document.documentElement.animate(keyframes, {
+          duration,
+          easing,
+          fill: 'both',
+          pseudoElement,
+        });
+        await animation.finished;
+        await transition.finished;
+      } finally {
+        resetTransitionState();
+      }
+    };
+
+    document.addEventListener('click', async (event) => {
+      const button = event.target instanceof Element ? event.target.closest('[data-theme-toggle]') : null;
+      if (!(button instanceof HTMLButtonElement) || isAnimating) return;
+      isAnimating = true;
+      const next = getPreferredTheme() === 'dark' ? 'light' : 'dark';
+      try {
+        await animateTheme(button, next);
+      } finally {
+        isAnimating = false;
+      }
+    });
+
+    const initialTheme = getPreferredTheme();
+    applyTheme(initialTheme);
+    syncButtons(initialTheme);
+    document.addEventListener('astro:page-load', () => syncButtons(getPreferredTheme()));
+    window[key] = true;
+  })();
+</script>

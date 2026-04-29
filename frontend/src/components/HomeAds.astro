@@ -1,0 +1,43 @@
+---
+import Card from '@/components/ui/Card.astro';
+import { resolveLink } from '@/lib/redirect';
+
+type AdItem = {
+  title: string;
+  href: string;
+  image: string;
+};
+
+type Props = {
+  items: AdItem[];
+};
+
+const { items } = Astro.props;
+---
+
+{
+  items?.length ? (
+    <div class="grid gap-4">
+      {items.map((item) => {
+        const link = resolveLink(item.href);
+        return (
+          <a key={item.title} href={link.href} target={link.target} rel={link.rel} class="group block no-underline text-inherit">
+            <Card class="overflow-hidden p-0">
+              <div class="relative aspect-[1920/300] bg-gray-100 dark:bg-neutral-800">
+                <img src={item.image} alt={item.title} class="h-full w-full object-cover" loading="lazy" />
+                <span class="absolute right-1.5 top-1.5 inline-flex h-6 items-center rounded-md border border-white/35 bg-black/45 px-2 text-[10px] font-semibold leading-none tracking-wide text-white shadow-sm backdrop-blur-md sm:right-3 sm:top-3">
+                  广告
+                </span>
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 dark:bg-black/25"
+                />
+              </div>
+              <span class="sr-only">{item.title}</span>
+            </Card>
+          </a>
+        );
+      })}
+    </div>
+  ) : null
+}

@@ -1,0 +1,197 @@
+---
+import { ChevronLeft, ChevronRight } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import { resolveLink } from '@/lib/redirect';
+
+type CarouselLink = {
+  title: string;
+  href: string;
+  image: string;
+};
+
+type Props = {
+  items: CarouselLink[];
+};
+
+const { items } = Astro.props;
+---
+
+{
+  items?.length ? (
+    <div class="relative w-full" data-carousel data-count={items.length}>
+      <div class="overflow-hidden rounded-xl">
+        <div class="flex w-full transition-transform duration-500 ease-out" data-carousel-track>
+          {items.map((item) => {
+            const link = resolveLink(item.href);
+            return (
+              <div class="min-w-full">
+                <a href={link.href} target={link.target} rel={link.rel} class="block no-underline text-inherit">
+                  <Card class="overflow-hidden rounded-none border-0 p-0 shadow-none">
+                    <div class="relative h-[230px] bg-gray-100 sm:h-[290px] md:h-[340px] lg:h-[400px]">
+                      <img src={item.image} alt={item.title} class="h-full w-full object-cover" loading="lazy" />
+                      <div
+                        aria-hidden="true"
+                        class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-4"
+                      >
+                        <div class="line-clamp-2 text-sm font-medium text-white md:text-base">{item.title}</div>
+                      </div>
+                    </div>
+                    <span class="sr-only">{item.title}</span>
+                  </Card>
+                </a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {items.length > 1 ? (
+        <>
+          <Button
+            variant="outline"
+            size="icon"
+            class="absolute left-2 top-1/2 size-8 -translate-y-1/2 rounded-full p-0 md:left-3 md:size-10"
+            ariaLabel="上一张"
+            data-carousel-prev
+          >
+            <span class="flex size-full items-center justify-center" aria-hidden="true">
+              <ChevronLeft class="block size-4 shrink-0 stroke-[2.25] md:size-[1.05rem]" />
+            </span>
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            class="absolute right-2 top-1/2 size-8 -translate-y-1/2 rounded-full p-0 md:right-3 md:size-10"
+            ariaLabel="下一张"
+            data-carousel-next
+          >
+            <span class="flex size-full items-center justify-center" aria-hidden="true">
+              <ChevronRight class="block size-4 shrink-0 stroke-[2.25] md:size-[1.05rem]" />
+            </span>
+          </Button>
+
+          <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+            {items.map((_, index) => (
+              <button
+                type="button"
+                aria-label={`跳转到第 ${index + 1} 张`}
+                class="h-2 w-2 rounded-full bg-[rgb(var(--color-primary)_/_0.24)] data-[active=true]:bg-[rgb(var(--color-primary))]"
+                data-carousel-dot={index}
+                data-active={index === 0 ? 'true' : 'false'}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
+    </div>
+  ) : null
+}
+
+<script>
+  (() => {
+    const rootMap = new WeakMap();
+
+    const mount = (root) => {
+      if (!(root instanceof HTMLElement) || rootMap.has(root)) return;
+      const track = root.querySelector('[data-carousel-track]');
+      if (!(track instanceof HTMLElement)) return;
+      const count = Number(root.dataset.count || '0');
+      if (count <= 1) return;
+
+      let current = 0;
+      let paused = false;
+      let timer = 0;
+
+      const sync = () => {
+        track.style.transform = `translateX(-${current * 100}%)`;
+        root.querySelectorAll('[data-carousel-dot]').forEach((dot) => {
+          const active = Number(dot.getAttribute('data-carousel-dot')) === current;
+          dot.setAttribute('data-active', active ? 'true' : 'false');
+        });
+      };
+
+      const stop = () => {
+        if (timer) window.clearInterval(timer);
+        timer = 0;
+      };
+
+      const start = () => {
+        stop();
+        if (paused) return;
+        timer = window.setInterval(() => {
+          current = (current + 1) % count;
+          sync();
+        }, 3000);
+      };
+
+      root.addEventListener('mouseenter', () => {
+        paused = true;
+        stop();
+      });
+      root.addEventListener('mouseleave', () => {
+        paused = false;
+        start();
+      });
+      root.addEventListener('touchstart', () => {
+        paused = true;
+        stop();
+      }, { passive: true });
+      root.addEventListener('touchend', () => {
+        paused = false;
+        start();
+      }, { passive: true });
+      root.addEventListener('focusin', () => {
+        paused = true;
+        stop();
+      });
+      root.addEventListener('focusout', () => {
+        paused = false;
+        start();
+      });
+
+      root.addEventListener('click', (event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        if (!target) return;
+        if (target.closest('[data-carousel-prev]')) {
+          current = (current - 1 + count) % count;
+          sync();
+          start();
+          return;
+        }
+        if (target.closest('[data-carousel-next]')) {
+          current = (current + 1) % count;
+          sync();
+          start();
+          return;
+        }
+        const dot = target.closest('[data-carousel-dot]');
+        if (dot) {
+          current = Number(dot.getAttribute('data-carousel-dot') || '0');
+          sync();
+          start();
+        }
+      });
+
+      const visibilityHandler = () => {
+        if (document.visibilityState === 'visible') start();
+        else stop();
+      };
+
+      document.addEventListener('visibilitychange', visibilityHandler);
+      sync();
+      start();
+      rootMap.set(root, () => {
+        stop();
+        document.removeEventListener('visibilitychange', visibilityHandler);
+      });
+    };
+
+    const init = () => {
+      document.querySelectorAll('[data-carousel]').forEach((root) => mount(root));
+    };
+
+    init();
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>

@@ -1,0 +1,8 @@
+<div data-favorites-results></div>
+
+<script>
+  import { initFavoritesPage } from '@/scripts/favorites-page';
+
+  initFavoritesPage();
+  document.addEventListener('astro:page-load', initFavoritesPage);
+</script>

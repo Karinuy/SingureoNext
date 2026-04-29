@@ -1,0 +1,56 @@
+---
+import { getEntryTags, getPosts } from '../../lib/content';
+import { slugifySegment } from '../../lib/slug';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pagination from '../../components/ui/Pagination.astro';
+import PostList from '../../components/PostList.astro';
+import { postToCardData } from '../../lib/post-card';
+import { paginate } from '../../lib/paginate';
+
+const PAGE_SIZE = 24;
+
+export async function getStaticPaths() {
+  const games = await getPosts();
+  const tags = Array.from(
+    new Set(games.flatMap((g) => getEntryTags(g).map((t) => slugifySegment(t))))
+  );
+  return tags.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const games = await getPosts();
+const list = games.filter((g) => getEntryTags(g).some((t) => slugifySegment(t) === slug));
+const title = list.length ? getEntryTags(list[0]).find((t) => slugifySegment(t) === slug) ?? slug : slug;
+const pageData = paginate(list, 1, PAGE_SIZE);
+const postCards = pageData.items.map((entry) => postToCardData(entry));
+const tagHref = (page: number) =>
+  page === 1 ? `/tag/${slugifySegment(title)}/` : `/tag/${slugifySegment(title)}/page/${page}/`;
+---
+
+<BaseLayout
+  title={`标签：${title}`}
+  description={`标签 ${title} 的文章`}
+  breadcrumbs={[
+    { label: '首页', href: '/' },
+    { label: '标签', href: '/tags' },
+    { label: `#${title}` },
+  ]}
+>
+  <div class="flex items-end gap-4">
+    <div>
+      <h1 class="title-with-accent text-2xl font-semibold tracking-tight">标签：{title}</h1>
+      <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]">共 {list.length} 篇</p>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <PostList items={postCards} />
+  </div>
+
+  {pageData.pageCount > 1 ? (
+    <div class="mt-8 flex justify-center">
+      <Pagination current={pageData.page} pageCount={pageData.pageCount} hrefBuilder={tagHref} />
+    </div>
+  ) : null}
+</BaseLayout>
+
