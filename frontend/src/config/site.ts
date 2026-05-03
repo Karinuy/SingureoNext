@@ -29,7 +29,7 @@ export const site = {
     { label: '每日推荐', href: '/daily' },
   ],
   home: {
-    announcement: '由于上游OneDrive存储提供商封禁了我们的存储，所以...全新自建云盘上线！全面替换旧OneDrive下载通道，新存储上线不久，如果有问题请前往TG群组反馈https://t.me/+CxG9sIUsCJ8wMjU0',
+    announcement: '本站已全面实现自建云盘下载，希望大家能够多多分享本站，感谢理解！',
     carousel: [
       { title: '公告', href: '/docs/notice/', image: 'https://res.sin0.cc/2026/01/15/b1164004480187607aabff69fe7c703a/1768463067-banner.avif' },
       { title: '关于本站', href: '/docs/about/', image: 'https://res.sin0.cc/2025/07/24/de21a67d06b330c2f1473d4637f07c84/1753339274-cover.avif' },
@@ -64,7 +64,6 @@ export const site = {
     { label: '次元城动画', href: 'https://www.ciyuancheng.net/' },
     { label: '鸟白岛演绎厅', href: 'https://www.summerpockets.com/' },
     { label: 'Nysoure', href: 'https://res.nyne.dev/' },
-    { label: '桃花源', href: 'https://peach.sslswwdx.top' },
     { label: 'Acgngame', href: 'https://acgn.games/' },
     { label: 'MikuGame初音游戏库', href: 'https://mikugame.icu/' },
     { label: '喵普拉斯', href: 'https://www.neko-plus.net/' },
