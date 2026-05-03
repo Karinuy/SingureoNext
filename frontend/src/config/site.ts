@@ -37,11 +37,11 @@ export const site = {
     ads: {
       enabled: true,
       items: [
+        { title: '电子魅魔', href: 'https://url.sin0.cc/drpz5w', image: 'https://res.sin0.cc/2025/08/19/17eca4ebe880e12f7892f04bdcb4cf33/1755574107-ai.avif' },
         { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },
         { title: '蓝莓加速器', href: 'https://url.sin0.cc/tv2gbj', image: 'https://res.sin0.cc/2026/04/15/bd3e364c1815addb3d3ad6521b1d36e2/1776253685-lanm.avif' },
         // { title: 'Game0', href: 'https://url.sin0.cc/vyrg5p', image: 'https://res.sin0.cc/2026/03/27/ed4d824977f5f1c614da1262fc501a77/1774601876-20260327-155413.gif' },
         { title: '魔法喵', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2025/09/15/229f1ed5f177c4e7054fb1da2dd66c4a/1757931263-magicmao.avif' },
-        // { title: '电子魅魔', href: 'https://url.sin0.cc/drpz5w', image: 'https://res.sin0.cc/2025/08/19/17eca4ebe880e12f7892f04bdcb4cf33/1755574107-ai.avif' },
         { title: 'AI风月', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2025/09/04/487d3be1b1f2307c97dca5a9600694d8/1756945283-afy.gif' },
       ],
     },
