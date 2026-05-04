@@ -84,8 +84,12 @@ export const site = {
     ],
     message: '您即将离开本站，前往第三方网站。请注意您的账号和财产安全。',
   },
+  comments: {
+    enabled: true,
+  },
   api: {
     searchBaseUrl: 'https://search-api.sin0.cc',
+    artalkServerUrl: 'https://artalk.sin0.cc',
   },
 };
 

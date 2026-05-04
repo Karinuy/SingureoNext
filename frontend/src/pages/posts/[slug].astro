@@ -14,6 +14,7 @@ import ShareButton from '../../components/ShareButton.astro';
 import FavoriteButton from '../../components/FavoriteButton.astro';
 import { extractSummaryFromMarkdown } from '../../lib/markdown-summary';
 import PostDownloadButton from '../../components/PostDownloadButton.astro';
+import PostComments from '../../components/PostComments.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('post', ({ data }) => !data.draft);
@@ -156,6 +157,8 @@ const relatedCards = related.map((entry) => postToCardData(entry));
         </article>
       </div>
     </Card>
+
+    <PostComments pageKey={Astro.url.pathname} pageTitle={title} />
 
     {related.length ? (
       <section class="mt-10">
