@@ -1,0 +1,24 @@
+---
+import { CircleCheck, CircleX, Info, Sparkles, TriangleAlert, X } from '@lucide/astro';
+---
+
+<div class="hidden" aria-hidden="true" data-script-icon-templates>
+  <template data-script-icon-template="notification-primary">
+    <Sparkles />
+  </template>
+  <template data-script-icon-template="notification-success">
+    <CircleCheck />
+  </template>
+  <template data-script-icon-template="notification-warning">
+    <TriangleAlert />
+  </template>
+  <template data-script-icon-template="notification-info">
+    <Info />
+  </template>
+  <template data-script-icon-template="notification-error">
+    <CircleX />
+  </template>
+  <template data-script-icon-template="close">
+    <X />
+  </template>
+</div>

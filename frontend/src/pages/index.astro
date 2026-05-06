@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
-import Alert from '../components/ui/Alert.astro';
 import Pagination from '../components/ui/Pagination.astro';
 import PostList from '../components/PostList.astro';
 import { getPosts } from '../lib/content';
@@ -19,10 +18,6 @@ const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
 
 <BaseLayout title="首页" description={site.tagline}>
 	<section>
-		<Alert title="公告" description={site.home.announcement} />
-	</section>
-
-	<section class="mt-4">
 		<HomeCarousel items={site.home.carousel} />
 	</section>
 

@@ -1,0 +1,103 @@
+---
+type Props = {
+  config?: {
+    enabled?: boolean;
+    title?: string;
+    content?: string;
+    confirmButtonText?: string;
+    delaySeconds?: number;
+    repeatAfterHours?: number;
+  };
+};
+
+const { config } = Astro.props;
+const enabled = config?.enabled ?? false;
+const title = config?.title ?? '公告';
+const content = config?.content ?? '';
+const confirmButtonText = config?.confirmButtonText ?? '我知道了';
+const delaySeconds = config?.delaySeconds ?? 3;
+const repeatAfterHours = config?.repeatAfterHours ?? 24;
+---
+
+{
+  enabled && content ? (
+    <div
+      data-site-announcement
+      data-title={title}
+      data-content={content}
+      data-confirm-button-text={confirmButtonText}
+      data-delay-seconds={delaySeconds}
+      data-repeat-after-hours={repeatAfterHours}
+    />
+  ) : null
+}
+
+<script>
+  import { showDialog } from '@/scripts/feedback';
+
+  const STORAGE_KEY = 'site-announcement-closed-at';
+
+  const toNumber = (value, fallback) => {
+    const number = Number(value);
+    return Number.isFinite(number) ? number : fallback;
+  };
+
+  const canShowAnnouncement = (repeatAfterHours) => {
+    try {
+      const closedAt = Number(localStorage.getItem(STORAGE_KEY) || '0');
+      if (!closedAt) return true;
+      return Date.now() - closedAt >= repeatAfterHours * 60 * 60 * 1000;
+    } catch {
+      return true;
+    }
+  };
+
+  const rememberAnnouncementClosed = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, String(Date.now()));
+    } catch {}
+  };
+
+  const showSiteAnnouncement = () => {
+    const mount = document.querySelector('[data-site-announcement]');
+    if (!(mount instanceof HTMLElement) || mount.dataset.pending === 'true') return;
+
+    const title = mount.dataset.title?.trim() || '公告';
+    const content = mount.dataset.content?.trim();
+    const confirmButtonText = mount.dataset.confirmButtonText?.trim() || '我知道了';
+    const delaySeconds = Math.max(0, toNumber(mount.dataset.delaySeconds, 3));
+    const repeatAfterHours = Math.max(0, toNumber(mount.dataset.repeatAfterHours, 24));
+    if (!content || !canShowAnnouncement(repeatAfterHours)) return;
+
+    mount.dataset.pending = 'true';
+    window.setTimeout(() => {
+      if (!document.body.contains(mount) || !canShowAnnouncement(repeatAfterHours)) {
+        delete mount.dataset.pending;
+        return;
+      }
+
+      void showDialog({
+        title,
+        message: content,
+        confirmText: confirmButtonText,
+        closeOnEsc: false,
+        closeOnBackdrop: false,
+      }).then(() => {
+        rememberAnnouncementClosed();
+        delete mount.dataset.pending;
+      });
+    }, delaySeconds * 1000);
+  };
+
+  if (document.readyState === 'complete') {
+    showSiteAnnouncement();
+  } else {
+    window.addEventListener('load', showSiteAnnouncement, { once: true });
+  }
+
+  const windowWithAnnouncement = window as Window & { __siteAnnouncementPopupBound?: boolean };
+  if (!windowWithAnnouncement.__siteAnnouncementPopupBound) {
+    document.addEventListener('astro:page-load', showSiteAnnouncement);
+    windowWithAnnouncement.__siteAnnouncementPopupBound = true;
+  }
+</script>

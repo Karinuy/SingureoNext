@@ -1,8 +1,8 @@
-import Swal from 'sweetalert2';
 import { exportFavorites, importFavorites, listFavorites } from '@/lib/favorites-db';
 import { getPostsBySlugs } from '@/api/search';
-import { getPopupAnimationOptions, showToast } from '@/scripts/sweetalert';
+import { showDialog, showToast } from '@/scripts/feedback';
 import { renderPostList } from '@/scripts/render-post-list';
+import { createTabs } from '@/scripts/tabs';
 
 export function initFavoritesPage() {
   const mount = document.querySelector('[data-favorites-page]');
@@ -28,53 +28,34 @@ export function initFavoritesPage() {
   };
 
   const openImportDialog = async () => {
-    const modeResult = await Swal.fire({
-      title: '选择导入方式',
-      text: '覆盖导入会先清空当前收藏，合并导入会在保留当前收藏基础上追加。',
-      input: 'radio',
-      inputOptions: {
-        replace: '覆盖导入',
-        merge: '合并导入',
-      },
-      inputValue: 'replace',
-      inputValidator: (value) => (!value ? '请选择导入方式' : undefined),
-      showCancelButton: true,
-      confirmButtonText: '下一步',
-      cancelButtonText: '取消',
-      ...getPopupAnimationOptions(),
+    const importContent = createImportDialogContent();
+    const confirmed = await showDialog({
+      title: '导入收藏',
+      message: '选择导入方式并上传备份 JSON 文件。',
+      content: importContent.root,
+      confirmText: '开始导入',
+      cancelText: '取消',
+      showCancel: true,
+      closeOnBackdrop: false,
     });
 
-    if (!modeResult.isConfirmed || !modeResult.value) return;
+    if (!confirmed) return;
 
-    const fileResult = await Swal.fire({
-      title: '选择 JSON 文件',
-      input: 'file',
-      inputAttributes: {
-        accept: 'application/json',
-      },
-      inputValidator: (value) => (!value ? '请选择要导入的文件' : undefined),
-      showCancelButton: true,
-      confirmButtonText: '开始导入',
-      cancelButtonText: '取消',
-      showLoaderOnConfirm: true,
-      allowOutsideClick: () => !Swal.isLoading(),
-      ...getPopupAnimationOptions(),
-      preConfirm: async (value) => {
-        const file = value instanceof File ? value : null;
-        if (!file) return false;
-        try {
-          const text = await file.text();
-          const json = JSON.parse(text);
-          await importFavorites(json, modeResult.value === 'merge' ? 'merge' : 'replace');
-          return true;
-        } catch (error) {
-          Swal.showValidationMessage(error instanceof Error ? error.message : '导入失败');
-          return false;
-        }
-      }
-    });
+    const file = importContent.fileInput.files?.[0];
+    if (!file) {
+      showToast('请选择要导入的文件', 'info');
+      return;
+    }
 
-    if (!fileResult.isConfirmed) return;
+    try {
+      const text = await file.text();
+      const json = JSON.parse(text);
+      await importFavorites(json, importContent.getMode());
+    } catch (error) {
+      showToast(error instanceof Error ? error.message : '导入失败', 'error');
+      return;
+    }
+
     await reload();
     showToast('导入完成', 'success');
   };
@@ -101,4 +82,65 @@ export function initFavoritesPage() {
   });
 
   reload();
+}
+
+function createImportDialogContent() {
+  let mode: 'replace' | 'merge' = 'replace';
+
+  const root = document.createElement('div');
+  root.className = 'favorites-import';
+
+  const description = document.createElement('p');
+  description.className = 'favorites-import__description';
+
+  const syncDescription = (nextMode: 'replace' | 'merge') => {
+    mode = nextMode;
+    description.textContent =
+      mode === 'replace'
+        ? '覆盖导入会先清空当前收藏，再写入 JSON 文件中的收藏数据。'
+        : '合并导入会保留当前收藏，并追加 JSON 文件中的新收藏。';
+  };
+
+  const tabs = createTabs<'replace' | 'merge'>({
+    value: mode,
+    options: [
+      { value: 'replace', label: '覆盖导入' },
+      { value: 'merge', label: '合并导入' },
+    ],
+    onChange: syncDescription,
+  });
+
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/json';
+  input.className = 'favorites-import__file-input';
+
+  const picker = document.createElement('label');
+  picker.className = 'favorites-import__picker';
+
+  const pickerTitle = document.createElement('span');
+  pickerTitle.className = 'favorites-import__picker-title';
+  pickerTitle.textContent = '选择 JSON 文件';
+
+  const pickerText = document.createElement('span');
+  pickerText.className = 'favorites-import__picker-text';
+  pickerText.textContent = '支持从收藏页导出的 .json 备份文件';
+
+  const fileName = document.createElement('span');
+  fileName.className = 'favorites-import__file-name';
+  fileName.textContent = '尚未选择文件';
+
+  picker.append(input, pickerTitle, pickerText, fileName);
+  input.addEventListener('change', () => {
+    fileName.textContent = input.files?.[0]?.name || '尚未选择文件';
+  });
+
+  root.append(tabs.root, description, picker);
+  syncDescription(mode);
+
+  return {
+    root,
+    fileInput: input,
+    getMode: () => mode,
+  };
 }

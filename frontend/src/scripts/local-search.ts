@@ -1,5 +1,5 @@
 import { renderPostList } from '@/scripts/render-post-list';
-import { showToast } from '@/scripts/sweetalert';
+import { showToast } from '@/scripts/feedback';
 import { searchPosts } from '@/api/search';
 
 const SEARCH_HISTORY_KEY = 'local-search-history';

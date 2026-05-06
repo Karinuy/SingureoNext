@@ -20,16 +20,16 @@ const { items } = Astro.props;
 {
   items?.length ? (
     <div class="relative w-full" data-carousel data-count={items.length}>
-      <div class="overflow-hidden rounded-xl">
-        <div class="flex w-full transition-transform duration-500 ease-out" data-carousel-track>
+      <div class="overflow-hidden bg-gray-100 [clip-path:inset(0_round_0.75rem)] [transform:translateZ(0)]" data-carousel-viewport>
+        <div class="-ml-px flex w-[calc(100%+2px)]" style="touch-action: pan-y pinch-zoom;" data-carousel-container>
           {items.map((item) => {
             const link = resolveLink(item.href);
             return (
-              <div class="min-w-full">
+              <div class="min-w-0 shrink-0 grow-0 basis-full bg-gray-100 px-px">
                 <a href={link.href} target={link.target} rel={link.rel} class="block no-underline text-inherit">
                   <Card class="overflow-hidden rounded-none border-0 p-0 shadow-none">
                     <div class="relative h-[230px] bg-gray-100 sm:h-[290px] md:h-[340px] lg:h-[400px]">
-                      <img src={item.image} alt={item.title} class="h-full w-full object-cover" loading="lazy" />
+                      <img src={item.image} alt={item.title} class="block h-full w-full object-cover" loading="lazy" />
                       <div
                         aria-hidden="true"
                         class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-4"
@@ -49,34 +49,34 @@ const { items } = Astro.props;
       {items.length > 1 ? (
         <>
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
-            class="absolute left-2 top-1/2 size-8 -translate-y-1/2 rounded-full p-0 md:left-3 md:size-10"
+            class="absolute left-2 top-1/2 z-10 size-6 -translate-y-1/2 rounded-none p-0 text-white/75 drop-shadow transition-colors hover:text-white md:size-7"
             ariaLabel="上一张"
             data-carousel-prev
           >
             <span class="flex size-full items-center justify-center" aria-hidden="true">
-              <ChevronLeft class="block size-4 shrink-0 stroke-[2.25] md:size-[1.05rem]" />
+              <ChevronLeft class="block size-6 shrink-0 stroke-[2.25] md:size-7" />
             </span>
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
-            class="absolute right-2 top-1/2 size-8 -translate-y-1/2 rounded-full p-0 md:right-3 md:size-10"
+            class="absolute right-2 top-1/2 z-10 size-6 -translate-y-1/2 rounded-none p-0 text-white/75 drop-shadow transition-colors hover:text-white md:size-7"
             ariaLabel="下一张"
             data-carousel-next
           >
             <span class="flex size-full items-center justify-center" aria-hidden="true">
-              <ChevronRight class="block size-4 shrink-0 stroke-[2.25] md:size-[1.05rem]" />
+              <ChevronRight class="block size-6 shrink-0 stroke-[2.25] md:size-7" />
             </span>
           </Button>
 
-          <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+          <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1">
             {items.map((_, index) => (
               <button
                 type="button"
                 aria-label={`跳转到第 ${index + 1} 张`}
-                class="h-2 w-2 rounded-full bg-[rgb(var(--color-primary)_/_0.24)] data-[active=true]:bg-[rgb(var(--color-primary))]"
+                class="h-[3px] w-4 rounded-full bg-white/30 transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-white"
                 data-carousel-dot={index}
                 data-active={index === 0 ? 'true' : 'false'}
               />
@@ -89,24 +89,35 @@ const { items } = Astro.props;
 }
 
 <script>
+  import EmblaCarousel from 'embla-carousel';
+
   (() => {
-    const rootMap = new WeakMap();
+    const stateKey = '__homeCarouselEmblaState';
+    const state = window[stateKey] || {
+      bound: false,
+      controllers: new Set(),
+      rootMap: new WeakMap(),
+    };
+    window[stateKey] = state;
 
     const mount = (root) => {
-      if (!(root instanceof HTMLElement) || rootMap.has(root)) return;
-      const track = root.querySelector('[data-carousel-track]');
-      if (!(track instanceof HTMLElement)) return;
+      if (!(root instanceof HTMLElement) || state.rootMap.has(root)) return;
+      const viewport = root.querySelector('[data-carousel-viewport]');
+      if (!(viewport instanceof HTMLElement)) return;
       const count = Number(root.dataset.count || '0');
       if (count <= 1) return;
 
-      let current = 0;
       let paused = false;
       let timer = 0;
+      const emblaApi = EmblaCarousel(viewport, { align: 'start', loop: true });
+      const prevButton = root.querySelector('[data-carousel-prev]');
+      const nextButton = root.querySelector('[data-carousel-next]');
+      const dotButtons = Array.from(root.querySelectorAll('[data-carousel-dot]'));
 
-      const sync = () => {
-        track.style.transform = `translateX(-${current * 100}%)`;
-        root.querySelectorAll('[data-carousel-dot]').forEach((dot) => {
-          const active = Number(dot.getAttribute('data-carousel-dot')) === current;
+      const syncDots = () => {
+        const selected = emblaApi.selectedScrollSnap();
+        dotButtons.forEach((dot, index) => {
+          const active = index === selected;
           dot.setAttribute('data-active', active ? 'true' : 'false');
         });
       };
@@ -120,71 +131,76 @@ const { items } = Astro.props;
         stop();
         if (paused) return;
         timer = window.setInterval(() => {
-          current = (current + 1) % count;
-          sync();
+          emblaApi.scrollNext();
         }, 3000);
       };
 
-      root.addEventListener('mouseenter', () => {
+      const pause = () => {
         paused = true;
         stop();
-      });
-      root.addEventListener('mouseleave', () => {
+      };
+      const resume = () => {
         paused = false;
         start();
-      });
-      root.addEventListener('touchstart', () => {
-        paused = true;
-        stop();
-      }, { passive: true });
-      root.addEventListener('touchend', () => {
-        paused = false;
+      };
+      const scrollPrev = () => {
+        emblaApi.scrollPrev();
         start();
-      }, { passive: true });
-      root.addEventListener('focusin', () => {
-        paused = true;
-        stop();
-      });
-      root.addEventListener('focusout', () => {
-        paused = false;
+      };
+      const scrollNext = () => {
+        emblaApi.scrollNext();
         start();
-      });
+      };
+      const scrollTo = (event) => {
+        const dot = event.currentTarget;
+        if (!(dot instanceof Element)) return;
+        emblaApi.scrollTo(Number(dot.getAttribute('data-carousel-dot') || '0'));
+        start();
+      };
 
-      root.addEventListener('click', (event) => {
-        const target = event.target instanceof Element ? event.target : null;
-        if (!target) return;
-        if (target.closest('[data-carousel-prev]')) {
-          current = (current - 1 + count) % count;
-          sync();
-          start();
-          return;
-        }
-        if (target.closest('[data-carousel-next]')) {
-          current = (current + 1) % count;
-          sync();
-          start();
-          return;
-        }
-        const dot = target.closest('[data-carousel-dot]');
-        if (dot) {
-          current = Number(dot.getAttribute('data-carousel-dot') || '0');
-          sync();
-          start();
-        }
-      });
+      root.addEventListener('mouseenter', pause);
+      root.addEventListener('mouseleave', resume);
+      root.addEventListener('touchstart', pause, { passive: true });
+      root.addEventListener('touchend', resume, { passive: true });
+      root.addEventListener('focusin', pause);
+      root.addEventListener('focusout', resume);
+      prevButton?.addEventListener('click', scrollPrev);
+      nextButton?.addEventListener('click', scrollNext);
+      dotButtons.forEach((dot) => dot.addEventListener('click', scrollTo));
 
       const visibilityHandler = () => {
         if (document.visibilityState === 'visible') start();
         else stop();
       };
 
+      emblaApi.on('select', syncDots);
+      emblaApi.on('reInit', syncDots);
       document.addEventListener('visibilitychange', visibilityHandler);
-      sync();
+      syncDots();
       start();
-      rootMap.set(root, () => {
+
+      const controller = {
+        destroy() {
+          state.controllers.delete(controller);
+          state.rootMap.delete(root);
+          emblaApi.off('select', syncDots);
+          emblaApi.off('reInit', syncDots);
+          root.removeEventListener('mouseenter', pause);
+          root.removeEventListener('mouseleave', resume);
+          root.removeEventListener('touchstart', pause);
+          root.removeEventListener('touchend', resume);
+          root.removeEventListener('focusin', pause);
+          root.removeEventListener('focusout', resume);
+          prevButton?.removeEventListener('click', scrollPrev);
+          nextButton?.removeEventListener('click', scrollNext);
+          dotButtons.forEach((dot) => dot.removeEventListener('click', scrollTo));
+          document.removeEventListener('visibilitychange', visibilityHandler);
         stop();
-        document.removeEventListener('visibilitychange', visibilityHandler);
-      });
+          emblaApi.destroy();
+        },
+      };
+      state.controllers.add(controller);
+      state.rootMap.set(root, controller);
     };
 
     const init = () => {
@@ -192,6 +208,12 @@ const { items } = Astro.props;
     };
 
     init();
-    document.addEventListener('astro:page-load', init);
+    if (!state.bound) {
+      document.addEventListener('astro:page-load', init);
+      document.addEventListener('astro:before-swap', () => {
+        Array.from(state.controllers).forEach((controller) => controller.destroy());
+      });
+      state.bound = true;
+    }
   })();
 </script>

@@ -23,7 +23,7 @@ const { slug } = Astro.props;
 
 <script>
   import { getFavorite, removeFavorite, upsertFavorite } from '@/lib/favorites-db';
-  import { showToast } from '@/scripts/sweetalert';
+  import { showToast } from '@/scripts/feedback';
 
   const syncButton = (button, favorite) => {
     button.dataset.favorite = favorite ? 'true' : 'false';
