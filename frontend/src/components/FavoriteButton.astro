@@ -23,7 +23,6 @@ const { slug } = Astro.props;
 
 <script>
   import { getFavorite, removeFavorite, upsertFavorite } from '@/lib/favorites-db';
-  import { showToast } from '@/scripts/feedback';
 
   const syncButton = (button, favorite) => {
     button.dataset.favorite = favorite ? 'true' : 'false';
@@ -44,7 +43,7 @@ const { slug } = Astro.props;
 
       getFavorite(slug)
         .then((favorite) => syncButton(button, Boolean(favorite)))
-        .catch((error) => showToast(error instanceof Error ? error.message : '无法读取收藏数据', 'error'));
+        .catch(() => {});
 
       button.addEventListener('click', async () => {
         if (!slug || button.disabled) return;
@@ -53,14 +52,11 @@ const { slug } = Astro.props;
           if (button.dataset.favorite === 'true') {
             await removeFavorite(slug);
             syncButton(button, false);
-            showToast('已取消收藏', 'success');
           } else {
             await upsertFavorite({ slug });
             syncButton(button, true);
-            showToast('已收藏', 'success');
           }
-        } catch (error) {
-          showToast(error instanceof Error ? error.message : '收藏操作失败', 'error');
+        } catch {
         } finally {
           button.disabled = false;
         }

@@ -2,7 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FavoritesPage from "../components/FavoritesPage.astro";
 import Button from "../components/ui/Button.astro";
+import Dialog from "../components/ui/Dialog.astro";
 import { Download, Upload } from '@lucide/astro';
+
+const importDialogId = 'favorites-import-dialog';
+const importTriggerClass =
+  'inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[rgb(var(--color-primary))] px-4 text-sm font-medium text-[rgb(var(--color-primary-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary)_/_0.26)]';
 ---
 
 <BaseLayout
@@ -13,7 +18,7 @@ import { Download, Upload } from '@lucide/astro';
   <section class="space-y-5" data-favorites-page>
     <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div class="space-y-2">
-        <h1 class="title-with-accent text-2xl font-semibold tracking-tight">收藏</h1>
+        <h1 class="text-2xl font-semibold tracking-tight">收藏</h1>
         <p class="text-sm text-[rgb(var(--color-text-muted))]">收藏内容仅保存在当前浏览器中，可通过导入/导出进行备份与迁移。</p>
       </div>
       <div class="flex flex-wrap items-center gap-4 sm:justify-end">
@@ -21,12 +26,40 @@ import { Download, Upload } from '@lucide/astro';
           <Download class="size-4" />
           导出
         </Button>
-        <Button type="button" variant="solid" data-favorites-import-open>
+        <label class={importTriggerClass} for={importDialogId} role="button">
           <Upload class="size-4" />
           导入
-        </Button>
+        </label>
       </div>
     </div>
+    <Dialog
+      id={importDialogId}
+      title="导入收藏"
+      description="上传收藏备份 JSON 文件。导入会先清空当前收藏，再写入文件中的收藏数据。"
+    >
+      <div class="favorites-import">
+        <p class="favorites-import__description">当前仅支持覆盖导入，请确认已备份当前浏览器中的收藏数据。</p>
+        <input
+          id="favorites-import-file"
+          class="site-file-input-hidden"
+          type="file"
+          accept="application/json,.json"
+          data-favorites-import-file
+        />
+        <div class="favorites-import__file-row">
+          <label class="site-dialog__button site-dialog__button--secondary" for="favorites-import-file" role="button">
+            选择文件
+          </label>
+          <span class="favorites-import__file-name" data-favorites-import-file-name>尚未选择文件</span>
+        </div>
+      </div>
+      <Fragment slot="footer">
+        <label class="site-dialog__button site-dialog__button--secondary" for={importDialogId} role="button">取消</label>
+        <button class="site-dialog__button site-dialog__button--primary" type="button" data-favorites-import-confirm>
+          覆盖导入
+        </button>
+      </Fragment>
+    </Dialog>
     <FavoritesPage />
   </section>
 </BaseLayout>

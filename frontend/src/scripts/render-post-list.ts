@@ -52,7 +52,7 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
             ${cover}
           </a>
           <div class="space-y-2.5 px-1 pb-1 pt-3">
-            <div class="flex min-w-0 flex-nowrap items-center gap-x-2 overflow-hidden whitespace-nowrap text-[0.67rem] tracking-[0.01em] text-white sm:text-[0.72rem]">
+            <div class="hidden min-w-0 flex-nowrap items-center gap-x-2 overflow-hidden whitespace-nowrap text-[0.72rem] tracking-[0.01em] text-white sm:flex">
               <a href="/category/${slugifySegment(item.category)}/" class="max-w-[50%] shrink truncate no-underline font-medium text-white">${escapeHtml(item.category)}</a>
               ${chips}
             </div>
@@ -76,12 +76,10 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
 export function renderPostList(
   container: HTMLElement,
   items: PostCardData[],
-  options?: { hideCoverPlaceholder?: boolean; emptyMessage?: string }
+  options?: { hideCoverPlaceholder?: boolean }
 ) {
   if (!items.length) {
-    container.innerHTML = options?.emptyMessage
-      ? `<div class="rounded-2xl border border-dashed border-[rgb(var(--color-border))] px-6 py-10 text-center text-sm text-[rgb(var(--color-text-muted))]">${escapeHtml(options.emptyMessage)}</div>`
-      : '';
+    container.innerHTML = '';
     return;
   }
 

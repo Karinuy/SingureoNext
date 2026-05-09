@@ -2,7 +2,7 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 import { getCollection } from 'astro:content';
 import Card from '../../components/ui/Card.astro';
-import { Type } from '@lucide/astro';
+import { CalendarDays, Type } from '@lucide/astro';
 
 type DocEntry = Awaited<ReturnType<typeof getCollection<'docs'>>>[number];
 
@@ -19,6 +19,15 @@ function estimateWordCount(raw: string) {
   return text.replace(/\s/g, '').length;
 }
 
+function formatRelativeDate(date?: Date) {
+  if (!date) return '';
+  const days = Math.max(0, Math.floor((Date.now() - date.getTime()) / 86400000));
+  if (days < 1) return '今天';
+  if (days < 30) return `${days} 天前`;
+  if (days < 365) return `${Math.floor(days / 30)} 个月前`;
+  return `${Math.floor(days / 365)} 年前`;
+}
+
 const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a, b) => {
   const at = (a.data.date ?? a.data.updatedDate)?.getTime() ?? 0;
   const bt = (b.data.date ?? b.data.updatedDate)?.getTime() ?? 0;
@@ -33,52 +42,58 @@ const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a
 >
   <div class="flex items-end justify-between gap-4">
     <div>
-      <h1 class="title-with-accent text-2xl font-semibold tracking-tight">帮助文档</h1>
+      <h1 class="text-2xl font-semibold tracking-tight">帮助文档</h1>
       <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]">
         如果你在网站遇到任何问题，都可以来此处查看帮助文档
       </p>
     </div>
   </div>
 
-  <div class="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3">
+  <div class="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
     {entries.map((e: DocEntry) => {
       const wc = estimateWordCount(e.body ?? '');
       const href = `/docs/${encodeURIComponent(String(e.data.abbrlink ?? e.id))}`;
+      const dateText = formatRelativeDate(e.data.date ?? e.data.updatedDate);
       return (
-        <Card class="group h-full rounded-2xl p-0" hoverable>
-          <a class="relative flex h-full flex-col no-underline" href={href}>
-            <div class="relative aspect-[16/9] overflow-hidden bg-[rgb(var(--color-surface-muted))]">
+        <Card class="group h-full rounded-xl p-0 shadow-[0_8px_24px_rgb(0_0_0_/_0.06)] dark:shadow-[0_8px_24px_rgb(0_0_0_/_0.24)]" hoverable>
+          <a class="relative flex h-full flex-col gap-3 p-3 no-underline" href={href}>
+            <h2 class="line-clamp-2 text-[0.92rem] font-semibold leading-snug tracking-[-0.02em] text-[rgb(var(--color-text)_/_0.9)] sm:text-[0.98rem]">
+              {e.data.title}
+            </h2>
+
+            <div class="relative aspect-[16/9] overflow-hidden rounded-xl">
               {e.data.cover ? (
                 <img
                   src={e.data.cover}
                   alt={e.data.title}
-                  class="h-full w-full object-cover"
+                  class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
                   loading="lazy"
                   decoding="async"
                 />
               ) : (
-                <div class="flex h-full w-full items-center justify-center text-sm text-[rgb(var(--color-text-muted))]">
+                <div class="flex h-full w-full items-center justify-center bg-[rgb(var(--color-surface-muted))] text-sm text-[rgb(var(--color-text-muted))]">
                   暂无封面
                 </div>
               )}
             </div>
 
-            <div class="flex flex-1 flex-col gap-3 p-4">
-              <div class="min-w-0">
-                <h2 class="line-clamp-2 text-[0.98rem] font-semibold leading-[1.45] tracking-[-0.02em] sm:text-[1.06rem]">
-                  {e.data.title}
-                </h2>
-              </div>
-
-              <div class="mt-auto flex items-center gap-1.5 text-[0.78rem] text-[rgb(var(--color-text-muted))]">
-                {wc ? (
-                  <span class="inline-flex items-center gap-1.5">
-                    <Type class="size-3 shrink-0" aria-hidden="true" />
-                    <span>{wc} 字</span>
-                  </span>
-                ) : null}
-              </div>
+            <div class="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[0.74rem] text-[rgb(var(--color-text-muted))] sm:text-xs">
+              {dateText ? (
+                <span class="inline-flex items-center gap-1.5">
+                  <CalendarDays class="size-3.5 shrink-0" aria-hidden="true" />
+                  <span>{dateText}</span>
+                </span>
+              ) : null}
+              {wc ? (
+                <span class="inline-flex items-center gap-1.5">
+                  <Type class="size-3.5 shrink-0" aria-hidden="true" />
+                  <span>{wc} 字</span>
+                </span>
+              ) : null}
             </div>
+            <span class="text-[0.74rem] text-[rgb(var(--color-text-muted))] sm:text-xs">
+              点击阅读更多 →
+            </span>
           </a>
         </Card>
       );

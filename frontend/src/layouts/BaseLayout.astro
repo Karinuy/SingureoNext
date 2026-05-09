@@ -6,8 +6,6 @@ import FriendLinks from '../components/FriendLinks.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import HomeAnnouncement from '../components/HomeAnnouncement.astro';
-import ScriptIconTemplates from '../components/ScriptIconTemplates.astro';
 import type { BreadcrumbItemData } from '../types/breadcrumb';
 import '../styles/globals.css';
 
@@ -145,8 +143,6 @@ const showBreadcrumbs = !isHome && !hideBreadcrumbs;
     </main>
     <BackToTop />
     {showFriendLinks ? <FriendLinks /> : null}
-    <ScriptIconTemplates />
-    <HomeAnnouncement config={site.announcement} />
     <Footer />
     <script is:inline>
       (() => {

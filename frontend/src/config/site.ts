@@ -50,9 +50,6 @@ export const site = {
     enabled: true,
     title: '公告',
     content: '本站已全面实现自建云盘下载，希望大家能够多多分享本站，感谢理解！',
-    confirmButtonText: '我知道了',
-    delaySeconds: 3,
-    repeatAfterHours: 24,
   },
   friendLinks: [
     { label: 'Sharotto', href: 'https://www.sharotto.com/' },

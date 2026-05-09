@@ -1,0 +1,45 @@
+---
+import { X } from '@lucide/astro';
+import { cn } from '@/lib/utils';
+
+type Props = {
+  id: string;
+  title: string;
+  description?: string;
+  closeLabel?: string;
+  class?: string;
+};
+
+const {
+  id,
+  title,
+  description,
+  closeLabel = '关闭弹窗',
+  class: className,
+} = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<input id={id} class="site-dialog-toggle" type="checkbox" tabindex="-1" aria-hidden="true" />
+<div class="site-dialog-overlay">
+  <label class="site-dialog__backdrop" for={id} aria-label={closeLabel}></label>
+  <section class={cn('site-dialog', className)} role="dialog" aria-modal="true" aria-labelledby={titleId}>
+    <header class="site-dialog__header">
+      <h2 id={titleId} class="site-dialog__title">{title}</h2>
+      <label class="site-dialog__close" for={id} role="button" aria-label={closeLabel}>
+        <X class="size-4" />
+      </label>
+    </header>
+    <div class="site-dialog__body">
+      {description ? <p class="site-dialog__message">{description}</p> : null}
+      <slot />
+    </div>
+    {
+      Astro.slots.has('footer') ? (
+        <footer class="site-dialog__footer">
+          <slot name="footer" />
+        </footer>
+      ) : null
+    }
+  </section>
+</div>

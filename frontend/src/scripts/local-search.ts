@@ -1,5 +1,4 @@
 import { renderPostList } from '@/scripts/render-post-list';
-import { showToast } from '@/scripts/feedback';
 import { searchPosts } from '@/api/search';
 
 const SEARCH_HISTORY_KEY = 'local-search-history';
@@ -58,7 +57,6 @@ export function initLocalSearch() {
   }
 
   let searchToken = 0;
-  let lastResultQuery: string | undefined;
 
   const syncClear = () => {
     clearButton.classList.toggle('hidden', !input.value.trim());
@@ -96,8 +94,7 @@ export function initLocalSearch() {
     const token = ++searchToken;
     const query = value.trim();
     if (!query) {
-      renderPostList(resultsContainer, [], { emptyMessage: '' });
-      lastResultQuery = undefined;
+      renderPostList(resultsContainer, []);
       return;
     }
 
@@ -105,12 +102,10 @@ export function initLocalSearch() {
       const result = await searchPosts(query);
       if (token !== searchToken) return;
       renderPostList(resultsContainer, result.items);
-      if (lastResultQuery !== query) {
-        showToast(result.total ? `找到 ${result.total} 条结果` : '没有匹配结果，换个关键词试试。', result.total ? 'success' : 'info');
-        lastResultQuery = query;
-      }
     } catch {
-      if (token === searchToken) showToast('搜索请求失败', 'error');
+      if (token === searchToken) {
+        renderPostList(resultsContainer, []);
+      }
     }
   };
 
@@ -118,8 +113,7 @@ export function initLocalSearch() {
     const query = value.trim();
     replaceSearchQuery(query);
     if (!query) {
-      renderPostList(resultsContainer, [], { emptyMessage: '' });
-      lastResultQuery = undefined;
+      renderPostList(resultsContainer, []);
       return;
     }
     if (remember) rememberQuery(query);
@@ -139,7 +133,7 @@ export function initLocalSearch() {
     input.value = '';
     syncClear();
     replaceSearchQuery('');
-    renderPostList(resultsContainer, [], { emptyMessage: '' });
+    renderPostList(resultsContainer, []);
   });
 
   historyClear.addEventListener('click', () => {

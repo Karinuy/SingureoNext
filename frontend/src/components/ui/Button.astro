@@ -30,17 +30,17 @@ const {
 } = Astro.props;
 
 const baseClass =
-  'inline-flex items-center justify-center gap-2 rounded-lg font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary)_/_0.26)] disabled:pointer-events-none disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 rounded-lg font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-primary)_/_0.22)] disabled:pointer-events-none disabled:opacity-50';
 
 const variantClass = {
   solid:
-    'bg-[rgb(var(--color-primary))] text-[rgb(var(--color-primary-foreground))]',
+    'bg-[rgb(var(--color-primary)_/_0.84)] text-[rgb(var(--color-primary-foreground))]',
   outline:
-    'border border-[rgb(var(--color-border)_/_0.92)] bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text)_/_0.88)]',
+    'border border-[rgb(var(--color-border)_/_0.92)] bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text)_/_0.86)]',
   ghost:
     'text-[rgb(var(--color-text-muted))]',
   soft:
-    'bg-[rgb(var(--color-primary-muted)_/_0.72)] text-[rgb(var(--color-primary))] dark:bg-[rgb(var(--color-primary-muted)_/_0.82)]',
+    'bg-[rgb(var(--color-primary-muted)_/_0.68)] text-[rgb(var(--color-primary))] dark:bg-[rgb(var(--color-primary-muted)_/_0.72)]',
 }[variant];
 
 const sizeClass = {
