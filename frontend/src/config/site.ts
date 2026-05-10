@@ -36,7 +36,7 @@ export const site = {
     ads: {
       enabled: true,
       items: [
-        { title: 'AI', href: 'https://url.sin0.cc/sz46ng', image: 'https://res.sin0.cc/2026/05/07/f33e7e8d10318994ee2df6309e668d58/1778128613-AI.avif' },
+        // { title: 'AI', href: 'https://url.sin0.cc/sz46ng', image: 'https://res.sin0.cc/2026/05/07/f33e7e8d10318994ee2df6309e668d58/1778128613-AI.avif' },
         { title: '电子魅魔', href: 'https://url.sin0.cc/drpz5w', image: 'https://res.sin0.cc/2025/08/19/17eca4ebe880e12f7892f04bdcb4cf33/1755574107-ai.avif' },
         { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },
         { title: '蓝莓加速器', href: 'https://url.sin0.cc/tv2gbj', image: 'https://res.sin0.cc/2026/04/15/bd3e364c1815addb3d3ad6521b1d36e2/1776253685-lanm.avif' },
