@@ -1,5 +1,5 @@
 ---
-title: "【PC/汉化】青春Encore - やりなおしクランクイン"
+title: "【PC/KR/汉化】青春Encore - やりなおしクランクイン"
 tags:
   - CloverGAME
 categories:
