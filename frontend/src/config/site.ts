@@ -5,10 +5,11 @@ export const site = {
   keywords: ['Singureo', 'ACG资源站', '免费galgame', 'galgame', '东方project', 'galgame汉化', '不限速下载', 'galgame资源站'],
   logoText: 'Singureo',
   nav: [
-    { label: '首页', href: '/' },
+    { label: '首页', href: '/', icon: 'home' },
     {
       label: '分类',
       href: '/categories',
+      icon: 'folder',
       children: [
         { label: '东方Project', href: '/category/东方Project/' },
         { label: 'GalGame', href: '/category/GalGame/' },
@@ -16,17 +17,19 @@ export const site = {
         { label: 'PE资源', href: '/category/PE资源/' },
       ],
     },
-    { label: '标签', href: '/tags' },
+    { label: '标签', href: '/tags', icon: 'tags' },
     {
       label: '文档',
       href: '/docs',
+      icon: 'fileText',
       children: [
         { label: '公告板', href: '/docs/notice/' },
         { label: '关于本站', href: '/docs/about/' },
       ],
     },
-    { label: '收藏', href: '/favorites' },
-    { label: '每日推荐', href: '/daily' },
+    { label: '收藏', href: '/favorites', icon: 'heart' },
+    { label: '每日推荐', href: '/daily', icon: 'calendarDays' },
+    { label: '模拟器', href: 'https://pan.singureo.com/OSS/%E6%A8%A1%E6%8B%9F%E5%99%A8', icon: 'gamepad2' },
   ],
   home: {
     carousel: [
@@ -36,6 +39,7 @@ export const site = {
     ads: {
       enabled: true,
       items: [
+        { title: '夜雨AI', href: 'https://url.sin0.cc/khvxq4', image: 'https://res.sin0.cc/2026/05/18/9a0582790b12c2d9a819492a2ed57f71/1779089475-yeyu.avif' },
         // { title: 'AI', href: 'https://url.sin0.cc/sz46ng', image: 'https://res.sin0.cc/2026/05/07/f33e7e8d10318994ee2df6309e668d58/1778128613-AI.avif' },
         { title: '电子魅魔', href: 'https://url.sin0.cc/drpz5w', image: 'https://res.sin0.cc/2025/08/19/17eca4ebe880e12f7892f04bdcb4cf33/1755574107-ai.avif' },
         { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },

@@ -5,10 +5,9 @@ import Button from '@/components/ui/Button.astro';
 type Props = {
   title: string;
   url: string;
-  text?: string;
 };
 
-const { title, url, text = '' } = Astro.props;
+const { title, url } = Astro.props;
 ---
 
 <Button
@@ -16,11 +15,10 @@ const { title, url, text = '' } = Astro.props;
   data-share-button
   data-share-title={title}
   data-share-url={url}
-  data-share-text={text}
   ariaLabel="分享"
 >
-  <Share2 class="size-4" />
-  <span>分享</span>
+  <Share2 class="size-4" data-share-icon />
+  <span data-share-label>分享</span>
 </Button>
 
 <script>
@@ -55,20 +53,21 @@ const { title, url, text = '' } = Astro.props;
         button.disabled = true;
         try {
           const shareTitle = button.dataset.shareTitle || '';
-          const shareText = button.dataset.shareText || '';
           const shareUrl = button.dataset.shareUrl || '';
-          if (typeof navigator !== 'undefined' && 'share' in navigator) {
-            try {
-              await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
-              return;
-            } catch (error) {
-              if (error && typeof error === 'object' && 'name' in error && error.name === 'AbortError') {
-                return;
-              }
+          const copied = await copyText(`${shareTitle} | ${shareUrl}`);
+
+          if (copied) {
+            const label = button.querySelector('[data-share-label]');
+            const icon = button.querySelector('[data-share-icon]');
+            if (label) {
+              label.textContent = '已分享';
+              icon?.classList.add('text-amber-500');
+              window.setTimeout(() => {
+                label.textContent = '分享';
+                icon?.classList.remove('text-amber-500');
+              }, 1500);
             }
           }
-
-          await copyText(shareUrl);
         } finally {
           button.disabled = false;
         }

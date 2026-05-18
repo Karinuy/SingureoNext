@@ -7,6 +7,10 @@ export default {
   darkMode: ['class'],
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
+    screens: {
+      ...defaultTheme.screens,
+      md: '968px',
+    },
     container: {
       center: true,
       padding: '1rem',

@@ -10,12 +10,14 @@ import DesktopNav from './DesktopNav.astro';
 type NavItem = {
   label: string;
   href: string;
+  icon?: string;
   children?: NavItem[];
 };
 
 type ResolvedNavItem = {
   label: string;
   href: string;
+  icon?: string;
   target?: string;
   rel?: string;
   children?: ResolvedNavItem[];
@@ -24,6 +26,7 @@ type ResolvedNavItem = {
 function resolveNavItem(item: NavItem): ResolvedNavItem {
   return {
     label: item.label,
+    icon: item.icon,
     ...resolveLink(item.href),
     children: item.children?.map(resolveNavItem),
   };
@@ -64,7 +67,7 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
             {site.logoText}
           </span>
         </a>
-        <DesktopNav items={navItems} pathname={Astro.url.pathname} />
+        <DesktopNav items={navItems} />
       </div>
 
       <div class="flex items-center gap-0.5">
