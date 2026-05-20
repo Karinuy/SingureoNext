@@ -5,6 +5,7 @@ tags:
 categories:
   - - GalGame
   - - PC资源
+  - - PE资源
 cover: https://res.sin0.cc/2026/05/12/9a394a2c2707f64f6c585020fc44a11f/1778569584-cover.avif
 downloads:
   - label: Singureo云盘
