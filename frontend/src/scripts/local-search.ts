@@ -1,5 +1,5 @@
 import { renderPostList } from '@/scripts/render-post-list';
-import { searchPosts } from '@/api/search';
+import { searchPosts } from '@/lib/search-client';
 
 const SEARCH_HISTORY_KEY = 'local-search-history';
 const MAX_SEARCH_HISTORY = 6;

@@ -1,5 +1,5 @@
 import { exportFavorites, importFavorites, listFavorites } from '@/lib/favorites-db';
-import { getPostsBySlugs } from '@/api/search';
+import { getPostsBySlugs } from '@/lib/search-client';
 import { renderPostList } from '@/scripts/render-post-list';
 
 export function initFavoritesPage() {

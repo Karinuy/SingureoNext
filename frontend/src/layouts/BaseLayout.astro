@@ -172,8 +172,11 @@ const showBreadcrumbs = !isHome && !hideBreadcrumbs;
     </script>
     <script>
       import { installExternalLinkNormalizer } from '../lib/redirect';
+      import { scheduleSearchIndexPreload } from '../lib/search-client';
 
       installExternalLinkNormalizer();
+      scheduleSearchIndexPreload();
+      document.addEventListener('astro:page-load', scheduleSearchIndexPreload);
     </script>
   </body>
 </html>

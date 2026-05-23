@@ -97,7 +97,6 @@ export const site = {
     enabled: true,
   },
   api: {
-    searchBaseUrl: 'https://search-api.sin0.cc',
     artalkServerUrl: 'https://artalk.sin0.cc',
   },
 };

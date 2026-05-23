@@ -1,7 +1,0 @@
-name = "singureo-search-api"
-main = "src/index.ts"
-compatibility_date = "2026-04-26"
-keep_vars = true
-
-# Runtime variables are configured in the Cloudflare dashboard.
-# keep_vars prevents wrangler deploy from deleting dashboard-managed variables.

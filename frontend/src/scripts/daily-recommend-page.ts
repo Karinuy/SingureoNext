@@ -1,5 +1,5 @@
 import { listFavorites } from '@/lib/favorites-db';
-import { getDailyRecommendations } from '@/api/search';
+import { getDailyRecommendations } from '@/lib/search-client';
 import { renderPostList } from '@/scripts/render-post-list';
 
 export function initDailyRecommendPage() {

@@ -36,15 +36,11 @@ The project combines a statically generated Astro frontend with a Cloudflare Wor
 │   │   ├── config/           # Site-wide configuration
 │   │   ├── content/          # Markdown posts and MDX docs
 │   │   ├── layouts/          # Shared page layouts
-│   │   ├── lib/              # Content, pagination, redirect, and storage utilities
+│   │   ├── lib/              # Content, pagination, search, redirect, and storage utilities
 │   │   ├── pages/            # File-based routes
 │   │   ├── scripts/          # Browser-side interaction scripts
 │   │   └── styles/           # Global styles
 │   └── package.json
-├── workers/
-│   └── search-api/
-│       ├── src/index.ts      # Cloudflare Worker entry point
-│       └── wrangler.toml     # Worker deployment config
 └── package.json
 ```
 
@@ -134,44 +130,22 @@ Most site-level content can be customized in `frontend/src/config/site.ts`, incl
 - Ad slot configuration
 - Friend links and footer links
 - External redirect behavior and whitelist
-- Search API base URL
+- Artalk server URL
 
-## Search API Worker
+## Local Search
 
-The optional Cloudflare Worker in `workers/search-api` moves search, random post selection, daily recommendations, and favorites detail lookup away from the browser. This avoids requiring every visitor to download and process the full search index.
+Search, random post selection, daily recommendations, and favorites detail lookup run locally in the browser. The frontend builds `/search-index.json` during the Astro build, then `frontend/src/lib/search-worker.js` loads that index inside a Web Worker and searches it with FlexSearch.
 
-Supported endpoints:
+The local search worker powers:
 
-- `GET /search?q=keyword`
-- `GET /random`
-- `POST /daily-recommend`
-- `POST /posts-by-slugs`
-- `GET /health`
-
-Required runtime variables:
-
-```bash
-SEARCH_INDEX_URL=https://www.example.com/search-index.json
-ALLOWED_ORIGIN=https://www.example.com,http://localhost:4321
-INDEX_CACHE_TTL_SECONDS=300
-```
-
-`INDEX_CACHE_TTL_SECONDS` is optional and defaults to `300` seconds when omitted.
-
-For local Worker development, create `workers/search-api/.dev.vars` and define the same variables there. Do not commit production secrets or environment-specific values.
-
-Run Worker commands from the repository root:
-
-```bash
-npx wrangler dev --config workers/search-api/wrangler.toml
-npx wrangler deploy --config workers/search-api/wrangler.toml
-```
+- `/search`
+- Random article navigation
+- `/daily`
+- Favorites detail rendering
 
 ## Deployment Notes
 
-The frontend can be deployed to any static hosting platform that supports Astro builds. Configure the production site URL in `frontend/astro.config.mjs` and update `frontend/src/config/site.ts` so the frontend points to the correct search API base URL.
-
-When deploying the Worker, configure runtime variables in the Cloudflare dashboard before running `wrangler deploy`. The Worker configuration uses `keep_vars = true` so dashboard-managed variables are preserved during deployment.
+The frontend can be deployed to any static hosting platform that supports Astro builds. Configure the production site URL in `frontend/astro.config.mjs` and update `frontend/src/config/site.ts` for site-level settings.
 
 ## License
 
