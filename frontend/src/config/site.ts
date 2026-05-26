@@ -52,7 +52,6 @@ export const site = {
   },
   announcement: {
     enabled: true,
-    title: '公告',
     content: '本站已全面实现自建云盘下载，希望大家能够多多分享本站，感谢理解！',
   },
   friendLinks: [

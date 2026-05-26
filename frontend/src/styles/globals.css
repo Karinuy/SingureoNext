@@ -30,6 +30,7 @@
     --color-primary: 8 94 255;
     --color-primary-foreground: 255 255 255;
     --color-primary-muted: 232 240 255;
+    --image-dark-brightness: 0.84;
 
     --scrollbar-size: 8px;
     --scrollbar-track: transparent;
@@ -85,6 +86,10 @@
     color: rgb(var(--color-text));
     line-height: 1.65;
     letter-spacing: 0.012em;
+  }
+
+  .dark img:not([data-no-dark-dim]) {
+    filter: brightness(var(--image-dark-brightness));
   }
 
   ::view-transition-old(root),

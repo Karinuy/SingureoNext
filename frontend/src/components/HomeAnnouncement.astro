@@ -1,20 +1,27 @@
 ---
-import Alert from './ui/Alert.astro';
+import { Megaphone } from '@lucide/astro';
 
 type Props = {
   config?: {
     enabled?: boolean;
-    title?: string;
     content?: string;
   };
 };
 
 const { config } = Astro.props;
 const enabled = config?.enabled ?? false;
-const title = config?.title ?? '公告';
 const content = config?.content ?? '';
 ---
 
 {
-  enabled && content ? <Alert title={title} description={content} variant="info" /> : null
+  enabled && content ? (
+    <div class="flex h-11 items-center gap-2.5 overflow-hidden rounded-xl border border-[rgb(var(--color-border)_/_0.9)] bg-white px-4 dark:bg-black">
+      <Megaphone class="size-[18px] shrink-0 text-[rgb(var(--color-primary))]" aria-hidden="true" />
+      <div class="min-w-0 flex-1 overflow-x-auto sm:overflow-hidden">
+        <p class="w-max whitespace-nowrap text-sm font-medium leading-none text-[rgb(var(--color-text-muted))] sm:w-auto sm:truncate">
+          {content}
+        </p>
+      </div>
+    </div>
+  ) : null
 }
