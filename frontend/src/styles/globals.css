@@ -120,7 +120,7 @@
   h4,
   h5,
   h6 {
-    color: rgb(var(--color-text));
+    color: rgb(var(--color-text) / 0.84);
   }
 
   :lang(zh),
