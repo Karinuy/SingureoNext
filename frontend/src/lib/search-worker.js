@@ -1,7 +1,7 @@
 import FlexSearch from 'flexsearch';
 
 const INDEX_URL = '/search-index.json';
-const DAILY_LIMIT = 21;
+const DAILY_LIMIT = 24;
 const SEARCH_LIMIT = 60;
 
 let readyPromise = null;

@@ -7,6 +7,7 @@ export const EXTERNAL_LINK_REL = 'noreferrer noopener';
 
 type ResolveLinkOptions = {
   currentHostname?: string;
+  skipRedirect?: boolean;
 };
 
 type ResolvedLink = {
@@ -41,7 +42,7 @@ export function isExternalHttpHref(href: string, options: ResolveLinkOptions = {
 }
 
 export function shouldUseRedirect(href: string, options: ResolveLinkOptions = {}): boolean {
-  if (!site.redirect?.enabled || !isExternalHttpHref(href, options)) return false;
+  if (options.skipRedirect || !site.redirect?.enabled || !isExternalHttpHref(href, options)) return false;
 
   try {
     const hostname = new URL(href).hostname.toLowerCase();
@@ -72,6 +73,8 @@ export function normalizeExternalLinks(root: ParentNode = document, options: Res
   const anchors = root.querySelectorAll<HTMLAnchorElement>('a[href]');
 
   for (const anchor of anchors) {
+    if (anchor.closest('[data-no-external-redirect]')) continue;
+
     const rawHref = anchor.getAttribute('href');
     if (!rawHref || !isExternalHttpHref(rawHref, options)) continue;
 
