@@ -1,4 +1,5 @@
 ---
+import { ChevronLeft, ChevronRight } from '@lucide/astro';
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -43,13 +44,20 @@ const nextPage = current < pageCount ? current + 1 : null;
           {previousPage ? (
             <a
               href={hrefBuilder(previousPage)}
-              class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-3 font-medium text-[rgb(var(--color-text))]"
+              aria-label="上一页"
+              class="inline-flex size-10 items-center justify-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] font-medium text-[rgb(var(--color-text))]"
             >
-              上一页
+              <ChevronLeft class="size-5" aria-hidden="true" />
+              <span class="sr-only">上一页</span>
             </a>
           ) : (
-            <span class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-3 font-medium text-[rgb(var(--color-text-muted))]">
-              上一页
+            <span
+              aria-label="上一页"
+              aria-disabled="true"
+              class="inline-flex size-10 items-center justify-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] font-medium text-[rgb(var(--color-text-muted))]"
+            >
+              <ChevronLeft class="size-5" aria-hidden="true" />
+              <span class="sr-only">上一页</span>
             </span>
           )}
         </li>
@@ -75,13 +83,20 @@ const nextPage = current < pageCount ? current + 1 : null;
           {nextPage ? (
             <a
               href={hrefBuilder(nextPage)}
-              class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] px-3 font-medium text-[rgb(var(--color-text))]"
+              aria-label="下一页"
+              class="inline-flex size-10 items-center justify-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))] font-medium text-[rgb(var(--color-text))]"
             >
-              下一页
+              <ChevronRight class="size-5" aria-hidden="true" />
+              <span class="sr-only">下一页</span>
             </a>
           ) : (
-            <span class="inline-flex h-10 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-3 font-medium text-[rgb(var(--color-text-muted))]">
-              下一页
+            <span
+              aria-label="下一页"
+              aria-disabled="true"
+              class="inline-flex size-10 items-center justify-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] font-medium text-[rgb(var(--color-text-muted))]"
+            >
+              <ChevronRight class="size-5" aria-hidden="true" />
+              <span class="sr-only">下一页</span>
             </span>
           )}
         </li>
