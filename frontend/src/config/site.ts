@@ -72,6 +72,7 @@ export const site = {
     { label: 'Acgngame', href: 'https://acgn.games/' },
     { label: 'MikuGame初音游戏库', href: 'https://mikugame.net/' },
     { label: '喵普拉斯', href: 'https://www.neko-plus.net/' },
+    { label: 'Lycorisgal', href: 'https://www.lycorisgal.com/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
