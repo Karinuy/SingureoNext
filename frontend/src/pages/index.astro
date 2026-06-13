@@ -7,7 +7,7 @@ import { getPosts } from '../lib/content';
 import { postToCardData } from '../lib/post-card';
 import { paginate } from '../lib/paginate';
 import HomeCarousel from '../components/HomeCarousel.astro';
-import HomeAds from '../components/HomeAds.astro';
+import SiteAds from '../components/SiteAds.astro';
 import HomeAnnouncement from '../components/HomeAnnouncement.astro';
 
 const PAGE_SIZE = 24;
@@ -25,9 +25,11 @@ const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
 		<HomeCarousel items={site.home.carousel} />
 	</section>
 
-	<section class="mt-4">
-		{site.home.ads.enabled ? <HomeAds items={site.home.ads.items} /> : null}
-	</section>
+	{site.ads.enabled ? (
+		<section class="mt-4">
+			<SiteAds config={site.ads} />
+		</section>
+	) : null}
 
 	<section class="mt-10">
 		<div class="flex items-end gap-4">

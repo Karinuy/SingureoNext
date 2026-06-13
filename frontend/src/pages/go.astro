@@ -2,15 +2,26 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
 import RedirectCountdown from '../components/RedirectCountdown.astro';
+import SiteAds from '../components/SiteAds.astro';
 
 const countdown = site.redirect?.countdown ?? 5;
 const message = site.redirect?.message ?? '您即将离开本站，前往第三方网站。请注意您的账号和财产安全。';
 ---
 
 <BaseLayout title="即将离开" description="外链跳转确认" hideBreadcrumbs>
-  <RedirectCountdown
-    countdown={countdown}
-    siteName={site.name}
-    message={message}
-  />
+  <div class="flex flex-1 items-center justify-center py-4">
+    <div class="w-full max-w-md">
+      <RedirectCountdown
+        countdown={countdown}
+        siteName={site.name}
+        message={message}
+      />
+
+      {site.ads.enabled ? (
+        <div class="mt-4">
+          <SiteAds config={site.ads} />
+        </div>
+      ) : null}
+    </div>
+  </div>
 </BaseLayout>

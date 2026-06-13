@@ -12,7 +12,7 @@ type Props = {
 const { countdown, siteName, message } = Astro.props;
 ---
 
-<div class="flex flex-1 items-center justify-center" data-redirect-countdown data-countdown={countdown}>
+<div class="w-full" data-redirect-countdown data-countdown={countdown}>
   <Card class="mx-auto w-full max-w-md rounded-2xl p-6">
     <div class="flex flex-col items-center gap-0 text-center" data-redirect-loading>
       <LoaderCircle class="size-5 animate-spin text-[rgb(var(--color-text-muted))]" />

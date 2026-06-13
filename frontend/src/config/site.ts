@@ -36,20 +36,20 @@ export const site = {
       { title: '公告', href: '/docs/notice/', image: 'https://res.sin0.cc/2026/01/15/b1164004480187607aabff69fe7c703a/1768463067-banner.avif' },
       { title: '关于本站', href: '/docs/about/', image: 'https://res.sin0.cc/2025/07/24/de21a67d06b330c2f1473d4637f07c84/1753339274-cover.avif' },
     ],
-    ads: {
-      enabled: true,
-      items: [
-        { title: '夜雨AI', href: 'https://url.sin0.cc/khvxq4', image: 'https://res.sin0.cc/2026/05/18/9a0582790b12c2d9a819492a2ed57f71/1779089475-yeyu.avif' },
-        // { title: '电子魅魔', href: 'https://url.sin0.cc/drpz5w', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
-        { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },
-        { title: '魔法喵', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2026/05/15/bcad3dfcfb51f38d1aa41f9b6b8c7674/1778824640-miaocloud.avif' },
-        { title: 'AI风月', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/05/29/8a611debfe75df8c334551b056458413/1780040181-aify.avif' },
-      ],
-    },
   },
   announcement: {
     enabled: true,
     content: '本站已全面实现自建云盘下载，希望大家能够多多分享本站，感谢理解！',
+  },
+  ads: {
+    enabled: true,
+    items: [
+      { title: '夜雨AI', href: 'https://url.sin0.cc/khvxq4', image: 'https://res.sin0.cc/2026/05/18/9a0582790b12c2d9a819492a2ed57f71/1779089475-yeyu.avif' },
+      // { title: '电子魅魔', href: 'https://url.sin0.cc/drpz5w', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
+      { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },
+      { title: '魔法喵', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2026/05/15/bcad3dfcfb51f38d1aa41f9b6b8c7674/1778824640-miaocloud.avif' },
+      { title: 'AI风月', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/05/29/8a611debfe75df8c334551b056458413/1780040181-aify.avif' },
+    ],
   },
   friendLinks: [
     { label: 'Sharotto', href: 'https://www.sharotto.com/' },
