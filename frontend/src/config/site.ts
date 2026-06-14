@@ -74,6 +74,7 @@ export const site = {
     { label: '喵普拉斯', href: 'https://www.neko-plus.net/' },
     { label: 'Lycorisgal', href: 'https://www.lycorisgal.com/' },
     { label: '青桔网', href: 'https://x.qingju.org/' },
+    { label: '秒速5厘米', href: 'https://dh.soliar.top/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
