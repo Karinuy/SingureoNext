@@ -44,6 +44,7 @@ export const site = {
   ads: {
     enabled: true,
     items: [
+      { title: 'AI游戏', href: 'https://url.sin0.cc/rx6ma4', image: 'https://res.sin0.cc/2026/06/23/10d678085d3a30230f2b0aaedf37e2d0/1782199405-aigame.avif' },
       { title: '电子魅魔', href: 'https://url.sin0.cc/pgwbfb', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
       // { title: '夜雨AI', href: 'https://url.sin0.cc/khvxq4', image: 'https://res.sin0.cc/2026/05/18/9a0582790b12c2d9a819492a2ed57f71/1779089475-yeyu.avif' },
       // { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },
@@ -75,6 +76,7 @@ export const site = {
     { label: 'Lycorisgal', href: 'https://www.lycorisgal.com/' },
     { label: '青桔网', href: 'https://x.qingju.org/' },
     { label: '秒速5厘米', href: 'https://dh.soliar.top/' },
+    { label: 'GalError', href: 'https://www.galerror.top/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
