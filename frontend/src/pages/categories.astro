@@ -16,7 +16,7 @@ for (const p of posts) {
 }
 const categories = Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
-const PAGE_SIZE = 21;
+const PAGE_SIZE = 60;
 const pageData = paginate(categories, 1, PAGE_SIZE);
 const categoriesHref = (page: number) => (page === 1 ? '/categories' : `/categories/page/${page}/`);
 ---

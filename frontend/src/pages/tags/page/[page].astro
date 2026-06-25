@@ -8,7 +8,7 @@ import { slugifySegment } from '../../../lib/slug';
 import { getPageCount, paginate } from '../../../lib/paginate';
 
 export async function getStaticPaths() {
-  const PAGE_SIZE = 21;
+  const PAGE_SIZE = 60;
   const posts = await getPosts();
   const counts = new Map<string, number>();
   for (const p of posts) {
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
   });
 }
 
-const PAGE_SIZE = 21;
+const PAGE_SIZE = 60;
 const page = Number(Astro.params.page ?? '1');
 const posts = await getPosts();
 const counts = new Map<string, number>();

@@ -44,7 +44,7 @@ const { items } = Astro.props;
           <ChevronDown class="size-4 shrink-0 transition-transform duration-150 group-hover/nav:rotate-180 group-focus-within/nav:rotate-180" />
         </a>
         <div class="pointer-events-none absolute left-0 top-full z-20 pt-2 opacity-0 transition duration-150 group-hover/nav:pointer-events-auto group-hover/nav:opacity-100 group-focus-within/nav:pointer-events-auto group-focus-within/nav:opacity-100">
-          <div class="min-w-[11rem] rounded-xl border border-[rgb(var(--color-border)_/_0.5)] bg-[rgb(var(--color-surface))] p-1.5 shadow-lg dark:border-[rgb(var(--color-border)_/_0.38)]">
+          <div class="relative min-w-[11rem] rounded-xl border border-[rgb(var(--color-border)_/_0.5)] bg-[rgb(var(--color-surface))] p-1.5 shadow-lg before:absolute before:-top-1.5 before:left-6 before:size-3 before:rotate-45 before:border-l before:border-t before:border-[rgb(var(--color-border)_/_0.5)] before:bg-[rgb(var(--color-surface))] before:content-[''] dark:border-[rgb(var(--color-border)_/_0.38)] dark:before:border-[rgb(var(--color-border)_/_0.38)]">
             {item.children?.map((child) => {
               const ChildIcon = child.icon ? navIconMap[child.icon] : undefined;
               return (

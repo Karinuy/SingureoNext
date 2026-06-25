@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import { cn } from '@/lib/utils';
 import { slugifySegment } from '@/lib/slug';
+import Tag from '@/components/ui/Tag.astro';
 import type { PostCardData } from '@/types/post-card';
 
 type Props = {
@@ -12,8 +14,6 @@ type Props = {
 
 const { data, class: className, disableLinks = false, hideCoverPlaceholder = false } = Astro.props;
 const tags = data?.tags.slice(0, 2) ?? [];
-const metaClass =
-  'inline-flex shrink-0 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-2.5 py-1 text-xs font-medium text-[rgb(var(--color-text-muted))]';
 ---
 
 {
@@ -31,8 +31,10 @@ const metaClass =
       >
         <div class="flex h-full w-full items-center justify-center">
           {data.cover ? (
-            <img
+            <Image
               src={data.cover}
+              width={600}
+              height={800}
               alt={data.title}
               class="block h-full w-full object-cover"
               loading="lazy"
@@ -54,19 +56,19 @@ const metaClass =
         <div class="mt-auto overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div class="flex w-max min-w-full flex-nowrap gap-1.5">
             {disableLinks ? (
-              <span class={metaClass}>{data.category}</span>
+              <Tag>{data.category}</Tag>
             ) : (
-              <a href={`/category/${slugifySegment(data.category)}/`} class={metaClass}>
+              <Tag href={`/category/${slugifySegment(data.category)}/`}>
                 {data.category}
-              </a>
+              </Tag>
             )}
             {tags.map((tag) =>
               disableLinks ? (
-                <span class={metaClass}>#{tag}</span>
+                <Tag>#{tag}</Tag>
               ) : (
-                <a href={`/tag/${slugifySegment(tag)}/`} class={metaClass}>
+                <Tag href={`/tag/${slugifySegment(tag)}/`}>
                   #{tag}
-                </a>
+                </Tag>
               )
             )}
           </div>

@@ -16,7 +16,7 @@ for (const p of posts) {
 }
 const tags = Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
-const PAGE_SIZE = 21;
+const PAGE_SIZE = 60;
 const pageData = paginate(tags, 1, PAGE_SIZE);
 const tagsHref = (page: number) => (page === 1 ? '/tags' : `/tags/page/${page}/`);
 ---

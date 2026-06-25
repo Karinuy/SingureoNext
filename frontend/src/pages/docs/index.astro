@@ -1,32 +1,11 @@
 ---
 import DocsLayout from '../../layouts/DocsLayout.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Card from '../../components/ui/Card.astro';
-import { CalendarDays, Type } from '@lucide/astro';
+import { extractSummaryFromMarkdown } from '../../lib/markdown-summary';
 
 type DocEntry = Awaited<ReturnType<typeof getCollection<'docs'>>>[number];
-
-function estimateWordCount(raw: string) {
-  const text = raw
-    .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/`[^`]*`/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\[(.*?)\]\((.*?)\)/g, '$1')
-    .replace(/[#>*_~-]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-  if (!text) return 0;
-  return text.replace(/\s/g, '').length;
-}
-
-function formatRelativeDate(date?: Date) {
-  if (!date) return '';
-  const days = Math.max(0, Math.floor((Date.now() - date.getTime()) / 86400000));
-  if (days < 1) return '今天';
-  if (days < 30) return `${days} 天前`;
-  if (days < 365) return `${Math.floor(days / 30)} 个月前`;
-  return `${Math.floor(days / 365)} 年前`;
-}
 
 const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a, b) => {
   const at = (a.data.date ?? a.data.updatedDate)?.getTime() ?? 0;
@@ -49,22 +28,20 @@ const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a
     </div>
   </div>
 
-  <div class="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+  <div class="mt-6 space-y-3">
     {entries.map((e: DocEntry) => {
-      const wc = estimateWordCount(e.body ?? '');
       const href = `/docs/${encodeURIComponent(String(e.data.abbrlink ?? e.id))}`;
-      const dateText = formatRelativeDate(e.data.date ?? e.data.updatedDate);
+      const summary =
+        e.data.description?.trim() || extractSummaryFromMarkdown(e.body ?? '', { maxLength: 72 });
       return (
-        <Card class="h-full rounded-xl p-0 shadow-[0_4px_14px_rgb(0_0_0_/_0.035)] dark:shadow-[0_4px_14px_rgb(0_0_0_/_0.16)]">
-          <a class="relative flex h-full flex-col gap-3 p-3 no-underline" href={href}>
-            <h2 class="line-clamp-2 text-[0.92rem] font-semibold leading-snug tracking-[-0.02em] text-[rgb(var(--color-text)_/_0.9)] sm:text-[0.98rem]">
-              {e.data.title}
-            </h2>
-
-            <div class="relative aspect-[16/9] overflow-hidden rounded-xl">
+        <Card class="rounded-lg p-0">
+          <a class="flex gap-3 p-3 no-underline sm:gap-4 sm:p-4" href={href}>
+            <div class="relative h-20 w-28 shrink-0 overflow-hidden rounded-md bg-[rgb(var(--color-surface-muted))] sm:h-24 sm:w-40">
               {e.data.cover ? (
-                <img
+                <Image
                   src={e.data.cover}
+                  width={320}
+                  height={180}
                   alt={e.data.title}
                   class="h-full w-full object-cover"
                   loading="lazy"
@@ -77,23 +54,16 @@ const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a
               )}
             </div>
 
-            <div class="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[0.74rem] text-[rgb(var(--color-text-muted))] sm:text-xs">
-              {dateText ? (
-                <span class="inline-flex items-center gap-1.5">
-                  <CalendarDays class="size-3.5 shrink-0" aria-hidden="true" />
-                  <span>{dateText}</span>
-                </span>
-              ) : null}
-              {wc ? (
-                <span class="inline-flex items-center gap-1.5">
-                  <Type class="size-3.5 shrink-0" aria-hidden="true" />
-                  <span>{wc} 字</span>
-                </span>
+            <div class="min-w-0 flex-1 py-0.5 sm:py-1">
+              <h2 class="line-clamp-2 text-[0.95rem] font-semibold leading-snug text-[rgb(var(--color-text)_/_0.92)] sm:text-base">
+                {e.data.title}
+              </h2>
+              {summary ? (
+                <p class="mt-2 line-clamp-2 text-xs leading-5 text-[rgb(var(--color-text-muted))] sm:text-sm sm:leading-6">
+                  {summary}
+                </p>
               ) : null}
             </div>
-            <span class="text-[0.74rem] text-[rgb(var(--color-text-muted))] sm:text-xs">
-              点击阅读更多 →
-            </span>
           </a>
         </Card>
       );

@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig, fontProviders, passthroughImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
@@ -7,6 +7,9 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://www.singureo.com',
   integrations: [sitemap(), mdx()],
+  image: {
+    service: passthroughImageService(),
+  },
   fonts: [
     {
       provider: fontProviders.fontsource(),

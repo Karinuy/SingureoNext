@@ -82,8 +82,13 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
     __artalkThemeObserver?: MutationObserver;
   };
 
+  type ArtalkGlobalState = Window & {
+    __artalkPreloadPromise?: Promise<unknown>;
+  };
+
   const getArtalk = async () => {
-    const mod = await import('artalk');
+    const globalState = window as ArtalkGlobalState;
+    const mod = await (globalState.__artalkPreloadPromise ?? import('artalk'));
     return (mod as unknown as ArtalkModule).default;
   };
 

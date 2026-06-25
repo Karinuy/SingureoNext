@@ -12,7 +12,7 @@ function escapeHtml(value: string) {
 
 function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: boolean }) {
   const metaClass =
-    'inline-flex shrink-0 items-center rounded-lg border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface-muted))] px-2.5 py-1 text-xs font-medium text-[rgb(var(--color-text-muted))]';
+    'inline-flex shrink-0 items-center rounded-lg bg-[rgb(var(--color-primary))] px-2.5 py-1 text-xs font-semibold text-[rgb(var(--color-primary-foreground))]';
   const cover = item.cover
     ? `
       <img
@@ -33,6 +33,7 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
       <a
         href="/tag/${slugifySegment(tag)}/"
         class="${metaClass}"
+        data-dark-dim
       >
         #${escapeHtml(tag)}
       </a>`
@@ -61,7 +62,7 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
 
           <div class="mt-auto overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div class="flex w-max min-w-full flex-nowrap gap-1.5">
-              <a href="/category/${slugifySegment(item.category)}/" class="${metaClass}">
+              <a href="/category/${slugifySegment(item.category)}/" class="${metaClass}" data-dark-dim>
                 ${escapeHtml(item.category)}
               </a>
               ${tags}

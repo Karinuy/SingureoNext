@@ -1,0 +1,14 @@
+<section data-search-results-page>
+  <div>
+    <h1 class="text-2xl font-semibold tracking-tight" data-search-results-title>搜索结果</h1>
+    <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]" data-search-results-status></p>
+  </div>
+  <div class="mt-6" data-search-results-list></div>
+</section>
+
+<script>
+  import { initSearchResultsPage } from '@/scripts/search-results-page';
+
+  initSearchResultsPage();
+  document.addEventListener('astro:page-load', initSearchResultsPage);
+</script>

@@ -80,6 +80,8 @@ function defaultBreadcrumbs(pathname: string): BreadcrumbItemData[] {
 
 const breadcrumbItems = breadcrumbs ?? defaultBreadcrumbs(Astro.url.pathname);
 const showBreadcrumbs = !isHome && !hideBreadcrumbs;
+const commentsEnabled = site.comments.enabled;
+const artalkServerUrl = site.api.artalkServerUrl.trim();
 ---
 
 <html lang="zh-CN">
@@ -89,6 +91,12 @@ const showBreadcrumbs = !isHome && !hideBreadcrumbs;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script defer src="https://ays.sin0.cc/script.js" data-website-id="7bf402eb-d3a3-468c-84b7-3c6a9b2a54dc"></script>
     <link rel="canonical" href={canonicalUrl} />
+    {commentsEnabled && artalkServerUrl ? (
+      <>
+        <link rel="dns-prefetch" href={artalkServerUrl} />
+        <link rel="preconnect" href={artalkServerUrl} crossorigin />
+      </>
+    ) : null}
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
@@ -129,11 +137,31 @@ const showBreadcrumbs = !isHome && !hideBreadcrumbs;
         } catch {}
       })();
     </script>
+    {commentsEnabled ? (
+      <script>
+        const preloadArtalk = () => {
+          const globalState = window as Window & {
+            __artalkPreloadPromise?: Promise<unknown>;
+          };
+          globalState.__artalkPreloadPromise ??= import('artalk');
+        };
+
+        const idleWindow = window as Window & {
+          requestIdleCallback?: (callback: () => void, options?: { timeout?: number }) => number;
+        };
+
+        if (typeof idleWindow.requestIdleCallback === 'function') {
+          idleWindow.requestIdleCallback(preloadArtalk, { timeout: 2000 });
+        } else {
+          window.setTimeout(preloadArtalk, 600);
+        }
+      </script>
+    ) : null}
   </head>
   <body class="min-h-screen antialiased flex flex-col">
     <div id="page-loading-bar" aria-hidden="true"></div>
     <Navbar />
-    <main class="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pb-4 pt-[4.5rem] md:pb-5 md:pt-20">
+    <main class="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 pb-4 pt-[4.5rem] md:pb-5 md:pt-20">
       {showBreadcrumbs ? (
         <div class="mb-4">
           <Breadcrumbs items={breadcrumbItems} />

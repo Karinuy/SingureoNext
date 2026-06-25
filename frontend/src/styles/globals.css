@@ -92,6 +92,10 @@
     filter: brightness(var(--image-dark-brightness));
   }
 
+  .dark [data-dark-dim]:not([data-no-dark-dim]) {
+    filter: brightness(var(--image-dark-brightness));
+  }
+
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
