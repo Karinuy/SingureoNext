@@ -566,18 +566,3 @@ dialog[data-overlay-dialog][data-overlay-backdrop-style="dim"][data-state="open"
   }
 }
 
-#page-loading-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: rgb(var(--color-primary));
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: opacity 200ms ease, transform 600ms ease;
-  pointer-events: none;
-  z-index: 60;
-}
-

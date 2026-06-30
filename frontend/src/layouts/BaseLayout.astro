@@ -159,7 +159,6 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
     ) : null}
   </head>
   <body class="min-h-screen antialiased flex flex-col">
-    <div id="page-loading-bar" aria-hidden="true"></div>
     <Navbar />
     <main class="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 pb-4 pt-[4.5rem] md:pb-5 md:pt-20">
       {showBreadcrumbs ? (
@@ -172,32 +171,6 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
     <BackToTop />
     {showFriendLinks ? <FriendLinks /> : null}
     <Footer />
-    <script is:inline>
-      (() => {
-        const bar = document.getElementById('page-loading-bar');
-        if (!bar) return;
-
-        const start = () => {
-          bar.style.opacity = '1';
-          bar.style.transform = 'scaleX(0.2)';
-          requestAnimationFrame(() => {
-            bar.style.transform = 'scaleX(0.85)';
-          });
-        };
-
-        const end = () => {
-          bar.style.transform = 'scaleX(1)';
-          setTimeout(() => {
-            bar.style.opacity = '0';
-            bar.style.transform = 'scaleX(0)';
-          }, 250);
-        };
-
-        document.addEventListener('astro:before-swap', start);
-        document.addEventListener('astro:page-load', end);
-        window.addEventListener('beforeunload', start);
-      })();
-    </script>
     <script>
       import { installExternalLinkNormalizer } from '../lib/redirect';
       import { scheduleSearchIndexPreload } from '../lib/search-client';
