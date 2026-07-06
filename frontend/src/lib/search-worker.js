@@ -25,9 +25,8 @@ function toArray(value) {
 function toPost(item) {
   const slug = String(item.slug ?? '');
   const title = String(item.title ?? '');
-  const category = String(item.category ?? '未分类');
-  const tags = toArray(item.tags);
   const categories = toArray(item.categories);
+  const tags = toArray(item.tags);
 
   return {
     slug,
@@ -35,8 +34,7 @@ function toPost(item) {
     title,
     description: String(item.description ?? ''),
     cover: String(item.cover ?? ''),
-    category,
-    categories,
+    categories: categories.length ? categories : ['未分类'],
     tags,
     content: String(item.content ?? ''),
   };
@@ -47,7 +45,6 @@ function createSearchText(post) {
     [
       post.title,
       post.description,
-      post.category,
       ...post.categories,
       ...post.tags,
       post.content,
@@ -62,7 +59,7 @@ function createPublicPost(post) {
     title: post.title,
     description: post.description,
     cover: post.cover,
-    category: post.category,
+    categories: post.categories,
     tags: post.tags,
   };
 }
@@ -98,7 +95,7 @@ async function ensureReady() {
 function scorePost(post, terms, flexMatched) {
   const title = normalize(post.title);
   const description = normalize(post.description);
-  const category = normalize([post.category, ...post.categories].join(' '));
+  const categories = normalize(post.categories.join(' '));
   const tags = normalize(post.tags.join(' '));
   const content = normalize(post.content);
 
@@ -109,7 +106,7 @@ function scorePost(post, terms, flexMatched) {
     else if (title.includes(term)) score += 45;
 
     if (tags.includes(term)) score += 30;
-    if (category.includes(term)) score += 24;
+    if (categories.includes(term)) score += 24;
     if (description.includes(term)) score += 14;
     if (content.includes(term)) score += 4;
   }
@@ -215,11 +212,11 @@ async function getDailyRecommendations(favoriteSlugs) {
   const favorites = uniqueFavoriteSlugs.map((slug) => postsBySlug.get(slug)).filter(Boolean);
   const favoriteSlugSet = new Set(favorites.map((post) => post.slug));
   const favoriteTags = new Set(favorites.flatMap((post) => post.tags));
-  const favoriteCategories = new Set(favorites.flatMap((post) => [post.category, ...post.categories]));
+  const favoriteCategories = new Set(favorites.flatMap((post) => post.categories));
 
   const related = posts.filter((post) => {
     if (favoriteSlugSet.has(post.slug)) return false;
-    return post.tags.some((tag) => favoriteTags.has(tag)) || [post.category, ...post.categories].some((category) => favoriteCategories.has(category));
+    return post.tags.some((tag) => favoriteTags.has(tag)) || post.categories.some((category) => favoriteCategories.has(category));
   });
 
   const source = related.length > 0 ? 'favorites' : 'global';

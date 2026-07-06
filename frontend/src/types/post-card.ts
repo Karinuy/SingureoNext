@@ -3,6 +3,6 @@ export type PostCardData = {
   title: string;
   description?: string;
   cover?: string;
-  category: string;
+  categories: string[];
   tags: string[];
 };

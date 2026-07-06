@@ -29,14 +29,7 @@ export function getEntryCategories(entry: CollectionEntry<'post'>) {
       }
     }
   }
-
-  if (entry.data.category) out.push(entry.data.category);
-
   return Array.from(new Set(out.map((s) => s.trim()).filter(Boolean)));
-}
-
-export function getPrimaryCategory(entry: CollectionEntry<'post'>) {
-  return getEntryCategories(entry)[0] ?? '未分类';
 }
 
 export function getEntryPublishDate(entry: CollectionEntry<'post'>) {

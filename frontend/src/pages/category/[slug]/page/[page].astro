@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   const posts = await getPosts();
   const categories = Array.from(new Set(posts.flatMap((p) => getEntryCategories(p))));
 
-  const paths: Array<{ params: { slug: string; page: string }; props: { category: string } }> = [];
+  const paths: Array<{ params: { slug: string; page: string }; props: { categoryName: string } }> = [];
 
   for (const category of categories) {
     const list = posts.filter((p) => getEntryCategories(p).includes(category));
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
     for (let page = 2; page <= pageCount; page++) {
       paths.push({
         params: { slug: slugifySegment(category), page: String(page) },
-        props: { category },
+        props: { categoryName: category },
       });
     }
   }
@@ -31,29 +31,29 @@ export async function getStaticPaths() {
 }
 
 const page = Number(Astro.params.page ?? '1');
-const { category } = Astro.props as { category: string };
+const { categoryName } = Astro.props as { categoryName: string };
 const posts = await getPosts();
-const list = posts.filter((p) => getEntryCategories(p).includes(category));
+const list = posts.filter((p) => getEntryCategories(p).includes(categoryName));
 const pageData = paginate(list, page, PAGE_SIZE);
-const base = `/category/${slugifySegment(category)}`;
+const base = `/category/${slugifySegment(categoryName)}`;
 const postCards = pageData.items.map((entry) => postToCardData(entry));
 const categoryPageHref = (targetPage: number) =>
   targetPage === 1 ? `${base}/` : `${base}/page/${targetPage}/`;
 ---
 
 <BaseLayout
-  title={`分类：${category}（第 ${pageData.page} 页）`}
-  description={`分类 ${category} 下的文章`}
+  title={`分类：${categoryName}（第 ${pageData.page} 页）`}
+  description={`分类 ${categoryName} 下的文章`}
   breadcrumbs={[
     { label: '首页', href: '/' },
     { label: '分类', href: '/categories' },
-    { label: category, href: `${base}/` },
+    { label: categoryName, href: `${base}/` },
     { label: `第 ${pageData.page} 页` },
   ]}
 >
   <div class="flex flex-wrap items-end gap-4">
     <div>
-      <h1 class="text-2xl font-semibold tracking-tight">分类：{category}</h1>
+      <h1 class="text-2xl font-semibold tracking-tight">分类：{categoryName}</h1>
       <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]">共 {pageData.total} 篇</p>
     </div>
   </div>

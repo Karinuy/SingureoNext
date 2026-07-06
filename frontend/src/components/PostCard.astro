@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
 import { cn } from '@/lib/utils';
 import { slugifySegment } from '@/lib/slug';
 import Tag from '@/components/ui/Tag.astro';
+import LazyImage from '@/components/LazyImage.astro';
 import type { PostCardData } from '@/types/post-card';
 
 type Props = {
@@ -13,7 +13,8 @@ type Props = {
 };
 
 const { data, class: className, disableLinks = false, hideCoverPlaceholder = false } = Astro.props;
-const tags = data?.tags.slice(0, 2) ?? [];
+const categories = data?.categories ?? [];
+const tags = data?.tags ?? [];
 ---
 
 {
@@ -31,13 +32,12 @@ const tags = data?.tags.slice(0, 2) ?? [];
       >
         <div class="flex h-full w-full items-center justify-center">
           {data.cover ? (
-            <Image
+            <LazyImage
               src={data.cover}
               width={600}
               height={800}
               alt={data.title}
               class="block h-full w-full object-cover"
-              loading="lazy"
               decoding="async"
             />
           ) : hideCoverPlaceholder ? null : (
@@ -53,25 +53,35 @@ const tags = data?.tags.slice(0, 2) ?? [];
           </h3>
         </a>
 
-        <div class="mt-auto overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div class="flex w-max min-w-full flex-nowrap gap-1.5">
-            {disableLinks ? (
-              <Tag>{data.category}</Tag>
-            ) : (
-              <Tag href={`/category/${slugifySegment(data.category)}/`}>
-                {data.category}
-              </Tag>
-            )}
-            {tags.map((tag) =>
-              disableLinks ? (
-                <Tag>#{tag}</Tag>
-              ) : (
-                <Tag href={`/tag/${slugifySegment(tag)}/`}>
-                  #{tag}
-                </Tag>
-              )
-            )}
+        <div class="mt-auto grid min-w-0 gap-1.5 overflow-hidden">
+          <div class="min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div class="flex w-max min-w-full flex-nowrap gap-1.5">
+              {categories.map((category) =>
+                disableLinks ? (
+                  <Tag>{category}</Tag>
+                ) : (
+                  <Tag href={`/category/${slugifySegment(category)}/`}>
+                    {category}
+                  </Tag>
+                )
+              )}
+            </div>
           </div>
+          {tags.length ? (
+            <div class="min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div class="flex w-max min-w-full flex-nowrap gap-1.5">
+                {tags.map((tag) =>
+                  disableLinks ? (
+                    <Tag>#{tag}</Tag>
+                  ) : (
+                    <Tag href={`/tag/${slugifySegment(tag)}/`}>
+                      #{tag}
+                    </Tag>
+                  )
+                )}
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </article>

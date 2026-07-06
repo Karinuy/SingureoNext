@@ -1,4 +1,5 @@
 import { slugifySegment } from '@/lib/slug';
+import { updateLazyImages } from '@/scripts/lazyload';
 import type { PostCardData } from '@/types/post-card';
 
 function escapeHtml(value: string) {
@@ -13,13 +14,13 @@ function escapeHtml(value: string) {
 function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: boolean }) {
   const metaClass =
     'inline-flex shrink-0 items-center rounded-lg bg-[rgb(var(--color-primary))] px-2.5 py-1 text-xs font-semibold text-[rgb(var(--color-primary-foreground))]';
+  const categories = item.categories;
   const cover = item.cover
     ? `
       <img
-        src="${escapeHtml(item.cover)}"
+        data-src="${escapeHtml(item.cover)}"
         alt="${escapeHtml(item.title)}"
-        class="block h-full w-full object-cover"
-        loading="lazy"
+        class="lazy block h-full w-full object-cover"
         decoding="async"
       />`
     : options?.hideCoverPlaceholder
@@ -27,7 +28,6 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
       : '<span class="text-sm text-[rgb(var(--color-text-muted))]">无封面</span>';
 
   const tags = item.tags
-    .slice(0, 2)
     .map(
       (tag) => `
       <a
@@ -39,6 +39,22 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
       </a>`
     )
     .join('');
+  const categoriesMarkup = categories
+    .map(
+      (category) => `
+                <a href="/category/${slugifySegment(category)}/" class="${metaClass}" data-dark-dim>
+                  ${escapeHtml(category)}
+                </a>`
+    )
+    .join('');
+  const tagRow = tags
+    ? `
+            <div class="min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div class="flex w-max min-w-full flex-nowrap gap-1.5">
+                ${tags}
+              </div>
+            </div>`
+    : '';
 
   return `
     <div class="h-full">
@@ -60,13 +76,13 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
             </h3>
           </a>
 
-          <div class="mt-auto overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div class="flex w-max min-w-full flex-nowrap gap-1.5">
-              <a href="/category/${slugifySegment(item.category)}/" class="${metaClass}" data-dark-dim>
-                ${escapeHtml(item.category)}
-              </a>
-              ${tags}
+          <div class="mt-auto grid min-w-0 gap-1.5 overflow-hidden">
+            <div class="min-w-0 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div class="flex w-max min-w-full flex-nowrap gap-1.5">
+${categoriesMarkup}
+              </div>
             </div>
+${tagRow}
           </div>
         </div>
       </article>
@@ -88,4 +104,5 @@ export function renderPostList(
       ${items.map((item) => renderPostCard(item, options)).join('')}
     </div>
   `;
+  updateLazyImages();
 }

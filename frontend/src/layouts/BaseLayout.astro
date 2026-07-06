@@ -174,9 +174,11 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
     <script>
       import { installExternalLinkNormalizer } from '../lib/redirect';
       import { scheduleSearchIndexPreload } from '../lib/search-client';
+      import { initLazyImages } from '../scripts/lazyload';
 
       installExternalLinkNormalizer();
       scheduleSearchIndexPreload();
+      initLazyImages();
       document.addEventListener('astro:page-load', scheduleSearchIndexPreload);
     </script>
   </body>

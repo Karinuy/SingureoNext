@@ -2,11 +2,15 @@
 import { defineConfig, fontProviders, passthroughImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import rehypeLazyImages from './src/lib/rehype-lazy-images.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.singureo.com',
   integrations: [sitemap(), mdx()],
+  markdown: {
+    rehypePlugins: [rehypeLazyImages],
+  },
   image: {
     service: passthroughImageService(),
   },

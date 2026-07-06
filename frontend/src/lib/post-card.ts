@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content"
 
-import { getEntrySlug, getEntryTags, getPrimaryCategory } from "./content"
+import { getEntryCategories, getEntrySlug, getEntryTags } from "./content"
 import { extractSummaryFromMarkdown } from "./markdown-summary"
 import type { PostCardData } from "@/types/post-card"
 
@@ -14,7 +14,7 @@ export function postToCardData(entry: CollectionEntry<"post">): PostCardData {
     title: entry.data.title,
     description,
     cover: entry.data.cover,
-    category: getPrimaryCategory(entry),
+    categories: getEntryCategories(entry),
     tags: getEntryTags(entry),
   }
 }

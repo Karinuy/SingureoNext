@@ -1,4 +1,4 @@
-import { getEntrySlug, getPrimaryCategory, getEntryTags, getEntryCategories, getPosts } from '../lib/content';
+import { getEntryCategories, getEntrySlug, getEntryTags, getPosts } from '../lib/content';
 import { extractSummaryFromMarkdown } from '../lib/markdown-summary';
 
 export const prerender = true;
@@ -18,7 +18,6 @@ export async function GET() {
       .replace(/\s+/g, ' ')
       .trim()
       .slice(0, 500),
-    category: getPrimaryCategory(g),
     categories: getEntryCategories(g),
     tags: getEntryTags(g),
   }));

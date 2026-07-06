@@ -88,8 +88,38 @@
     letter-spacing: 0.012em;
   }
 
+  img:not([data-no-dark-dim]) {
+    --image-brightness: 1;
+  }
+
   .dark img:not([data-no-dark-dim]) {
-    filter: brightness(var(--image-dark-brightness));
+    --image-brightness: var(--image-dark-brightness);
+    filter: brightness(var(--image-brightness));
+  }
+
+  img.lazy {
+    --lazy-image-blur: 32px;
+    --lazy-image-scale: 1.035;
+    opacity: 0;
+    filter: brightness(var(--image-brightness, 1)) blur(var(--lazy-image-blur));
+    transform: scale(var(--lazy-image-scale));
+    transition:
+      opacity 720ms ease,
+      filter 960ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 960ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, filter, transform;
+  }
+
+  img.lazy:not([src]):not([srcset]) {
+    visibility: hidden;
+  }
+
+  img.lazy.loaded,
+  img.lazy.error {
+    --lazy-image-blur: 0;
+    --lazy-image-scale: 1;
+    opacity: 1;
+    will-change: auto;
   }
 
   .dark [data-dark-dim]:not([data-no-dark-dim]) {
@@ -556,6 +586,10 @@ dialog[data-overlay-dialog][data-overlay-backdrop-style="dim"][data-state="open"
 }
 
 @media (prefers-reduced-motion: reduce) {
+  img.lazy {
+    transition: none;
+  }
+
   [data-overlay-backdrop],
   [data-overlay-panel],
   dialog[data-overlay-dialog]::backdrop,

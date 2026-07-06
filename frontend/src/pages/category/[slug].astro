@@ -14,33 +14,33 @@ export async function getStaticPaths() {
   const categories = Array.from(new Set(games.flatMap((g) => getEntryCategories(g))));
   return categories.map((category) => ({
     params: { slug: slugifySegment(category) },
-    props: { category },
+    props: { categoryName: category },
   }));
 }
 
-const { category } = Astro.props as { category: string };
+const { categoryName } = Astro.props as { categoryName: string };
 const games = await getPosts();
-const list = games.filter((g) => getEntryCategories(g).includes(category));
+const list = games.filter((g) => getEntryCategories(g).includes(categoryName));
 const pageData = paginate(list, 1, PAGE_SIZE);
 const postCards = pageData.items.map((entry) => postToCardData(entry));
 const categoryHref = (page: number) =>
   page === 1
-    ? `/category/${slugifySegment(category)}/`
-    : `/category/${slugifySegment(category)}/page/${page}/`;
+    ? `/category/${slugifySegment(categoryName)}/`
+    : `/category/${slugifySegment(categoryName)}/page/${page}/`;
 ---
 
 <BaseLayout
-  title={`分类：${category}`}
-  description={`分类 ${category} 下的文章`}
+  title={`分类：${categoryName}`}
+  description={`分类 ${categoryName} 下的文章`}
   breadcrumbs={[
     { label: '首页', href: '/' },
     { label: '分类', href: '/categories' },
-    { label: category },
+    { label: categoryName },
   ]}
 >
   <div class="flex flex-wrap items-end gap-4">
     <div>
-      <h1 class="text-2xl font-semibold tracking-tight">分类：{category}</h1>
+      <h1 class="text-2xl font-semibold tracking-tight">分类：{categoryName}</h1>
       <p class="mt-2 text-sm text-[rgb(var(--color-text-muted))]">共 {list.length} 篇</p>
     </div>
   </div>

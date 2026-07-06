@@ -12,7 +12,6 @@ const post = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     cover: z.string().optional(),
-    category: z.string().optional(),
     categories: z
       .union([
         z.string(),
