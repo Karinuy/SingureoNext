@@ -37,8 +37,8 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
 
 <header id="site-header" class="fixed inset-x-0 top-0 z-[70] bg-[rgb(var(--color-surface)_/_0.2)] backdrop-blur-xl">
   <div class="mx-auto max-w-7xl md:hidden">
-    <div class="relative flex min-h-16 items-center justify-between gap-2 px-3 py-3" data-mobile-nav-shell>
-      <div class="flex min-w-0 items-center gap-2 transition-opacity duration-150" data-mobile-nav-default>
+    <div class="relative flex min-h-16 items-center justify-between gap-2 px-3 py-3">
+      <div class="flex min-w-0 items-center gap-2">
         <MobileNav logoText={site.logoText} nav={navItems} />
         <a href="/" class="min-w-0 px-1 py-1">
           <span class="brand-wordmark block whitespace-nowrap text-sm tracking-tight leading-none translate-y-[0.04em]">
@@ -46,12 +46,11 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
           </span>
         </a>
       </div>
-      <div class="flex items-center gap-0.5 transition-opacity duration-150" data-mobile-nav-default>
+      <div class="flex items-center gap-0.5">
         <RandomButton />
-        <NavSearch mode="mobile-trigger" />
+        <NavSearch mode="mobile" />
         <ThemeToggle />
       </div>
-      <NavSearch mode="mobile-panel" />
     </div>
   </div>
 
@@ -76,5 +75,6 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
       </div>
     </div>
   </div>
+  <NavSearch mode="dialog" />
 </header>
 

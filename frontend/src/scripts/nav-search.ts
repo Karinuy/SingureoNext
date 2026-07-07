@@ -1,13 +1,4 @@
-import { readSearchHistory, rememberSearchQuery, writeSearchHistory } from '@/lib/search-history';
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
+const SEARCH_DIALOG_ID = 'nav-search-dialog';
 
 function currentQuery() {
   return new URLSearchParams(window.location.search).get('q')?.trim() ?? '';
@@ -15,208 +6,147 @@ function currentQuery() {
 
 function searchUrl(query: string) {
   const url = new URL('/search', window.location.origin);
-  if (query.trim()) url.searchParams.set('q', query.trim());
+  const trimmed = query.trim();
+  if (trimmed) url.searchParams.set('q', trimmed);
   return `${url.pathname}${url.search}`;
 }
 
-function setPanelOpen(root: HTMLElement, open: boolean) {
-  const panel = root.querySelector('[data-nav-search-panel]');
-  if (!(panel instanceof HTMLElement)) return;
+function getToggle() {
+  const toggle = document.getElementById(SEARCH_DIALOG_ID);
+  return toggle instanceof HTMLInputElement ? toggle : null;
+}
 
-  if (!open) {
-    panel.classList.add('hidden');
+function getForm() {
+  const form = document.querySelector('[data-nav-search-form]');
+  return form instanceof HTMLFormElement ? form : null;
+}
+
+function getInput() {
+  const input = document.querySelector('[data-nav-search-input]');
+  return input instanceof HTMLInputElement ? input : null;
+}
+
+function getClearButton() {
+  const button = document.querySelector('[data-nav-search-clear]');
+  return button instanceof HTMLButtonElement ? button : null;
+}
+
+function syncClearButton() {
+  const input = getInput();
+  const clearButton = getClearButton();
+  if (!input || !clearButton) return;
+
+  const hasValue = Boolean(input.value.trim());
+  clearButton.hidden = !hasValue;
+}
+
+function syncInputValue() {
+  const input = getInput();
+  if (!input) return;
+  input.value = currentQuery();
+  syncClearButton();
+}
+
+function focusSearchInput() {
+  const input = getInput();
+  if (!input) return;
+
+  requestAnimationFrame(() => {
+    input.focus();
+    input.select();
+  });
+}
+
+function openSearchDialog() {
+  const toggle = getToggle();
+  if (!toggle) return;
+
+  syncInputValue();
+  toggle.checked = true;
+  focusSearchInput();
+}
+
+function closeSearchDialog() {
+  const toggle = getToggle();
+  if (toggle) toggle.checked = false;
+}
+
+function submitSearch() {
+  const input = getInput();
+  const query = input?.value.trim() ?? '';
+  if (!query) {
+    input?.focus();
     return;
   }
-
-  const hasHistory = renderHistory(root);
-  panel.classList.toggle('hidden', !hasHistory);
+  window.location.href = searchUrl(query);
 }
 
-function syncClearButton(root: HTMLElement) {
-  const input = root.querySelector('[data-nav-search-input]');
-  const clearButton = root.querySelector('[data-nav-search-clear]');
-  if (!(input instanceof HTMLInputElement) || !(clearButton instanceof HTMLButtonElement)) return;
+function bindSearchForm() {
+  const form = getForm();
+  if (!form || form.dataset.bound === 'true') return;
+  form.dataset.bound = 'true';
 
-  clearButton.classList.toggle('hidden', !input.value.trim());
-  clearButton.classList.toggle('flex', Boolean(input.value.trim()));
-}
-
-function renderHistory(root: HTMLElement) {
-  const historyContainer = root.querySelector('[data-nav-search-history]');
-  const clearButton = root.querySelector('[data-nav-search-history-clear]');
-  if (!(historyContainer instanceof HTMLElement)) return false;
-
-  const history = readSearchHistory();
-  historyContainer.innerHTML = history
-    .map(
-      (item) => `
-        <button
-          type="button"
-          class="flex min-w-0 items-center rounded-lg px-2 py-1.5 text-left text-sm text-[rgb(var(--color-text)_/_0.78)] hover:bg-[rgb(var(--color-surface-muted))]"
-          data-nav-search-history-item="${escapeHtml(item)}"
-        >
-          <span class="truncate">${escapeHtml(item)}</span>
-        </button>`
-    )
-    .join('');
-
-  if (clearButton instanceof HTMLButtonElement) {
-    clearButton.classList.toggle('hidden', history.length === 0);
-  }
-
-  return history.length > 0;
-}
-
-function submitSearch(root: HTMLElement, query: string) {
-  const trimmed = query.trim();
-  if (!trimmed) return;
-  rememberSearchQuery(trimmed);
-  window.location.href = searchUrl(trimmed);
-}
-
-function closeMobileSearch(panel: HTMLElement) {
-  const shell = panel.closest('[data-mobile-nav-shell]');
-  if (!(shell instanceof HTMLElement)) return;
-
-  shell.querySelectorAll('[data-mobile-nav-default]').forEach((node) => {
-    if (!(node instanceof HTMLElement)) return;
-    node.classList.remove('opacity-0', 'pointer-events-none');
-  });
-
-  panel.classList.add('hidden');
-  panel.classList.remove('opacity-100', 'pointer-events-auto');
-  panel.classList.add('opacity-0', 'pointer-events-none');
-  const root = panel.querySelector('[data-nav-search]');
-  if (root instanceof HTMLElement) setPanelOpen(root, false);
-}
-
-function openMobileSearch(button: HTMLButtonElement) {
-  const shell = button.closest('[data-mobile-nav-shell]');
-  if (!(shell instanceof HTMLElement)) return;
-
-  const panel = shell.querySelector('[data-mobile-search-panel]');
-  if (!(panel instanceof HTMLElement)) return;
-
-  shell.querySelectorAll('[data-mobile-nav-default]').forEach((node) => {
-    if (!(node instanceof HTMLElement)) return;
-    node.classList.add('opacity-0', 'pointer-events-none');
-  });
-
-  panel.classList.remove('hidden');
-  panel.classList.remove('opacity-0', 'pointer-events-none');
-  panel.classList.add('opacity-100', 'pointer-events-auto');
-
-  const input = panel.querySelector('[data-nav-search-input]');
-  if (input instanceof HTMLInputElement) {
-    input.value = currentQuery();
-    syncClearButton(panel);
-    window.requestAnimationFrame(() => {
-      input.focus();
-      const root = input.closest('[data-nav-search]');
-      if (root instanceof HTMLElement) setPanelOpen(root, true);
-    });
-  }
-}
-
-function bindSearchRoot(root: HTMLElement) {
-  if (root.dataset.bound === 'true') return;
-  root.dataset.bound = 'true';
-
-  const form = root instanceof HTMLFormElement ? root : root.querySelector('form');
-  const input = root.querySelector('[data-nav-search-input]');
-  const clearButton = root.querySelector('[data-nav-search-clear]');
-  const historyContainer = root.querySelector('[data-nav-search-history]');
-  const historyClear = root.querySelector('[data-nav-search-history-clear]');
-  const closeButton = root.querySelector('[data-nav-search-mobile-close]');
-
-  if (!(form instanceof HTMLFormElement) || !(input instanceof HTMLInputElement)) return;
-
-  input.value = currentQuery();
-  syncClearButton(root);
+  const input = getInput();
+  const clearButton = getClearButton();
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    submitSearch(root, input.value);
+    submitSearch();
   });
 
-  input.addEventListener('focus', () => setPanelOpen(root, true));
-  input.addEventListener('input', () => syncClearButton(root));
+  input?.addEventListener('input', syncClearButton);
 
   clearButton?.addEventListener('click', () => {
-    input.value = '';
-    syncClearButton(root);
-    input.focus();
+    const nextInput = getInput();
+    if (!nextInput) return;
+    nextInput.value = '';
+    syncClearButton();
+    nextInput.focus();
   });
 
-  historyContainer?.addEventListener('click', (event) => {
-    const target = event.target instanceof Element ? event.target.closest('[data-nav-search-history-item]') : null;
-    if (!(target instanceof HTMLButtonElement)) return;
-    const query = target.dataset.navSearchHistoryItem ?? '';
-    input.value = query;
-    syncClearButton(root);
-    submitSearch(root, query);
-  });
-
-  historyClear?.addEventListener('click', () => {
-    writeSearchHistory([]);
-    setPanelOpen(root, false);
-  });
-
-  closeButton?.addEventListener('click', () => {
-    const panel = closeButton.closest('[data-mobile-search-panel]');
-    if (panel instanceof HTMLElement) closeMobileSearch(panel);
-  });
-}
-
-function syncAllInputs() {
-  const query = currentQuery();
-  document.querySelectorAll('[data-nav-search]').forEach((root) => {
-    const input = root.querySelector('[data-nav-search-input]');
-    if (root instanceof HTMLElement && input instanceof HTMLInputElement) {
-      input.value = query;
-      syncClearButton(root);
-    }
-  });
+  syncInputValue();
 }
 
 export function initNavSearch() {
-  document.querySelectorAll('[data-nav-search]').forEach((root) => {
-    if (root instanceof HTMLElement) bindSearchRoot(root);
-  });
+  bindSearchForm();
 
-  syncAllInputs();
+  const toggle = getToggle();
+  if (toggle && toggle.dataset.bound !== 'true') {
+    toggle.dataset.bound = 'true';
+    toggle.addEventListener('change', () => {
+      if (!toggle.checked) return;
+      syncInputValue();
+      focusSearchInput();
+    });
+  }
 
-  const windowWithKey = window as Window & { __navSearchBound?: boolean };
-  if (windowWithKey.__navSearchBound) return;
-  windowWithKey.__navSearchBound = true;
+  const windowWithKey = window as Window & { __navSearchDialogBound?: boolean };
+  if (windowWithKey.__navSearchDialogBound) {
+    syncInputValue();
+    return;
+  }
+  windowWithKey.__navSearchDialogBound = true;
 
   document.addEventListener('click', (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
-
-    const openButton = target.closest('[data-nav-search-mobile-open]');
-    if (openButton instanceof HTMLButtonElement) {
-      openMobileSearch(openButton);
-      return;
-    }
-
-    document.querySelectorAll('[data-nav-search]').forEach((root) => {
-      if (!(root instanceof HTMLElement) || root.contains(target)) return;
-      setPanelOpen(root, false);
-    });
+    const target = event.target instanceof Element ? event.target : null;
+    const openButton = target?.closest('[data-nav-search-open]');
+    if (openButton instanceof HTMLButtonElement) openSearchDialog();
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openSearchDialog();
+      return;
+    }
 
-    document.querySelectorAll('[data-nav-search]').forEach((root) => {
-      if (root instanceof HTMLElement) setPanelOpen(root, false);
-    });
-
-    document.querySelectorAll('[data-mobile-search-panel]').forEach((panel) => {
-      if (panel instanceof HTMLElement && !panel.classList.contains('hidden')) closeMobileSearch(panel);
-    });
+    if (event.key === 'Escape' && getToggle()?.checked) {
+      closeSearchDialog();
+    }
   });
 
-  document.addEventListener('astro:page-load', syncAllInputs);
+  document.addEventListener('astro:page-load', () => {
+    bindSearchForm();
+    syncInputValue();
+  });
 }

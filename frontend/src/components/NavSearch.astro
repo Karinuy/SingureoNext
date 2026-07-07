@@ -1,128 +1,75 @@
 ---
-import { Clock, Search, Trash2, X } from '@lucide/astro';
+import { Search, X } from '@lucide/astro';
+import Button from '@/components/ui/Button.astro';
+import Dialog from '@/components/ui/Dialog.astro';
 
 type Props = {
-  mode: 'desktop' | 'mobile-trigger' | 'mobile-panel';
+  mode: 'desktop' | 'mobile' | 'dialog';
 };
 
 const { mode } = Astro.props;
-const hintText = '前向分词 · 空格多关键词 · 标题/标签优先';
+const dialogId = 'nav-search-dialog';
+const triggerClass = mode === 'desktop' ? 'nav-search-trigger nav-search-trigger--desktop' : 'nav-search-trigger';
 ---
 
 {
-  mode === 'desktop' ? (
-    <form class="relative hidden w-48 lg:w-64 xl:w-80 md:block" role="search" data-nav-search data-nav-search-mode="desktop">
-      <div class="relative">
-        <Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[rgb(var(--color-text-muted))]" />
-        <input
-          class="h-10 w-full rounded-xl border border-[rgb(var(--color-border)_/_0.82)] bg-[rgb(var(--color-surface)_/_0.72)] pl-9 pr-9 text-sm text-[rgb(var(--color-text))] outline-none placeholder:text-[rgb(var(--color-text-muted))] dark:border-[rgb(var(--color-border)_/_0.74)]"
-          type="search"
-          autocomplete="off"
-          placeholder="搜索标题、标签、正文"
-          aria-label="搜索文章"
-          title={hintText}
-          data-nav-search-input
-        />
-        <button
-          type="button"
-          class="absolute right-2.5 top-1/2 hidden size-5 -translate-y-1/2 items-center justify-center rounded-full text-[rgb(var(--color-text-muted))]"
-          aria-label="清空搜索"
-          data-nav-search-clear
-        >
-          <X class="size-4" />
-        </button>
-      </div>
-
-      <div
-        class="absolute right-0 top-[calc(100%+0.55rem)] z-50 hidden w-full rounded-xl border border-[rgb(var(--color-border)_/_0.86)] bg-[rgb(var(--color-surface))] p-2 shadow-lg before:absolute before:-top-1.5 before:right-6 before:size-3 before:rotate-45 before:border-l before:border-t before:border-[rgb(var(--color-border)_/_0.86)] before:bg-[rgb(var(--color-surface))] before:content-['']"
-        data-nav-search-panel
-      >
-        <div class="flex items-center justify-between gap-3 px-2 py-1">
-          <div class="inline-flex items-center gap-1.5 text-xs font-medium text-[rgb(var(--color-text-muted))]">
-            <Clock class="size-3.5" />
-            <span>历史搜索</span>
+  mode === 'dialog' ? (
+    <Dialog id={dialogId} title="搜索文章" class="nav-search-dialog">
+      <form class="nav-search-dialog__form" action="/search" method="get" role="search" data-nav-search-form>
+        <div class="nav-search-dialog__control">
+          <div class="nav-search-dialog__input-row">
+            <Search class="nav-search-dialog__input-icon" />
+            <input
+              class="nav-search-dialog__input"
+              type="search"
+              name="q"
+              autocomplete="off"
+              placeholder="搜索标题、标签、正文"
+              aria-label="搜索文章"
+              data-nav-search-input
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              class="nav-search-dialog__clear"
+              ariaLabel="清空搜索"
+              hidden
+              data-nav-search-clear
+            >
+              <X class="nav-search-dialog__clear-icon" />
+            </Button>
           </div>
-          <button type="button" class="inline-flex items-center gap-1 text-xs text-[rgb(var(--color-text-muted))]" data-nav-search-history-clear>
-            <Trash2 class="size-3.5" />
-            清空
-          </button>
-        </div>
-        <div class="mt-1 grid gap-1" data-nav-search-history></div>
-      </div>
-    </form>
-  ) : mode === 'mobile-trigger' ? (
-    <button
-      type="button"
-      class="inline-flex size-10 items-center justify-center rounded-full text-[rgb(var(--color-text-muted))] md:hidden"
-      aria-label="搜索"
-      title="搜索文章"
-      data-nav-search-mobile-open
-    >
-      <Search class="size-[18px]" />
-    </button>
-  ) : (
-    <div class="pointer-events-none absolute inset-x-3 top-1/2 hidden -translate-y-1/2 opacity-0 transition-opacity duration-150 ease-out" data-mobile-search-panel>
-      <form class="relative flex w-full origin-right items-center gap-2" role="search" data-nav-search data-nav-search-mode="mobile">
-        <button
-          type="button"
-          class="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-[rgb(var(--color-text-muted))]"
-          aria-label="关闭搜索"
-          data-nav-search-mobile-close
-        >
-          <X class="size-[18px]" />
-        </button>
-        <div class="relative min-w-0 flex-1">
-          <Search class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[rgb(var(--color-text-muted))]" />
-          <input
-            class="h-10 w-full rounded-xl border border-[rgb(var(--color-border)_/_0.82)] bg-[rgb(var(--color-surface))] pl-9 pr-9 text-sm text-[rgb(var(--color-text))] outline-none placeholder:text-[rgb(var(--color-text-muted))]"
-            type="search"
-            autocomplete="off"
-            placeholder="搜索标题、标签、正文"
-            aria-label="搜索文章"
-            title={hintText}
-            data-nav-search-input
-          />
-          <button
-            type="button"
-            class="absolute right-2.5 top-1/2 hidden size-5 -translate-y-1/2 items-center justify-center rounded-full text-[rgb(var(--color-text-muted))]"
-            aria-label="清空搜索"
-            data-nav-search-clear
+          <Button
+            type="submit"
+            variant="solid"
+            size="md"
+            class="nav-search-dialog__submit"
+            ariaLabel="提交搜索"
           >
-            <X class="size-4" />
-          </button>
-        </div>
-        <button
-          type="submit"
-          class="inline-flex size-10 shrink-0 items-center justify-center rounded-full text-[rgb(var(--color-text-muted))]"
-          aria-label="提交搜索"
-        >
-          <Search class="size-[18px]" />
-        </button>
-
-        <div
-          class="absolute left-0 right-0 top-[calc(100%+0.55rem)] z-50 hidden rounded-xl border border-[rgb(var(--color-border)_/_0.86)] bg-[rgb(var(--color-surface))] p-2 shadow-lg before:absolute before:-top-1.5 before:left-16 before:size-3 before:rotate-45 before:border-l before:border-t before:border-[rgb(var(--color-border)_/_0.86)] before:bg-[rgb(var(--color-surface))] before:content-['']"
-          data-nav-search-panel
-        >
-          <div class="flex items-center justify-between gap-3 px-2 py-1">
-            <div class="inline-flex items-center gap-1.5 text-xs font-medium text-[rgb(var(--color-text-muted))]">
-              <Clock class="size-3.5" />
-              <span>历史搜索</span>
-            </div>
-            <button type="button" class="inline-flex items-center gap-1 text-xs text-[rgb(var(--color-text-muted))]" data-nav-search-history-clear>
-              <Trash2 class="size-3.5" />
-              清空
-            </button>
-          </div>
-          <div class="mt-1 grid gap-1" data-nav-search-history></div>
+            搜索
+          </Button>
         </div>
       </form>
-    </div>
+
+      <script>
+        import { initNavSearch } from '@/scripts/nav-search';
+
+        initNavSearch();
+        document.addEventListener('astro:page-load', initNavSearch);
+      </script>
+    </Dialog>
+  ) : (
+    <Button
+      type="button"
+      variant="ghost"
+      size="icon"
+      class={triggerClass}
+      ariaLabel="搜索文章"
+      title="搜索文章"
+      data-nav-search-open
+    >
+      <Search class="nav-search-trigger__icon" />
+    </Button>
   )
 }
-
-<script>
-  import { initNavSearch } from '@/scripts/nav-search';
-
-  initNavSearch();
-  document.addEventListener('astro:page-load', initNavSearch);
-</script>
