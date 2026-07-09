@@ -77,6 +77,7 @@ export const site = {
     { label: '青桔网', href: 'https://x.qingju.org/' },
     { label: '秒速5厘米', href: 'https://dh.soliar.top/' },
     { label: 'GalError', href: 'https://www.galerror.top/' },
+    { label: '月幕Galgame', href: 'https://www.ymgal.games/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
