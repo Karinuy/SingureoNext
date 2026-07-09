@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .brand-wordmark {
-    font-family: var(--font-outfit), sans-serif;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-    font-feature-settings: "ss01" 1, "cv02" 1;
-  }
-}
-
 @layer base {
   :root {
     --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -595,16 +584,18 @@ dialog[data-overlay-dialog][data-overlay-backdrop-style="dim"][data-state="open"
 .nav-search-dialog__form {
   position: relative;
   z-index: 1;
-  display: grid;
+  display: flex;
   height: 100%;
-  align-content: center;
-  justify-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-search-dialog__control {
   display: grid;
+  flex: 1;
+  min-height: 0;
+  place-content: center;
   justify-items: center;
-  gap: 1rem;
 }
 
 .nav-search-dialog__input-row {
@@ -654,6 +645,7 @@ dialog[data-overlay-dialog][data-overlay-backdrop-style="dim"][data-state="open"
 }
 
 .nav-search-dialog__submit {
+  flex-shrink: 0;
   min-width: 6.5rem;
   height: 2.625rem;
   border-radius: 0.625rem;
@@ -669,16 +661,6 @@ dialog[data-overlay-dialog][data-overlay-backdrop-style="dim"][data-state="open"
 
   .site-dialog.nav-search-dialog .site-dialog__body {
     padding: 0 1.75rem 1.75rem;
-  }
-
-  .nav-search-dialog__form {
-    align-content: center;
-    padding-top: 0;
-  }
-
-  .nav-search-dialog__control {
-    gap: 1rem;
-    justify-items: center;
   }
 
   .nav-search-dialog__input-row {

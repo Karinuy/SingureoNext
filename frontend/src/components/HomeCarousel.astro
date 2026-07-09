@@ -20,16 +20,16 @@ const { items } = Astro.props;
 
 {
   items?.length ? (
-    <div class="relative w-full" data-carousel data-count={items.length}>
-      <div class="overflow-hidden bg-gray-100 [clip-path:inset(0_round_0.75rem)] [transform:translateZ(0)]" data-carousel-viewport>
+    <div class="group/carousel relative w-full" data-carousel data-count={items.length}>
+      <div class="overflow-hidden bg-[rgb(var(--color-bg))] [clip-path:inset(0_round_0.75rem)] [transform:translateZ(0)]" data-carousel-viewport>
         <div class="-ml-px flex w-[calc(100%+2px)]" style="touch-action: pan-y pinch-zoom;" data-carousel-container>
           {items.map((item) => {
             const link = resolveLink(item.href);
             return (
-              <div class="min-w-0 shrink-0 grow-0 basis-full bg-gray-100 px-px">
+              <div class="min-w-0 shrink-0 grow-0 basis-full bg-[rgb(var(--color-bg))] px-px">
                 <a href={link.href} target={link.target} rel={link.rel} class="block no-underline text-inherit">
                   <Card class="overflow-hidden rounded-none border-0 p-0 shadow-none">
-                    <div class="relative h-[230px] bg-gray-100 sm:h-[290px] md:h-[340px] lg:h-[400px]">
+                    <div class="relative h-[230px] bg-[rgb(var(--color-bg))] sm:h-[290px] md:h-[340px] lg:h-[400px]">
                       <LazyImage src={item.image} width={1600} height={900} alt={item.title} class="block h-full w-full object-cover" />
                       <div
                         aria-hidden="true"
@@ -52,23 +52,23 @@ const { items } = Astro.props;
           <Button
             variant="ghost"
             size="icon"
-            class="absolute left-2 top-1/2 z-10 size-6 -translate-y-1/2 rounded-none p-0 text-white/75 drop-shadow transition-colors hover:text-white md:size-7"
+            class="absolute left-2 top-1/2 z-10 hidden size-7 -translate-y-1/2 rounded-none p-0 text-white/75 opacity-0 drop-shadow transition-opacity duration-150 hover:text-white md:inline-flex md:group-hover/carousel:opacity-100 md:group-focus-within/carousel:opacity-100"
             ariaLabel="上一张"
             data-carousel-prev
           >
             <span class="flex size-full items-center justify-center" aria-hidden="true">
-              <ChevronLeft class="block size-6 shrink-0 stroke-[2.25] md:size-7" />
+              <ChevronLeft class="block size-7 shrink-0 stroke-[2.25]" />
             </span>
           </Button>
           <Button
             variant="ghost"
             size="icon"
-            class="absolute right-2 top-1/2 z-10 size-6 -translate-y-1/2 rounded-none p-0 text-white/75 drop-shadow transition-colors hover:text-white md:size-7"
+            class="absolute right-2 top-1/2 z-10 hidden size-7 -translate-y-1/2 rounded-none p-0 text-white/75 opacity-0 drop-shadow transition-opacity duration-150 hover:text-white md:inline-flex md:group-hover/carousel:opacity-100 md:group-focus-within/carousel:opacity-100"
             ariaLabel="下一张"
             data-carousel-next
           >
             <span class="flex size-full items-center justify-center" aria-hidden="true">
-              <ChevronRight class="block size-6 shrink-0 stroke-[2.25] md:size-7" />
+              <ChevronRight class="block size-7 shrink-0 stroke-[2.25]" />
             </span>
           </Button>
 

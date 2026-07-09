@@ -42,15 +42,6 @@ export default defineConfig({
       subsets: ['latin'],
       fallbacks: ['monospace'],
     },
-    {
-      provider: fontProviders.fontsource(),
-      name: 'Outfit',
-      cssVariable: '--font-outfit',
-      weights: [400],
-      styles: ['normal'],
-      subsets: ['latin'],
-      fallbacks: ['sans-serif'],
-    },
   ],
   vite: {
     server: {

@@ -3,7 +3,6 @@ export const site = {
   tagline: 'Singureo是以Galgame为主的资源分享网站，贯彻简洁美观人性化的理念，为用户提供优质的体验！',
   tabTagline: '简洁·美观·人性化！',
   keywords: ['Singureo', 'ACG资源站', '免费galgame', 'galgame', '东方project', 'galgame汉化', '不限速下载', 'galgame资源站'],
-  logoText: 'Singureo',
   nav: [
     { label: '首页', href: '/', icon: 'home' },
     {
