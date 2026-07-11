@@ -10,26 +10,24 @@ type Props = {
 };
 
 const { pageKey, pageTitle } = Astro.props;
-const artalkServerUrl = site.api.artalkServerUrl.trim();
+const artalkServer = site.artalk.server.trim();
 ---
 
-{site.comments.enabled ? (
-  <section class="mt-10" aria-labelledby="post-comments-title">
-    <h2 id="post-comments-title" class="text-base font-semibold tracking-tight">评论</h2>
+{site.artalk.enabled ? (
+  <section class="mt-10" aria-labelledby="artalk-comments-title">
+    <h2 id="artalk-comments-title" class="text-base font-semibold tracking-tight">评论</h2>
     <div
       data-artalk-comments
       data-page-key={pageKey}
       data-page-title={pageTitle}
-      data-server={artalkServerUrl}
+      data-server={artalkServer}
       data-site={site.name}
-      class="post-comments-artalk mt-4 min-h-32"
+      class="artalk-comments mt-4 min-h-32"
     >
-      {artalkServerUrl ? (
+      {artalkServer ? (
         <p class="text-sm text-[rgb(var(--color-text-muted))]">评论加载中...</p>
       ) : (
-        <p class="text-sm text-[rgb(var(--color-text-muted))]">
-          评论服务暂未配置
-        </p>
+        <p class="text-sm text-[rgb(var(--color-text-muted))]">评论服务暂未配置</p>
       )}
     </div>
     <div class="fixed bottom-24 right-5 z-50 md:right-6 lg:bottom-36 lg:right-8">
@@ -48,19 +46,19 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
 ) : null}
 
 <style is:global>
-  .post-comments-artalk.artalk {
+  .artalk-comments.artalk {
     --at-color-light: rgb(var(--color-primary));
     --at-color-bg-light: rgb(var(--color-primary) / 0.1);
     --at-color-main: rgb(var(--color-primary));
   }
 
-  .post-comments-artalk.artalk.atk-dark-mode {
+  .artalk-comments.artalk.atk-dark-mode {
     --at-color-light: rgb(var(--color-primary));
     --at-color-bg-light: rgb(var(--color-primary) / 0.12);
     --at-color-main: rgb(var(--color-primary));
   }
 
-  .post-comments-artalk.artalk > .atk-list > .atk-list-footer .atk-copyright {
+  .artalk-comments.artalk > .atk-list > .atk-list-footer .atk-copyright {
     display: none !important;
   }
 </style>
@@ -110,6 +108,8 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
       site: container.dataset.site,
       locale: 'zh-CN',
       darkMode: isDarkMode(),
+      pvEl: '[data-artalk-pv-current]',
+      countEl: '[data-artalk-comment-current]',
     });
 
     const observer = new MutationObserver(() => {
@@ -143,15 +143,15 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
     });
   };
 
-  const globalState = window as Window & { __postCommentsArtalkBound?: boolean };
+  const globalState = window as Window & { __artalkCommentsBound?: boolean };
 
   initAllArtalk();
-  if (!globalState.__postCommentsArtalkBound) {
-    globalState.__postCommentsArtalkBound = true;
+  if (!globalState.__artalkCommentsBound) {
+    globalState.__artalkCommentsBound = true;
     document.addEventListener('click', (event) => {
       const button = event.target instanceof Element ? event.target.closest('[data-scroll-to-comments]') : null;
       if (!button) return;
-      document.getElementById('post-comments-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('artalk-comments-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
     document.addEventListener('astro:page-load', initAllArtalk);
     document.addEventListener('astro:before-swap', destroyAllArtalk);

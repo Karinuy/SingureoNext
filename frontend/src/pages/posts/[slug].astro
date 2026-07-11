@@ -15,7 +15,8 @@ import ShareButton from '../../components/ShareButton.astro';
 import FavoriteButton from '../../components/FavoriteButton.astro';
 import { extractSummaryFromMarkdown } from '../../lib/markdown-summary';
 import PostDownloadButton from '../../components/PostDownloadButton.astro';
-import PostComments from '../../components/PostComments.astro';
+import ArtalkComments from '../../components/ArtalkComments.astro';
+import ArtalkStatBadge from '../../components/ArtalkStatBadge.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('post', ({ data }) => !data.draft);
@@ -93,6 +94,7 @@ const relatedCards = related.map((entry) => postToCardData(entry));
               暂无封面
             </div>
           )}
+          <ArtalkStatBadge current class="left-1.5 top-1.5 sm:left-2.5 sm:top-2.5" />
         </div>
 
         <div class="flex min-w-0 flex-col gap-3 bg-white p-3 dark:bg-black sm:gap-5 sm:p-5 lg:p-6">
@@ -161,7 +163,7 @@ const relatedCards = related.map((entry) => postToCardData(entry));
       </div>
     </Card>
 
-    <PostComments pageKey={Astro.url.pathname} pageTitle={title} />
+    <ArtalkComments pageKey={Astro.url.pathname} pageTitle={title} />
 
     {related.length ? (
       <section class="mt-10">

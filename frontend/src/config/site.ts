@@ -38,7 +38,7 @@ export const site = {
   },
   announcement: {
     enabled: true,
-    content: '本站已全面实现自建云盘下载，希望大家能够多多分享本站，感谢理解！',
+    content: '站点体验大优化！希望大家能够多多分享本站！反馈问题请评论或加入Telegram群组',
   },
   ads: {
     enabled: true,
@@ -94,11 +94,9 @@ export const site = {
     ],
     message: '您即将离开本站，前往第三方网站。请注意您的账号和财产安全。',
   },
-  comments: {
+  artalk: {
     enabled: true,
-  },
-  api: {
-    artalkServerUrl: 'https://artalk.sin0.cc',
+    server: 'https://artalk.sin0.cc',
   },
 };
 

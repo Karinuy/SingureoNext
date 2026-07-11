@@ -6,6 +6,7 @@ import FriendLinks from '../components/FriendLinks.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ArtalkStatBadge from '../components/ArtalkStatBadge.astro';
 import type { BreadcrumbItemData } from '../types/breadcrumb';
 import '../styles/globals.css';
 
@@ -80,8 +81,8 @@ function defaultBreadcrumbs(pathname: string): BreadcrumbItemData[] {
 
 const breadcrumbItems = breadcrumbs ?? defaultBreadcrumbs(Astro.url.pathname);
 const showBreadcrumbs = !isHome && !hideBreadcrumbs;
-const commentsEnabled = site.comments.enabled;
-const artalkServerUrl = site.api.artalkServerUrl.trim();
+const artalkEnabled = site.artalk.enabled;
+const artalkServer = site.artalk.server.trim();
 ---
 
 <html lang="zh-CN">
@@ -91,10 +92,10 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script defer src="https://ays.sin0.cc/script.js" data-website-id="7bf402eb-d3a3-468c-84b7-3c6a9b2a54dc"></script>
     <link rel="canonical" href={canonicalUrl} />
-    {commentsEnabled && artalkServerUrl ? (
+    {artalkEnabled && artalkServer ? (
       <>
-        <link rel="dns-prefetch" href={artalkServerUrl} />
-        <link rel="preconnect" href={artalkServerUrl} crossorigin />
+        <link rel="dns-prefetch" href={artalkServer} />
+        <link rel="preconnect" href={artalkServer} crossorigin />
       </>
     ) : null}
     <meta name="viewport" content="width=device-width" />
@@ -136,7 +137,7 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
         } catch {}
       })();
     </script>
-    {commentsEnabled ? (
+    {artalkEnabled ? (
       <script>
         const preloadArtalk = () => {
           const globalState = window as Window & {
@@ -170,14 +171,17 @@ const artalkServerUrl = site.api.artalkServerUrl.trim();
     <BackToTop />
     {showFriendLinks ? <FriendLinks /> : null}
     <Footer />
+    {artalkEnabled ? <ArtalkStatBadge template /> : null}
     <script>
       import { installExternalLinkNormalizer } from '../lib/redirect';
       import { scheduleSearchIndexPreload } from '../lib/search-client';
       import { initLazyImages } from '../scripts/lazyload';
+      import { initArtalkCountWidget } from '../scripts/artalk-count-widget';
 
       installExternalLinkNormalizer();
       scheduleSearchIndexPreload();
       initLazyImages();
+      initArtalkCountWidget();
       document.addEventListener('astro:page-load', scheduleSearchIndexPreload);
     </script>
   </body>

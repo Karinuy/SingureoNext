@@ -1,0 +1,57 @@
+---
+import { Eye, MessageCircle } from '@lucide/astro';
+import { cn } from '@/lib/utils';
+import { site } from '@/config/site';
+
+type Props = {
+  pageKey?: string;
+  current?: boolean;
+  class?: string;
+  template?: boolean;
+};
+
+const { pageKey, current = false, class: className, template = false } = Astro.props;
+
+const wrapClass =
+  'pointer-events-none absolute z-10 inline-flex items-center gap-1.5 rounded-md bg-black/45 px-1.5 py-0.5 text-[11px] font-medium leading-none text-white backdrop-blur-sm';
+const itemClass = 'inline-flex items-center gap-1';
+const countClass = 'min-w-[1ch] tabular-nums';
+---
+
+{
+  site.artalk.enabled ? (
+    template ? (
+      <template id="artalk-stat-badge-template">
+        <span class={wrapClass}>
+          <span class={itemClass} aria-label="浏览量">
+            <Eye class="size-3 shrink-0 opacity-90" aria-hidden="true" />
+            <span class={`artalk-pv-count ${countClass}`} />
+          </span>
+          <span class={itemClass} aria-label="评论数">
+            <MessageCircle class="size-3 shrink-0 opacity-90" aria-hidden="true" />
+            <span class={`artalk-comment-count ${countClass}`} />
+          </span>
+        </span>
+      </template>
+    ) : (
+      <span class={cn(wrapClass, className)}>
+        <span class={itemClass} aria-label="浏览量">
+          <Eye class="size-3 shrink-0 opacity-90" aria-hidden="true" />
+          {current ? (
+            <span class={`artalk-pv-count ${countClass}`} data-artalk-pv-current />
+          ) : (
+            <span class={`artalk-pv-count ${countClass}`} data-page-key={pageKey} />
+          )}
+        </span>
+        <span class={itemClass} aria-label="评论数">
+          <MessageCircle class="size-3 shrink-0 opacity-90" aria-hidden="true" />
+          {current ? (
+            <span class={`artalk-comment-count ${countClass}`} data-artalk-comment-current />
+          ) : (
+            <span class={`artalk-comment-count ${countClass}`} data-page-key={pageKey} />
+          )}
+        </span>
+      </span>
+    )
+  ) : null
+}

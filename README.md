@@ -287,8 +287,8 @@ date: 2026-01-28 12:00:00
 
 文章详情页通过 Artalk 接入评论。配置位于 `frontend/src/config/site.ts`：
 
-- `comments.enabled`
-- `api.artalkServerUrl`
+- `artalk.enabled`
+- `artalk.server`
 
 布局会在空闲时间预加载 Artalk，并根据当前主题同步评论区暗色模式。
 

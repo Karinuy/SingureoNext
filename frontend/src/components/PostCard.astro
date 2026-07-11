@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { slugifySegment } from '@/lib/slug';
 import Tag from '@/components/ui/Tag.astro';
 import LazyImage from '@/components/LazyImage.astro';
+import ArtalkStatBadge from '@/components/ArtalkStatBadge.astro';
 import type { PostCardData } from '@/types/post-card';
 
 type Props = {
@@ -27,7 +28,7 @@ const tags = data?.tags ?? [];
     >
       <a
         href={data.href}
-        class="block aspect-[3/4] overflow-hidden border-b border-[rgb(var(--color-border)_/_0.9)] bg-gray-100 no-underline dark:bg-neutral-900"
+        class="relative block aspect-[3/4] overflow-hidden border-b border-[rgb(var(--color-border)_/_0.9)] bg-gray-100 no-underline dark:bg-neutral-900"
         aria-label={data.title}
       >
         <div class="flex h-full w-full items-center justify-center">
@@ -44,6 +45,7 @@ const tags = data?.tags ?? [];
             <span class="text-sm text-[rgb(var(--color-text-muted))]">无封面</span>
           )}
         </div>
+        <ArtalkStatBadge pageKey={data.href} class="right-1.5 top-1.5" />
       </a>
 
       <div class="flex min-w-0 flex-1 flex-col gap-2 p-3">

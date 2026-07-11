@@ -1,5 +1,6 @@
 import { slugifySegment } from '@/lib/slug';
 import { updateLazyImages } from '@/scripts/lazyload';
+import { loadArtalkCountWidget } from '@/scripts/artalk-count-widget';
 import type { PostCardData } from '@/types/post-card';
 
 function escapeHtml(value: string) {
@@ -9,6 +10,20 @@ function escapeHtml(value: string) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
+}
+
+function renderArtalkStatBadge(pageKey: string) {
+  const template = document.getElementById('artalk-stat-badge-template');
+  if (!(template instanceof HTMLTemplateElement)) return '';
+
+  const node = template.content.firstElementChild?.cloneNode(true);
+  if (!(node instanceof HTMLElement)) return '';
+
+  node.querySelectorAll('.artalk-pv-count, .artalk-comment-count').forEach((el) => {
+    if (el instanceof HTMLElement) el.dataset.pageKey = pageKey;
+  });
+  node.classList.add('right-1.5', 'top-1.5');
+  return node.outerHTML;
 }
 
 function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: boolean }) {
@@ -61,12 +76,13 @@ function renderPostCard(item: PostCardData, options?: { hideCoverPlaceholder?: b
       <article class="flex h-full flex-col overflow-hidden rounded-xl border border-[rgb(var(--color-border)_/_0.9)] bg-white dark:bg-black">
         <a
           href="${escapeHtml(item.href)}"
-          class="block aspect-[3/4] overflow-hidden border-b border-[rgb(var(--color-border)_/_0.9)] bg-gray-100 no-underline dark:bg-neutral-900"
+          class="relative block aspect-[3/4] overflow-hidden border-b border-[rgb(var(--color-border)_/_0.9)] bg-gray-100 no-underline dark:bg-neutral-900"
           aria-label="${escapeHtml(item.title)}"
         >
           <div class="flex h-full w-full items-center justify-center">
             ${cover}
           </div>
+          ${renderArtalkStatBadge(item.href)}
         </a>
 
         <div class="flex min-w-0 flex-1 flex-col gap-2 p-3">
@@ -105,4 +121,5 @@ export function renderPostList(
     </div>
   `;
   updateLazyImages();
+  void loadArtalkCountWidget();
 }
