@@ -366,7 +366,7 @@ const slides = items ?? [];
 
       const start = () => {
         stop();
-        if (paused || count <= 1 || isMobile()) return;
+        if (paused || count <= 1) return;
         timer = window.setInterval(() => {
           setActive((index + 1) % count);
         }, 4500);
@@ -401,21 +401,23 @@ const slides = items ?? [];
         const el = event.currentTarget;
         if (!(el instanceof Element)) return;
         setActive(Number(el.getAttribute('data-carousel-dot') || '0'));
+        start();
       };
 
       const onBannerScroll = () => {
         if (!(banner instanceof HTMLElement) || syncingScroll || !isMobile()) return;
         const next = Math.round(banner.scrollLeft / Math.max(banner.clientWidth, 1));
-        if (next !== index) setActive(next, { fromScroll: true });
+        if (next !== index) {
+          setActive(next, { fromScroll: true });
+          start();
+        }
       };
 
       const onResize = () => {
-        if (isMobile()) {
-          stop();
-          if (banner instanceof HTMLElement) {
-            banner.scrollTo({ left: banner.clientWidth * index, behavior: 'auto' });
-          }
-        } else start();
+        if (banner instanceof HTMLElement && isMobile()) {
+          banner.scrollTo({ left: banner.clientWidth * index, behavior: 'auto' });
+        }
+        start();
       };
 
       const visibilityHandler = () => {
@@ -429,6 +431,8 @@ const slides = items ?? [];
       });
       dots.forEach((dot) => dot.addEventListener('click', onDotClick));
       banner?.addEventListener('scroll', onBannerScroll, { passive: true });
+      banner?.addEventListener('touchstart', pause, { passive: true });
+      banner?.addEventListener('touchend', resume, { passive: true });
       root.addEventListener('mouseenter', pause);
       root.addEventListener('mouseleave', resume);
       root.addEventListener('focusin', pause);
@@ -450,6 +454,8 @@ const slides = items ?? [];
           });
           dots.forEach((dot) => dot.removeEventListener('click', onDotClick));
           banner?.removeEventListener('scroll', onBannerScroll);
+          banner?.removeEventListener('touchstart', pause);
+          banner?.removeEventListener('touchend', resume);
           root.removeEventListener('mouseenter', pause);
           root.removeEventListener('mouseleave', resume);
           root.removeEventListener('focusin', pause);
