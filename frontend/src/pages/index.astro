@@ -8,21 +8,19 @@ import { postToCardData } from '../lib/post-card';
 import { paginate } from '../lib/paginate';
 import HomeCarousel from '../components/HomeCarousel.astro';
 import SiteAds from '../components/SiteAds.astro';
-import HomeAnnouncement from '../components/HomeAnnouncement.astro';
+import { resolveHomeCarousel } from '../lib/home-carousel';
 
 const PAGE_SIZE = 24;
 const games = await getPosts();
 const pageData = paginate(games, 1, PAGE_SIZE);
 const postCards = pageData.items.map((entry) => postToCardData(entry));
 const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
+const carousel = await resolveHomeCarousel(site.home.carousel);
 ---
 
 <BaseLayout title="首页" description={site.tagline}>
 	<section>
-		<div class="mb-4">
-			<HomeAnnouncement config={site.announcement} />
-		</div>
-		<HomeCarousel items={site.home.carousel} />
+		<HomeCarousel items={carousel.items} tag={carousel.tag} />
 	</section>
 
 	{site.ads.enabled ? (

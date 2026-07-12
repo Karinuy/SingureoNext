@@ -31,14 +31,10 @@ export const site = {
     { label: '模拟器', href: 'https://pan.singureo.com/OSS/%E6%A8%A1%E6%8B%9F%E5%99%A8', icon: 'gamepad2' },
   ],
   home: {
-    carousel: [
-      { title: '公告', href: '/docs/notice/', image: 'https://res.sin0.cc/2026/06/14/4c1f71ba476a6cb72963eaaa7b7c69cf/1781443900-banner.avif' },
-      { title: '关于本站', href: '/docs/about/', image: 'https://res.sin0.cc/2026/06/14/75868309aaeba739d18045ebf9beabae/1781443916-banner_2.avif' },
-    ],
-  },
-  announcement: {
-    enabled: true,
-    content: '站点体验大优化！希望大家能够多多分享本站！反馈问题请评论或加入Telegram群组',
+    carousel: {
+      tag: '站点推荐',
+      posts: ['about', 'notice', '8f7a8a7b', '511defb2', 'ecfdd2b0'],
+    },
   },
   ads: {
     enabled: true,

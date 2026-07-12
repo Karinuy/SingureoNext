@@ -18,7 +18,7 @@ SingureoNext 面向内容量较大的 Galgame/ACG 资源型站点。它的目标
 
 站点体验重点包括：
 
-- 首页快速浏览最新文章、公告、轮播图和广告位。
+- 首页快速浏览最新文章、轮播图和广告位。
 - 分类、标签、分页归档用于大批量内容导航。
 - 文章详情页展示封面、分类、标签、正文、下载入口、分享、收藏、相关推荐和评论。
 - 顶部搜索按钮与搜索页支持关键词检索。
@@ -37,7 +37,6 @@ SingureoNext 面向内容量较大的 Galgame/ACG 资源型站点。它的目标
 - MDX：文档内容编写。
 - FlexSearch：浏览器端全文检索。
 - vanilla-lazyload：图片懒加载。
-- Embla Carousel：首页轮播。
 - Artalk：评论系统。
 - Lucide Astro：图标组件。
 - IndexedDB：本地收藏存储。
@@ -106,7 +105,7 @@ Astro 文件路由目录，包含首页、分页、分类、标签、文章详�
 
 `frontend/src/components`
 
-站点组件目录，包括导航栏、移动端抽屉、文章卡片、文章列表、首页轮播、公告、广告位、收藏按钮、下载按钮、评论、搜索入口、返回顶部、页脚等。
+站点组件目录，包括导航栏、移动端抽屉、文章卡片、文章列表、首页轮播、广告位、收藏按钮、下载按钮、评论、搜索入口、返回顶部、页脚等。
 
 `frontend/src/components/ui`
 
@@ -114,7 +113,7 @@ Astro 文件路由目录，包含首页、分页、分类、标签、文章详�
 
 `frontend/src/lib`
 
-通用逻辑目录，包括内容读取、分页、slug 处理、文章卡片数据转换、摘要提取、外链跳转、搜索 Worker、收藏 IndexedDB、图片懒加载 rehype 插件等。
+通用逻辑目录，包括内容读取、分页、slug 处理、文章卡片数据转换、首页轮播解析、摘要提取、外链跳转、搜索 Worker、收藏 IndexedDB、图片懒加载 rehype 插件等。
 
 `frontend/src/scripts`
 
@@ -128,7 +127,7 @@ Astro 文件路由目录，包含首页、分页、分类、标签、文章详�
 
 当前主要路由如下：
 
-- `/`：首页，展示公告、轮播、广告位和最新文章列表。
+- `/`：首页，展示轮播、广告位和最新文章列表。
 - `/page/[page]/`：首页文章分页。
 - `/posts/[slug]/`：文章详情页，slug 来自文章 `abbrlink` 或文件名。
 - `/categories`：分类索引页。
@@ -222,6 +221,38 @@ date: 2026-01-28 12:00:00
 - 基于相同标签的相关推荐。
 - Artalk 评论区。
 - SEO 标题、描述、关键词和 Open Graph 图片。
+
+### 首页轮播
+
+首页轮播组件为 `frontend/src/components/HomeCarousel.astro`，解析逻辑在 `frontend/src/lib/home-carousel.ts`。
+
+布局参考常见博客首页的「左大图 + 右侧推荐列表」结构，并按本站中性设计收敛：
+
+- 桌面端：左侧展示封面、标题和全局推荐标签；右侧为推荐列表，悬停切换，点击跳转。
+- 移动端：隐藏右侧列表，改为横向滑动，并显示底部指示点。
+- 主题色使用固定中性色，用于底部渐变遮罩和右侧列表强调态。
+- 封面图片使用懒加载，裁剪以图片中心为准；暗色模式下轻微降低亮度。
+
+配置位于 `frontend/src/config/site.ts` 的 `home.carousel`：
+
+```ts
+home: {
+  carousel: {
+    tag: '站点推荐',
+    posts: ['about', 'notice', '8f7a8a7b'],
+  },
+},
+```
+
+说明：
+
+- `tag`：轮播左下角全局推荐标签，不按单项配置。
+- `posts`：按顺序填写文章或文档的唯一 ID（`abbrlink`）。
+- 系统会同时在 `post` 与 `docs` 集合中查找对应内容。
+- 自动读取标题、封面和链接；缺少封面或找不到 ID 的项会被跳过并输出构建警告。
+- 文章链接形如 `/posts/{abbrlink}/`，文档链接形如 `/docs/{abbrlink}/`。
+
+首页不再提供独立公告条组件；公告内容请使用文档页（如 `/docs/notice/`）承载。
 
 ### 分类和标签
 
@@ -321,8 +352,7 @@ date: 2026-01-28 12:00:00
 - SEO 关键词。
 - Logo 文本。
 - 桌面和移动端导航。
-- 首页轮播。
-- 首页公告。
+- 首页轮播（`home.carousel.tag` 与 `home.carousel.posts`）。
 - 广告位。
 - 友情链接。
 - 页脚链接。
@@ -399,6 +429,7 @@ npm run ensure:abbrlink
 2. 配置 `title`、`description`、`abbrlink`、`date` 等字段。
 3. 文档详情路由会优先使用 `abbrlink`。
 4. 如需在导航中露出入口，修改 `frontend/src/config/site.ts`。
+5. 如需出现在首页轮播，将文档 `abbrlink` 写入 `home.carousel.posts`。
 
 ## 辅助脚本
 

@@ -1,99 +1,294 @@
 ---
-import { ChevronLeft, ChevronRight } from '@lucide/astro';
-import Button from '@/components/ui/Button.astro';
-import Card from '@/components/ui/Card.astro';
+import { Star } from '@lucide/astro';
 import LazyImage from '@/components/LazyImage.astro';
-import { resolveLink } from '@/lib/redirect';
-
-type CarouselLink = {
-  title: string;
-  href: string;
-  image: string;
-};
+import type { HomeCarouselSlide } from '@/lib/home-carousel';
 
 type Props = {
-  items: CarouselLink[];
+  items: HomeCarouselSlide[];
+  tag?: string;
 };
 
-const { items } = Astro.props;
+const { items, tag = '站点推荐' } = Astro.props;
+const slides = items ?? [];
 ---
 
 {
-  items?.length ? (
-    <div class="group/carousel relative w-full" data-carousel data-count={items.length}>
-      <div class="overflow-hidden bg-[rgb(var(--color-bg))] [clip-path:inset(0_round_0.75rem)] [transform:translateZ(0)]" data-carousel-viewport>
-        <div class="-ml-px flex w-[calc(100%+2px)]" style="touch-action: pan-y pinch-zoom;" data-carousel-container>
-          {items.map((item) => {
-            const link = resolveLink(item.href);
-            return (
-              <div class="min-w-0 shrink-0 grow-0 basis-full bg-[rgb(var(--color-bg))] px-px">
-                <a href={link.href} target={link.target} rel={link.rel} class="block no-underline text-inherit">
-                  <Card class="overflow-hidden rounded-none border-0 p-0 shadow-none">
-                    <div class="relative h-[230px] bg-[rgb(var(--color-bg))] sm:h-[290px] md:h-[340px] lg:h-[400px]">
-                      <LazyImage src={item.image} width={1600} height={900} alt={item.title} class="block h-full w-full object-cover" />
-                      <div
-                        aria-hidden="true"
-                        class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-4"
-                      >
-                        <div class="line-clamp-2 text-sm font-medium text-white md:text-base">{item.title}</div>
-                      </div>
-                    </div>
-                    <span class="sr-only">{item.title}</span>
-                  </Card>
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {items.length > 1 ? (
-        <>
-          <Button
-            variant="ghost"
-            size="icon"
-            class="absolute left-2 top-1/2 z-10 hidden size-7 -translate-y-1/2 rounded-none p-0 text-white/75 opacity-0 drop-shadow transition-opacity duration-150 hover:text-white md:inline-flex md:group-hover/carousel:opacity-100 md:group-focus-within/carousel:opacity-100"
-            ariaLabel="上一张"
-            data-carousel-prev
-          >
-            <span class="flex size-full items-center justify-center" aria-hidden="true">
-              <ChevronLeft class="block size-7 shrink-0 stroke-[2.25]" />
-            </span>
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            class="absolute right-2 top-1/2 z-10 hidden size-7 -translate-y-1/2 rounded-none p-0 text-white/75 opacity-0 drop-shadow transition-opacity duration-150 hover:text-white md:inline-flex md:group-hover/carousel:opacity-100 md:group-focus-within/carousel:opacity-100"
-            ariaLabel="下一张"
-            data-carousel-next
-          >
-            <span class="flex size-full items-center justify-center" aria-hidden="true">
-              <ChevronRight class="block size-7 shrink-0 stroke-[2.25]" />
-            </span>
-          </Button>
-
-          <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1">
-            {items.map((_, index) => (
-              <button
-                type="button"
-                aria-label={`跳转到第 ${index + 1} 张`}
-                class="h-[3px] w-4 rounded-full bg-white/30 transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-white"
-                data-carousel-dot={index}
-                data-active={index === 0 ? 'true' : 'false'}
-              />
+  slides.length ? (
+    <div
+      class="home-carousel relative w-full bg-[rgb(var(--color-bg))]"
+      data-carousel
+      data-count={slides.length}
+      data-carousel-tag={tag}
+      style={`--banner-theme: ${slides[0].color}; --banner-theme-rgb: ${slides[0].rgb};`}
+    >
+      <div class="home-carousel__content flex h-[230px] flex-col overflow-hidden sm:h-[260px] md:h-[340px] md:flex-row">
+        <div class="home-carousel__left relative min-h-0 min-w-0 flex-1 overflow-hidden">
+          <div class="home-carousel__banner relative h-full w-full" data-carousel-banner>
+            {slides.map((item, index) => (
+              <a
+                href={item.href}
+                class:list={['home-carousel__slide', { 'is-active': index === 0 }]}
+                data-carousel-slide={index}
+                data-theme={item.color}
+                data-theme-rgb={item.rgb}
+                data-title={item.title}
+                style={`--slide-theme-rgb: ${item.rgb};`}
+                aria-hidden={index === 0 ? 'false' : 'true'}
+                tabindex={index === 0 ? 0 : -1}
+              >
+                <LazyImage
+                  src={item.image}
+                  width={1600}
+                  height={900}
+                  alt={item.title}
+                  class="home-carousel__cover"
+                />
+                <div class="home-carousel__mask" aria-hidden="true" />
+              </a>
             ))}
           </div>
-        </>
-      ) : null}
+
+          <div class="home-carousel__title pointer-events-none absolute bottom-3 left-3 z-[2] w-[min(92%,28rem)] text-left sm:bottom-5 sm:left-5 md:bottom-7 md:left-7">
+            <a
+              href={slides[0].href}
+              class="pointer-events-auto line-clamp-2 text-[15px] font-bold leading-snug text-white no-underline drop-shadow-sm transition-opacity hover:opacity-90 sm:text-lg md:text-2xl"
+              data-carousel-title-link
+            >
+              {slides[0].title}
+            </a>
+            <div class="mt-1.5 hidden items-center gap-1 text-xs text-white/80 md:flex">
+              <Star class="size-3.5 shrink-0 fill-current" aria-hidden="true" />
+              <span>{tag}</span>
+            </div>
+            {slides.length > 1 ? (
+              <div class="mt-2 flex items-center gap-1.5 md:hidden">
+                {slides.map((_, index) => (
+                  <button
+                    type="button"
+                    aria-label={`跳转到第 ${index + 1} 张`}
+                    class="h-1.5 w-1.5 rounded-full bg-white/40 transition-all duration-300 data-[active=true]:w-5 data-[active=true]:bg-white"
+                    data-carousel-dot={index}
+                    data-active={index === 0 ? 'true' : 'false'}
+                  />
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
+
+        {slides.length > 1 ? (
+          <aside class="home-carousel__right hidden h-full w-[30%] shrink-0 flex-col md:flex" aria-label="推荐列表">
+            {slides.map((item, index) => (
+              <button
+                type="button"
+                class:list={[
+                  'home-carousel__item flex min-h-0 flex-1 items-center gap-3 px-4 text-left transition-colors duration-200',
+                  { 'is-active': index === 0 },
+                ]}
+                data-carousel-item={index}
+                data-active={index === 0 ? 'true' : 'false'}
+              >
+                <span class="relative size-9 shrink-0 overflow-hidden rounded-lg bg-white/15 ring-1 ring-white/20">
+                  <LazyImage
+                    src={item.image}
+                    width={72}
+                    height={72}
+                    alt=""
+                    class="block size-full object-cover"
+                    data-no-dark-dim
+                  />
+                </span>
+                <span class="min-w-0 flex-1 truncate text-[15px] font-medium leading-snug text-white/85">
+                  {item.title}
+                </span>
+              </button>
+            ))}
+          </aside>
+        ) : null}
+      </div>
     </div>
   ) : null
 }
 
-<script>
-  import EmblaCarousel from 'embla-carousel';
+<style>
+  .home-carousel {
+    overflow: hidden;
+    border: 1px solid rgb(var(--color-border) / 0.9);
+    border-radius: 0.75rem;
+    isolation: isolate;
+    transform: translateZ(0);
+    -webkit-clip-path: inset(0 round 0.75rem);
+    clip-path: inset(0 round 0.75rem);
+  }
 
+  .home-carousel__slide {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    background: rgb(var(--color-bg));
+    opacity: 0;
+    visibility: hidden;
+    z-index: 0;
+    text-decoration: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .home-carousel__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+
+  .home-carousel__cover {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .home-carousel__cover.lazy {
+    --lazy-image-scale: 1.02;
+    --image-brightness: 1;
+    filter: brightness(var(--image-brightness)) blur(var(--lazy-image-blur, 0px));
+    transform: scale(var(--lazy-image-scale));
+  }
+
+  .home-carousel__cover.lazy.loaded,
+  .home-carousel__cover.lazy.error {
+    --lazy-image-scale: 1.02;
+    --lazy-image-blur: 0;
+  }
+
+  .dark .home-carousel__cover.lazy {
+    --image-brightness: 0.88;
+  }
+
+  .home-carousel__left {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 968px) {
+    .home-carousel__left::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 36px;
+      z-index: 4;
+      pointer-events: none;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgb(var(--banner-theme-rgb) / 0.22) 100%
+      );
+    }
+  }
+
+  .home-carousel__mask {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 42%;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      rgb(var(--slide-theme-rgb) / 0.88) 0%,
+      rgb(var(--slide-theme-rgb) / 0.35) 45%,
+      transparent 100%
+    );
+  }
+
+  .home-carousel__right {
+    position: relative;
+    z-index: 2;
+    margin-left: -1px;
+    border-left: none;
+    background:
+      linear-gradient(to right, rgb(var(--banner-theme-rgb) / 0.42) 0%, transparent 22%),
+      linear-gradient(160deg, rgb(28 28 28) 0%, rgb(52 52 52) 100%);
+  }
+
+  .home-carousel__right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 28px;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgb(var(--banner-theme-rgb) / 0.28) 0%,
+      transparent 100%
+    );
+  }
+
+  .dark .home-carousel__right {
+    background:
+      linear-gradient(to right, rgb(var(--banner-theme-rgb) / 0.38) 0%, transparent 22%),
+      linear-gradient(160deg, rgb(16 16 16) 0%, rgb(36 36 36) 100%);
+  }
+
+  .home-carousel__item {
+    background: rgb(var(--banner-theme-rgb) / 0.28);
+  }
+
+  .home-carousel__item:hover {
+    background: rgb(var(--banner-theme-rgb) / 0.55);
+  }
+
+  .home-carousel__item.is-active {
+    background: rgb(var(--banner-theme-rgb) / 0.95);
+  }
+
+  .home-carousel__item.is-active span:last-child {
+    color: #fff;
+  }
+
+  @media (max-width: 967px) {
+    .home-carousel__banner {
+      display: flex;
+      height: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .home-carousel__banner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .home-carousel__slide {
+      position: relative;
+      inset: auto;
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      visibility: visible;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .home-carousel__mask {
+      height: 52%;
+    }
+  }
+</style>
+
+<script>
   (() => {
-    const stateKey = '__homeCarouselEmblaState';
+    const stateKey = '__homeCarouselState';
     const state = window[stateKey] || {
       bound: false,
       controllers: new Set(),
@@ -103,24 +298,65 @@ const { items } = Astro.props;
 
     const mount = (root) => {
       if (!(root instanceof HTMLElement) || state.rootMap.has(root)) return;
-      const viewport = root.querySelector('[data-carousel-viewport]');
-      if (!(viewport instanceof HTMLElement)) return;
-      const count = Number(root.dataset.count || '0');
-      if (count <= 1) return;
 
+      const slides = Array.from(root.querySelectorAll('[data-carousel-slide]'));
+      const items = Array.from(root.querySelectorAll('[data-carousel-item]'));
+      const dots = Array.from(root.querySelectorAll('[data-carousel-dot]'));
+      const banner = root.querySelector('[data-carousel-banner]');
+      const titleLink = root.querySelector('[data-carousel-title-link]');
+      const count = slides.length;
+      if (!count) return;
+
+      let index = 0;
       let paused = false;
       let timer = 0;
-      const emblaApi = EmblaCarousel(viewport, { align: 'start', loop: true });
-      const prevButton = root.querySelector('[data-carousel-prev]');
-      const nextButton = root.querySelector('[data-carousel-next]');
-      const dotButtons = Array.from(root.querySelectorAll('[data-carousel-dot]'));
+      let syncingScroll = false;
 
-      const syncDots = () => {
-        const selected = emblaApi.selectedScrollSnap();
-        dotButtons.forEach((dot, index) => {
-          const active = index === selected;
-          dot.setAttribute('data-active', active ? 'true' : 'false');
+      const isMobile = () => window.matchMedia('(max-width: 967px)').matches;
+
+      const syncChrome = (slide) => {
+        const theme = slide.getAttribute('data-theme') || '#085EFF';
+        const rgb = slide.getAttribute('data-theme-rgb') || '8 94 255';
+        root.style.setProperty('--banner-theme', theme);
+        root.style.setProperty('--banner-theme-rgb', rgb);
+
+        if (titleLink instanceof HTMLAnchorElement) {
+          titleLink.href = slide.getAttribute('href') || '#';
+          titleLink.textContent = slide.getAttribute('data-title') || '';
+        }
+      };
+
+      const setActive = (next, { fromScroll = false } = {}) => {
+        if (next < 0 || next >= count) return;
+        index = next;
+
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          if (slide instanceof HTMLElement) slide.tabIndex = active ? 0 : -1;
         });
+
+        items.forEach((item, i) => {
+          const active = i === index;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('data-active', active ? 'true' : 'false');
+        });
+
+        dots.forEach((dot, i) => {
+          dot.setAttribute('data-active', i === index ? 'true' : 'false');
+        });
+
+        const activeSlide = slides[index];
+        if (activeSlide instanceof HTMLElement) syncChrome(activeSlide);
+
+        if (isMobile() && banner instanceof HTMLElement && !fromScroll) {
+          syncingScroll = true;
+          banner.scrollTo({ left: banner.clientWidth * index, behavior: 'smooth' });
+          window.setTimeout(() => {
+            syncingScroll = false;
+          }, 420);
+        }
       };
 
       const stop = () => {
@@ -130,76 +366,99 @@ const { items } = Astro.props;
 
       const start = () => {
         stop();
-        if (paused) return;
+        if (paused || count <= 1 || isMobile()) return;
         timer = window.setInterval(() => {
-          emblaApi.scrollNext();
-        }, 3000);
+          setActive((index + 1) % count);
+        }, 4500);
       };
 
       const pause = () => {
         paused = true;
         stop();
       };
+
       const resume = () => {
         paused = false;
         start();
       };
-      const scrollPrev = () => {
-        emblaApi.scrollPrev();
-        start();
-      };
-      const scrollNext = () => {
-        emblaApi.scrollNext();
-        start();
-      };
-      const scrollTo = (event) => {
-        const dot = event.currentTarget;
-        if (!(dot instanceof Element)) return;
-        emblaApi.scrollTo(Number(dot.getAttribute('data-carousel-dot') || '0'));
+
+      const onItemEnter = (event) => {
+        const el = event.currentTarget;
+        if (!(el instanceof HTMLElement)) return;
+        setActive(Number(el.getAttribute('data-carousel-item') || '0'));
         start();
       };
 
-      root.addEventListener('mouseenter', pause);
-      root.addEventListener('mouseleave', resume);
-      root.addEventListener('touchstart', pause, { passive: true });
-      root.addEventListener('touchend', resume, { passive: true });
-      root.addEventListener('focusin', pause);
-      root.addEventListener('focusout', resume);
-      prevButton?.addEventListener('click', scrollPrev);
-      nextButton?.addEventListener('click', scrollNext);
-      dotButtons.forEach((dot) => dot.addEventListener('click', scrollTo));
+      const onItemClick = (event) => {
+        const el = event.currentTarget;
+        if (!(el instanceof HTMLElement)) return;
+        const slide = slides[Number(el.getAttribute('data-carousel-item') || '0')];
+        if (!(slide instanceof HTMLAnchorElement)) return;
+        window.location.assign(slide.href);
+      };
+
+      const onDotClick = (event) => {
+        const el = event.currentTarget;
+        if (!(el instanceof Element)) return;
+        setActive(Number(el.getAttribute('data-carousel-dot') || '0'));
+      };
+
+      const onBannerScroll = () => {
+        if (!(banner instanceof HTMLElement) || syncingScroll || !isMobile()) return;
+        const next = Math.round(banner.scrollLeft / Math.max(banner.clientWidth, 1));
+        if (next !== index) setActive(next, { fromScroll: true });
+      };
+
+      const onResize = () => {
+        if (isMobile()) {
+          stop();
+          if (banner instanceof HTMLElement) {
+            banner.scrollTo({ left: banner.clientWidth * index, behavior: 'auto' });
+          }
+        } else start();
+      };
 
       const visibilityHandler = () => {
         if (document.visibilityState === 'visible') start();
         else stop();
       };
 
-      emblaApi.on('select', syncDots);
-      emblaApi.on('reInit', syncDots);
+      items.forEach((item) => {
+        item.addEventListener('mouseenter', onItemEnter);
+        item.addEventListener('click', onItemClick);
+      });
+      dots.forEach((dot) => dot.addEventListener('click', onDotClick));
+      banner?.addEventListener('scroll', onBannerScroll, { passive: true });
+      root.addEventListener('mouseenter', pause);
+      root.addEventListener('mouseleave', resume);
+      root.addEventListener('focusin', pause);
+      root.addEventListener('focusout', resume);
+      window.addEventListener('resize', onResize);
       document.addEventListener('visibilitychange', visibilityHandler);
-      syncDots();
+
+      setActive(0);
       start();
 
       const controller = {
         destroy() {
           state.controllers.delete(controller);
           state.rootMap.delete(root);
-          emblaApi.off('select', syncDots);
-          emblaApi.off('reInit', syncDots);
+          stop();
+          items.forEach((item) => {
+            item.removeEventListener('mouseenter', onItemEnter);
+            item.removeEventListener('click', onItemClick);
+          });
+          dots.forEach((dot) => dot.removeEventListener('click', onDotClick));
+          banner?.removeEventListener('scroll', onBannerScroll);
           root.removeEventListener('mouseenter', pause);
           root.removeEventListener('mouseleave', resume);
-          root.removeEventListener('touchstart', pause);
-          root.removeEventListener('touchend', resume);
           root.removeEventListener('focusin', pause);
           root.removeEventListener('focusout', resume);
-          prevButton?.removeEventListener('click', scrollPrev);
-          nextButton?.removeEventListener('click', scrollNext);
-          dotButtons.forEach((dot) => dot.removeEventListener('click', scrollTo));
+          window.removeEventListener('resize', onResize);
           document.removeEventListener('visibilitychange', visibilityHandler);
-        stop();
-          emblaApi.destroy();
         },
       };
+
       state.controllers.add(controller);
       state.rootMap.set(root, controller);
     };
