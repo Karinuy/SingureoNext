@@ -73,6 +73,7 @@ export const site = {
     { label: '秒速5厘米', href: 'https://dh.soliar.top/' },
     { label: 'GalError', href: 'https://www.galerror.top/' },
     { label: '月幕Galgame', href: 'https://www.ymgal.games/' },
+    { label: 'ACG游戏社', href: 'https://www.acgyxs.org/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
