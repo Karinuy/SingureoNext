@@ -17,42 +17,42 @@ const slides = items ?? [];
     <div
       class="home-carousel relative w-full bg-[rgb(var(--color-bg))]"
       data-carousel
-      data-count={slides.length}
-      data-carousel-tag={tag}
       style={`--banner-theme: ${slides[0].color}; --banner-theme-rgb: ${slides[0].rgb};`}
     >
       <div class="home-carousel__content flex h-[230px] flex-col overflow-hidden sm:h-[260px] md:h-[340px] md:flex-row">
         <div class="home-carousel__left relative min-h-0 min-w-0 flex-1 overflow-hidden">
-          <div class="home-carousel__banner relative h-full w-full" data-carousel-banner>
-            {slides.map((item, index) => (
-              <a
-                href={item.href}
-                class:list={['home-carousel__slide', { 'is-active': index === 0 }]}
-                data-carousel-slide={index}
-                data-theme={item.color}
-                data-theme-rgb={item.rgb}
-                data-title={item.title}
-                style={`--slide-theme-rgb: ${item.rgb};`}
-                aria-hidden={index === 0 ? 'false' : 'true'}
-                tabindex={index === 0 ? 0 : -1}
-              >
-                <LazyImage
-                  src={item.image}
-                  width={1600}
-                  height={900}
-                  alt={item.title}
-                  class="home-carousel__cover"
-                />
-                <div class="home-carousel__mask" aria-hidden="true" />
-              </a>
-            ))}
+          <div class="home-carousel__banner relative h-full w-full overflow-hidden" data-carousel-banner>
+            <div class="home-carousel__track h-full w-full" data-carousel-track>
+              {slides.map((item, index) => (
+                <a
+                  href={item.href}
+                  class:list={['home-carousel__slide', { 'is-active': index === 0 }]}
+                  data-carousel-slide
+                  data-theme={item.color}
+                  data-theme-rgb={item.rgb}
+                  data-title={item.title}
+                  style={`--slide-index: ${index}; --slide-theme-rgb: ${item.rgb};`}
+                  aria-hidden={index === 0 ? 'false' : 'true'}
+                  tabindex={index === 0 ? 0 : -1}
+                >
+                  <LazyImage
+                    src={item.image}
+                    width={1600}
+                    height={900}
+                    alt={item.title}
+                    class="home-carousel__cover"
+                  />
+                  <div class="home-carousel__mask" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div class="home-carousel__title pointer-events-none absolute bottom-3 left-3 z-[2] w-[min(92%,28rem)] text-left sm:bottom-5 sm:left-5 md:bottom-7 md:left-7">
+          <div class="pointer-events-none absolute bottom-3 left-3 z-[2] w-[min(92%,28rem)] text-left sm:bottom-5 sm:left-5 md:bottom-7 md:left-7">
             <a
               href={slides[0].href}
               class="pointer-events-auto line-clamp-2 text-[15px] font-bold leading-snug text-white no-underline drop-shadow-sm transition-opacity hover:opacity-90 sm:text-lg md:text-2xl"
-              data-carousel-title-link
+              data-carousel-title
             >
               {slides[0].title}
             </a>
@@ -113,12 +113,13 @@ const slides = items ?? [];
 <style>
   .home-carousel {
     overflow: hidden;
+    overflow-anchor: none;
     border: 1px solid rgb(var(--color-border) / 0.9);
     border-radius: 0.75rem;
-    isolation: isolate;
-    transform: translateZ(0);
-    -webkit-clip-path: inset(0 round 0.75rem);
-    clip-path: inset(0 round 0.75rem);
+  }
+
+  .home-carousel__track {
+    position: relative;
   }
 
   .home-carousel__slide {
@@ -143,23 +144,19 @@ const slides = items ?? [];
   .home-carousel__cover {
     position: absolute;
     inset: 0;
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
   }
 
   .home-carousel__cover.lazy {
     --lazy-image-scale: 1.02;
-    --image-brightness: 1;
     filter: brightness(var(--image-brightness)) blur(var(--lazy-image-blur, 0px));
     transform: scale(var(--lazy-image-scale));
   }
 
   .home-carousel__cover.lazy.loaded,
   .home-carousel__cover.lazy.error {
-    --lazy-image-scale: 1.02;
     --lazy-image-blur: 0;
   }
 
@@ -168,7 +165,6 @@ const slides = items ?? [];
   }
 
   .home-carousel__left {
-    position: relative;
     z-index: 1;
   }
 
@@ -176,17 +172,11 @@ const slides = items ?? [];
     .home-carousel__left::after {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0 0 0 auto;
       width: 36px;
       z-index: 4;
       pointer-events: none;
-      background: linear-gradient(
-        to right,
-        transparent 0%,
-        rgb(var(--banner-theme-rgb) / 0.22) 100%
-      );
+      background: linear-gradient(to right, transparent, rgb(var(--banner-theme-rgb) / 0.22));
     }
   }
 
@@ -199,9 +189,9 @@ const slides = items ?? [];
     pointer-events: none;
     background: linear-gradient(
       to top,
-      rgb(var(--slide-theme-rgb) / 0.88) 0%,
+      rgb(var(--slide-theme-rgb) / 0.88),
       rgb(var(--slide-theme-rgb) / 0.35) 45%,
-      transparent 100%
+      transparent
     );
   }
 
@@ -209,32 +199,25 @@ const slides = items ?? [];
     position: relative;
     z-index: 2;
     margin-left: -1px;
-    border-left: none;
     background:
-      linear-gradient(to right, rgb(var(--banner-theme-rgb) / 0.42) 0%, transparent 22%),
-      linear-gradient(160deg, rgb(28 28 28) 0%, rgb(52 52 52) 100%);
+      linear-gradient(to right, rgb(var(--banner-theme-rgb) / 0.42), transparent 22%),
+      linear-gradient(160deg, rgb(28 28 28), rgb(52 52 52));
   }
 
   .home-carousel__right::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    inset: 0 auto 0 0;
     width: 28px;
     z-index: 1;
     pointer-events: none;
-    background: linear-gradient(
-      to right,
-      rgb(var(--banner-theme-rgb) / 0.28) 0%,
-      transparent 100%
-    );
+    background: linear-gradient(to right, rgb(var(--banner-theme-rgb) / 0.28), transparent);
   }
 
   .dark .home-carousel__right {
     background:
-      linear-gradient(to right, rgb(var(--banner-theme-rgb) / 0.38) 0%, transparent 22%),
-      linear-gradient(160deg, rgb(16 16 16) 0%, rgb(36 36 36) 100%);
+      linear-gradient(to right, rgb(var(--banner-theme-rgb) / 0.38), transparent 22%),
+      linear-gradient(160deg, rgb(16 16 16), rgb(36 36 36));
   }
 
   .home-carousel__item {
@@ -255,29 +238,30 @@ const slides = items ?? [];
 
   @media (max-width: 967px) {
     .home-carousel__banner {
-      display: flex;
-      height: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    .home-carousel__banner::-webkit-scrollbar {
-      display: none;
+    .home-carousel__track {
+      transition: transform 0.35s ease;
+    }
+
+    .home-carousel__track.is-dragging {
+      transition: none;
     }
 
     .home-carousel__slide {
-      position: relative;
       inset: auto;
-      flex: 0 0 100%;
+      top: 0;
+      bottom: 0;
+      left: calc(var(--slide-index) * 100%);
       width: 100%;
       height: 100%;
       opacity: 1;
       visibility: visible;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
+      transition: none;
+      -webkit-user-drag: none;
     }
 
     .home-carousel__mask {
@@ -288,198 +272,231 @@ const slides = items ?? [];
 
 <script>
   (() => {
-    const stateKey = '__homeCarouselState';
-    const state = window[stateKey] || {
-      bound: false,
-      controllers: new Set(),
-      rootMap: new WeakMap(),
-    };
-    window[stateKey] = state;
+    const g = (window.__homeCarousel ??= { bound: false, disposers: new Set() });
 
     const mount = (root) => {
-      if (!(root instanceof HTMLElement) || state.rootMap.has(root)) return;
-
-      const slides = Array.from(root.querySelectorAll('[data-carousel-slide]'));
-      const items = Array.from(root.querySelectorAll('[data-carousel-item]'));
-      const dots = Array.from(root.querySelectorAll('[data-carousel-dot]'));
+      if (!(root instanceof HTMLElement) || root.dataset.ready) return;
+      const slides = [...root.querySelectorAll('[data-carousel-slide]')];
+      const itemEls = [...root.querySelectorAll('[data-carousel-item]')];
+      const dotEls = [...root.querySelectorAll('[data-carousel-dot]')];
       const banner = root.querySelector('[data-carousel-banner]');
-      const titleLink = root.querySelector('[data-carousel-title-link]');
-      const count = slides.length;
-      if (!count) return;
+      const track = root.querySelector('[data-carousel-track]');
+      const title = root.querySelector('[data-carousel-title]');
+      const mq = matchMedia('(max-width: 967px)');
+      const n = slides.length;
+      if (!n || !(banner instanceof HTMLElement) || !(track instanceof HTMLElement)) return;
 
-      let index = 0;
-      let paused = false;
+      root.dataset.ready = '1';
+      const ac = new AbortController();
+      const opt = { signal: ac.signal };
+      let i = 0;
       let timer = 0;
-      let syncingScroll = false;
+      let paused = false;
+      let hold = false;
+      let pid = 0;
+      let x0 = 0;
+      let y0 = 0;
+      let dx = 0;
+      let dragging = false;
+      let axis = '';
+      let blockClick = false;
 
-      const isMobile = () => window.matchMedia('(max-width: 967px)').matches;
+      const mobile = () => mq.matches;
 
-      const syncChrome = (slide) => {
-        const theme = slide.getAttribute('data-theme') || '#085EFF';
-        const rgb = slide.getAttribute('data-theme-rgb') || '8 94 255';
-        root.style.setProperty('--banner-theme', theme);
-        root.style.setProperty('--banner-theme-rgb', rgb);
-
-        if (titleLink instanceof HTMLAnchorElement) {
-          titleLink.href = slide.getAttribute('href') || '#';
-          titleLink.textContent = slide.getAttribute('data-title') || '';
-        }
+      const paint = (offset = 0) => {
+        track.classList.toggle('is-dragging', dragging);
+        track.style.transform = mobile()
+          ? `translate3d(${-i * banner.clientWidth + offset}px,0,0)`
+          : '';
       };
 
-      const setActive = (next, { fromScroll = false } = {}) => {
-        if (next < 0 || next >= count) return;
-        index = next;
-
-        slides.forEach((slide, i) => {
-          const active = i === index;
-          slide.classList.toggle('is-active', active);
-          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
-          if (slide instanceof HTMLElement) slide.tabIndex = active ? 0 : -1;
+      const go = (next) => {
+        if (next < 0 || next >= n) return;
+        i = next;
+        slides.forEach((el, k) => {
+          const on = k === i;
+          el.classList.toggle('is-active', on);
+          el.setAttribute('aria-hidden', on ? 'false' : 'true');
+          el.tabIndex = on ? 0 : -1;
         });
-
-        items.forEach((item, i) => {
-          const active = i === index;
-          item.classList.toggle('is-active', active);
-          item.setAttribute('data-active', active ? 'true' : 'false');
+        itemEls.forEach((el, k) => {
+          el.classList.toggle('is-active', k === i);
+          el.setAttribute('data-active', k === i ? 'true' : 'false');
         });
-
-        dots.forEach((dot, i) => {
-          dot.setAttribute('data-active', i === index ? 'true' : 'false');
-        });
-
-        const activeSlide = slides[index];
-        if (activeSlide instanceof HTMLElement) syncChrome(activeSlide);
-
-        if (isMobile() && banner instanceof HTMLElement && !fromScroll) {
-          syncingScroll = true;
-          banner.scrollTo({ left: banner.clientWidth * index, behavior: 'smooth' });
-          window.setTimeout(() => {
-            syncingScroll = false;
-          }, 420);
+        dotEls.forEach((el, k) => el.setAttribute('data-active', k === i ? 'true' : 'false'));
+        const s = slides[i];
+        root.style.setProperty('--banner-theme', s.getAttribute('data-theme') || '#085EFF');
+        root.style.setProperty('--banner-theme-rgb', s.getAttribute('data-theme-rgb') || '8 94 255');
+        if (title instanceof HTMLAnchorElement) {
+          title.href = s.getAttribute('href') || '#';
+          title.textContent = s.getAttribute('data-title') || '';
         }
+        paint();
       };
 
       const stop = () => {
-        if (timer) window.clearInterval(timer);
+        clearInterval(timer);
         timer = 0;
       };
 
-      const start = () => {
+      const play = () => {
         stop();
-        if (paused || count <= 1) return;
-        timer = window.setInterval(() => {
-          setActive((index + 1) % count);
-        }, 4500);
+        if (!paused && n > 1) timer = setInterval(() => go((i + 1) % n), 4500);
       };
 
-      const pause = () => {
-        paused = true;
-        stop();
+      const setPaused = (v) => {
+        paused = v;
+        v ? stop() : play();
       };
 
-      const resume = () => {
-        paused = false;
-        start();
+      const endDrag = () => {
+        if (!hold) return;
+        const moved = dragging;
+        const off = dx;
+        hold = false;
+        dragging = false;
+        axis = '';
+        if (moved) {
+          blockClick = true;
+          const t = Math.max(banner.clientWidth * 0.18, 40);
+          if (off <= -t) go(Math.min(n - 1, i + 1));
+          else if (off >= t) go(Math.max(0, i - 1));
+          else paint();
+          setTimeout(() => {
+            blockClick = false;
+          }, 50);
+        } else paint();
+        setPaused(false);
       };
 
-      const onItemEnter = (event) => {
-        const el = event.currentTarget;
-        if (!(el instanceof HTMLElement)) return;
-        setActive(Number(el.getAttribute('data-carousel-item') || '0'));
-        start();
-      };
+      root.addEventListener('mouseenter', () => setPaused(true), opt);
+      root.addEventListener('mouseleave', () => setPaused(false), opt);
+      root.addEventListener('focusin', () => setPaused(true), opt);
+      root.addEventListener('focusout', (e) => {
+        if (!root.contains(e.relatedTarget)) setPaused(false);
+      }, opt);
 
-      const onItemClick = (event) => {
-        const el = event.currentTarget;
-        if (!(el instanceof HTMLElement)) return;
-        const slide = slides[Number(el.getAttribute('data-carousel-item') || '0')];
-        if (!(slide instanceof HTMLAnchorElement)) return;
-        window.location.assign(slide.href);
-      };
+      root.addEventListener(
+        'pointerover',
+        (e) => {
+          if (mobile()) return;
+          const el = e.target.closest('[data-carousel-item]');
+          if (!el || !root.contains(el)) return;
+          go(Number(el.getAttribute('data-carousel-item') || 0));
+          play();
+        },
+        opt
+      );
 
-      const onDotClick = (event) => {
-        const el = event.currentTarget;
-        if (!(el instanceof Element)) return;
-        setActive(Number(el.getAttribute('data-carousel-dot') || '0'));
-        start();
-      };
+      root.addEventListener(
+        'click',
+        (e) => {
+          if (blockClick) {
+            e.preventDefault();
+            e.stopPropagation();
+            blockClick = false;
+            return;
+          }
+          const item = e.target.closest('[data-carousel-item]');
+          if (item && root.contains(item)) {
+            const s = slides[Number(item.getAttribute('data-carousel-item') || 0)];
+            if (s instanceof HTMLAnchorElement) location.assign(s.href);
+            return;
+          }
+          const dot = e.target.closest('[data-carousel-dot]');
+          if (dot && root.contains(dot)) {
+            go(Number(dot.getAttribute('data-carousel-dot') || 0));
+            play();
+          }
+        },
+        opt
+      );
 
-      const onBannerScroll = () => {
-        if (!(banner instanceof HTMLElement) || syncingScroll || !isMobile()) return;
-        const next = Math.round(banner.scrollLeft / Math.max(banner.clientWidth, 1));
-        if (next !== index) {
-          setActive(next, { fromScroll: true });
-          start();
-        }
-      };
+      banner.addEventListener(
+        'pointerdown',
+        (e) => {
+          if (!mobile() || n < 2 || e.button !== 0) return;
+          hold = true;
+          pid = e.pointerId;
+          x0 = e.clientX;
+          y0 = e.clientY;
+          dx = 0;
+          dragging = false;
+          axis = '';
+          setPaused(true);
+        },
+        opt
+      );
+
+      banner.addEventListener(
+        'pointermove',
+        (e) => {
+          if (!hold || e.pointerId !== pid) return;
+          const x = e.clientX - x0;
+          const y = e.clientY - y0;
+          if (!axis) {
+            if (Math.abs(x) < 6 && Math.abs(y) < 6) return;
+            axis = Math.abs(x) >= Math.abs(y) ? 'x' : 'y';
+            if (axis === 'x') {
+              dragging = true;
+              try {
+                banner.setPointerCapture(pid);
+              } catch {}
+            } else {
+              hold = false;
+              setPaused(false);
+              return;
+            }
+          }
+          if (axis !== 'x') return;
+          e.preventDefault();
+          dx = x;
+          if ((i === 0 && dx > 0) || (i === n - 1 && dx < 0)) dx *= 0.35;
+          paint(dx);
+        },
+        { ...opt, passive: false }
+      );
+
+      banner.addEventListener('pointerup', endDrag, opt);
+      banner.addEventListener('pointercancel', endDrag, opt);
 
       const onResize = () => {
-        if (banner instanceof HTMLElement && isMobile()) {
-          banner.scrollTo({ left: banner.clientWidth * index, behavior: 'auto' });
-        }
-        start();
+        hold = false;
+        dragging = false;
+        axis = '';
+        paint();
+        play();
       };
+      addEventListener('resize', onResize, opt);
+      mq.addEventListener('change', onResize);
+      document.addEventListener(
+        'visibilitychange',
+        () => (document.visibilityState === 'visible' ? play() : stop()),
+        opt
+      );
 
-      const visibilityHandler = () => {
-        if (document.visibilityState === 'visible') start();
-        else stop();
+      const dispose = () => {
+        ac.abort();
+        mq.removeEventListener('change', onResize);
+        stop();
+        track.style.transform = '';
+        delete root.dataset.ready;
+        g.disposers.delete(dispose);
       };
+      g.disposers.add(dispose);
 
-      items.forEach((item) => {
-        item.addEventListener('mouseenter', onItemEnter);
-        item.addEventListener('click', onItemClick);
-      });
-      dots.forEach((dot) => dot.addEventListener('click', onDotClick));
-      banner?.addEventListener('scroll', onBannerScroll, { passive: true });
-      banner?.addEventListener('touchstart', pause, { passive: true });
-      banner?.addEventListener('touchend', resume, { passive: true });
-      root.addEventListener('mouseenter', pause);
-      root.addEventListener('mouseleave', resume);
-      root.addEventListener('focusin', pause);
-      root.addEventListener('focusout', resume);
-      window.addEventListener('resize', onResize);
-      document.addEventListener('visibilitychange', visibilityHandler);
-
-      setActive(0);
-      start();
-
-      const controller = {
-        destroy() {
-          state.controllers.delete(controller);
-          state.rootMap.delete(root);
-          stop();
-          items.forEach((item) => {
-            item.removeEventListener('mouseenter', onItemEnter);
-            item.removeEventListener('click', onItemClick);
-          });
-          dots.forEach((dot) => dot.removeEventListener('click', onDotClick));
-          banner?.removeEventListener('scroll', onBannerScroll);
-          banner?.removeEventListener('touchstart', pause);
-          banner?.removeEventListener('touchend', resume);
-          root.removeEventListener('mouseenter', pause);
-          root.removeEventListener('mouseleave', resume);
-          root.removeEventListener('focusin', pause);
-          root.removeEventListener('focusout', resume);
-          window.removeEventListener('resize', onResize);
-          document.removeEventListener('visibilitychange', visibilityHandler);
-        },
-      };
-
-      state.controllers.add(controller);
-      state.rootMap.set(root, controller);
+      go(0);
+      play();
     };
 
-    const init = () => {
-      document.querySelectorAll('[data-carousel]').forEach((root) => mount(root));
-    };
-
+    const init = () => document.querySelectorAll('[data-carousel]').forEach(mount);
     init();
-    if (!state.bound) {
+    if (!g.bound) {
       document.addEventListener('astro:page-load', init);
       document.addEventListener('astro:before-swap', () => {
-        Array.from(state.controllers).forEach((controller) => controller.destroy());
+        [...g.disposers].forEach((d) => d());
       });
-      state.bound = true;
+      g.bound = true;
     }
   })();
 </script>
