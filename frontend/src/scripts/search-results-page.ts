@@ -1,3 +1,4 @@
+import { site } from '@/config/site';
 import { searchPosts } from '@/lib/search-client';
 import { renderPostList } from '@/scripts/render-post-list';
 
@@ -33,7 +34,7 @@ export function initSearchResultsPage() {
       .then((result) => {
         if (token !== searchToken) return;
 
-        renderPostList(list, result.items);
+        renderPostList(list, result.items, { ads: site.ads });
         if (!result.total) {
           status.textContent = '0 个结果';
           return;

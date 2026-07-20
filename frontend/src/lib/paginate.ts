@@ -1,3 +1,5 @@
+export const POSTS_PAGE_SIZE = 36;
+
 export function clampPage(page: number, pageCount: number) {
   if (!Number.isFinite(page) || page < 1) return 1
   if (pageCount < 1) return 1

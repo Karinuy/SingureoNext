@@ -1,0 +1,74 @@
+---
+import PostCard from '@/components/PostCard.astro';
+import Card from '@/components/ui/Card.astro';
+import LazyImage from '@/components/LazyImage.astro';
+import { site } from '@/config/site';
+import { resolveLink } from '@/lib/redirect';
+import {
+  buildPostListAdFeed,
+  resolveAdItems,
+  type AdConfig,
+} from '@/lib/post-list-ads';
+import { cn } from '@/lib/utils';
+import type { PostCardData } from '@/types/post-card';
+
+type Props = {
+  config?: AdConfig;
+  items: PostCardData[];
+  class?: string;
+  hideCoverPlaceholder?: boolean;
+};
+
+const {
+  config = site.ads,
+  items: posts = [],
+  class: className,
+  hideCoverPlaceholder = false,
+} = Astro.props;
+
+const feed = buildPostListAdFeed(
+  posts,
+  resolveAdItems(config).map((ad) => ({ ...ad, link: resolveLink(ad.href) }))
+);
+---
+
+{
+  feed.length ? (
+    <div class={cn('grid grid-cols-2 items-stretch gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5', className)}>
+      {feed.map((entry) =>
+        entry.type === 'post' ? (
+          <div class="h-full">
+            <PostCard data={entry.post} hideCoverPlaceholder={hideCoverPlaceholder} />
+          </div>
+        ) : (
+          <a
+            href={entry.ad.link.href}
+            target={entry.ad.link.target}
+            rel={entry.ad.link.rel}
+            class="group col-span-2 block no-underline text-inherit lg:col-span-4"
+          >
+            <Card class="overflow-hidden p-0">
+              <div class="relative aspect-[1920/300] bg-gray-100 dark:bg-neutral-800">
+                <LazyImage
+                  src={entry.ad.image}
+                  width={1920}
+                  height={300}
+                  alt={entry.ad.title}
+                  class="h-full w-full object-cover"
+                />
+                <span class="absolute right-1.5 top-1.5 inline-flex h-6 items-center rounded-md border border-white/35 bg-black/45 px-2 text-[10px] font-semibold leading-none tracking-wide text-white shadow-sm backdrop-blur-md sm:right-3 sm:top-3">
+                  广告
+                </span>
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 dark:bg-black/25"
+                />
+              </div>
+              <span class="sr-only">{entry.ad.title}</span>
+            </Card>
+          </a>
+        )
+      )}
+    </div>
+  ) : null
+}

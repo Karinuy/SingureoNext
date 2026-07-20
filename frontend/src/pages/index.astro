@@ -2,39 +2,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
 import Pagination from '../components/ui/Pagination.astro';
-import PostList from '../components/PostList.astro';
 import { getPosts } from '../lib/content';
 import { postToCardData } from '../lib/post-card';
-import { paginate } from '../lib/paginate';
-import HomeCarousel from '../components/HomeCarousel.astro';
-import SiteAds from '../components/SiteAds.astro';
-import { resolveHomeCarousel } from '../lib/home-carousel';
+import { paginate, POSTS_PAGE_SIZE } from '../lib/paginate';
+import PostListAds from '../components/PostListAds.astro';
 
-const PAGE_SIZE = 24;
 const games = await getPosts();
-const pageData = paginate(games, 1, PAGE_SIZE);
+const pageData = paginate(games, 1, POSTS_PAGE_SIZE);
 const postCards = pageData.items.map((entry) => postToCardData(entry));
 const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
-const carousel = await resolveHomeCarousel(site.home.carousel);
 ---
 
 <BaseLayout title="首页" description={site.tagline}>
 	<section>
-		<HomeCarousel items={carousel.items} tag={carousel.tag} />
-	</section>
-
-	{site.ads.enabled ? (
-		<section class="mt-4">
-			<SiteAds config={site.ads} />
-		</section>
-	) : null}
-
-	<section class="mt-10">
 		<div class="flex items-end gap-4">
 			<h2 class="text-lg font-semibold tracking-tight">最新文章</h2>
 		</div>
 		<div class="mt-4">
-			<PostList items={postCards} />
+			<PostListAds config={site.ads} items={postCards} />
 		</div>
 
 		{pageData.pageCount > 1 ? (

@@ -30,12 +30,6 @@ export const site = {
     { label: '每日推荐', href: '/daily', icon: 'calendarDays' },
     { label: '模拟器', href: 'https://pan.singureo.com/OSS/%E6%A8%A1%E6%8B%9F%E5%99%A8', icon: 'gamepad2' },
   ],
-  home: {
-    carousel: {
-      tag: '站点推荐',
-      posts: ['about', 'notice', '8f7a8a7b', '511defb2', 'ecfdd2b0'],
-    },
-  },
   ads: {
     enabled: true,
     items: [

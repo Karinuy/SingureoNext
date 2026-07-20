@@ -3,11 +3,10 @@ import { getEntryTags, getPosts } from '../../lib/content';
 import { slugifySegment } from '../../lib/slug';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Pagination from '../../components/ui/Pagination.astro';
-import PostList from '../../components/PostList.astro';
+import PostListAds from '../../components/PostListAds.astro';
+import { site } from '../../config/site';
 import { postToCardData } from '../../lib/post-card';
-import { paginate } from '../../lib/paginate';
-
-const PAGE_SIZE = 24;
+import { paginate, POSTS_PAGE_SIZE } from '../../lib/paginate';
 
 export async function getStaticPaths() {
   const games = await getPosts();
@@ -21,7 +20,7 @@ const { slug } = Astro.params;
 const games = await getPosts();
 const list = games.filter((g) => getEntryTags(g).some((t) => slugifySegment(t) === slug));
 const title = list.length ? getEntryTags(list[0]).find((t) => slugifySegment(t) === slug) ?? slug : slug;
-const pageData = paginate(list, 1, PAGE_SIZE);
+const pageData = paginate(list, 1, POSTS_PAGE_SIZE);
 const postCards = pageData.items.map((entry) => postToCardData(entry));
 const tagHref = (page: number) =>
   page === 1 ? `/tag/${slugifySegment(title)}/` : `/tag/${slugifySegment(title)}/page/${page}/`;
@@ -44,7 +43,7 @@ const tagHref = (page: number) =>
   </div>
 
   <div class="mt-6">
-    <PostList items={postCards} />
+    <PostListAds config={site.ads} items={postCards} />
   </div>
 
   {pageData.pageCount > 1 ? (

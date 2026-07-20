@@ -87,16 +87,9 @@
   }
 
   img.lazy {
-    --lazy-image-blur: 32px;
-    --lazy-image-scale: 1.035;
-    opacity: 0;
-    filter: brightness(var(--image-brightness, 1)) blur(var(--lazy-image-blur));
-    transform: scale(var(--lazy-image-scale));
-    transition:
-      opacity 720ms ease,
-      filter 960ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 960ms cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, filter, transform;
+    filter: brightness(var(--image-brightness, 1)) blur(32px);
+    transition: filter 960ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: filter;
   }
 
   img.lazy:not([src]):not([srcset]) {
@@ -105,10 +98,17 @@
 
   img.lazy.loaded,
   img.lazy.error {
-    --lazy-image-blur: 0;
-    --lazy-image-scale: 1;
-    opacity: 1;
+    filter: brightness(var(--image-brightness, 1)) blur(0);
     will-change: auto;
+  }
+
+  .dark img.lazy:not([data-no-dark-dim]) {
+    filter: brightness(var(--image-dark-brightness)) blur(32px);
+  }
+
+  .dark img.lazy.loaded:not([data-no-dark-dim]),
+  .dark img.lazy.error:not([data-no-dark-dim]) {
+    filter: brightness(var(--image-dark-brightness)) blur(0);
   }
 
   .dark [data-dark-dim]:not([data-no-dark-dim]) {

@@ -1,16 +1,14 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Pagination from '../../../../components/ui/Pagination.astro';
-import PostList from '../../../../components/PostList.astro';
+import PostListAds from '../../../../components/PostListAds.astro';
+import { site } from '../../../../config/site';
 import { getEntryCategories, getPosts } from '../../../../lib/content';
 import { slugifySegment } from '../../../../lib/slug';
 import { postToCardData } from '../../../../lib/post-card';
-import { getPageCount, paginate } from '../../../../lib/paginate';
-
-const PAGE_SIZE = 24;
+import { getPageCount, paginate, POSTS_PAGE_SIZE } from '../../../../lib/paginate';
 
 export async function getStaticPaths() {
-  const PAGE_SIZE = 24;
   const posts = await getPosts();
   const categories = Array.from(new Set(posts.flatMap((p) => getEntryCategories(p))));
 
@@ -18,7 +16,7 @@ export async function getStaticPaths() {
 
   for (const category of categories) {
     const list = posts.filter((p) => getEntryCategories(p).includes(category));
-    const pageCount = getPageCount(list.length, PAGE_SIZE);
+    const pageCount = getPageCount(list.length, POSTS_PAGE_SIZE);
     for (let page = 2; page <= pageCount; page++) {
       paths.push({
         params: { slug: slugifySegment(category), page: String(page) },
@@ -34,7 +32,7 @@ const page = Number(Astro.params.page ?? '1');
 const { categoryName } = Astro.props as { categoryName: string };
 const posts = await getPosts();
 const list = posts.filter((p) => getEntryCategories(p).includes(categoryName));
-const pageData = paginate(list, page, PAGE_SIZE);
+const pageData = paginate(list, page, POSTS_PAGE_SIZE);
 const base = `/category/${slugifySegment(categoryName)}`;
 const postCards = pageData.items.map((entry) => postToCardData(entry));
 const categoryPageHref = (targetPage: number) =>
@@ -59,7 +57,7 @@ const categoryPageHref = (targetPage: number) =>
   </div>
 
   <div class="mt-6">
-    <PostList items={postCards} />
+    <PostListAds config={site.ads} items={postCards} />
   </div>
 
   {pageData.pageCount > 1 ? (

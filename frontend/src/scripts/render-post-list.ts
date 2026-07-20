@@ -1,4 +1,10 @@
 import { slugifySegment } from '@/lib/slug';
+import { resolveLink } from '@/lib/redirect';
+import {
+  buildPostListAdFeed,
+  resolveAdItems,
+  type AdConfig,
+} from '@/lib/post-list-ads';
 import { updateLazyImages } from '@/scripts/lazyload';
 import { loadArtalkCountWidget } from '@/scripts/artalk-count-widget';
 import type { PostCardData } from '@/types/post-card';
@@ -105,19 +111,55 @@ ${tagRow}
     </div>`;
 }
 
+function renderAdCard(ad: { title: string; href: string; image: string }) {
+  const link = resolveLink(ad.href);
+  const target = link.target ? ` target="${escapeHtml(link.target)}"` : '';
+  const rel = link.rel ? ` rel="${escapeHtml(link.rel)}"` : '';
+
+  return `
+    <a
+      href="${escapeHtml(link.href)}"${target}${rel}
+      class="group col-span-2 block no-underline text-inherit lg:col-span-4"
+    >
+      <div class="overflow-hidden rounded-xl border border-[rgb(var(--color-border)_/_0.9)] bg-[rgb(var(--color-surface))] p-0">
+        <div class="relative aspect-[1920/300] bg-gray-100 dark:bg-neutral-800">
+          <img
+            data-src="${escapeHtml(ad.image)}"
+            alt="${escapeHtml(ad.title)}"
+            class="lazy h-full w-full object-cover"
+            decoding="async"
+          />
+          <span class="absolute right-1.5 top-1.5 inline-flex h-6 items-center rounded-md border border-white/35 bg-black/45 px-2 text-[10px] font-semibold leading-none tracking-wide text-white shadow-sm backdrop-blur-md sm:right-3 sm:top-3">
+            广告
+          </span>
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 dark:bg-black/25"
+          ></div>
+        </div>
+        <span class="sr-only">${escapeHtml(ad.title)}</span>
+      </div>
+    </a>`;
+}
+
 export function renderPostList(
   container: HTMLElement,
   items: PostCardData[],
-  options?: { hideCoverPlaceholder?: boolean }
+  options?: { hideCoverPlaceholder?: boolean; ads?: AdConfig }
 ) {
   if (!items.length) {
     container.innerHTML = '';
     return;
   }
 
+  const feed = buildPostListAdFeed(items, resolveAdItems(options?.ads));
   container.innerHTML = `
     <div class="grid grid-cols-2 items-stretch gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
-      ${items.map((item) => renderPostCard(item, options)).join('')}
+      ${feed
+        .map((entry) =>
+          entry.type === 'post' ? renderPostCard(entry.post, options) : renderAdCard(entry.ad)
+        )
+        .join('')}
     </div>
   `;
   updateLazyImages();
