@@ -88,6 +88,10 @@ export const site = {
   artalk: {
     enabled: true,
     server: 'https://artalk.sin0.cc',
+    latestComments: {
+      enabled: true,
+      limit: 6,
+    },
   },
 };
 

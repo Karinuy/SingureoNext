@@ -45,24 +45,6 @@ const artalkServer = site.artalk.server.trim();
   </section>
 ) : null}
 
-<style is:global>
-  .artalk-comments.artalk {
-    --at-color-light: rgb(var(--color-primary));
-    --at-color-bg-light: rgb(var(--color-primary) / 0.1);
-    --at-color-main: rgb(var(--color-primary));
-  }
-
-  .artalk-comments.artalk.atk-dark-mode {
-    --at-color-light: rgb(var(--color-primary));
-    --at-color-bg-light: rgb(var(--color-primary) / 0.12);
-    --at-color-main: rgb(var(--color-primary));
-  }
-
-  .artalk-comments.artalk > .atk-list > .atk-list-footer .atk-copyright {
-    display: none !important;
-  }
-</style>
-
 <script>
   type ArtalkInstance = {
     destroy: () => void;

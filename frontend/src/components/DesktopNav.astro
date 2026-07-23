@@ -1,5 +1,5 @@
 ---
-import { CalendarDays, ChevronDown, FileText, Folder, Gamepad2, Heart, Home, Tags } from '@lucide/astro';
+import { CalendarDays, FileText, Folder, Gamepad2, Heart, Home, Tags } from '@lucide/astro';
 
 const navIconMap = {
   calendarDays: CalendarDays,
@@ -21,30 +21,29 @@ type Props = {
 const { items } = Astro.props;
 ---
 
-<nav class="hidden items-center gap-0.5 md:flex">
+<nav class="flex items-center gap-0.5">
   {items.map((item) => {
     const hasChildren = Boolean(item.children?.length);
     const Icon = item.icon ? navIconMap[item.icon] : undefined;
     const triggerClass = [
-      'relative overflow-hidden rounded-xl px-3.5 py-2 text-[0.93rem] font-medium tracking-[-0.005em]',
-      'text-[rgb(var(--color-text)_/_0.68)]',
+      'desktop-nav-item',
+      'relative inline-flex items-center gap-1.5',
     ];
 
     return hasChildren ? (
-      <div class="group/nav relative">
+      <div class="group relative">
         <a
           href={item.href}
           target={item.target}
           rel={item.rel}
           aria-haspopup="menu"
-          class:list={[...triggerClass, 'inline-flex items-center gap-1.5']}
+          class:list={triggerClass}
         >
           {Icon && <Icon class="size-4 shrink-0" />}
           <span>{item.label}</span>
-          <ChevronDown class="size-4 shrink-0 transition-transform duration-150 group-hover/nav:rotate-180 group-focus-within/nav:rotate-180" />
         </a>
-        <div class="pointer-events-none absolute left-0 top-full z-20 translate-y-1.5 pt-2 opacity-0 transition duration-150 ease-out group-hover/nav:pointer-events-auto group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:pointer-events-auto group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100">
-          <div class="min-w-[11rem] rounded-lg bg-[rgb(var(--color-surface))] p-1.5 shadow-[0_0_24px_rgb(0_0_0_/_0.10),0_8px_20px_rgb(0_0_0_/_0.08)] dark:shadow-[0_0_28px_rgb(0_0_0_/_0.45),0_8px_22px_rgb(0_0_0_/_0.35)]">
+        <div class="desktop-nav-submenu">
+          <div class="desktop-nav-submenu__panel" role="menu">
             {item.children?.map((child) => {
               const ChildIcon = child.icon ? navIconMap[child.icon] : undefined;
               return (
@@ -52,7 +51,8 @@ const { items } = Astro.props;
                   href={child.href}
                   target={child.target}
                   rel={child.rel}
-                  class="flex items-center gap-2 rounded-lg px-3 py-2 text-[0.9rem] font-medium tracking-[-0.005em] text-[rgb(var(--color-text)_/_0.72)]"
+                  class="desktop-nav-submenu__item"
+                  role="menuitem"
                 >
                   {ChildIcon && <ChildIcon class="size-4 shrink-0" />}
                   <span>{child.label}</span>
@@ -67,7 +67,7 @@ const { items } = Astro.props;
         href={item.href}
         target={item.target}
         rel={item.rel}
-        class:list={[...triggerClass, 'inline-flex items-center gap-1.5']}
+        class:list={triggerClass}
       >
         {Icon && <Icon class="size-4 shrink-0" />}
         <span>{item.label}</span>

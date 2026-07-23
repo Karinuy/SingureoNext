@@ -35,7 +35,10 @@ function resolveNavItem(item: NavItem): ResolvedNavItem {
 const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
 ---
 
-<header id="site-header" class="fixed inset-x-0 top-0 z-[70] bg-[rgb(var(--color-surface)_/_0.2)] backdrop-blur-xl">
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-[70] bg-[rgb(var(--color-surface)_/_0.2)] backdrop-blur-xl md:bg-transparent md:backdrop-blur-none"
+>
   <div class="mx-auto max-w-7xl md:hidden">
     <div class="relative flex min-h-16 items-center justify-between gap-2 px-3 py-3">
       <div class="relative z-10 flex items-center">
@@ -62,13 +65,13 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
     </div>
   </div>
 
-  <div class="mx-auto hidden max-w-[84rem] px-4 md:block">
+  <div class="mx-auto hidden max-w-7xl px-4 md:block">
     <div
       id="desktop-nav-shell"
-      class="relative flex min-h-16 items-center justify-between gap-3 md:gap-4"
+      class="relative flex min-h-14 items-center justify-between gap-3 py-2.5 md:gap-4"
     >
-      <div class="flex min-w-0 items-center gap-3">
-        <a href="/" class="flex shrink-0 items-center pr-0.5">
+      <div class="nav-capsule nav-capsule--logo">
+        <a href="/" class="flex shrink-0 items-center px-1">
           <img
             src="/SingureoLogo.png"
             alt={site.name}
@@ -78,10 +81,14 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
             decoding="async"
           />
         </a>
+      </div>
+
+      <div class="nav-capsule nav-capsule--menu min-w-0">
+        <span class="nav-capsule__mica" aria-hidden="true"></span>
         <DesktopNav items={navItems} />
       </div>
 
-      <div class="flex items-center gap-1">
+      <div class="nav-capsule nav-capsule--actions">
         <NavSearch mode="desktop" />
         <RandomButton />
         <ThemeToggle />
@@ -91,3 +98,31 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
   <NavSearch mode="dialog" />
 </header>
 
+<script>
+  (() => {
+    const key = '__desktopNavScrollBound';
+    if (window[key]) return;
+
+    const THRESHOLD = 36;
+    let raf = 0;
+
+    const sync = () => {
+      const shell = document.getElementById('desktop-nav-shell');
+      if (!shell) return;
+      shell.classList.toggle('is-scrolled', window.scrollY > THRESHOLD);
+    };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        sync();
+      });
+    };
+
+    sync();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('astro:page-load', sync);
+    window[key] = true;
+  })();
+</script>

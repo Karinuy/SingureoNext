@@ -1,0 +1,43 @@
+---
+import { site } from '@/config/site';
+
+const artalk = site.artalk;
+const latest = artalk.latestComments;
+const enabled = Boolean(artalk.enabled && latest?.enabled);
+const server = artalk.server.trim();
+const limit = latest?.limit ?? 6;
+---
+
+{
+  enabled && server ? (
+    <section
+      class="latest-comments mb-8"
+      aria-labelledby="latest-comments-title"
+      data-latest-comments
+      data-server={server}
+      data-site={site.name}
+      data-limit={String(limit)}
+    >
+      <div class="flex items-end gap-4">
+        <h2 id="latest-comments-title" class="text-lg font-semibold tracking-tight">
+          最新评论
+        </h2>
+      </div>
+      <div data-latest-comments-list class="mt-4">
+        <p class="latest-comments__empty">评论加载中...</p>
+      </div>
+    </section>
+  ) : null
+}
+
+<script>
+  import { initLatestComments } from '@/scripts/latest-comments';
+
+  const globalState = window as Window & { __latestCommentsBound?: boolean };
+
+  initLatestComments();
+  if (!globalState.__latestCommentsBound) {
+    globalState.__latestCommentsBound = true;
+    document.addEventListener('astro:page-load', initLatestComments);
+  }
+</script>
