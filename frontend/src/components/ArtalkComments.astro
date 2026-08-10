@@ -48,7 +48,28 @@ const artalkServer = site.artalk.server.trim();
 <script>
   type ArtalkInstance = {
     destroy: () => void;
+    ctx?: {
+      get: (name: 'layerManager') => ArtalkLayerManager;
+    };
     setDarkMode: (darkMode: boolean) => void;
+  };
+
+  type ArtalkLayer = {
+    show: () => void;
+    hide: () => void;
+    destroy: () => void;
+  };
+
+  type ArtalkLayerManager = {
+    create: (name: string, el?: HTMLElement) => ArtalkLayer;
+    __scrollStablePatched?: boolean;
+  };
+
+  type PageScrollSnapshot = {
+    left: number;
+    top: number;
+    bodyOverflow: string;
+    bodyPaddingRight: string;
   };
 
   type ArtalkModule = {
@@ -74,6 +95,53 @@ const artalkServer = site.artalk.server.trim();
 
   const isDarkMode = () => document.documentElement.classList.contains('dark');
 
+  const getPageScrollSnapshot = (): PageScrollSnapshot => ({
+    left: window.scrollX,
+    top: window.scrollY,
+    bodyOverflow: document.body.style.overflow,
+    bodyPaddingRight: document.body.style.paddingRight,
+  });
+
+  const restorePageAfterArtalkLayerChange = (snapshot: PageScrollSnapshot) => {
+    const restore = () => {
+      document.body.style.overflow = snapshot.bodyOverflow;
+      document.body.style.paddingRight = snapshot.bodyPaddingRight;
+      if (window.scrollX !== snapshot.left || window.scrollY !== snapshot.top) {
+        window.scrollTo(snapshot.left, snapshot.top);
+      }
+    };
+
+    restore();
+    window.requestAnimationFrame(restore);
+    window.setTimeout(restore, 120);
+  };
+
+  const keepPageStableDuringLayerChange = (changeLayer: () => void) => {
+    const snapshot = getPageScrollSnapshot();
+    changeLayer();
+    restorePageAfterArtalkLayerChange(snapshot);
+  };
+
+  const patchLayerScrollJump = (instance: ArtalkInstance) => {
+    const layerManager = instance.ctx?.get('layerManager');
+    if (!layerManager || layerManager.__scrollStablePatched) return;
+
+    const createLayer = layerManager.create.bind(layerManager);
+    layerManager.create = (name, el) => {
+      const layer = createLayer(name, el);
+      const show = layer.show.bind(layer);
+      const hide = layer.hide.bind(layer);
+      const destroy = layer.destroy.bind(layer);
+
+      layer.show = () => keepPageStableDuringLayerChange(show);
+      layer.hide = () => keepPageStableDuringLayerChange(hide);
+      layer.destroy = () => keepPageStableDuringLayerChange(destroy);
+
+      return layer;
+    };
+    layerManager.__scrollStablePatched = true;
+  };
+
   const initArtalk = async (container: ArtalkContainer) => {
     if (container.dataset.artalkBound === 'true') return;
 
@@ -93,6 +161,7 @@ const artalkServer = site.artalk.server.trim();
       pvEl: '[data-artalk-pv-current]',
       countEl: '[data-artalk-comment-current]',
     });
+    patchLayerScrollJump(instance);
 
     const observer = new MutationObserver(() => {
       instance.setDarkMode(isDarkMode());

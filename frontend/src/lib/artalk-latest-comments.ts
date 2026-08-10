@@ -137,9 +137,11 @@ export async function fetchArtalkLatestComments({
   limit = 6,
 }: ArtalkLatestCommentsQuery): Promise<ArtalkLatestComment[]> {
   const base = normalizeArtalkBase(server);
+  const safeLimit = Math.max(1, limit);
+  const requestLimit = Math.min(Math.max(safeLimit + 6, safeLimit * 3), 50);
   const url = new URL(`${base}/api/v2/stats/latest_comments`);
   url.searchParams.set('site_name', siteName);
-  url.searchParams.set('limit', String(Math.max(1, limit)));
+  url.searchParams.set('limit', String(requestLimit));
 
   const response = await fetch(url.toString(), {
     headers: { Accept: 'application/json' },
@@ -152,7 +154,9 @@ export async function fetchArtalkLatestComments({
   const payload = (await response.json()) as ArtalkLatestCommentsResponse;
   const list = Array.isArray(payload.data) ? payload.data : [];
 
-  return list.filter((item) => item && item.visible !== false && item.is_pending !== true);
+  return list
+    .filter((item) => item && item.visible !== false && item.is_pending !== true)
+    .slice(0, safeLimit);
 }
 
 export async function fetchArtalkLatestCommentsBundle(query: ArtalkLatestCommentsQuery) {

@@ -1,17 +1,9 @@
 ---
 import DocsLayout from '../../layouts/DocsLayout.astro';
-import { getCollection } from 'astro:content';
-import Card from '../../components/ui/Card.astro';
-import LazyImage from '../../components/LazyImage.astro';
-import { extractSummaryFromMarkdown } from '../../lib/markdown-summary';
+import DocList from '../../components/DocList.astro';
+import { getDocsByUpdatedTime } from '../../lib/docs';
 
-type DocEntry = Awaited<ReturnType<typeof getCollection<'docs'>>>[number];
-
-const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a, b) => {
-  const at = (a.data.date ?? a.data.updatedDate)?.getTime() ?? 0;
-  const bt = (b.data.date ?? b.data.updatedDate)?.getTime() ?? 0;
-  return bt - at;
-});
+const entries = await getDocsByUpdatedTime();
 ---
 
 <DocsLayout
@@ -28,45 +20,6 @@ const entries = (await getCollection('docs', ({ data }) => !data.draft)).sort((a
     </div>
   </div>
 
-  <div class="mt-6 space-y-3">
-    {entries.map((e: DocEntry) => {
-      const href = `/docs/${encodeURIComponent(String(e.data.abbrlink ?? e.id))}`;
-      const summary =
-        e.data.description?.trim() || extractSummaryFromMarkdown(e.body ?? '', { maxLength: 72 });
-      return (
-        <Card class="rounded-lg p-0">
-          <a class="flex gap-3 p-3 no-underline sm:gap-4 sm:p-4" href={href}>
-            <div class="relative h-20 w-28 shrink-0 overflow-hidden rounded-md bg-[rgb(var(--color-surface-muted))] sm:h-24 sm:w-40">
-              {e.data.cover ? (
-                <LazyImage
-                  src={e.data.cover}
-                  width={320}
-                  height={180}
-                  alt={e.data.title}
-                  class="h-full w-full object-cover"
-                  decoding="async"
-                />
-              ) : (
-                <div class="flex h-full w-full items-center justify-center bg-[rgb(var(--color-surface-muted))] text-sm text-[rgb(var(--color-text-muted))]">
-                  暂无封面
-                </div>
-              )}
-            </div>
-
-            <div class="min-w-0 flex-1 py-0.5 sm:py-1">
-              <h2 class="line-clamp-2 text-[0.95rem] font-semibold leading-snug text-[rgb(var(--color-text)_/_0.92)] sm:text-base">
-                {e.data.title}
-              </h2>
-              {summary ? (
-                <p class="mt-2 line-clamp-2 text-xs leading-5 text-[rgb(var(--color-text-muted))] sm:text-sm sm:leading-6">
-                  {summary}
-                </p>
-              ) : null}
-            </div>
-          </a>
-        </Card>
-      );
-    })}
-  </div>
+  <DocList items={entries} class="mt-6 space-y-3" titleTag="h2" />
 </DocsLayout>
 

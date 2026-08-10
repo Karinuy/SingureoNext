@@ -33,12 +33,9 @@ export const site = {
   ads: {
     enabled: true,
     items: [
-      // { title: 'AI游戏', href: 'https://url.sin0.cc/rx6ma4', image: 'https://res.sin0.cc/2026/06/23/10d678085d3a30230f2b0aaedf37e2d0/1782199405-aigame.avif' },
-      { title: '电子魅魔', href: 'https://url.sin0.cc/pgwbfb', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
-      // { title: '夜雨AI', href: 'https://url.sin0.cc/khvxq4', image: 'https://res.sin0.cc/2026/05/18/9a0582790b12c2d9a819492a2ed57f71/1779089475-yeyu.avif' },
-      // { title: '哔咔漫画', href: 'https://url.sin0.cc/g99gr2', image: 'https://res.sin0.cc/2026/04/18/4de41dc04da309c82124d91792167319/1776498193-bikamanga.avif' },
-      { title: '魔法喵', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2026/05/15/bcad3dfcfb51f38d1aa41f9b6b8c7674/1778824640-miaocloud.avif' },
-      { title: 'AI风月', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/06/14/39c54c74a40700af1fd449e2b3a3063f/1781443462-aify.avif' },
+      { title: 'AI伴侣', href: 'https://url.sin0.cc/pgwbfb', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
+      { title: '魔法喵VPN', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2026/05/15/bcad3dfcfb51f38d1aa41f9b6b8c7674/1778824640-miaocloud.avif' },
+      { title: 'AI女友', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/06/14/39c54c74a40700af1fd449e2b3a3063f/1781443462-aify.avif' },
     ],
   },
   friendLinks: [
@@ -61,10 +58,8 @@ export const site = {
     { label: 'Nysoure', href: 'https://res.nyne.dev/' },
     { label: 'Acgngame', href: 'https://acgn.games/' },
     { label: 'MikuGame初音游戏库', href: 'https://mikugame.net/' },
-    { label: '喵普拉斯', href: 'https://www.neko-plus.net/' },
     { label: 'Lycorisgal', href: 'https://www.lycorisgal.com/' },
     { label: '青桔网', href: 'https://x.qingju.org/' },
-    { label: '秒速5厘米', href: 'https://dh.soliar.top/' },
     { label: 'GalError', href: 'https://www.galerror.top/' },
     { label: '月幕Galgame', href: 'https://www.ymgal.games/' },
     { label: 'ACG游戏社', href: 'https://www.acgyxs.org/' },

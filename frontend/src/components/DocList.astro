@@ -1,0 +1,84 @@
+---
+import type { DocListItem } from '@/lib/docs';
+import Card from '@/components/ui/Card.astro';
+import LazyImage from '@/components/LazyImage.astro';
+import { extractSummaryFromMarkdown } from '@/lib/markdown-summary';
+
+type Props = {
+  items: DocListItem[];
+  class?: string;
+  titleTag?: 'h2' | 'h3';
+  showUpdatedDate?: boolean;
+};
+
+const {
+  items,
+  class: className = 'mt-4 space-y-3',
+  titleTag = 'h3',
+  showUpdatedDate = true,
+} = Astro.props;
+
+function formatDate(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+---
+
+{
+  items.length ? (
+    <div class={className}>
+      {items.map(({ entry: doc, updatedDate }) => {
+        const href = `/docs/${encodeURIComponent(String(doc.data.abbrlink ?? doc.id))}`;
+        const summary =
+          doc.data.description?.trim() || extractSummaryFromMarkdown(doc.body ?? '', { maxLength: 72 });
+
+        return (
+          <Card class="rounded-lg p-0">
+            <a class="flex gap-3 p-3 no-underline sm:gap-4 sm:p-4" href={href}>
+              <div class="relative h-20 w-28 shrink-0 overflow-hidden rounded-md bg-[rgb(var(--color-surface-muted))] sm:h-24 sm:w-40">
+                {doc.data.cover ? (
+                  <LazyImage
+                    src={doc.data.cover}
+                    width={320}
+                    height={180}
+                    alt={doc.data.title}
+                    class="h-full w-full object-cover"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="flex h-full w-full items-center justify-center bg-[rgb(var(--color-surface-muted))] text-sm text-[rgb(var(--color-text-muted))]">
+                    暂无封面
+                  </div>
+                )}
+              </div>
+
+              <div class="min-w-0 flex-1 py-0.5 sm:py-1">
+                {titleTag === 'h2' ? (
+                  <h2 class="line-clamp-2 text-[0.95rem] font-semibold leading-snug text-[rgb(var(--color-text)_/_0.92)] sm:text-base">
+                    {doc.data.title}
+                  </h2>
+                ) : (
+                  <h3 class="line-clamp-2 text-[0.95rem] font-semibold leading-snug text-[rgb(var(--color-text)_/_0.92)] sm:text-base">
+                    {doc.data.title}
+                  </h3>
+                )}
+                {summary ? (
+                  <p class="mt-2 line-clamp-2 text-xs leading-5 text-[rgb(var(--color-text-muted))] sm:text-sm sm:leading-6">
+                    {summary}
+                  </p>
+                ) : null}
+                {showUpdatedDate ? (
+                  <p class="mt-2 text-xs leading-none text-[rgb(var(--color-text-muted))]">
+                    更新于 {formatDate(updatedDate)}
+                  </p>
+                ) : null}
+              </div>
+            </a>
+          </Card>
+        );
+      })}
+    </div>
+  ) : null
+}

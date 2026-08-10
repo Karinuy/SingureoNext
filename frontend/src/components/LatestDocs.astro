@@ -1,0 +1,20 @@
+---
+import DocList from '@/components/DocList.astro';
+import { getDocsByUpdatedTime } from '@/lib/docs';
+
+const docs = await getDocsByUpdatedTime();
+---
+
+{
+  docs.length ? (
+    <section class="mb-8" aria-labelledby="latest-docs-title">
+      <div class="flex items-end gap-4">
+        <h2 id="latest-docs-title" class="text-lg font-semibold tracking-tight">
+          最新文档
+        </h2>
+      </div>
+
+      <DocList items={docs} />
+    </section>
+  ) : null
+}
