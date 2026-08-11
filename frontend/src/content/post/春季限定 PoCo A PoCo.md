@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】春季限定～PoCo·A·PoCo～ - 春季限定ポコ�
 tags:
   - Alcot Honey Comb
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-27-300x164.jpg

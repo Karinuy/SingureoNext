@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】八卦恋爱 Mini Fan Discs After Festival - コイバ�
 tags:
   - ASa Project
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-30-212x300.jpg

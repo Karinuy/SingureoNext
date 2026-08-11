@@ -3,7 +3,7 @@ title: "【PC/汉化】あねいもNeo＋ Second Sisters"
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/367ca655f3bb48e7f3b994b7e665876f/1779262076-cover.avif
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】G弦上的魔王 - G線上の魔王
 tags:
   - あかべぇそふとつぅ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/08/23/be08ed176d3dbd3ac140ae32c95240e7/1755912068-cover.avif'

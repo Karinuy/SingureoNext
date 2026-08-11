@@ -3,7 +3,7 @@ title: 【PC/汉化】Lunaris Filia～契约之吻与真红之瞳～ - Lunaris F
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/4679a1d935cc8129b1b78da38f26c57a/1754116166-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】ToHeart2 AnotherDays - TH2AD
 tags:
   - Leaf
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/08/1744099103/cover.webp'
 downloads:

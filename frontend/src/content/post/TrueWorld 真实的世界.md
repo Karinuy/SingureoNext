@@ -3,7 +3,7 @@ title: "【PC/汉化】TrueWorld～真实的世界～ - ＴｒｕｅＷｏｒｌ
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/PeNZjeLn-cover.webp
 downloads:

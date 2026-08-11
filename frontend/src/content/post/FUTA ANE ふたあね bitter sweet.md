@@ -3,7 +3,7 @@ title: "【PC/汉化】FUTA・ANE～ふたあね～bitter＆sweet"
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/62ca13d6ce7aaa520ca1dac386dc6944/1779259999-cover.avif
 downloads:

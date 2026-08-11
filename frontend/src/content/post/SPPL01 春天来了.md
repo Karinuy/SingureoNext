@@ -3,7 +3,7 @@ title: "【PC/汉化】SPPL01 春天来了 - すぴぱら / STORY ＃01 – Spri
 tags:
   - minori
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/01/cover-52-200x300.jpg
 downloads:

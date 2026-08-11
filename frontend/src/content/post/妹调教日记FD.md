@@ -3,7 +3,7 @@ title: 【PC/ONS/汉化】妹调教日记√happy end & another - 妹調教日�
 tags:
   - NANACAN
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/15/1744698716/cover.webp'

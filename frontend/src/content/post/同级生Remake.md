@@ -3,7 +3,7 @@ title: "【PC/汉化】同级生Remake - 同级生 重制版 - 同級生 リメ�
 tags:
   - elf
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/20250313160710754-cover.jpg
 downloads:

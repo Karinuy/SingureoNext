@@ -3,7 +3,7 @@ title: 【PC/汉化】公主与少女的吃醋LOVE - 姫と乙女のヤキモチ
 tags:
   - Princess Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/02/8640c0d4eca51a0e56d9f1ecd6775366/1764655040-cover.avif'
 downloads:

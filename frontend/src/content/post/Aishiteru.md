@@ -3,7 +3,7 @@ title: 【PC/汉化】IxSHE Tell - Aishiteru - アイシーテル
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/629ef7c6dd4e12c0fee68a2afa0d3c06/1756091124-cover.avif'
 downloads:

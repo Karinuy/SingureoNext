@@ -3,7 +3,7 @@ title: 【PC/汉化】兽娘道☆GirlishSquare LOVE+PLUS - けもの道☆ガ�
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/a39556c69856744fdea7ecfb0796b233/1754121829-cover.avif'
 downloads:

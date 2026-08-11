@@ -3,7 +3,7 @@ title: 【PC/汉化】リトルプリンセスGO!
 tags:
   - Lump of Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/28/680f37b442e29/cover.webp'
 downloads:

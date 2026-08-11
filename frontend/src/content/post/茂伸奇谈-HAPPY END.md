@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】茂伸奇谈-HAPPY END - ものべの -happy end-
 tags:
   - Lose
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/21/6805fcbec7594/cover.webp'

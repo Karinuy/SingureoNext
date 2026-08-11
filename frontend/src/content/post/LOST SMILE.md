@@ -3,7 +3,7 @@ title: '【PC/汉化】LOST:SMILE memories + promises'
 tags:
   - LIFE0
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/19/682ae3ce25077/cover.webp'
 downloads:

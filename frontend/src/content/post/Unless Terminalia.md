@@ -3,7 +3,7 @@ title: 【PC/汉化】Unless Terminalia - アンレス・テルミナリア
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/ebd56da9d2bbaf27324e73a8665dc93d/1754121384-cover.avif'
 downloads:

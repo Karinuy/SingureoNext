@@ -3,7 +3,7 @@ title: 【PC/汉化】TOYつめちゃいましたっ - 恋のレシピ
 tags:
   - ALcot
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/17/1744866657/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】FLIP＊FLOP ~RAMBLING OVERRUN~
 tags:
   - DiGination
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/17/6828581edc63b/cover.webp'

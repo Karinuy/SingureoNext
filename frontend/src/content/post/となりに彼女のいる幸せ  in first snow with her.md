@@ -3,7 +3,7 @@ title: "【PC/汉化】となりに彼女のいる幸せ～ in first snow with h
 tags:
   - プレカノ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/03/09/216ee010ff5dcc921b50c4e498905e62/1773044319-cover.avif
 downloads:

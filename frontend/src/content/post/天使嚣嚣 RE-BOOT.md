@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】天使☆嚣嚣 RE-BOOT! - 天使☆纷扰 RE-BOOT! - �
 tags:
   - ゆずソフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-2-213x300.jpg

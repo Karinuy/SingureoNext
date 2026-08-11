@@ -3,7 +3,7 @@ title: 【PC/汉化】Since Memories 在星天之下 - シンスメモリーズ 
 tags:
   - MAGES.
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/07/11/6870bfe06e82b/cover.webp'
 downloads:

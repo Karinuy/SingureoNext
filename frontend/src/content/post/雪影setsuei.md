@@ -3,7 +3,7 @@ title: 【PC/汉化】雪影-setsuei-
 tags:
   - Silver Bullet
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/19/682ae94c45c80/cover.webp'
 downloads:

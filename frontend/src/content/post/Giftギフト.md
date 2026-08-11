@@ -3,7 +3,7 @@ title: 【PC/汉化】Gift - Gift～ギフト～
 tags:
   - MOONSTONE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/03/37d65cecc871270703eefe93d2c5fd98/1754215018-cover.avif'
 downloads:

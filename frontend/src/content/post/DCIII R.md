@@ -3,7 +3,7 @@ title: 【PC/汉化】D.C.III R ～ダ・カーポIIIアール～X-rated - D.C.I
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/0TkbOEBH-cover.jpg
 downloads:

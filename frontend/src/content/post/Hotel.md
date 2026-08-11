@@ -3,7 +3,7 @@ title: 【PC/汉化】Hotel.
 tags:
   - 暁WORKS BLACK
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b819c90dff/cover.webp'
 downloads:

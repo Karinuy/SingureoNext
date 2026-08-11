@@ -3,7 +3,7 @@ title: 【PC/汉化】Beta-Sixdouze - ベータ・シクスードウーズ
 tags:
   - Liar-soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/26/680cb27a650e6/cover.webp'
 downloads:

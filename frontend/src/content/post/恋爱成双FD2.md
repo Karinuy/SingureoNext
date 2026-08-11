@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】恋爱成双FD2 – 结爱＆煌 - フタマタ恋愛 �
 tags:
   - ASa Project
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-43-300x225.jpg

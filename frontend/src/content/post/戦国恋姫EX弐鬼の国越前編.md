@@ -3,7 +3,7 @@ title: 【PC/汉化】戦国†恋姫EX弐～鬼の国、越前編～
 tags:
   - BaseSon
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/09/23/1b32a31d6f81e5454f558465ac533e7f/1758591945-cover.avif'
 downloads:

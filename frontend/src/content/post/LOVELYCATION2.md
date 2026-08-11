@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】LOVELY×CATION2
 tags:
   - hibiki works
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/07/08/686c89e94135a/cover.webp'

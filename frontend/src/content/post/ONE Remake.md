@@ -3,7 +3,7 @@ title: 【PC/汉化】ONE. - ONE Remake
 tags:
   - novamicus
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/10/22/6c6bb6e6da807bd4087b7e3975cc7b1f/1761116038-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: '【PC/汉化】五彩斑斓的世界 HD Re:GENERATION - いろとりど�
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743487177/67eb80c93598a.webp'
 downloads:

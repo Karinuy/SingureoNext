@@ -3,7 +3,7 @@ title: 【PC/汉化】初音岛Ⅰ P.C. - D.C.～ダ・カーポ～
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/BLIDExOK-cover.jpg
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/汉化】PARA-SOL - パラソル"
 tags:
   - ROOT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/04/05/23c6aa1b1890a0a98ef639b66558b93d/1775390062-cover.avif
 downloads:

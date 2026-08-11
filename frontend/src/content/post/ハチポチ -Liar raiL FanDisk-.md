@@ -3,7 +3,7 @@ title: 【PC/汉化】ハチポチ -Liar＆raiL FanDisk-
 tags:
   - Liar-soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/26/680c9ea97fde6/cover.webp'
 downloads:

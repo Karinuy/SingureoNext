@@ -3,7 +3,7 @@ title: 【PC/汉化】Cure Mate Club
 tags:
   - Atu Works
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/07/6843c27c95ec5/cover.webp'
 downloads:

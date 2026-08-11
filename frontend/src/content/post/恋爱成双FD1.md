@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】恋爱成双FD1 – 瑠衣＆宮子 - フタマタ恋�
 tags:
   - ASa Project
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-44-300x225.jpg

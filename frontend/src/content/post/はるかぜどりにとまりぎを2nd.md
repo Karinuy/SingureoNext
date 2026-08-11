@@ -3,7 +3,7 @@ title: 【PC/汉化】はるかぜどりに、とまりぎを。2nd Story ～月
 tags:
   - SkyFish
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/26/6833f57c6f68e/cover.webp'
 downloads:

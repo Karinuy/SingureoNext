@@ -3,7 +3,7 @@ title: 【PC/APK/汉化】LUNARiA -Virtualized Moonchild-
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-5-212x300.jpg

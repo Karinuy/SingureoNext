@@ -3,7 +3,7 @@ title: 【PC/汉化】大迷宮＆大迷惑 -GREAT EDGES IN THE ABYSS-
 tags:
   - Liar-soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/26/680cad674c2f6/cover.webp'
 downloads:

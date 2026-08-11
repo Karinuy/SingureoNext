@@ -3,7 +3,7 @@ title: 【PC/汉化】IZUMO2 学園狂想曲
 tags:
   - Studio e.go!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/30/6839b11ce87d5/cover.webp'
 downloads:

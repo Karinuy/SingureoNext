@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】9-nine-天色天歌天籁音 - 9-nine-そらいろそ�
 tags:
   - ぱれっと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/10/1744272475/cover.webp'

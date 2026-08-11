@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】AMBITIOUS MISSION
 tags:
   - SAGA PLANETS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/17/68284e521b36a/cover.webp'

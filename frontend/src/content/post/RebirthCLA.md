@@ -3,7 +3,7 @@ title: '【PC/汉化】Re:birth colony -Lost azurite-'
 tags:
   - あっぷりけ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/07/6843b017edbd5/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】初音岛4 Plus Harmony - D.C.4 Plus Harmony ～ダ・カ�
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/AGKEsM4U-cover.webp
 downloads:

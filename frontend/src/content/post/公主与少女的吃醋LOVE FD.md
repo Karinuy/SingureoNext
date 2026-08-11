@@ -3,7 +3,7 @@ title: 【PC/汉化】公主与少女的吃醋LOVE 闪耀的夏日故事！ - �
 tags:
   - Princess Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/02/f7b0bd1ed3567ddc042aaa06eff3e54e/1764655572-cover.avif'
 downloads:

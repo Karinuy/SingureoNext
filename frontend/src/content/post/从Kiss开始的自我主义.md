@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】从Kiss开始的自我主义～EGOISM～ - キスから
 tags:
   - 皐月
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/11/09/6132ae5f7ebcfbb71830355962adfd51/1762687764-cover.avif'

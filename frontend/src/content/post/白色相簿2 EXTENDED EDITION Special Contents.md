@@ -3,7 +3,7 @@ title: 【PC/汉化】白色相簿2 EXTENDED EDITION Special Contents
 tags:
   - Leaf
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/08/1744100584/cover.webp'
 downloads:

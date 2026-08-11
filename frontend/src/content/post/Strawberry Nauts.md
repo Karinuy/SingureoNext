@@ -3,7 +3,7 @@ title: 【PC/汉化】Strawberry Nauts - ストロベリーノーツ
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/ef8339fbe39966ff5a9caf0c603024db/1756087278-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】游魂2 -you're the only one - タユタマ 2 -you're the 
 tags:
   - Lump of Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/28/680f212a7a40b/cover.webp'
 downloads:

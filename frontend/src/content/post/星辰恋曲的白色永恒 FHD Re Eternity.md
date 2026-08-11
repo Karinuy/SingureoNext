@@ -3,7 +3,7 @@ title: '【PC/汉化】星辰恋曲的白色永恒 FHD Re:Eternity - アスト�
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743487676/67eb82bc24376.webp'
 downloads:

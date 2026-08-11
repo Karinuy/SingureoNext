@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】任性HighSpec - ワガママハイスペック"
 tags:
   - Madosoft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-39-300x214.jpg

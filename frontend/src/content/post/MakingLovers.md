@@ -3,7 +3,7 @@ title: 【PC/汉化】突然＊恋人 - Making＊Lovers
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/a4ac2ffeb57133265387d2fcd40cef6b/1756344390-cover.avif'
 downloads:

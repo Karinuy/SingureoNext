@@ -3,7 +3,7 @@ title: 【PC/汉化】在这苍穹展翅 SNOW PRESENTS - この大空に、翼�
 tags:
   - PULLTOP
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/15/68258dae775a5/cover.webp'
 downloads:

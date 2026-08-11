@@ -3,7 +3,7 @@ title: 【PC/汉化】pieces/揺り籠のカナリア
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/a13afa9681a015fc315c635f263019ba/1754119377-cover.avif'
 downloads:

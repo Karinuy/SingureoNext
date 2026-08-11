@@ -3,7 +3,7 @@ title: 【PC/汉化】Sugar*Style - シュガー＊スタイル
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/a8a671c9d7c8ca321de0c4a7fc41ede4/1756345217-cover.avif'
 downloads:

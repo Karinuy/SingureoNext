@@ -3,7 +3,7 @@ title: 【PC/汉化】リリカルDS
 tags:
   - ま～まれぇど
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/11/12/07fd5009ab4092637cdad66e75e50bc8/1762923893-cover.avif'
 downloads:

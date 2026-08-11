@@ -3,7 +3,7 @@ title: 【PC/汉化】鸢之歌-Singing Iris
 tags:
   - 风域游戏
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b83f27f831/cover.webp'
 downloads:

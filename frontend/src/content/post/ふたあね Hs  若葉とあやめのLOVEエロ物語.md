@@ -3,7 +3,7 @@ title: "【PC/汉化】ふたあね・Hs ～若葉とあやめのLOVEエロ物�
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/4634be3727f0914138db11753186b42b/1779261397-cover.avif
 downloads:

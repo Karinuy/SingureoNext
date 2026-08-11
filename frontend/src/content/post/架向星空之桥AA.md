@@ -3,7 +3,7 @@ title: 【PC/汉化】架向星空之桥AA - 星空へ架かる橋AA
 tags:
   - feng
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/031743665058/67ee37a28d3ca.webp'
 downloads:

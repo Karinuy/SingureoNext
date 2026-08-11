@@ -3,7 +3,7 @@ title: "【PC/汉化】Little Busters! EX - リトルバスターズ！"
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/cover-12-207x300.jpg
 downloads:

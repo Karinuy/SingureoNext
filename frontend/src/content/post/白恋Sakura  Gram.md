@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】白恋Sakura ＊ Gram - 白恋サクラ＊グラム
 tags:
   - ナナウィンド
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/10/18/709925bba89df0eb80718a3cddccd2e1/1760773090-cover.avif'

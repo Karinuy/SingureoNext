@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】水葬银货的Istria - 水葬銀貨のイストリア 
 tags:
   - ウグイスカグラ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/23/68087ea84f35d/cover.webp'

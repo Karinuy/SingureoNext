@@ -3,7 +3,7 @@ title: "【PC/汉化】在世界尽头咏唱恋曲的少女 YU-NO(重制版) - �
 tags:
   - elf
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/20250313161739867-cover.jpg
 downloads:

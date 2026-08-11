@@ -3,7 +3,7 @@ title: 【PC/汉化】迷宮旅人：To Heart 2 - ドラクロ
 tags:
   - Leaf
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/08/1744099839/cover.webp'
 downloads:

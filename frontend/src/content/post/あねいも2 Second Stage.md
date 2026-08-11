@@ -3,7 +3,7 @@ title: "【PC/汉化】あねいも2～Second Stage～"
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/d54a90ca7a501c9f84e007c7b7fbca9d/1779258882-cover.avif
 downloads:

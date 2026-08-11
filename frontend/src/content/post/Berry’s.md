@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】Berry’s
 tags:
   - Sphere
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/10/1744264225/cover.webp'

@@ -3,7 +3,7 @@ title: 【PC/汉化】Cross Days
 tags:
   - 0verflow
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/22/682f0e52a3b83/cover.webp'
 downloads:

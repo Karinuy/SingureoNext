@@ -3,7 +3,7 @@ title: 【PC/汉化】姫様LOVEライフ！ -もーっと！イチャイチャ�
 tags:
   - Princess Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/02/45880dd2efe789da85b3b9fff6ae35d6/1764654545-cover.avif'
 downloads:

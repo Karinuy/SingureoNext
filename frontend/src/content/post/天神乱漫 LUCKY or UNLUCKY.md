@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】天神乱漫～LUCKY or UNLUCKY！？～ - 天神乱�
 tags:
   - ゆずソフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-3-220x300.jpg

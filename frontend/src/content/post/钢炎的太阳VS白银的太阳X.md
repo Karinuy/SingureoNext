@@ -3,7 +3,7 @@ title: 【PC/汉化】钢炎的太阳 VS 白银的太阳 X - 鋼炎のソレイ�
 tags:
   - SkyFish
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/26/6833f25a5ec86/cover.webp'
 downloads:

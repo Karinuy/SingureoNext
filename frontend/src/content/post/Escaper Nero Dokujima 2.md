@@ -3,7 +3,7 @@ title: 【PC/汉化】得々シリーズ　逃亡者　毒島音露～柔肌の�
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/24/2f80dd5f7db8206f7fd6d7791e6bb276/1766552978-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/汉化】Augustic.etc."
 tags:
   - August
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/alZQCytM-cover.jpg
 downloads:

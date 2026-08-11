@@ -3,7 +3,7 @@ title: "【PC/汉化】ChuSingura46+1 わっちとお兄ちゃんのラブラブ
 tags:
   - プレカノ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/03/09/044adfdec66e12f6d168d19c9ab642ac/1773041061-cover.avif
 downloads:

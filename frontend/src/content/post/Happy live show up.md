@@ -3,7 +3,7 @@ title: 【PC/汉化】Happy live show up! - ハッピーライヴ ショウア�
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743492246/67eb949676761.webp'
 downloads:

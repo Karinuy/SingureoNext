@@ -3,7 +3,7 @@ title: 【PC/汉化】HoneyComing -ハニーカミング-
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/17e695869ffff0d67522d691f1786f81/1756084698-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】放課後シンデレラ２ ミニファンディスク �
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/1c37fb666c9c77a6f9e55e463b13eb0d/1756098981-cover.avif'
 downloads:

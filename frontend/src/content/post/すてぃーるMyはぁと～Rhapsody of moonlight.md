@@ -3,7 +3,7 @@ title: 【PC/汉化】すてぃーるMyはぁと～Rhapsody of moonlight～
 tags:
   - ぱれっと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/10/1744268956/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】少女与世界与点心之剑 ～Route of ICHIGO 1～ - �
 tags:
   - 私立さくらんぼ小学校
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/19/682ada0d6c991/cover.webp'
 downloads:

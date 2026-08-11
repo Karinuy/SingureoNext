@@ -3,7 +3,7 @@ title: '【PC/汉化】梦现Re:Master - 夢現Re:Master'
 tags:
   - 工画堂スタジオ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b5b10e0e4d/cover.webp'
 downloads:

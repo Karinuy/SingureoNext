@@ -3,7 +3,7 @@ title: 【PC/汉化】君羽Couples ～她和她相恋的两个月多一点～ -
 tags:
   - BaseSon Light
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/09/23/81507c70fc336cdefb94c810cd01ff90/1758594641-cover.avif'
 downloads:

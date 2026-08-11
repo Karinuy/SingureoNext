@@ -3,7 +3,7 @@ title: "【PC/Ty/汉化】身边有她，很幸福 ~ Curious Queen ~ - となり
 tags:
   - プレカノ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/03/09/f116c5e98ec4cd9d52a0354d297452f2/1773041864-cover.avif

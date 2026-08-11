@@ -3,7 +3,7 @@ title: 【PC/汉化】少女缔结的月之光辉 Fullmoon Days - 乙女が結�
 tags:
   - ensemble
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/03/291743227632/67e78af03ab15.webp'
 downloads:

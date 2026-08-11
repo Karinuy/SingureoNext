@@ -3,7 +3,7 @@ title: 【PC/汉化】FairlyLife -フェアリーライフ-
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/536a2d585a6a3cef48a4ddc7027f24bc/1756085085-cover.avif'
 downloads:

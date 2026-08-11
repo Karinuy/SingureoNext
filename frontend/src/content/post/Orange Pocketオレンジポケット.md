@@ -3,7 +3,7 @@ title: 【PC/汉化】Orange Pocket -オレンジポケット-
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/37ca52f726924b015431c2dc9fcd3295/1756082897-cover.avif'
 downloads:

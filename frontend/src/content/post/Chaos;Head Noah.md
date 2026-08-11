@@ -3,7 +3,7 @@ title: 【PC/汉化】混沌之脑：诺亚 - Chaos;Head Noah
 tags:
   - Nitro+
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/13/1744512376/cover.webp'
 downloads:

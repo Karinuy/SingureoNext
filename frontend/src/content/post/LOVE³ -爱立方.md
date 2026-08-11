@@ -3,7 +3,7 @@ title: 【PC/汉化】LOVE³ -爱立方 - LOVE³ -ラヴキューブ-
 tags:
   - NEKO WORKs
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/26/680cc7a00683e/cover.webp'
 downloads:

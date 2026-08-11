@@ -3,7 +3,7 @@ title: 【PC/汉化】Vestige―刃に残るは君の面影― - ヴェスティ
 tags:
   - ALcot
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/17/1744868658/cover.webp'
 downloads:

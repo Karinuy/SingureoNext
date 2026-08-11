@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】捉迷藏！Fan Disk - 鬼ごっこ！ ファンディ�
 tags:
   - ALcot
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/17/1744869750/cover.webp'

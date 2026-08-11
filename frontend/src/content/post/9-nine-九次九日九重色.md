@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】9-nine-九次九日九重色 - 9-nine-ここのつこ�
 tags:
   - ぱれっと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/10/1744272010/cover.webp'

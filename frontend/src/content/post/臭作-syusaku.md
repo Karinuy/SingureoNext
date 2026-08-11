@@ -3,7 +3,7 @@ title: 【PC/汉化】臭作 - Syusaku
 tags:
   - elf
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/20250313150408290-cover.jpg
 downloads:

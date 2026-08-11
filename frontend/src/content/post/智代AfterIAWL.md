@@ -3,7 +3,7 @@ title: "【PC/ONS/汉化】智代After～It’sa Wonderful Life～ - 智代ア�
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-15-202x300.jpg

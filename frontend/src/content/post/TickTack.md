@@ -3,7 +3,7 @@ title: 【PC/汉化】Tick! Tack!
 tags:
   - Navel
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/06/68199b094b5c9/cover.webp'
 downloads:

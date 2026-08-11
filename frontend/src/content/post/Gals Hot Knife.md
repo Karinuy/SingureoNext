@@ -3,7 +3,7 @@ title: 【PC/汉化】ボクをほっとけない二人のギャル ～陰キャ
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2026/01/25/b6b6f0c001e2279d220d98c85f198c39/1769338634-cover.avif'
 downloads:

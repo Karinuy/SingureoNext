@@ -3,7 +3,7 @@ title: 【PC/汉化】游魂-It’s happy days - タユタマ -It's happy days-
 tags:
   - Lump of Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/28/680f12213956f/cover.webp'
 downloads:

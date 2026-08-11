@@ -3,7 +3,7 @@ title: 【PC/汉化】秘密之恋（伪）纯爱 After Story - シークレッ�
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/a3b9b1b88c0aba36b82d8179fc96b1c4/1756100321-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】龙姬混~日子 LOVE + PLUS - 竜姫ぐーたらいふ LO
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/801d855718d32a1bef921f43efdadbc9/1754120165-cover.avif'
 downloads:

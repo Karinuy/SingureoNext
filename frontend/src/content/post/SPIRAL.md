@@ -3,7 +3,7 @@ title: 【PC/汉化】SPIRAL!!
 tags:
   - Navel
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/13/68234be9bde79/cover.webp'
 downloads:

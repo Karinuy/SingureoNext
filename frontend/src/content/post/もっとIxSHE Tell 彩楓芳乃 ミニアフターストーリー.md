@@ -3,7 +3,7 @@ title: 【PC/汉化】もっとIxSHE Tell 彩楓＆芳乃 ミニアフタース�
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/2f758b94bf4e27c1032ceba8a37bd4c5/1756091568-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】姫様限定！～Princess Limited～
 tags:
   - Princess Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/02/cb198226e84aff8143ed8cf45ad8a4ba/1764653045-cover.avif'
 downloads:

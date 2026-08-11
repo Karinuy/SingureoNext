@@ -3,7 +3,7 @@ title: 【PC/汉化】BLADE×BULLET 金轮的日芒 - BLADE×BULLET　金輪の�
 tags:
   - SkyFish
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/26/6833fe6436475/cover.webp'
 downloads:

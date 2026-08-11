@@ -3,7 +3,7 @@ title: 【PC/汉化】PP -Pianissimo- 提线木偶的轮舞 - PP -ピアニッ�
 tags:
   - Innocent Grey
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/051743854076/67f119fcaae26.webp'
 downloads:

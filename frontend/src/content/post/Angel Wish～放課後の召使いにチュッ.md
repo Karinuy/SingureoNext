@@ -3,7 +3,7 @@ title: 【PC/汉化】Angel Wish～放課後の召使いにチュッ！～
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743492579/67eb95e3342bd.webp'
 downloads:

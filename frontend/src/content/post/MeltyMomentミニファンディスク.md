@@ -3,7 +3,7 @@ title: 【PC/汉化】MeltyMoment ミニファンディスク
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/e4efb8e51a823933b343b9303631be47/1756089098-cover.avif'
 downloads:

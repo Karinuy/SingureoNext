@@ -3,7 +3,7 @@ title: 【PC/汉化】１／１彼氏彼女 Mini Fandisc
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/952d2dd286f1502081c9f3f375afc0a9/1756348328-cover.avif'
 downloads:

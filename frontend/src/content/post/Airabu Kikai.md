@@ -3,7 +3,7 @@ title: "【PC/汉化】アイラブ　恋する乙女はキカイ仕掛け"
 tags:
   - AKABEiSOFT3
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/07/05/d82feb292fc58891b3e83bfbfbb50e9c/1783256112-cover.avif
 downloads:

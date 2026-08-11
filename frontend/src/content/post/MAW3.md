@@ -3,7 +3,7 @@ title: 【PC/汉化】Men at Work!3 猎人们的青春 - メンアットワー�
 tags:
   - Studio e.go!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/30/6839a4f114d19/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】将花朵献与你-Kinsenka- - 花束を君に贈ろう
 tags:
   - Front Wing
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/31/683afd33aaaf9/cover.webp'

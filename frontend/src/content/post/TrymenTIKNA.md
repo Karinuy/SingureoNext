@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】TrymenT ―献给渴望改变的你― - TrymenT ―今
 tags:
   - RASK
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/06/21/6856584347f68/cover.webp'

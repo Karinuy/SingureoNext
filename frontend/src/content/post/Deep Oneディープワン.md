@@ -3,7 +3,7 @@ title: 【PC/汉化】深渊的来访者 - Deep One -ディープワン-
 tags:
   - Nameless
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/11/8da9e324bcb848df4f2326083f17d531/1754919209-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】爱姐妹IV 肥宅美梦 - 愛姉妹IV 悔しくて気持�
 tags:
   - Silky's
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/19/6853bc125478c/cover.webp'
 downloads:

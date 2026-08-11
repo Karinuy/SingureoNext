@@ -3,7 +3,7 @@ title: 【PC/汉化】ナマイキJKライブラリー
 tags:
   - DESSERT Soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/21/2e3cd7ed7eb5f92d6db315bc4aa6ddab/1755769157-cover.avif'
 downloads:

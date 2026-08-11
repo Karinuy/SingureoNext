@@ -3,7 +3,7 @@ title: 【PC/汉化】Vtuber女仆 拉米耶 - Vtuberメイドラミエ
 tags:
   - monime
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/17/682853847f72b/cover.webp'
 downloads:

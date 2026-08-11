@@ -3,7 +3,7 @@ title: 【PC/汉化】Fate/EXTRA CCC
 tags:
   - TYPE-MOON
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/11/1744377518/cover.webp'
 downloads:

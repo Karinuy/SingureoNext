@@ -3,7 +3,7 @@ title: "【PC/汉化】あねいも2・いもいもFD～皐月＆唯のLOVEエ�
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/1dc77dd1aba1b4f6e2d9cb150a03f84f/1779259603-cover.avif
 downloads:

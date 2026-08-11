@@ -3,7 +3,7 @@ title: "【PC/汉化】ISLAND"
 tags:
   - Front Wing
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/01/cover-34-300x169.jpg
 downloads:

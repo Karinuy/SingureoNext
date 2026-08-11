@@ -3,7 +3,7 @@ title: 【PC/汉化】Men at Work!2 永远的羁绊 - メンアットワーク�
 tags:
   - Studio e.go!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/30/68399c80c79c7/cover.webp'
 downloads:

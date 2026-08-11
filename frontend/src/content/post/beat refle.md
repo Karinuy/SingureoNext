@@ -3,7 +3,7 @@ title: "【PC/汉化】beat refle"
 tags:
   - qureate
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/04/02/b66dedf67bd9339197268b105da2bef4/1775136543-cover.avif
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】DRACU-RIOT!
 tags:
   - ゆずソフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-12-300x188.jpg

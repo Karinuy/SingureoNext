@@ -3,7 +3,7 @@ title: "【PC/Ty/汉化】愛怒流でいず - IdolDays"
 tags:
   - qureate
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/04/02/8fae0c38037a3b394152ea34d4eff110/1775135797-cover.avif

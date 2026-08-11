@@ -3,7 +3,7 @@ title: "【PC/ONS/汉化】Princess Holiday～回转苹果亭的一千零一夜�
 tags:
   - August
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/tc37KDka-cover.jpg

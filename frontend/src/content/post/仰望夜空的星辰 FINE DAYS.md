@@ -3,7 +3,7 @@ title: 【PC/汉化】仰望夜空的星辰 FINE DAYS - 抬头看看吧，看那
 tags:
   - PULLTOP
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/15/6825982ed758f/cover.webp'
 downloads:

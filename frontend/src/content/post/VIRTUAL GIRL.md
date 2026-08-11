@@ -3,7 +3,7 @@ title: 【PC/汉化】VIRTUAL GIRL @ WORLD'S END
 tags:
   - HEADLOCK
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/23/68590f06a2036/cover.webp'
 downloads:

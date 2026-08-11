@@ -3,7 +3,7 @@ title: 【PC/汉化】学☆王 -THE ROYAL SEVEN STARS-
 tags:
   - Lump of Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/28/680f137351ea5/cover.webp'
 downloads:

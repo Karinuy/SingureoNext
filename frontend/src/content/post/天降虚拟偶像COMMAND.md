@@ -3,7 +3,7 @@ title: 【PC/汉化】天降虚拟偶像！ COMMAND！？ - 電子処女が現�
 tags:
   - あかべぇそふとつぅ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/23/62283bd0a60b6ac0601616f9b3379f44/1755916132-cover.avif'
 downloads:

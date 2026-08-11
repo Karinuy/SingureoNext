@@ -3,7 +3,7 @@ title: 【PC/APK/汉化】苍之彼方的四重奏 EXTRA2 - 蒼の彼方のフ�
 tags:
   - sprite
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/10/1744275839/cover.webp'

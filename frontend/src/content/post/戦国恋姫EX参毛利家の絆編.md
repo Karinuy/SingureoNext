@@ -3,7 +3,7 @@ title: 【PC/汉化】戦国†恋姫EX参～毛利家の絆編～
 tags:
   - BaseSon
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/09/23/f8583ee3562aa4cc85b17162f3e38440/1758593012-cover.avif'
 downloads:

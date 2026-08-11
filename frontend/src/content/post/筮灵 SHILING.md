@@ -3,7 +3,7 @@ title: 【PC/汉化】筮灵 SHILING
 tags:
   - 风域游戏
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b8549e72f6/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】Leaflet Love Story
 tags:
   - 橘子班
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/09/68469e360fedd/cover.webp'
 downloads:

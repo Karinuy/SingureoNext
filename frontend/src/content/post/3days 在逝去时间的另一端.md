@@ -3,7 +3,7 @@ title: 【PC/ONS/汉化】3days ～在逝去时间的另一端～ - 3days～満�
 tags:
   - Lass
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/19/1745054311/cover.webp'

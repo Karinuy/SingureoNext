@@ -3,7 +3,7 @@ title: "【PC/汉化】Binary Pot"
 tags:
   - August
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/BT6PyXdo-cover.jpg
 downloads:

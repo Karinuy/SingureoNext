@@ -3,7 +3,7 @@ title: 【PC/汉化】Everlasting Flowers - Everlasting Flowers - Where there is
 tags:
   - sprite
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/10/1744276156/cover.webp'
 downloads:

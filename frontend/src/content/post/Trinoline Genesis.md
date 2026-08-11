@@ -3,7 +3,7 @@ title: "【PC/汉化】Trinoline Genesis - トリノライン:ジェネシス"
 tags:
   - minori
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/01/cover-45-300x205.jpg
 downloads:

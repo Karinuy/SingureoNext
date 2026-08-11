@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】11eyes－罪与罚与赎的少女 - 11eyes－罪と罰�
 tags:
   - Lass
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/19/1745054715/cover.webp'

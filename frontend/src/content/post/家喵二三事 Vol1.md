@@ -3,7 +3,7 @@ title: 【PC/汉化】家喵二三事 Vol. 1 - ウチのペット事情 Vol.1
 tags:
   - アニマルハーブ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/02/5770590fde2b2a4acd3a5849572c0bd0/1764652549-cover.avif'
 downloads:

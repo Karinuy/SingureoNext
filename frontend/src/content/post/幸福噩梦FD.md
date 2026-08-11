@@ -3,7 +3,7 @@ title: 【PC/汉化】幸福噩梦FD - ハピメア-Fragmentation Dream
 tags:
   - Purple software
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/15/1744688459/cover.webp'
 downloads:

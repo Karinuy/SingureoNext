@@ -3,7 +3,7 @@ title: 【PC/汉化】女仆到我家S - メイドさんのいる暮らしS
 tags:
   - あざらしそふと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/19/1745053004/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】Guardian☆Place ～ドエスな妹と3人の嫁～
 tags:
   - SkyFish
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/26/6833fa86bd9e6/cover.webp'
 downloads:

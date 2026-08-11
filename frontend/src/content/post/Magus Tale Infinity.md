@@ -3,7 +3,7 @@ title: 【PC/汉化】Magus Tale Infinity
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/c12c58c467e416d8860472a089a1e8aa/1754114877-cover.avif'
 downloads:

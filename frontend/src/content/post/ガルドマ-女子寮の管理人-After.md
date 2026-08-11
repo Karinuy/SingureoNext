@@ -3,7 +3,7 @@ title: 【PC/汉化】ガルドマ-女子寮の管理人-After
 tags:
   - あざらしそふと+1
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/23/68085bfec91d6/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】H2O～赤沙的印记～ - H2O -Footprints in the Sand
 tags:
   - 枕
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/17/1744873977/cover.webp'
 downloads:

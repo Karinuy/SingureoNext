@@ -3,7 +3,7 @@ title: 【PC/汉化】隐名之人！TOKYO·HERO·PROJECT - 中の人などい�
 tags:
   - ALcot
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/17/1744870140/cover.webp'
 downloads:

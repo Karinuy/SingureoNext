@@ -3,7 +3,7 @@ title: 【PC/汉化】流浪者 - Vagrants
 tags:
   - Studio e.go!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/30/6839a654798f0/cover.webp'
 downloads:

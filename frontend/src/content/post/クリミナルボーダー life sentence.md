@@ -3,7 +3,7 @@ title: 【PC/汉化】クリミナルボーダー life sentence
 tags:
   - Purple software
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/15/1744695699/cover.webp'
 downloads:

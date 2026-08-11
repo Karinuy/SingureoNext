@@ -3,7 +3,7 @@ title: 【PC/汉化】DeepOne-领界侵犯- - DeepOne-領界侵犯-
 tags:
   - Nameless
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/11/850b801d3463d7140dcd39ede29534df/1754919524-cover.avif'
 downloads:

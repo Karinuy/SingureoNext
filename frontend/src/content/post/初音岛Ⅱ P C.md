@@ -3,7 +3,7 @@ title: 【PC/汉化】初音岛Ⅱ P.C. - D.C.II ～ダ・カーポII～
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/F9vubEfF-cover.jpg
 downloads:

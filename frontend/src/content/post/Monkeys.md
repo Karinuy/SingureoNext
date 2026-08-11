@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】Monkeys!¡
 tags:
   - HARUKAZE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/06/07/6843aad2ee0de/cover.webp'

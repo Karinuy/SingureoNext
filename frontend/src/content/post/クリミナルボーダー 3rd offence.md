@@ -3,7 +3,7 @@ title: 【PC/汉化】クリミナルボーダー 3rd offence
 tags:
   - Purple software
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/15/1744696355/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/汉化】Rewrite 超自研活动记录外传 前篇"
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/cover-2-300x140.webp
 downloads:

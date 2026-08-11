@@ -3,7 +3,7 @@ title: 【PC/汉化】秋之回忆：从今以后 again - Memories Off ～それ
 tags:
   - MAGES.
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/07/11/6870a9f2f3e6d/cover.webp'
 downloads:

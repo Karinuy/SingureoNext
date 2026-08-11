@@ -3,7 +3,7 @@ title: 【PC/汉化】W.L.O. 世界恋爱机构 - W.L.O. 世界恋愛機構
 tags:
   - あかべぇそふとつぅ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/23/4922308011dd8aa5addadb3e0be3abd4/1755912436-cover.avif'
 downloads:

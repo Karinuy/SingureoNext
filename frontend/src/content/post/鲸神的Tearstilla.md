@@ -3,7 +3,7 @@ title: 【PC/汉化】鲸神的Tearstilla - 鯨神のティアスティラ
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/81f4dc821619b77e4bd7ca477720e3c7/1754116674-cover.avif'
 downloads:

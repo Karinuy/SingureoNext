@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】星恋*twinkle - 星恋＊ティンクル
 tags:
   - きゃべつそふと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/23/680862f956bb4/cover.webp'

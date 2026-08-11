@@ -3,7 +3,7 @@ title: 【PC/ONS/汉化】大图书馆的牧羊人 -Dreaming Sheep - 大図書�
 tags:
   - August
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/RlBtEgUu-cover.jpg

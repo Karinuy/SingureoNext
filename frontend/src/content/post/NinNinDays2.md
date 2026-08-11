@@ -3,7 +3,7 @@ title: "【PC/Ty/汉化】NinNinDays2"
 tags:
   - qureate
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/04/02/10865d180a00e4531af0bae3f093469a/1775136203-cover.avif

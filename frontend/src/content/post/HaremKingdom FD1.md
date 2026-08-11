@@ -3,7 +3,7 @@ title: 【PC/汉化】HaremKingdom FD 光＆索菲娅＆琪琪 篇 - ハーレ�
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/8f2499bb8bfbaeb7f8205b3a4fdfa953/1756346158-cover.avif'
 downloads:

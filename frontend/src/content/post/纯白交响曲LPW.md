@@ -3,7 +3,7 @@ title: 【PC/汉化】纯白交响曲 - ましろ色シンフォニー - Love is
 tags:
   - ぱれっと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/10/1744268587/cover.webp'
 downloads:

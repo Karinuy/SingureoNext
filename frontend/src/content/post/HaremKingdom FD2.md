@@ -3,7 +3,7 @@ title: 【PC/汉化】HaremKingdom FD 夏洛妮尔＆玛露 篇 - ハーレム�
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/0becea7ec12ff5902a751711c05ef57f/1756346522-cover.avif'
 downloads:

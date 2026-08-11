@@ -3,7 +3,7 @@ title: 【PC/汉化】戦国†恋姫EX壱～奥州の独眼竜編～
 tags:
   - BaseSon
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/09/23/f32449001f2e1c7c00dd00c2a7befba4/1758590923-cover.avif'
 downloads:

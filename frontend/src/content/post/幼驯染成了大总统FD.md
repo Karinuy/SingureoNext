@@ -3,7 +3,7 @@ title: 【PC/汉化】幼驯染成了大总统FD - 幼なじみは大統領 My g
 tags:
   - ALcot
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/17/1744868974/cover.webp'
 downloads:

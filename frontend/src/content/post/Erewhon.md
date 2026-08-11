@@ -3,7 +3,7 @@ title: "【PC/汉化】乌有乡 - Erewhon - エレホン"
 tags:
   - CLOCKUP
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/KGrX2UNn-cover.webp
 downloads:

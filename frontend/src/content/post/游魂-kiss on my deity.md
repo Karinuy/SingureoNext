@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】游魂-kiss on my deity - タユタマ -kiss on my deit
 tags:
   - Lump of Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/28/680f10af07340/cover.webp'

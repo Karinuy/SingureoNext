@@ -3,7 +3,7 @@ title: 【PC/汉化】A Tithe in Blood -血断心连- - A Tithe in Blood 〜血�
 tags:
   - Studio Elan
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b508fb5bf4/cover.webp'
 downloads:

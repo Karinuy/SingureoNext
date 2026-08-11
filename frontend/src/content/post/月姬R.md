@@ -3,7 +3,7 @@ title: 【PC/汉化】月姬 Remake - 月姫 -A piece of blue glass moon - 月�
 tags:
   - TYPE-MOON
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/11/1744378463/cover.webp'
 downloads:

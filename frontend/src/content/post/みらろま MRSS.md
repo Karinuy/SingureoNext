@@ -3,7 +3,7 @@ title: 【PC/汉化】みらろま ~Miracle Romance Strawberry Scramble~
 tags:
   - ま～まれぇど
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/11/12/75d796f5ff0493847bf5e8e54e55a8d9/1762923271-cover.avif'
 downloads:

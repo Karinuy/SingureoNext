@@ -3,7 +3,7 @@ title: 【PC/汉化】D.C.II To You ～ダ・カーポII～トゥーユー サ�
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/HngLsJlW-cover.jpg
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】白色相簿2 Mini After Story - WHITE ALBUM2 ミニアフ
 tags:
   - Leaf
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/08/1744101262/cover.webp'
 downloads:

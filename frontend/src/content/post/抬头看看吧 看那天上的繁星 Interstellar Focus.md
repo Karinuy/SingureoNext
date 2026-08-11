@@ -3,7 +3,7 @@ title: 【PC/汉化】抬头看看吧，看那天上的繁星 Interstellar Focus
 tags:
   - PULLTOP
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/15/68259f883ec3b/cover.webp'
 downloads:

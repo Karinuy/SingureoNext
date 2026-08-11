@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】FLOWERS -夏篇 - FLOWERS - Le volume sur été
 tags:
   - Innocent Grey
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/05/1743857771/cover.webp'

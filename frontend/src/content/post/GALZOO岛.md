@@ -3,7 +3,7 @@ title: 【PC/汉化】GALZOO岛 - GALZOOアイランド - 动物园之岛
 tags:
   - Alice Soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/23/6858e9c698bc7/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】‘＆’-愿绽放在天空彼岸- - ‘＆’ - 空の�
 tags:
   - 暁WORKS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b6eea1c638/cover.webp'
 downloads:

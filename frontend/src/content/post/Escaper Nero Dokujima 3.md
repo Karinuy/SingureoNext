@@ -3,7 +3,7 @@ title: 【PC/汉化】得々シリーズ　逃亡者　毒島音露～強制発�
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/24/74fa15bde7b1774657291b0875f272eb/1766553511-cover.avif'
 downloads:

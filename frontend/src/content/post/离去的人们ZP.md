@@ -3,7 +3,7 @@ title: 【PC/汉化】离去的人们 Zero -prologue- - 去人たちZERO -prolog
 tags:
   - K2Cee
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/19/6853c41a99fdf/cover.webp'
 downloads:

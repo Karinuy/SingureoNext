@@ -3,7 +3,7 @@ title: 【PC/汉化】离去的人们ZERO Div1 - 去人たちZERO Div1
 tags:
   - K2Cee
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/19/6853c58f04530/cover.webp'
 downloads:

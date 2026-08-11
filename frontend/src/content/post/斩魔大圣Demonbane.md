@@ -3,7 +3,7 @@ title: 【PC/汉化】斩魔大圣Demonbane - 斬魔大聖デモンベイン
 tags:
   - Nitro+
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/13/1744508460/cover.webp'
 downloads:

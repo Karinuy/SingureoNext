@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】FLIP＊FLOP ~INNOCENCE OVERCLOCK~
 tags:
   - DiGination
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/17/68285692b71d6/cover.webp'

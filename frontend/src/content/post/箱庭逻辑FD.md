@@ -3,7 +3,7 @@ title: "【PC/汉化】箱庭逻辑FD - 箱庭ロジック～瑚子といちゃ�
 tags:
   - Cabbit
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/20250225155016386-cover-800x484.jpg
 downloads:

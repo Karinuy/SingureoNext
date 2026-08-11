@@ -3,7 +3,7 @@ title: "【PC/APK/汉化】planetarian～星之梦～ - planetarian ～ちいさ
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-14-201x300.jpg

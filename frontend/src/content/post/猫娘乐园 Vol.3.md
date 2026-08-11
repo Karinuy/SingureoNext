@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】猫娘乐园 Vol.3 绽香猫娘姐妹 - ネコぱら Vo
 tags:
   - NEKO WORKs
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/26/680cbb38e8531/cover.webp'

@@ -3,7 +3,7 @@ title: 【PC/汉化】ALPHA-NIGHTHAWK
 tags:
   - Liar-soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/26/680cafe4ca95e/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】爱丽娅的明日盛典！Flowering Sky - ALIA's CARNI
 tags:
   - ナナウィンド
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/10/18/21f34b04d15a54889329f4e47d14b8ae/1760772215-cover.avif'

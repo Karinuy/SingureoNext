@@ -3,7 +3,7 @@ title: 【PC/汉化】クラ☆クラ CLASSY☆CRANBERRY’S
 tags:
   - Omega Star
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/04/68170901b5d89/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/汉化】あねいも～アイとHのステップアップ～"
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/0a3ac8bfd88e1b95a44242aab8423e25/1779260328-cover.avif
 downloads:

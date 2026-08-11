@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】猫娘乐园 Extra 小猫之日的约定 - ネコぱら
 tags:
   - NEKO WORKs
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/26/680cbc7c77db7/cover.webp'

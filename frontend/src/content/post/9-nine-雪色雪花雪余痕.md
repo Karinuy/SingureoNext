@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】9-nine-雪色雪花雪余痕 - 9-nine-ゆきいろゆ�
 tags:
   - ぱれっと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/10/1744273367/cover.webp'

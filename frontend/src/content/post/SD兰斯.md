@@ -3,7 +3,7 @@ title: 【PC/汉化】SD兰斯 - SDらんす
 tags:
   - Alice Soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/23/6858bae34dfb0/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】Scarlett日常的境界线 - Scarlett～スカーレット
 tags:
   - ねこねこソフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/04/6816f1c956116/cover.webp'
 downloads:

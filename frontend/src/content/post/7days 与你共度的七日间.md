@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】7days-与你共度的七日间 - セヴンデイズ あ
 tags:
   - LIFE0
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/19/682ae24eeceb9/cover.webp'

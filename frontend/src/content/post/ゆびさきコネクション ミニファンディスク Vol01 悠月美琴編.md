@@ -3,7 +3,7 @@ title: 【PC/汉化】ゆびさきコネクション ミニファンディスク
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/b34a73560829ac13280e50b98943e13b/1756097564-cover.avif'
 downloads:

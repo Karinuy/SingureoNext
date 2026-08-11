@@ -3,7 +3,7 @@ title: 【PC/汉化】猫忍之心 SPIN！ - 猫忍えくすはーとSPIN!
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/0c4feea4fe219866ce19eb281fdbc60e/1754123078-cover.avif'
 downloads:

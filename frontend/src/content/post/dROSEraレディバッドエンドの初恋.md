@@ -3,7 +3,7 @@ title: 【PC/汉化】dROSEra ～レディ・バッドエンドの初恋～
 tags:
   - Tily
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/29/0c1c314bd6dfdb456a2ec3c17df05045/1756434225-cover.avif'
 downloads:

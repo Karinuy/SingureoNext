@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】终之空 remake - 終ノ空 remake
 tags:
   - ケロQ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/21/6805f9e639d50/cover.webp'

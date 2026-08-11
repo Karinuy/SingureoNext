@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】Ripple～欢迎来到Blue Seal～ - Ripple～ブルー�
 tags:
   - 戯画
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/06/07/684397b85f7d7/cover.webp'

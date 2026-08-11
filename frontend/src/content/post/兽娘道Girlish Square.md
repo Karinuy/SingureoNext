@@ -3,7 +3,7 @@ title: 【PC/汉化】兽娘道 ☆ Girlish Square - けもの道☆ガーリッ
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/baac386ecbcc7e5f3bd7826cc7768875/1754120914-cover.avif'
 downloads:

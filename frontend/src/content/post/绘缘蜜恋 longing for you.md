@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】绘缘蜜恋 longing for you - アマエミ-longing for
 tags:
   - あざらしそふと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/19/1745051384/cover.webp'

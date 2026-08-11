@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】猫娘乐园 Vol.2 甜蜜猫娘姐妹 - ネコぱら vo
 tags:
   - NEKO WORKs
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/26/680cb910c4dfb/cover.webp'

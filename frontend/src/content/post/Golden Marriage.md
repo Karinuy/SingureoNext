@@ -3,7 +3,7 @@ title: 【PC/汉化】Golden Marriage - 金婚
 tags:
   - ensemble
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/03/301743317677/67e8eaad6ebd8.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】密语-Silver Snow Sister - アイコトバ-Silver Snow
 tags:
   - あざらしそふと+1
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/23/68085acfcf916/cover.webp'

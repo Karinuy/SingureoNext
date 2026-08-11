@@ -3,7 +3,7 @@ title: "【PC/汉化】はぴねす！ - Happiness!"
 tags:
   - ういんどみる Oasis
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/03/30/583d22d6d076922feb986035ceef7d64/1774872356-cover.avif
 downloads:

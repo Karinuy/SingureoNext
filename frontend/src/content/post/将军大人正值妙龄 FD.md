@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】将军大人正值妙龄 FD - 将軍様はお年頃 ふ
 tags:
   - ALcot
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/17/1744873019/cover.webp'

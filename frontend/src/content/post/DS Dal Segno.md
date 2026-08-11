@@ -3,7 +3,7 @@ title: 【PC/汉化】D.S. -Dal Segno-
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/22slkHoX-cover.webp
 downloads:

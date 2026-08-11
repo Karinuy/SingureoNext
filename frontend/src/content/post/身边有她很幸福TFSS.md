@@ -3,7 +3,7 @@ title: "【PC/Ty/汉化】身边有她，很幸福～Two Farce～Second Summer -
 tags:
   - プレカノ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/03/09/702cdd245bd9cc57f9a12540caa82209/1773036710-cover.avif

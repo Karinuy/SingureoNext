@@ -3,7 +3,7 @@ title: 【PC/汉化】ユユカナ -under the Starlight-
 tags:
   - ナナウィンド
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/10/18/862a31e055d297e12c04f9d337ae3775/1760771469-cover.avif'
 downloads:

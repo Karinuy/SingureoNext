@@ -3,7 +3,7 @@ title: 【PC/汉化】花咲workspring! - 花咲ワークスプリング！
 tags:
   - SAGA PLANETS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/17/682842c76f0fb/cover.webp'
 downloads:

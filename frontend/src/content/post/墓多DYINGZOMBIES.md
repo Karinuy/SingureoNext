@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】墓多DYINGZOMBIES～Second Chance for BEAUTIFUL LIVE�
 tags:
   - AKABEiSOFT3
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/07/05/2f74d23b6f23f0e9bbb7d12e7e4fc4ca/1783257516-cover.avif

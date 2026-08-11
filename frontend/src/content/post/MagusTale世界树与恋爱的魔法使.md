@@ -3,7 +3,7 @@ title: 【PC/汉化】MagusTale～世界树与恋爱的魔法使～ - MagusTale 
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/e5f5a9149f12b95cc9eb264dbfb86647/1754114446-cover.avif'
 downloads:

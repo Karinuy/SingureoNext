@@ -3,7 +3,7 @@ title: 【PC/汉化】猫忍之心2 LOVE+PLUS - 猫忍えくすはーと２ LOVE
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/0f248724731f6362295f5443f35f41d2/1754117995-cover.avif'
 downloads:

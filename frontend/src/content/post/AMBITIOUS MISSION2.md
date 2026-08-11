@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】AMBITIOUS MISSION アフターエピソード2 弥栄�
 tags:
   - SAGA PLANETS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/17/682851c2cb6cc/cover.webp'

@@ -3,7 +3,7 @@ title: 【PC/汉化】Bradyon Veda - ブラディオンベーダ
 tags:
   - 暁WORKS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b700deaf0f/cover.webp'
 downloads:

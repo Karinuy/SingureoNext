@@ -3,7 +3,7 @@ title: 【PC/JOI/汉化】罐头少女的终末世界 Another八乙女华江篇 
 tags:
   - Silky's Plus
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/06/09/6846aea057155/cover.webp'

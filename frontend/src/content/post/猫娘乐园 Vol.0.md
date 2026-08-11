@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】猫娘乐园 Vol.0 水无月猫猫们的日常！ - ネ
 tags:
   - NEKO WORKs
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/26/680cb78b104d3/cover.webp'

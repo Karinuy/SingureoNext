@@ -3,7 +3,7 @@ title: 【PC/汉化】得々シリーズ　逃亡者　毒島音露～砂時計�
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/25/a309e73fc0b2e5a0aff8348d5b8d4325/1766641457-cover.avif'
 downloads:

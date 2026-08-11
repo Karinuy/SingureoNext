@@ -3,7 +3,7 @@ title: '【PC/汉化】你朱眸里的五彩世界 HD Re:GENERATION - 紅い瞳�
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743489536/67eb8a00d2f3e.webp'
 downloads:

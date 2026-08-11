@@ -3,7 +3,7 @@ title: 【PC/汉化】金婚 -Jewel Days- Golden Marriage -Jewel Days-
 tags:
   - ensemble
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/03/291743225649/67e783318cd28.webp'
 downloads:

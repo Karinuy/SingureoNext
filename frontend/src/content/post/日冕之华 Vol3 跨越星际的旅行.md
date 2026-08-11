@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】日冕之华 Vol.3 跨越星际的旅行 - 日冕花�
 tags:
   - Front Wing
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-15-300x168.jpg

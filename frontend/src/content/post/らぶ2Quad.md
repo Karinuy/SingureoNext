@@ -3,7 +3,7 @@ title: 【PC/汉化】らぶ2Quad
 tags:
   - ま～まれぇど
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/11/12/a961bbb9ef3fc379f3574fc962f4ac91/1762924597-cover.avif'
 downloads:

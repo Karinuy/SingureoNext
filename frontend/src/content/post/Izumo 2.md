@@ -3,7 +3,7 @@ title: 【PC/汉化】出云战记2 - Izumo 2
 tags:
   - Studio e.go!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/30/6839a895606f7/cover.webp'
 downloads:

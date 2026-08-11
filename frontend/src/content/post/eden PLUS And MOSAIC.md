@@ -3,7 +3,7 @@ title: "【PC/汉化】eden*PLUS+MOSAIC"
 tags:
   - minori
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/01/cover-54-220x300.jpg
 downloads:

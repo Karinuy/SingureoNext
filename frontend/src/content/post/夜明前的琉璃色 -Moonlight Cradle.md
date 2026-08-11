@@ -3,7 +3,7 @@ title: 【PC/汉化】夜明前的琉璃色 -Moonlight Cradle - 夜明け前よ�
 tags:
   - August
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/VhsHICmK-cover.jpg
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】恋にはあまえが必要です ～もっとあまえる
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/f49ed9693e707259f297d03563cc1659/1756099622-cover.avif'
 downloads:

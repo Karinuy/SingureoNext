@@ -3,7 +3,7 @@ title: 【PC/汉化】赤色约定 – FORTUNE ARTERIAL - FORTUNE ARTERIAL
 tags:
   - August
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/4I8CDoau-cover.jpg
 downloads:

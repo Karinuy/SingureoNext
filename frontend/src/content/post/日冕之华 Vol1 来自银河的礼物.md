@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】日冕之华 Vol.1 来自银河的礼物 - 日冕花�
 tags:
   - Front Wing
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-17-300x168.jpg

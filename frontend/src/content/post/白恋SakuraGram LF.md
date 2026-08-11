@@ -3,7 +3,7 @@ title: 【PC/汉化】白恋Sakura＊Gram LF - 白恋サクラ＊グラムＬＦ
 tags:
   - ナナウィンド
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/10/18/9df13ef446191dbd99dd7efda67f2f42/1760774391-cover.avif'
 downloads:

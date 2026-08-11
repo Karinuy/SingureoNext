@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】真实色情游戏情境体验！DT - リアルエロ�
 tags:
   - 自宅すたじお
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/08/11/e6b809430fb7e511905e9835238ec899/1754917938-cover.avif'

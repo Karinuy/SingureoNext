@@ -3,7 +3,7 @@ title: 【PC/汉化】俺たちに翼はない AfterStory
 tags:
   - Navel
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/13/68233f4ab2b74/cover.webp'
 downloads:

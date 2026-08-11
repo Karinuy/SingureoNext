@@ -3,7 +3,7 @@ title: 【PC/汉化】LOVELY QUEST - ラブリークエスト
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/55c1a29bf6bf0ec3511a36d6b13ec7d1/1756088130-cover.avif'
 downloads:

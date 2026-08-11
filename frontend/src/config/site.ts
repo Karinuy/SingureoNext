@@ -11,7 +11,7 @@ export const site = {
       icon: 'folder',
       children: [
         { label: '东方Project', href: '/category/东方Project/' },
-        { label: 'GalGame', href: '/category/GalGame/' },
+        { label: 'Galgame', href: '/category/Galgame/' },
         { label: 'PC资源', href: '/category/PC资源/' },
         { label: 'PE资源', href: '/category/PE资源/' },
       ],

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】与你相连的恋爱FLAG - 君とつながる恋フラ
 tags:
   - みらーじゅそふと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/06/18/68525a697ed0b/cover.webp'

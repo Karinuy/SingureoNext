@@ -3,7 +3,7 @@ title: 【PC/汉化】猫忍之心+PLUS 奈知篇 - 猫忍えくすはーと +PL
 tags:
   - Whirlpool
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/02/9ba3545fb6d010ab4e39655366cd2e2b/1754117409-cover.avif'
 downloads:

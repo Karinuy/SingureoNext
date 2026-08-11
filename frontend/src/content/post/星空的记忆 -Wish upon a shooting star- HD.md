@@ -3,7 +3,7 @@ title: 【PC/汉化】星空的记忆 -Wish upon a shooting star- HD - 星空の
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743488707/67eb86c3eefd5.webp'
 downloads:

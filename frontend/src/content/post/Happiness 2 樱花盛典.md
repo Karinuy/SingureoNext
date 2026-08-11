@@ -3,7 +3,7 @@ title: "【PC/汉化】Happiness! 2 樱花盛典 - はぴねす！2 Sakura Celeb
 tags:
   - ういんどみる Oasis
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/03/30/f270f83e8381c512055e0e87cbf853c7/1774874507-cover.avif
 downloads:

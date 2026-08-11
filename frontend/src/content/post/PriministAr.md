@@ -3,7 +3,7 @@ title: 【PC/汉化】PriministAr - プライミニスター
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/52fd0a7bf5c134e718a0295eb4ca6b26/1756088444-cover.avif'
 downloads:

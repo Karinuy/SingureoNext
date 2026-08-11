@@ -3,7 +3,7 @@ title: 【PC/汉化】鋼炎のソレイユ－ChaosRegion－
 tags:
   - SkyFish
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/26/6833f3f281192/cover.webp'
 downloads:

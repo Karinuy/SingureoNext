@@ -3,7 +3,7 @@ title: "【PC/汉化】キスから始まるギャルの恋 〜くるみのウ�
 tags:
   - プレカノ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/03/09/530d4773a8d361e91a92054aac132975/1773043149-cover.avif
 downloads:

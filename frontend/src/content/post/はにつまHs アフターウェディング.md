@@ -3,7 +3,7 @@ title: "【PC/汉化】はにつまHs ～アフターウェディング～"
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/448102314611d634499564647e3ac750/1779263284-cover.avif
 downloads:

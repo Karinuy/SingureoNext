@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】亚托莉 -我挚爱的时光 - ATRI -My Dear Moments-
 tags:
   - Front Wing
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-13-300x169.jpg

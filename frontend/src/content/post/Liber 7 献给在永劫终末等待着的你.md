@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】Liber_7 献给在永劫终末等待着的你 - Liber_7 
 tags:
   - Lass
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/19/1745057266/cover.webp'

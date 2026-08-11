@@ -3,7 +3,7 @@ title: "【PC/APK/汉化】LOOPERS - 时廻者"
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-6-210x300.jpg

@@ -3,7 +3,7 @@ title: 【PC/汉化】FLOWERS -春篇 - FLOWERS -Le volume sur printemps-
 tags:
   - Innocent Grey
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/05/1743857331/cover.webp'
 downloads:

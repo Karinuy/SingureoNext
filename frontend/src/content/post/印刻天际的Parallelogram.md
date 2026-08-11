@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】印刻天际的Parallelogram - 空に刻んだパラレ
 tags:
   - ウグイスカグラ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/23/680880e08778a/cover.webp'

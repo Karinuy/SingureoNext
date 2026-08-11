@@ -3,7 +3,7 @@ title: 【PC/汉化】鬼哭街 The Cyber Slayer
 tags:
   - Nitro+
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/13/1744508145/cover.webp'
 downloads:

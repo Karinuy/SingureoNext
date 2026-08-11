@@ -3,7 +3,7 @@ title: 【PC/汉化】ETERNAL KINGDOM～滅びの魔女と伝説の剣～
 tags:
   - Studio e.go!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/30/6839b442b0d5d/cover.webp'
 downloads:

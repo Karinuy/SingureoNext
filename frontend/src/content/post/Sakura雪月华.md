@@ -3,7 +3,7 @@ title: "【PC/汉化】Sakura~雪月华~ - SAKURA～雪月華～"
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/O5gv2f8N-cover.webp
 downloads:

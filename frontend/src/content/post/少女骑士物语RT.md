@@ -3,7 +3,7 @@ title: '【PC/汉化】少女骑士物语 Re:tell - ワルキューレロマン�
 tags:
   - Ricotta
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/31/683afbc6774e6/cover.webp'
 downloads:

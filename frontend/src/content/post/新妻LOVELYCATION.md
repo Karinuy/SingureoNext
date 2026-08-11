@@ -3,7 +3,7 @@ title: 【PC/汉化】新妻LOVELY×CATION
 tags:
   - hibiki works
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/07/08/686c90dfc2f90/cover.webp'
 downloads:

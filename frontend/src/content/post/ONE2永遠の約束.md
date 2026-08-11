@@ -3,7 +3,7 @@ title: 【PC/汉化】ONE2～永遠の約束～
 tags:
   - BaseSon
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/09/22/1b58c165c29b2384504504a4ca11fd7b/1758502248-cover.avif'
 downloads:

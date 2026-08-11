@@ -3,7 +3,7 @@ title: 【PC/汉化】心动初恋 Making*Lover - ハジラブ -Making＊Lovers-
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/0bec4ead279b765f0234721a9f5dfde1/1756346814-cover.avif'
 downloads:

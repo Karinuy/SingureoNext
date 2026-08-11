@@ -3,7 +3,7 @@ title: 【PC/汉化】らぶでれーしょん！ - Love Delation!
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/4dced8e1b4a92dfd7d294e06f530ca07/1756341649-cover.avif'
 downloads:

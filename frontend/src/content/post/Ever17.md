@@ -3,7 +3,7 @@ title: 【PC/ONS/汉化】Ever17
 tags:
   - MAGES.
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/07/11/6870b0867ee5f/cover.webp'

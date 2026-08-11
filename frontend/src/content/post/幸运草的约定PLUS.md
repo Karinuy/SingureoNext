@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】Clover Day's Plus - 幸运草的约定PLUS
 tags:
   - ALcot
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/17/1744870930/cover.webp'

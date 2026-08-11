@@ -3,7 +3,7 @@ title: "【PC/汉化】あねいも2 H's"
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/7610acda6f3f72b5cb765a890c4712b3/1779259333-cover.avif
 downloads:

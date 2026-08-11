@@ -3,7 +3,7 @@ title: "【PC/汉化】JOKER -死线尽头的小丑- - ＪＯＫＥＲ -死線�
 tags:
   - AKABEiSOFT3
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/07/05/c4bca2dae10ea1f672439674d1a0566e/1783248589-cover.avif
 downloads:

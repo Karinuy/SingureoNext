@@ -3,7 +3,7 @@ title: 【PC/汉化】Conflict Girl - コンフリクトガール
 tags:
   - ミラーイメージ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/11/09/29423fcc5e76365d9326df3f5edb030a/1762687374-cover.avif'
 downloads:

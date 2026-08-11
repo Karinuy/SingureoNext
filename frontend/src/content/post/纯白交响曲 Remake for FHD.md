@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】纯白交响曲 Remake for FHD - ましろ色シンフ�
 tags:
   - ぱれっと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/10/1744268213/cover.webp'

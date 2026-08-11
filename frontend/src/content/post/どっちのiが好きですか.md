@@ -3,7 +3,7 @@ title: 【PC/汉化】你喜欢的是哪个我呢? - どっちのiが好きで�
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/412c5d85edce0746506f5044d73ce4ac/1756092374-cover.avif'
 downloads:

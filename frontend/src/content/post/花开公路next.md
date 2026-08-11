@@ -3,7 +3,7 @@ title: '【PC/汉化】花开公路：下一站出口 - Highway Blossoms: Next E
 tags:
   - Studio Elan
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b4e4722114/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】この大空に、翼をひろげて GIFT EDITION
 tags:
   - PULLTOP
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/15/6825a64045f37/cover.webp'
 downloads:

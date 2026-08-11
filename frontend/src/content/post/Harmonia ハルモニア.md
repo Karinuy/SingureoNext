@@ -3,7 +3,7 @@ title: 【PC/汉化】Harmonia -ハルモニア
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/cover-7-210x300.jpg
 downloads:

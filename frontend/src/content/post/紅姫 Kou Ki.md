@@ -3,7 +3,7 @@ title: 【PC/汉化】紅姫 －Kou Ki－
 tags:
   - SAGA PLANETS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/17/68283a07524b3/cover.webp'
 downloads:

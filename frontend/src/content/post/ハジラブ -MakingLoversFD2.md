@@ -3,7 +3,7 @@ title: 【PC/汉化】ハジラブ -Making＊Lovers- ミニファンディスク
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/e0328b69f1768b2eeb2a53e66ec6c25d/1756347949-cover.avif'
 downloads:

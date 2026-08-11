@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】こんそめ！ ～combination somebody～
 tags:
   - Silver Bullet
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/19/682aedc781b5d/cover.webp'

@@ -3,7 +3,7 @@ title: 【PC/汉化】FLOWERS -冬篇 - FLOWERS -Le volume sur hiver
 tags:
   - Innocent Grey
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/05/1743858694/cover.webp'
 downloads:

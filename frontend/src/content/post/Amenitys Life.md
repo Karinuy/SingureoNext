@@ -3,7 +3,7 @@ title: 【PC/汉化】Amenity's Life - アメニティーズライフ
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/58f5f9bda838ba9449c85280755fa922/1756090254-cover.avif'
 downloads:

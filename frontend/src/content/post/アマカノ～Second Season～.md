@@ -3,7 +3,7 @@ title: 【PC/汉化】アマカノ～Second Season～
 tags:
   - あざらしそふと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/19/1745043668/cover.webp'
 downloads:

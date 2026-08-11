@@ -3,7 +3,7 @@ title: 【PC/汉化】Hira Hira Hihiru - ヒラヒラヒヒル
 tags:
   - BA-KU
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/10/27/8dfc5f012026a22c6c69661d45195289/1761542334-cover.avif'
 downloads:

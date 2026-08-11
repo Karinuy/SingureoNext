@@ -3,7 +3,7 @@ title: 【PC/汉化】Shiny Days
 tags:
   - 0verflow
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/22/682f0f98ed872/cover.webp'
 downloads:

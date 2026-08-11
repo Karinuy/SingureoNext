@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】日冕之华 Vol.2 自外而来的真相 - 日冕花�
 tags:
   - Front Wing
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-16-300x169.jpg

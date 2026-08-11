@@ -3,7 +3,7 @@ title: 【PC/汉化】3M -Marionettes manipulate the marionette-
 tags:
   - Hyperiyon
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/19/6853bde6a5066/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】任性HighSpec OC - ワガママハイスペックOC"
 tags:
   - Madosoft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/01/cover-38-300x203.jpg

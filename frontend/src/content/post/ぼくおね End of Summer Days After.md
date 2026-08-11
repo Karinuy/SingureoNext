@@ -3,7 +3,7 @@ title: "【PC/汉化】ぼくおね～End of Summer Days After～"
 tags:
   - bootUP!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/05/20/abf856513d49109b93ae2c07df40c09c/1779266432-cover.avif
 downloads:

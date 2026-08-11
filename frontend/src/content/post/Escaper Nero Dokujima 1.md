@@ -3,7 +3,7 @@ title: 【PC/汉化】得々シリーズ　逃亡者　毒島音露～離島の�
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/24/4695fce4358870d3db5b71315aef971d/1766552491-cover.avif'
 downloads:

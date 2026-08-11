@@ -3,7 +3,7 @@ title: 【PC/汉化】ヤバい！―復讐・闇サイト―
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/26/9c04e8c2b7d0b771c9e753d56a88b4ce/1766728905-cover.avif'
 downloads:

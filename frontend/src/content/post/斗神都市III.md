@@ -3,7 +3,7 @@ title: 【PC/汉化】斗神都市III - 闘神都市III
 tags:
   - Alice Soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/23/6858ef75ab2c6/cover.webp'
 downloads:

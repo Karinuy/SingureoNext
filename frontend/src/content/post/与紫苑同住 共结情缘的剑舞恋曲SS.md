@@ -3,7 +3,7 @@ title: 【PC/汉化】与紫苑同住 共结情缘的剑舞恋曲SS - しおん�
 tags:
   - CRYSTALiA
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/31/683aeba076725/cover.webp'
 downloads:

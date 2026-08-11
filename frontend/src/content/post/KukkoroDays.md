@@ -3,7 +3,7 @@ title: "【PC/汉化】异世界女骑士的同居生活 - くっころでいず
 tags:
   - qureate
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/04/02/933bdd069b204d0074d23041eabdfddf/1775133797-cover.avif
 downloads:

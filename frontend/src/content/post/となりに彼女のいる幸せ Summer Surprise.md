@@ -3,7 +3,7 @@ title: "【PC/Ty/汉化】となりに彼女のいる幸せ ～Summer Surprise�
 tags:
   - プレカノ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/03/09/b9a87a9e88dd71eb4567c9797f6eb172/1773040088-cover.avif

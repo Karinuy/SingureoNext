@@ -3,7 +3,7 @@ title: 【PC/汉化】与椿同住 共结情缘的剑舞恋曲SS - 椿とワン�
 tags:
   - CRYSTALiA
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/31/683aecea4f817/cover.webp'
 downloads:

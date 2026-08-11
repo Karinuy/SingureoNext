@@ -3,7 +3,7 @@ title: 【PC/汉化】Cannonball～猫猫疯狂大赛车～ - CANNONBALL ～ね�
 tags:
   - Liar-soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/26/680c89badf3a4/cover.webp'
 downloads:

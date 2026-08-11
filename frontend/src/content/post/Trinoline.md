@@ -3,7 +3,7 @@ title: "【PC/汉化】Trinoline - トリノライン"
 tags:
   - minori
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/01/cover-46-300x210.jpg
 downloads:

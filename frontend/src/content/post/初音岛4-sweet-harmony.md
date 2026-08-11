@@ -3,7 +3,7 @@ title: 【PC/汉化】初音岛4 Sweet Harmony - D.C.4 Sweet Harmony ～ダ・�
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/cover.webp
 downloads:

@@ -3,7 +3,7 @@ title: '【PC/Ty/汉化】常轨脱离Creative Re:Re:call - ハミダシクリ�
 tags:
   - Madosoft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/28/680f0c9a60873/cover.webp'

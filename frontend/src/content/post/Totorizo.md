@@ -3,7 +3,7 @@ title: "【PC/汉化】彼女と俺と、恋するリゾート ～彼女と俺�
 tags:
   - PULLTOP LATTE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/04/06/825cd5f4481135106c66d047e29f4a45/1775476973-cover.avif
 downloads:

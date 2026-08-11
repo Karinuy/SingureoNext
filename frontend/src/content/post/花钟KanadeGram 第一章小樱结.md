@@ -3,7 +3,7 @@ title: '【PC/KR/汉化】花钟Kanade＊Gram 第一章：小樱结 - 花鐘カ�
 tags:
   - ナナウィンド
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/10/18/84c98c2ec0d0ecfd183e9ecbf92217cb/1760773534-cover.avif'

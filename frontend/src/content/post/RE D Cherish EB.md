@@ -3,7 +3,7 @@ title: '【PC/汉化】RE:D Cherish! -Eternity Blood-'
 tags:
   - CRYSTALiA
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/31/683af55521aec/cover.webp'
 downloads:

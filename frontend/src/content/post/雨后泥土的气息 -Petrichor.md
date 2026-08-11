@@ -3,7 +3,7 @@ title: 【PC/汉化】雨后泥土的气息 -Petrichor- - ペトリコール -Pe
 tags:
   - MELLOW
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/10/20/8a586a83692c65d8460a9f4fa5a61ff6/1760938380-cover.avif'
 downloads:

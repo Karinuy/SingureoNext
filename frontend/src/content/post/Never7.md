@@ -3,7 +3,7 @@ title: 【PC/汉化】第七夜 无限轮回的终结 - Never7 -the end of infin
 tags:
   - MAGES.
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/07/11/6870b3d9cacce/cover.webp'
 downloads:

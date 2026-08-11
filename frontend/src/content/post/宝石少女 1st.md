@@ -3,7 +3,7 @@ title: 【PC/汉化】宝石少女 1st.cut:The Reason She Must Perish - プト�
 tags:
   - トトメトリ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/09/10/7cf078492089dc4782f787647cb65d8c/1757486133-cover.avif'
 downloads:

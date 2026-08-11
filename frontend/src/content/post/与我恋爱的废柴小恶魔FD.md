@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】与我恋爱的废柴小恶魔。 ～甜腻后日谈～
 tags:
   - Smile
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/06/02/683d460dea1f8/cover.webp'

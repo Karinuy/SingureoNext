@@ -3,7 +3,7 @@ title: 【PC/汉化】Amenity's Life MiniFanDisc -レゾナ＆板野奏 Ver.-
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/0ae468f2f424ac0a45a6e190cf7f8b30/1756090662-cover.avif'
 downloads:

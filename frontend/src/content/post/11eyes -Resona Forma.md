@@ -3,7 +3,7 @@ title: 【PC/汉化】11eyes -Resona Forma-
 tags:
   - Lass
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/19/1745055107/cover.webp'
 downloads:

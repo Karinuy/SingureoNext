@@ -3,7 +3,7 @@ title: 【PC/汉化】水仙全系列 - Narcissu
 tags:
   - ねこねこソフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/04/6816fdc19a6f1/cover.webp'
 downloads:

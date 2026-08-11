@@ -3,7 +3,7 @@ title: "【PC/汉化】Rewrite Harvest festa！"
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/cover-9-209x300.jpg
 downloads:

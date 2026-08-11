@@ -3,7 +3,7 @@ title: 【PC/汉化】WANNABE→CREATORS - ワナクリ
 tags:
   - DESSERT Soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/21/52b553ab9e5a8a54b67a0e85df42a763/1755769599-cover.avif'
 downloads:

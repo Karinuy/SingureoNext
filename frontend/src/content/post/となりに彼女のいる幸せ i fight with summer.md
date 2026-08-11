@@ -3,7 +3,7 @@ title: "【PC/汉化】となりに彼女のいる幸せ～i fight with summer�
 tags:
   - プレカノ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/03/09/b0a01da3b3a8c13e8620edc2a5a287c3/1773043962-cover.avif
 downloads:

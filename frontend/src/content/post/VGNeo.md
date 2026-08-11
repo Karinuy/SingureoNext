@@ -3,7 +3,7 @@ title: 【PC/汉化】V.G. Neo
 tags:
   - 戯画
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/07/68439a6b480be/cover.webp'
 downloads:

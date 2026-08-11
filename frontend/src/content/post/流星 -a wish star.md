@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】流星 -a wish star - 流る星 -a wish star
 tags:
   - NANACAN
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/15/1744699058/cover.webp'

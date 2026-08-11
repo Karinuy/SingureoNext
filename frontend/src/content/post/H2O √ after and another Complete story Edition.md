@@ -3,7 +3,7 @@ title: 【PC/汉化】H2O √ after and another Complete story Edition
 tags:
   - 枕
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/17/1744874343/cover.webp'
 downloads:

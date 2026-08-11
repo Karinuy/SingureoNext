@@ -3,7 +3,7 @@ title: 【PC/汉化】FLOWERS -秋篇 - FLOWERS -Le volume sur automne
 tags:
   - Innocent Grey
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/05/1743858209/cover.webp'
 downloads:

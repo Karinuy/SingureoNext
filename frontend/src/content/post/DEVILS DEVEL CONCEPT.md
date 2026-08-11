@@ -3,7 +3,7 @@ title: 【PC/汉化】DEVILS DEVEL CONCEPT
 tags:
   - 暁WORKS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b6b976d1fd/cover.webp'
 downloads:

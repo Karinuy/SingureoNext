@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】恋爱×决胜战 FD1 – 乃乃香&莲菜&由奈小故
 tags:
   - ASa Project
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2025/02/cover-35-207x300.jpg

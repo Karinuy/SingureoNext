@@ -3,7 +3,7 @@ title: 【PC/汉化】フォセット ～Cafe au Le Ciel Bleu～
 tags:
   - 戯画
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/07/68439e8ccc2da/cover.webp'
 downloads:

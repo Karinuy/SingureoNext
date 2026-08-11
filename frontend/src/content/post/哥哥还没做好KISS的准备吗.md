@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】哥哥，还没做好KISS的准备吗？ - お兄ちゃ
 tags:
   - Tinkle Position
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/08/02/09831cc1d73776687f06c0305b0391ce/1754112573-cover.avif'

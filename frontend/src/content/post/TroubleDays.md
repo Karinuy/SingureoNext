@@ -3,7 +3,7 @@ title: "【PC/汉化】纯情魅魔的同居生活 - とらぶるでいず - Tro
 tags:
   - qureate
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/04/02/67cc1009fe4b9e467cc2167b41db440c/1775133435-cover.avif
 downloads:

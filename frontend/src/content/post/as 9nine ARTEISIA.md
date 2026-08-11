@@ -3,7 +3,7 @@ title: "【PC/汉化】as:9-nine- ARTEISIA"
 tags:
   - ぱれっと
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/07/05/c64bea44e6ae9de90c99ff446abe021e/1783258317-cover.avif
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】爱上火车 Last Run!! - まいてつ Last Run!!
 tags:
   - Lose
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/21/6805ff0ab56e0/cover.webp'

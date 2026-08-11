@@ -3,7 +3,7 @@ title: 【PC/汉化】迷途的二人与世界的全部 LOVE HEAVEN 300% - 迷�
 tags:
   - Lass
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/19/1745056165/cover.webp'
 downloads:

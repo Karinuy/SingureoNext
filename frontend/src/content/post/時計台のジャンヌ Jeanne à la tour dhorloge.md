@@ -3,7 +3,7 @@ title: 【PC/汉化】時計台のジャンヌ ～Jeanne à la tour d'horloge～
 tags:
   - Liar-soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/26/680cac07d1fbe/cover.webp'
 downloads:

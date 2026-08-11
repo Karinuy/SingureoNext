@@ -3,7 +3,7 @@ title: 【PC/汉化】Color of White
 tags:
   - Hyperiyon
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/19/6853c057ed1da/cover.webp'
 downloads:

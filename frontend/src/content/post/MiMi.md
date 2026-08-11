@@ -3,7 +3,7 @@ title: "【PC/汉化】MiMi"
 tags:
   - ROOT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/04/05/67a38b3db2a104f7e9d9c1c42717f3db/1775389107-cover.avif
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】MeltyMoment ～メルティモーメント～
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/a51e7e8eba71c238805770f7ecd8e157/1756088744-cover.avif'
 downloads:

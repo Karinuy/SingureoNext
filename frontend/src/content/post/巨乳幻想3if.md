@@ -3,7 +3,7 @@ title: 【PC/汉化】巨乳幻想3if - 巨乳ファンタジー3 if
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/12/28/3715b533dac2cc00ccca9d7ec2cfc669/1766922157-cover.avif'
 downloads:

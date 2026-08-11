@@ -3,7 +3,7 @@ title: "【PC/汉化】龙骑士Bloody†Saga - 竜騎士Bloody†Saga"
 tags:
   - AKABEiSOFT3
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/07/05/f439167f0bb1084791a39d506dc25851/1783253575-cover.avif
 downloads:

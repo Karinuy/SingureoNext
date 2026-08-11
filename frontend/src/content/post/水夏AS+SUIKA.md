@@ -3,7 +3,7 @@ title: "【PC/汉化】水夏A.S+～ SUIKA ～"
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/hsvhTkEh-cover.webp
 downloads:

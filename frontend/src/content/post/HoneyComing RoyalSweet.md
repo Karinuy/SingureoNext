@@ -3,7 +3,7 @@ title: 【PC/汉化】@HoneyComing RoyalSweet
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/f8a8782c7214e92e9f9c7c3ac20aff4e/1756085743-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】G弦上的魔王 大番外篇『车轮之国的魔王』 -
 tags:
   - あかべぇそふとつぅ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/23/1fe5621b4bba5a5a788017be07f9af03/1755913948-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】Making＊Lovers 激イチャアフターストーリー
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/38591d5cda85b8f71439ea90e1305635/1756344787-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: '【PC/汉化】五彩斑斓的曙光 HD Re:GENERATION - いろとりど�
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743489073/67eb883129d75.webp'
 downloads:

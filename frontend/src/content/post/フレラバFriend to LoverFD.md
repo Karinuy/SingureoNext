@@ -3,7 +3,7 @@ title: 【PC/汉化】フレラバ 〜Friend to Lover〜 ミニファンディ�
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/be1cc034810383816c19f495ba0e0133/1756343363-cover.avif'
 downloads:

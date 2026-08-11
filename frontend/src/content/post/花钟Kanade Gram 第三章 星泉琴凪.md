@@ -3,7 +3,7 @@ title: '【PC/KR/汉化】花钟Kanade＊Gram 第三章：星泉琴凪 - 花鐘�
 tags:
   - ナナウィンド
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/10/18/3da1ae9e6c5c017ccb904dfaac8c6866/1760774791-cover.avif'

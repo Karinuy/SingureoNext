@@ -3,7 +3,7 @@ title: "【PC/汉化】anemoi"
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/04/26/f048f8caa77ed5f89077472351dc9aaa/1777196918-cover.avif
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】春音Alice＊Gram - 春音アリス＊グラム
 tags:
   - ナナウィンド
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/10/18/411ba1abbcb0c08ee5799dd212bc5738/1760772666-cover.avif'

@@ -3,7 +3,7 @@ title: 【PC/汉化】恋とHしかしていない！
 tags:
   - ユニゾンシフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/559a0d459ca24bd1196cea14fdb14080/1756082017-cover.avif'
 downloads:

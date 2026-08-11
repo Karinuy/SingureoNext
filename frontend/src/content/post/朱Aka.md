@@ -3,7 +3,7 @@ title: 【PC/汉化】朱－Aka－
 tags:
   - ねこねこソフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/04/6816ebf2ec746/cover.webp'
 downloads:

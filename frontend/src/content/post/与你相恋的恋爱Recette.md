@@ -3,7 +3,7 @@ title: 【PC/汉化】与你相恋的恋爱Recette - あなたに恋する恋愛
 tags:
   - ユニゾンシフト
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/59a78463732d01778621a8eae83751c4/1756081620-cover.avif'
 downloads:

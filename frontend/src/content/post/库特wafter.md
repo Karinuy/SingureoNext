@@ -3,7 +3,7 @@ title: 【PC/汉化】库特wafter - Kud wafter - クドわふたー
 tags:
   - Key
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/02/cover-11-213x300.jpg
 downloads:

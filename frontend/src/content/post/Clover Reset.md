@@ -3,7 +3,7 @@ title: 【PC/APK/汉化】Clover Reset - クローバー・リセット
 tags:
   - ビビドックシ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/08/26/f2265ca51f43ec38ad40613e18c36935/1756177763-cover.avif'

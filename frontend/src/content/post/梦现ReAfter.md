@@ -3,7 +3,7 @@ title: '【PC/汉化】梦现Re:After - 夢現Re:After'
 tags:
   - 工画堂スタジオ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b5c60ee9c7/cover.webp'
 downloads:

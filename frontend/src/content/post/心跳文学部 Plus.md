@@ -3,7 +3,7 @@ title: 【PC/汉化】心跳文学部 Plus - Doki Doki Literature Club Plus! - D
 tags:
   - Team Salvato
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/23/68089b14c6081/cover.webp'
 downloads:

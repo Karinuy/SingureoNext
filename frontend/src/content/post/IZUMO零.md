@@ -3,7 +3,7 @@ title: 【PC/汉化】出云战记零 - IZUMO零
 tags:
   - Studio e.go!
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/30/6839ae1d55527/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/Ty/汉化】流星世界演绎者：Badge & Dagger - 流星ワー�
 tags:
   - Heliodor
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/03/31/2e42462aa1818fa880ea4804cbcaff3e/1774949669-cover.avif

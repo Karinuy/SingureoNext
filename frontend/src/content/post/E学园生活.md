@@ -3,7 +3,7 @@ title: 【PC/汉化】美好的回乡生活 - Ｅスクールライフ - E学园
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/868c12b21ff46787dd6f753c7164a8de/1756091964-cover.avif'
 downloads:

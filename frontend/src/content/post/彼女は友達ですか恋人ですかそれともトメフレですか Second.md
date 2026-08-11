@@ -3,7 +3,7 @@ title: 【PC/汉化】彼女は友達ですか？恋人ですか？それとも�
 tags:
   - DESSERT Soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/21/572818c2a4fb2dd1143c94382044265a/1755768732-cover.avif'
 downloads:

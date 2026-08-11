@@ -3,7 +3,7 @@ title: 【PC/汉化】冻京NECRO - 凍京NECRO＜トウキョウ・ネクロ＞
 tags:
   - Nitro+
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/13/1744520600/cover.webp'
 downloads:

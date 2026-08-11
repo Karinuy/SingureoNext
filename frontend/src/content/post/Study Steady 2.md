@@ -3,7 +3,7 @@ title: 【PC/汉化】Study § Steady 2 - スタディ§ステディ2
 tags:
   - ま～まれぇど
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/11/12/55eb9f3b9a88cff58af3bfd2c8aa82c4/1762927337-cover.avif'
 downloads:

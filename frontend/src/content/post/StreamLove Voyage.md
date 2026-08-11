@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】StreamLove Voyage
 tags:
   - Confiture
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/19/682add40a67c8/cover.webp'

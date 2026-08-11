@@ -3,7 +3,7 @@ title: 【PC/汉化】Secret Agent〜骑校忍者物语〜 - Secret Agent〜騎�
 tags:
   - ensemble
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/03/291743226568/67e786c80d21f.webp'
 downloads:

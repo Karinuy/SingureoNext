@@ -3,7 +3,7 @@ title: 【PC/汉化】被关在不做XX就出不去的房间里结果做了也�
 tags:
   - Tily
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/29/2f5f6fb2780ad10d4123d2a1065b248e/1756435008-cover.avif'
 downloads:

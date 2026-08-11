@@ -3,7 +3,7 @@ title: 【PC/汉化】D.C.II Spring Celebration ～ダ・カーポII～ スプ�
 tags:
   - CIRCUS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/03/p3AzCqE1-cover.jpg
 downloads:

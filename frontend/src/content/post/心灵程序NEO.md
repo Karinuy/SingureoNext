@@ -3,7 +3,7 @@ title: 【PC/汉化】心灵程序NEO - ココロ＠ファンクション！ NEO
 tags:
   - PULLTOP
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/15/682591360de6b/cover.webp'
 downloads:

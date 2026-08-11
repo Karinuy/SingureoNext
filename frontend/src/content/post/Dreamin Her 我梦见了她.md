@@ -3,7 +3,7 @@ title: 【PC/APK/汉化】Dreamin' Her -我梦见了她。 - Dreamin' Her -僕�
 tags:
   - LIFE0
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/19/682ae50b63942/cover.webp'

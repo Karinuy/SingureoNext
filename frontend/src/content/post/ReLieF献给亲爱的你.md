@@ -3,7 +3,7 @@ title: '【PC/KR/汉化】Re:LieF ～献给亲爱的你～ - Re:LieF ～親愛�
 tags:
   - RASK
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/06/21/68565695bdbc7/cover.webp'

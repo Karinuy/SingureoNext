@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】Princess x Princess
 tags:
   - Navel
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/13/68234e91c1a43/cover.webp'

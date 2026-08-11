@@ -3,7 +3,7 @@ title: 【PC/汉化】Super D.P.S.
 tags:
   - Alice Soft
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/23/6858bee75525e/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: 【PC/汉化】月色天娇2 - PRIMAL×HEARTS2
 tags:
   - ま～まれぇど
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/11/12/9b11ad071d76f572480eb655c075f25a/1762925900-cover.avif'
 downloads:

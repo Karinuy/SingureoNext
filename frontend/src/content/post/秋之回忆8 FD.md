@@ -3,7 +3,7 @@ title: 【PC/汉化】告别回忆 -无垢少女- 致最爱的你 - メモリー
 tags:
   - MAGES.
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/07/11/6870b96698723/cover.webp'
 downloads:

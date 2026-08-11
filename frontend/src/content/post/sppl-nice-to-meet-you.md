@@ -3,7 +3,7 @@ title: "【PC/汉化】SPPL NICE TO MEET YOU！- すぴぱら NICE TO MEET YOU�
 tags:
   - minori
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2025/01/cover-51-209x300.jpg
 downloads:

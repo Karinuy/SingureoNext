@@ -3,7 +3,7 @@ title: 【PC/汉化】LikeLife 氷庫版 - ライクライフ氷庫版
 tags:
   - HOOKSOFT
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/25/d03217efecd18a3899d979a0ea26f87c/1756083608-cover.avif'
 downloads:

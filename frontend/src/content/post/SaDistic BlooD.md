@@ -3,7 +3,7 @@ title: 【PC/汉化】SaDistic BlooD 狂嗜之血 - SaDistic BlooD
 tags:
   - Black Cyc
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/18/6852767a3a80d/cover.webp'
 downloads:

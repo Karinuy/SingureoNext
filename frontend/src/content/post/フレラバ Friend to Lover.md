@@ -3,7 +3,7 @@ title: 【PC/汉化】フレラバ ～Friend to Lover～
 tags:
   - SMEE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/08/28/19dd2e0d61f95546bde4365303905500/1756343009-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: '【PC/汉化】发明工坊之重建 ～Tristia:restore～ - トリス�
 tags:
   - 工画堂スタジオ
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b5f8a51dad/cover.webp'
 downloads:

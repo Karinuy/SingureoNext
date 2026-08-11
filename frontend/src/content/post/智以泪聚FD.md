@@ -3,7 +3,7 @@ title: 【PC/汉化】智以泪聚FD-吹向明日彼岸的可视之风- - るい
 tags:
   - 暁WORKS
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/06/25/685b6de315407/cover.webp'
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/KR/汉化】圣骑士Melty☆Lovers - 聖騎士Melty☆Lovers"
 tags:
   - AKABEiSOFT3
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: https://res.sin0.cc/2026/07/05/113d3748c63be936bee334d0f3717fd8/1783249815-cover.avif

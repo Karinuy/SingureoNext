@@ -3,7 +3,7 @@ title: 【PC/汉化】タユタマ２-After Stories
 tags:
   - Lump of Sugar
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/28/680f28ecdf288/cover.webp'
 downloads:

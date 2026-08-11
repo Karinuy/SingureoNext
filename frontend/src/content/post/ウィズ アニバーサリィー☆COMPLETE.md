@@ -3,7 +3,7 @@ title: 【PC/汉化】ウィズ アニバーサリィー☆COMPLETE!（ウィズ
 tags:
   - FAVORITE
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/04/011743493026/67eb97a28383c.webp'
 downloads:

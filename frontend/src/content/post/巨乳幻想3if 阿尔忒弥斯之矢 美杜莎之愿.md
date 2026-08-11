@@ -3,7 +3,7 @@ title: 【PC/汉化】巨乳幻想3if -阿尔忒弥斯之矢・美杜莎之愿 -
 tags:
   - Waffle
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2026/01/08/0764afd3bbbbf6d227207e1c8506c625/1767849560-cover.avif'
 downloads:

@@ -3,7 +3,7 @@ title: "【PC/汉化】流星世界演绎者 Gaslight Bullet - 流星ワール�
 tags:
   - Heliodor
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: https://res.sin0.cc/2026/03/31/2ce72ed7019856f55e5e1774fd8a31c0/1774949929-cover.avif
 downloads:

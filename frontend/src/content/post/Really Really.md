@@ -3,7 +3,7 @@ title: 【PC/汉化】Really? Really!
 tags:
   - Navel
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
 cover: 'https://res.sin0.cc/2025/05/13/68233a5edebaf/cover.webp'
 downloads:

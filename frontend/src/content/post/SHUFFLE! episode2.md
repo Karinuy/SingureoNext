@@ -3,7 +3,7 @@ title: 【PC/Ty/汉化】SHUFFLE! episode2 ～被神与魔同时盯上的男人�
 tags:
   - Navel
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/05/13/68234d52a8d99/cover.webp'

@@ -3,7 +3,7 @@ title: 【PC/KR/汉化】クリミナルボーダー 2nd offence
 tags:
   - Purple software
 categories:
-  - - GalGame
+  - - Galgame
   - - PC资源
   - - PE资源
 cover: 'https://res.sin0.cc/2025/04/15/1744695999/cover.webp'
