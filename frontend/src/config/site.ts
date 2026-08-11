@@ -63,6 +63,7 @@ export const site = {
     { label: 'GalError', href: 'https://www.galerror.top/' },
     { label: '月幕Galgame', href: 'https://www.ymgal.games/' },
     { label: 'ACG游戏社', href: 'https://www.acgyxs.org/' },
+    { label: 'Mikiacg', href: 'https://www.mikiacg.org' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
