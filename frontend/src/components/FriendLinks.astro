@@ -4,7 +4,7 @@ import { resolveLink } from '../lib/redirect';
 
 const friendLinks = site.friendLinks.map((item) => ({
   ...item,
-  link: resolveLink(item.href, { skipRedirect: true }),
+  link: resolveLink(item.href, { redirect: site.redirect, skipRedirect: true }),
 }));
 ---
 

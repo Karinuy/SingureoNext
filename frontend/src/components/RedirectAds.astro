@@ -21,7 +21,7 @@ const enabled = config?.enabled ?? true;
   enabled && adItems.length ? (
     <div class={cn('grid gap-4', className)}>
       {adItems.map((item) => {
-        const link = resolveLink(item.href);
+        const link = resolveLink(item.href, { redirect: site.redirect });
         return (
           <a href={link.href} target={link.target} rel={link.rel} class="group block no-underline text-inherit">
             <Card class="overflow-hidden p-0">

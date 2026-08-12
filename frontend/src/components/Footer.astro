@@ -5,7 +5,7 @@ import { resolveLink } from '../lib/redirect';
 const currentYear = new Date().getFullYear();
 const footerLinks = site.footerLinks.map((item) => ({
   ...item,
-  link: resolveLink(item.href),
+  link: resolveLink(item.href, { redirect: site.redirect }),
 }));
 ---
 

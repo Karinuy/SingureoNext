@@ -27,8 +27,8 @@ function resolveNavItem(item: NavItem): ResolvedNavItem {
   return {
     label: item.label,
     icon: item.icon,
-    ...resolveLink(item.href),
-    children: item.children?.map(resolveNavItem),
+    ...resolveLink(item.href, { redirect: site.redirect }),
+    children: item.children?.map((child) => resolveNavItem(child)),
   };
 }
 

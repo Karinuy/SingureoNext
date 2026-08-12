@@ -22,7 +22,7 @@ const ads = resolveAdItems(config)
   .map((item) => ({
     title: item.title,
     image: item.image,
-    link: resolveLink(item.href),
+    link: resolveLink(item.href, { redirect: site.redirect }),
   }));
 ---
 

@@ -1,6 +1,7 @@
 ---
 import { Download } from '@lucide/astro';
 import Button from '@/components/ui/Button.astro';
+import { site } from '@/config/site';
 import { resolveLink } from '@/lib/redirect';
 import { cn } from '@/lib/utils';
 
@@ -13,7 +14,7 @@ type Props = {
 
 const { label, href, disabled = false, class: className } = Astro.props;
 const riskHint = '下载资源可能存在风险，请自行确定安全性，本站无法保证所有资源的安全性';
-const resolvedLink = href ? resolveLink(href) : undefined;
+const resolvedLink = href ? resolveLink(href, { redirect: site.redirect }) : undefined;
 ---
 
 {

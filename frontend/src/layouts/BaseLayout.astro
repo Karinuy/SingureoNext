@@ -83,6 +83,7 @@ const breadcrumbItems = breadcrumbs ?? defaultBreadcrumbs(Astro.url.pathname);
 const showBreadcrumbs = !isHome && !hideBreadcrumbs;
 const artalkEnabled = site.artalk.enabled;
 const artalkServer = site.artalk.server.trim();
+const clientRedirectWhitelist = JSON.stringify(site.redirect?.whitelist ?? []);
 ---
 
 <html lang="zh-CN">
@@ -158,7 +159,14 @@ const artalkServer = site.artalk.server.trim();
       </script>
     ) : null}
   </head>
-  <body class="min-h-screen antialiased flex flex-col">
+  <body
+    class="min-h-screen antialiased flex flex-col"
+    data-redirect-enabled={site.redirect?.enabled ? 'true' : 'false'}
+    data-redirect-whitelist={clientRedirectWhitelist}
+    data-artalk-enabled={artalkEnabled ? 'true' : 'false'}
+    data-artalk-server={artalkEnabled ? artalkServer : undefined}
+    data-artalk-site={artalkEnabled ? site.name : undefined}
+  >
     <Navbar />
     <main class="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 pb-4 pt-[4.5rem] md:pb-5 md:pt-20">
       {showBreadcrumbs ? (

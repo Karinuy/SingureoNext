@@ -1,5 +1,5 @@
 import { slugifySegment } from '@/lib/slug';
-import { resolveLink } from '@/lib/redirect';
+import { getClientResolveLinkOptions, resolveLink } from '@/lib/redirect';
 import {
   buildPostListAdFeed,
   resolveAdItems,
@@ -112,7 +112,7 @@ ${tagRow}
 }
 
 function renderAdCard(ad: { title: string; href: string; image: string }) {
-  const link = resolveLink(ad.href);
+  const link = resolveLink(ad.href, getClientResolveLinkOptions());
   const target = link.target ? ` target="${escapeHtml(link.target)}"` : '';
   const rel = link.rel ? ` rel="${escapeHtml(link.rel)}"` : '';
 

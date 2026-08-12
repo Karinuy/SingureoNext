@@ -1,13 +1,15 @@
-import { site } from '../config/site';
-
-const whitelist = (site.redirect?.whitelist ?? []).map((domain) => domain.toLowerCase());
-
 export const EXTERNAL_LINK_TARGET = '_blank';
 export const EXTERNAL_LINK_REL = 'noreferrer noopener';
+
+export type RedirectConfig = {
+  enabled?: boolean;
+  whitelist?: string[];
+};
 
 type ResolveLinkOptions = {
   currentHostname?: string;
   skipRedirect?: boolean;
+  redirect?: RedirectConfig;
 };
 
 type ResolvedLink = {
@@ -22,6 +24,23 @@ function matchesDomain(hostname: string, domain: string): boolean {
 
 function encodeRedirectHref(href: string): string {
   return btoa(unescape(encodeURIComponent(href)));
+}
+
+function normalizeWhitelist(config?: RedirectConfig): string[] {
+  return (config?.whitelist ?? [])
+    .map((domain) => domain.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function readJsonArray(value?: string): string[] {
+  if (!value) return [];
+
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === 'string') : [];
+  } catch {
+    return [];
+  }
 }
 
 export function isHttpHref(href: string): boolean {
@@ -42,10 +61,11 @@ export function isExternalHttpHref(href: string, options: ResolveLinkOptions = {
 }
 
 export function shouldUseRedirect(href: string, options: ResolveLinkOptions = {}): boolean {
-  if (options.skipRedirect || !site.redirect?.enabled || !isExternalHttpHref(href, options)) return false;
+  if (options.skipRedirect || !options.redirect?.enabled || !isExternalHttpHref(href, options)) return false;
 
   try {
     const hostname = new URL(href).hostname.toLowerCase();
+    const whitelist = normalizeWhitelist(options.redirect);
     return !whitelist.some((domain) => matchesDomain(hostname, domain));
   } catch {
     return false;
@@ -66,6 +86,31 @@ export function resolveLink(href: string, options: ResolveLinkOptions = {}): Res
     href: toRedirectUrl(href, options),
     target: EXTERNAL_LINK_TARGET,
     rel: EXTERNAL_LINK_REL,
+  };
+}
+
+export function readClientRedirectConfig(): RedirectConfig {
+  if (typeof document === 'undefined') return {};
+
+  const dataset = document.body?.dataset;
+  return {
+    enabled: dataset?.redirectEnabled === 'true',
+    whitelist: readJsonArray(dataset?.redirectWhitelist),
+  };
+}
+
+export function getClientResolveLinkOptions(options: ResolveLinkOptions = {}): ResolveLinkOptions {
+  if (typeof window === 'undefined') return options;
+
+  const clientOptions: ResolveLinkOptions = {
+    currentHostname: window.location.hostname,
+    redirect: readClientRedirectConfig(),
+  };
+
+  return {
+    ...clientOptions,
+    ...options,
+    redirect: options.redirect ?? clientOptions.redirect,
   };
 }
 
@@ -97,7 +142,7 @@ export function installExternalLinkNormalizer(): void {
   const key = '__externalLinkNormalizerInstalled';
   if ((window as typeof window & Record<string, unknown>)[key]) return;
 
-  const apply = () => normalizeExternalLinks(document, { currentHostname: window.location.hostname });
+  const apply = () => normalizeExternalLinks(document, getClientResolveLinkOptions());
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', apply, { once: true });

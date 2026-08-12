@@ -1,5 +1,3 @@
-import { site } from '@/config/site';
-
 type ArtalkModule = {
   default: {
     loadCountWidget: (config: Record<string, unknown>) => void;
@@ -17,11 +15,20 @@ async function getArtalk() {
   return (mod as unknown as ArtalkModule).default;
 }
 
-export async function loadArtalkCountWidget() {
-  if (!site.artalk.enabled) return;
+function readArtalkCountWidgetConfig() {
+  const dataset = document.body?.dataset;
+  return {
+    enabled: dataset?.artalkEnabled === 'true',
+    server: dataset?.artalkServer?.trim() ?? '',
+    site: dataset?.artalkSite?.trim() ?? '',
+  };
+}
 
-  const server = site.artalk.server.trim();
-  if (!server) return;
+export async function loadArtalkCountWidget() {
+  const config = readArtalkCountWidgetConfig();
+  if (!config.enabled) return;
+
+  if (!config.server || !config.site) return;
 
   if (
     !document.querySelector(
@@ -33,8 +40,8 @@ export async function loadArtalkCountWidget() {
 
   const Artalk = await getArtalk();
   Artalk.loadCountWidget({
-    server,
-    site: site.name,
+    server: config.server,
+    site: config.site,
     pvEl: '.artalk-pv-count[data-page-key]',
     countEl: '.artalk-comment-count[data-page-key]',
     statPageKeyAttr: 'data-page-key',

@@ -28,7 +28,7 @@ const {
 
 const feed = buildPostListAdFeed(
   posts,
-  resolveAdItems(config).map((ad) => ({ ...ad, link: resolveLink(ad.href) }))
+  resolveAdItems(config).map((ad) => ({ ...ad, link: resolveLink(ad.href, { redirect: site.redirect }) }))
 );
 ---
 
