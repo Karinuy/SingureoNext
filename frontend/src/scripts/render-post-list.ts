@@ -129,9 +129,6 @@ function renderAdCard(ad: { title: string; href: string; image: string }) {
             class="lazy h-full w-full object-cover"
             decoding="async"
           />
-          <span class="absolute right-1.5 top-1.5 inline-flex h-6 items-center rounded-md border border-white/35 bg-black/45 px-2 text-[10px] font-semibold leading-none tracking-wide text-white shadow-sm backdrop-blur-md sm:right-3 sm:top-3">
-            广告
-          </span>
           <div
             aria-hidden="true"
             class="pointer-events-none absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 dark:bg-black/25"
