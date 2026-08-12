@@ -7,10 +7,18 @@ export type ArtalkLatestComment = {
   date: string;
   page_key: string;
   page_url?: string;
+  rid?: number;
+  reply_comment?: ArtalkReplyComment | null;
+  parent_comment?: ArtalkReplyComment | null;
   badge_name?: string;
   badge_color?: string;
   is_pending?: boolean;
   visible?: boolean;
+};
+
+export type ArtalkReplyComment = {
+  id: number;
+  nick: string;
 };
 
 export type ArtalkGravatarConf = {
@@ -29,6 +37,11 @@ type ArtalkConfResponse = {
       params?: string;
     };
   };
+};
+
+type ArtalkCommentDetailResponse = {
+  comment?: ArtalkLatestComment;
+  reply_comment?: ArtalkReplyComment | null;
 };
 
 export type ArtalkLatestCommentsQuery = {
@@ -110,6 +123,50 @@ export function formatCommentTime(dateInput: string) {
   return `${y}-${m}-${d}`;
 }
 
+function getReplyComment(comment: ArtalkLatestComment) {
+  return comment.reply_comment ?? comment.parent_comment ?? null;
+}
+
+async function fetchArtalkCommentDetail(server: string, id: number): Promise<ArtalkCommentDetailResponse | null> {
+  const base = normalizeArtalkBase(server);
+  const response = await fetch(`${base}/api/v2/comments/${encodeURIComponent(String(id))}`, {
+    headers: { Accept: 'application/json' },
+  });
+
+  if (!response.ok) return null;
+  return (await response.json()) as ArtalkCommentDetailResponse;
+}
+
+async function hydrateReplyComments(server: string, comments: ArtalkLatestComment[]) {
+  const pending = comments.filter((comment) => {
+    const rid = Number(comment.rid || 0);
+    return rid > 0 && !getReplyComment(comment)?.nick?.trim();
+  });
+
+  if (!pending.length) return comments;
+
+  const details = await Promise.all(
+    pending.map(async (comment) => ({
+      id: comment.id,
+      detail: await fetchArtalkCommentDetail(server, comment.id).catch(() => null),
+    }))
+  );
+  const detailById = new Map(details.map(({ id, detail }) => [id, detail]));
+
+  return comments.map((comment) => {
+    if (getReplyComment(comment)?.nick?.trim()) return comment;
+
+    const detail = detailById.get(comment.id);
+    const replyComment = detail?.reply_comment ?? detail?.comment?.reply_comment ?? detail?.comment?.parent_comment;
+    if (!replyComment?.nick?.trim()) return comment;
+
+    return {
+      ...comment,
+      reply_comment: replyComment,
+    };
+  });
+}
+
 export async function fetchArtalkGravatarConf(server: string): Promise<ArtalkGravatarConf> {
   const base = normalizeArtalkBase(server);
   const response = await fetch(`${base}/api/v2/conf`, {
@@ -154,9 +211,11 @@ export async function fetchArtalkLatestComments({
   const payload = (await response.json()) as ArtalkLatestCommentsResponse;
   const list = Array.isArray(payload.data) ? payload.data : [];
 
-  return list
+  const comments = list
     .filter((item) => item && item.visible !== false && item.is_pending !== true)
     .slice(0, safeLimit);
+
+  return hydrateReplyComments(server, comments);
 }
 
 export async function fetchArtalkLatestCommentsBundle(query: ArtalkLatestCommentsQuery) {

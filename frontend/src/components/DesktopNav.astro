@@ -1,17 +1,6 @@
 ---
-import { CalendarDays, FileText, Folder, Gamepad2, Heart, Home, Tags } from '@lucide/astro';
+import { resolveNavIcon, type NavIconName } from '@/lib/nav-icons';
 
-const navIconMap = {
-  calendarDays: CalendarDays,
-  fileText: FileText,
-  folder: Folder,
-  gamepad2: Gamepad2,
-  heart: Heart,
-  home: Home,
-  tags: Tags,
-};
-
-type NavIconName = keyof typeof navIconMap;
 type NavItem = { label: string; href: string; icon?: NavIconName; target?: string; rel?: string; children?: NavItem[] };
 
 type Props = {
@@ -24,7 +13,7 @@ const { items } = Astro.props;
 <nav class="flex items-center gap-0.5">
   {items.map((item) => {
     const hasChildren = Boolean(item.children?.length);
-    const Icon = item.icon ? navIconMap[item.icon] : undefined;
+    const Icon = resolveNavIcon(item.icon);
     const triggerClass = [
       'desktop-nav-item',
       'relative inline-flex items-center gap-1.5',
@@ -45,7 +34,7 @@ const { items } = Astro.props;
         <div class="desktop-nav-submenu">
           <div class="desktop-nav-submenu__panel" role="menu">
             {item.children?.map((child) => {
-              const ChildIcon = child.icon ? navIconMap[child.icon] : undefined;
+              const ChildIcon = resolveNavIcon(child.icon);
               return (
                 <a
                   href={child.href}

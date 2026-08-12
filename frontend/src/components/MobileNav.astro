@@ -1,20 +1,10 @@
 ---
-import { CalendarDays, ChevronDown, FileText, Folder, Gamepad2, Heart, Home, Menu, Tags, X } from '@lucide/astro';
+import { ChevronDown, Menu, X } from '@lucide/astro';
 import Button from '@/components/ui/Button.astro';
 import Drawer from '@/components/ui/Drawer.astro';
+import { resolveNavIcon, type NavIconName } from '@/lib/nav-icons';
 import { site } from '../config/site';
 
-const navIconMap = {
-  calendarDays: CalendarDays,
-  fileText: FileText,
-  folder: Folder,
-  gamepad2: Gamepad2,
-  heart: Heart,
-  home: Home,
-  tags: Tags,
-};
-
-type NavIconName = keyof typeof navIconMap;
 type NavItem = { label: string; href: string; icon?: NavIconName; target?: string; rel?: string; children?: NavItem[] };
 
 type Props = {
@@ -60,7 +50,7 @@ const panelId = 'mobile-nav-panel';
       {nav.map((item, index) => {
         const hasChildren = Boolean(item.children?.length);
         const submenuId = `mobile-nav-submenu-${index}`;
-        const Icon = item.icon ? navIconMap[item.icon] : undefined;
+        const Icon = resolveNavIcon(item.icon);
         return hasChildren ? (
           <div class="rounded-xl">
             <div class="flex items-center gap-1">
@@ -93,7 +83,7 @@ const panelId = 'mobile-nav-panel';
               <div class="overflow-hidden">
                 <div class="mt-1 flex flex-col gap-1 pl-3">
                   {item.children?.map((child) => {
-                    const ChildIcon = child.icon ? navIconMap[child.icon] : undefined;
+                    const ChildIcon = resolveNavIcon(child.icon);
                     return (
                       <a
                         href={child.href}

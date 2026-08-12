@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AnimeTracePage from '@/components/AnimeTracePage.astro';
+import { site } from '@/config/site';
+
+export function getStaticPaths() {
+  return site.animeTrace.enabled ? [{ params: { route: undefined } }] : [];
+}
+---
+
+<BaseLayout
+  title="AI识图"
+  description="上传 Galgame 或动画截图，使用 AnimeTrace 接口识别作品来源。"
+  breadcrumbs={[{ label: '首页', href: '/' }, { label: 'AI识图' }]}
+>
+  <AnimeTracePage />
+</BaseLayout>

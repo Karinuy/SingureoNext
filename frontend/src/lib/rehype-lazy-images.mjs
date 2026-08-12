@@ -4,47 +4,49 @@ function toClassList(value) {
   return [];
 }
 
-function addLazyClass(properties) {
+function setProperty(ctx, node, key, value) {
+  ctx.setProperty(node, key, value);
+}
+
+function addLazyClass(node, ctx) {
+  const properties = node.properties ?? {};
   const className = toClassList(properties.className ?? properties.class);
   if (!className.includes('lazy')) className.push('lazy');
-  properties.className = className;
-  delete properties.class;
+  setProperty(ctx, node, 'className', className);
+  setProperty(ctx, node, 'class', null);
 }
 
-function moveProperty(properties, from, to) {
+function moveProperty(node, ctx, from, to) {
+  const properties = node.properties ?? {};
   if (properties[from] === undefined || properties[to] !== undefined) return;
-  properties[to] = properties[from];
-  delete properties[from];
-}
-
-function visit(node) {
-  if (!node || typeof node !== 'object') return;
-
-  if (node.type === 'element' && node.properties) {
-    const { tagName, properties } = node;
-
-    if (tagName === 'img') {
-      addLazyClass(properties);
-      moveProperty(properties, 'src', 'data-src');
-      moveProperty(properties, 'srcSet', 'data-srcset');
-      moveProperty(properties, 'srcset', 'data-srcset');
-      moveProperty(properties, 'sizes', 'data-sizes');
-      properties.decoding ??= 'async';
-      delete properties.loading;
-    }
-
-    if (tagName === 'source') {
-      moveProperty(properties, 'srcSet', 'data-srcset');
-      moveProperty(properties, 'srcset', 'data-srcset');
-      moveProperty(properties, 'sizes', 'data-sizes');
-    }
-  }
-
-  if (Array.isArray(node.children)) {
-    for (const child of node.children) visit(child);
-  }
+  setProperty(ctx, node, to, properties[from]);
+  setProperty(ctx, node, from, null);
 }
 
 export default function rehypeLazyImages() {
-  return (tree) => visit(tree);
+  return {
+    name: 'lazy-images',
+    element: {
+      filter: ['img', 'source'],
+      visit(node, ctx) {
+        if (node.tagName === 'img') {
+          addLazyClass(node, ctx);
+          moveProperty(node, ctx, 'src', 'data-src');
+          moveProperty(node, ctx, 'srcSet', 'data-srcset');
+          moveProperty(node, ctx, 'srcset', 'data-srcset');
+          moveProperty(node, ctx, 'sizes', 'data-sizes');
+          if (node.properties?.decoding === undefined) {
+            setProperty(ctx, node, 'decoding', 'async');
+          }
+          setProperty(ctx, node, 'loading', null);
+        }
+
+        if (node.tagName === 'source') {
+          moveProperty(node, ctx, 'srcSet', 'data-srcset');
+          moveProperty(node, ctx, 'srcset', 'data-srcset');
+          moveProperty(node, ctx, 'sizes', 'data-sizes');
+        }
+      },
+    },
+  };
 }

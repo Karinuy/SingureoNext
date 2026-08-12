@@ -28,6 +28,7 @@ export const site = {
     },
     { label: '收藏', href: '/favorites', icon: 'heart' },
     { label: '每日推荐', href: '/daily', icon: 'calendarDays' },
+    { label: 'AI识图', href: '/anime-trace', icon: 'scanSearch' },
     { label: '模拟器', href: 'https://pan.singureo.com/OSS/%E6%A8%A1%E6%8B%9F%E5%99%A8', icon: 'gamepad2' },
   ],
   ads: {
@@ -35,7 +36,7 @@ export const site = {
     items: [
       { title: 'AI伴侣', href: 'https://url.sin0.cc/pgwbfb', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
       { title: '魔法喵VPN', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2026/05/15/bcad3dfcfb51f38d1aa41f9b6b8c7674/1778824640-miaocloud.avif' },
-      { title: 'AI女友', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/06/14/39c54c74a40700af1fd449e2b3a3063f/1781443462-aify.avif' },
+      { title: 'AI女友', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/08/12/6974cd50290b8b0e17d9ceff96883fc3/1786529606-aify1.avif' },
     ],
   },
   friendLinks: [
@@ -88,6 +89,12 @@ export const site = {
       enabled: true,
       limit: 6,
     },
+  },
+  animeTrace: {
+    enabled: true,
+    apiBaseUrl: 'https://api.animetrace.com',
+    isMulti: true,
+    aiDetect: true,
   },
 };
 

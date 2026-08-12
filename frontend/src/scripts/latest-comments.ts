@@ -31,6 +31,7 @@ function renderCommentCard(comment: ArtalkLatestComment, gravatar: ArtalkGravata
   const text = escapeHtml(plainCommentText(comment.content || '') || '（无文本内容）');
   const time = escapeHtml(formatCommentTime(comment.date || ''));
   const href = escapeHtml(commentAnchorHref(comment));
+  const replyNick = (comment.reply_comment ?? comment.parent_comment)?.nick?.trim();
   const avatarUrl = buildArtalkAvatarUrl(comment.email_encrypted, gravatar);
   const avatar = avatarUrl
     ? `<img class="latest-comments__avatar" src="${escapeHtml(avatarUrl)}" alt="" width="40" height="40" loading="lazy" decoding="async" data-no-dark-dim />`
@@ -39,6 +40,10 @@ function renderCommentCard(comment: ArtalkLatestComment, gravatar: ArtalkGravata
     comment.badge_name?.trim()
       ? `<span class="latest-comments__badge" style="--badge-color:${escapeHtml(comment.badge_color || '#0883ff')}">${escapeHtml(comment.badge_name.trim())}</span>`
       : '';
+  const reply =
+    replyNick && Number(comment.rid || 0) > 0
+      ? `<span class="latest-comments__reply">回复 ${escapeHtml(replyNick)}</span>`
+      : '';
 
   return `
     <a class="latest-comments__item" href="${href}" aria-label="${nick} 的评论">
@@ -46,6 +51,7 @@ function renderCommentCard(comment: ArtalkLatestComment, gravatar: ArtalkGravata
       <div class="latest-comments__body">
         <div class="latest-comments__meta">
           <span class="latest-comments__nick">${nick}</span>
+          ${reply}
           ${badge}
           <time class="latest-comments__time">${time}</time>
         </div>

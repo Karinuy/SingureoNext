@@ -1,0 +1,90 @@
+---
+import { ChevronDown, Cpu, Link } from '@lucide/astro';
+import { site } from '@/config/site';
+
+const config = site.animeTrace;
+---
+
+<section
+  class="space-y-5"
+  data-anime-trace-page
+  data-api-base-url={config.apiBaseUrl}
+  data-is-multi={String(config.isMulti)}
+  data-ai-detect={String(config.aiDetect)}
+>
+  <div class="space-y-2">
+    <h1 class="text-2xl font-semibold tracking-tight">AI识图</h1>
+    <p class="text-sm text-[rgb(var(--color-text-muted))]">
+      上传 Galgame 或动画截图，使用 AnimeTrace 接口识别作品来源。
+    </p>
+  </div>
+
+  <div class="anime-trace-page">
+    <form class="anime-trace-panel space-y-4" data-anime-trace-form>
+      <div class="grid gap-2">
+        <label class="anime-trace-label" for="anime-trace-model">识别模型</label>
+        <div class="anime-trace-select" data-anime-trace-model-picker>
+          <select
+            id="anime-trace-model"
+            class="anime-trace-native-select"
+            data-anime-trace-model
+            disabled
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <option value="">模型加载中...</option>
+          </select>
+          <button
+            class="anime-trace-input-row anime-trace-select__trigger"
+            type="button"
+            data-anime-trace-model-trigger
+            disabled
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            <Cpu class="anime-trace-input-row__icon" />
+            <span class="anime-trace-select__value" data-anime-trace-model-value>模型加载中...</span>
+            <ChevronDown class="anime-trace-input-row__chevron" />
+          </button>
+          <div class="anime-trace-select__menu" data-anime-trace-model-menu role="listbox" hidden></div>
+        </div>
+      </div>
+
+      <label class="anime-trace-dropzone" data-anime-trace-file-panel>
+        <input data-anime-trace-file type="file" accept="image/*" />
+        <span class="anime-trace-dropzone__title">选择或拖入图片</span>
+        <span class="anime-trace-dropzone__hint" data-anime-trace-file-name>支持常见图片格式</span>
+      </label>
+
+      <div class="grid gap-2">
+        <label class="anime-trace-label" for="anime-trace-url">图片 URL</label>
+        <div class="anime-trace-input-row">
+          <Link class="anime-trace-input-row__icon" />
+          <input
+            id="anime-trace-url"
+            class="anime-trace-input-row__control"
+            data-anime-trace-url
+            type="url"
+            inputmode="url"
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
+      </div>
+
+      <button class="anime-trace-submit" type="submit" data-anime-trace-submit disabled>开始识别</button>
+      <p class="anime-trace-status" data-anime-trace-status>正在加载可用模型...</p>
+    </form>
+
+    <div class="anime-trace-panel" data-anime-trace-result-panel hidden>
+      <div class="anime-trace-preview" data-anime-trace-preview></div>
+      <div class="anime-trace-results" data-anime-trace-results></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initAnimeTracePage } from '@/scripts/anime-trace-page';
+
+  initAnimeTracePage();
+  document.addEventListener('astro:page-load', initAnimeTracePage);
+</script>
