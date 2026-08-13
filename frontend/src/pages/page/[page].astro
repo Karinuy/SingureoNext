@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../config/site';
 import Pagination from '../../components/ui/Pagination.astro';
-import PostListAds from '../../components/PostListAds.astro';
+import PostList from '../../components/PostList.astro';
 import { getPosts } from '../../lib/content';
 import { postToCardData } from '../../lib/post-card';
 import { getPageCount, paginate, POSTS_PAGE_SIZE } from '../../lib/paginate';
@@ -33,7 +33,7 @@ const pageHref = (targetPage: number) => (targetPage === 1 ? '/' : `/page/${targ
   </div>
 
   <div class="mt-6">
-    <PostListAds config={site.ads} items={postCards} />
+    <PostList items={postCards} />
   </div>
 
   {pageData.pageCount > 1 ? (

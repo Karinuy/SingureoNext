@@ -5,7 +5,8 @@ import Pagination from '../components/ui/Pagination.astro';
 import { getPosts } from '../lib/content';
 import { postToCardData } from '../lib/post-card';
 import { paginate, POSTS_PAGE_SIZE } from '../lib/paginate';
-import PostListAds from '../components/PostListAds.astro';
+import PostList from '../components/PostList.astro';
+import ImageAds from '../components/ImageAds.astro';
 import LatestComments from '../components/LatestComments.astro';
 import LatestDocs from '../components/LatestDocs.astro';
 
@@ -17,6 +18,7 @@ const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
 
 <BaseLayout title="首页" description={site.tagline}>
 	<section>
+		<ImageAds class="mb-6" />
 		<LatestComments />
 		<LatestDocs />
 
@@ -24,7 +26,7 @@ const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
 			<h2 class="text-lg font-semibold tracking-tight">最新文章</h2>
 		</div>
 		<div class="mt-4">
-			<PostListAds config={site.ads} items={postCards} />
+			<PostList items={postCards} />
 		</div>
 
 		{pageData.pageCount > 1 ? (

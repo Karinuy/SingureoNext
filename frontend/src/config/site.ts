@@ -34,6 +34,8 @@ export const site = {
   ads: {
     enabled: true,
     items: [
+      // { title: 'UACG', href: 'https://url.sin0.cc/8yykf5', image: 'https://res.sin0.cc/2026/08/13/ec0582043c07dc747a0a57f6df7578ff/1786625745-uacg.avif' },
+      { title: '萌污语', href: 'https://url.sin0.cc/8yykf5', image: 'https://res.sin0.cc/2026/08/13/6c5c69157ba83b8dc8ba393bd04d3f11/1786625577-moewuyu.avif' },
       { title: 'AI伴侣', href: 'https://url.sin0.cc/pgwbfb', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
       { title: '魔法喵VPN', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2026/05/15/bcad3dfcfb51f38d1aa41f9b6b8c7674/1778824640-miaocloud.avif' },
       { title: 'AI女友', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/08/12/6974cd50290b8b0e17d9ceff96883fc3/1786529606-aify1.avif' },
@@ -50,7 +52,6 @@ export const site = {
     { label: 'Touchgal', href: 'https://www.touchgal.ink/' },
     { label: '梓澪的妙妙屋', href: 'https://zi0.cc/' },
     { label: '紫缘社', href: 'https://www.galzy.moe/' },
-    { label: '绮梦ACG', href: 'https://acgs.one/' },
     { label: '萌哩', href: 'https://www.moely.link/' },
     { label: '鲲galgame论坛', href: 'https://www.kungal.com/' },
     { label: '初音社', href: 'https://www.mikuclub.win/' },

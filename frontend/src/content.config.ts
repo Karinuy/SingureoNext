@@ -20,7 +20,6 @@ const post = defineCollection({
       ])
       .optional(),
     tags: z.array(z.string()).default([]),
-    downloadUrl: z.url().optional(),
     downloads: z
       .array(
         z.object({

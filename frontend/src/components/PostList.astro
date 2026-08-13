@@ -17,7 +17,7 @@ const {
 
 {
   items?.length ? (
-    <div class={className ?? 'grid grid-cols-2 items-stretch gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5'}>
+    <div class={className ?? 'post-list-grid'}>
       {items.map((item) => (
         <div class="h-full">
           <PostCard data={item} hideCoverPlaceholder={hideCoverPlaceholder} />

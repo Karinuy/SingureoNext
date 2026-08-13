@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
 import RedirectCountdown from '../components/RedirectCountdown.astro';
-import RedirectAds from '../components/RedirectAds.astro';
+import ImageAds from '../components/ImageAds.astro';
 
 const countdown = site.redirect?.countdown ?? 5;
 const message = site.redirect?.message ?? '您即将离开本站，前往第三方网站。请注意您的账号和财产安全。';
@@ -17,11 +17,7 @@ const message = site.redirect?.message ?? '您即将离开本站，前往第三�
         message={message}
       />
 
-      {site.ads.enabled ? (
-        <div class="mt-4">
-          <RedirectAds config={site.ads} />
-        </div>
-      ) : null}
+      <ImageAds class="mt-4" />
     </div>
   </div>
 </BaseLayout>

@@ -14,6 +14,18 @@ export function getEntryTags(entry: CollectionEntry<'post'>) {
   return entry.data.tags ?? [];
 }
 
+export function getEntryDownloads(entry: CollectionEntry<'post'>) {
+  const downloads =
+    entry.data.downloads
+      ?.map((item) => ({
+        label: item.label.trim() || '下载',
+        url: item.url.trim(),
+      }))
+      .filter((item) => item.url) ?? [];
+
+  return downloads;
+}
+
 export function getEntryCategories(entry: CollectionEntry<'post'>) {
   const out: string[] = [];
 

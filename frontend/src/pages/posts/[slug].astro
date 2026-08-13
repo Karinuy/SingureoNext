@@ -7,15 +7,15 @@ import Card from '../../components/ui/Card.astro';
 import Tag from '../../components/ui/Tag.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LazyImage from '../../components/LazyImage.astro';
-import { getEntryCategories, getEntrySlug, getEntryTags } from '../../lib/content';
+import { getEntryCategories, getEntryDownloads, getEntrySlug, getEntryTags } from '../../lib/content';
 import { slugifySegment } from '../../lib/slug';
 import PostList from '../../components/PostList.astro';
+import ImageAds from '../../components/ImageAds.astro';
 import { postToCardData } from '../../lib/post-card';
 import ShareButton from '../../components/ShareButton.astro';
 import FavoriteButton from '../../components/FavoriteButton.astro';
 import { extractSummaryFromMarkdown } from '../../lib/markdown-summary';
 import PostDownloadButton from '../../components/PostDownloadButton.astro';
-import PostDownloadAdButton from '../../components/PostDownloadAdButton.astro';
 import ArtalkComments from '../../components/ArtalkComments.astro';
 import ArtalkStatBadge from '../../components/ArtalkStatBadge.astro';
 
@@ -33,7 +33,7 @@ if (!entry) {
   throw new Error(`Post not found for id: ${id}`);
 }
 const slug = getEntrySlug(entry);
-const { title, cover, downloadUrl, downloads, description } = entry.data;
+const { title, cover, description } = entry.data;
 const categories = getEntryCategories(entry);
 const tags = getEntryTags(entry);
 const { Content } = await render(entry);
@@ -43,7 +43,7 @@ const shareUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString()
 const pageDescription =
   (description ?? '').trim() ||
   extractSummaryFromMarkdown(entry.body ?? '', { maxLength: 160 });
-const hasDownloadButton = Boolean(downloads?.length || downloadUrl);
+const postDownloads = getEntryDownloads(entry);
 
 const all = await getCollection('post', ({ data }) => !data.draft);
 const related = all
@@ -71,6 +71,8 @@ const relatedCards = related.map((entry) => postToCardData(entry));
     { label: title },
   ]}
 >
+  <ImageAds class="mb-5" />
+
   <section class="space-y-5">
     <Card class="overflow-hidden p-0">
       <div class="grid grid-cols-[minmax(108px,34vw)_minmax(0,1fr)] sm:grid-cols-[minmax(170px,210px)_minmax(0,1fr)] lg:grid-cols-[minmax(220px,260px)_minmax(0,1fr)]">
@@ -144,14 +146,9 @@ const relatedCards = related.map((entry) => postToCardData(entry));
     </Card>
 
     <div class="flex flex-wrap items-center gap-2">
-      {downloads?.length ? (
-        downloads.map((d) => (
-          <PostDownloadButton label={d.label} href={d.url} />
-        ))
-      ) : downloadUrl ? (
-        <PostDownloadButton label="下载" href={downloadUrl} />
-      ) : null}
-      {hasDownloadButton ? <PostDownloadAdButton /> : null}
+      {postDownloads.map((item) => (
+        <PostDownloadButton label={item.label} href={item.url} />
+      ))}
       <FavoriteButton slug={slug} />
       <ShareButton title={title} url={shareUrl} />
     </div>

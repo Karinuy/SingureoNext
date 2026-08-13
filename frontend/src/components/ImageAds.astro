@@ -1,0 +1,58 @@
+---
+import Card from '@/components/ui/Card.astro';
+import LazyImage from '@/components/LazyImage.astro';
+import { site } from '@/config/site';
+import { resolveLink } from '@/lib/redirect';
+import { cn } from '@/lib/utils';
+
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+const adItems = site.ads.enabled ? site.ads.items : [];
+const ads = adItems
+  .map((ad) => ({ ...ad, link: resolveLink(ad.href, { redirect: site.redirect }) }));
+---
+
+{
+  ads.length ? (
+    <div class={cn('image-ads', className)}>
+      <div class="image-ads__grid">
+        {ads.map((ad) => (
+          <a href={ad.link.href} target={ad.link.target} rel={ad.link.rel} class="block no-underline text-inherit">
+            <Card class="p-0">
+              <LazyImage
+                src={ad.image}
+                width={1920}
+                height={300}
+                alt={ad.title}
+                class="block h-auto w-full"
+              />
+              <span class="sr-only">{ad.title}</span>
+            </Card>
+          </a>
+        ))}
+      </div>
+    </div>
+  ) : null
+}
+
+<style>
+  .image-ads {
+    container-type: inline-size;
+  }
+
+  .image-ads__grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @container (min-width: 40rem) {
+    .image-ads__grid {
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

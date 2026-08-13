@@ -9,7 +9,8 @@ export default {
   theme: {
     screens: {
       ...defaultTheme.screens,
-      md: '968px',
+      md: '1030px',
+      lg: '1030px',
     },
     container: {
       center: true,

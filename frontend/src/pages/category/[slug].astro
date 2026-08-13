@@ -3,7 +3,7 @@ import { getEntryCategories, getPosts } from '../../lib/content';
 import { slugifySegment } from '../../lib/slug';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Pagination from '../../components/ui/Pagination.astro';
-import PostListAds from '../../components/PostListAds.astro';
+import PostList from '../../components/PostList.astro';
 import { site } from '../../config/site';
 import { postToCardData } from '../../lib/post-card';
 import { paginate, POSTS_PAGE_SIZE } from '../../lib/paginate';
@@ -45,7 +45,7 @@ const categoryHref = (page: number) =>
   </div>
 
   <div class="mt-6">
-    <PostListAds config={site.ads} items={postCards} />
+    <PostList items={postCards} />
   </div>
 
   {pageData.pageCount > 1 ? (

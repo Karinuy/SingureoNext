@@ -1,24 +1,10 @@
 import { searchPosts } from '@/lib/search-client';
 import { renderPostList } from '@/scripts/render-post-list';
-import type { AdConfig } from '@/lib/post-list-ads';
 
 let searchToken = 0;
 
 function currentQuery() {
   return new URLSearchParams(window.location.search).get('q')?.trim() ?? '';
-}
-
-function readAdConfig(root: HTMLElement): AdConfig | undefined {
-  const raw = root.dataset.searchResultsAds;
-  if (!raw) return undefined;
-
-  try {
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object') return undefined;
-    return parsed as AdConfig;
-  } catch {
-    return undefined;
-  }
 }
 
 export function initSearchResultsPage() {
@@ -30,7 +16,6 @@ export function initSearchResultsPage() {
     const list = root.querySelector('[data-search-results-list]');
     if (!(title instanceof HTMLElement) || !(status instanceof HTMLElement) || !(list instanceof HTMLElement)) return;
 
-    const ads = readAdConfig(root);
     const query = currentQuery();
     const token = ++searchToken;
     list.innerHTML = '';
@@ -48,7 +33,7 @@ export function initSearchResultsPage() {
       .then((result) => {
         if (token !== searchToken) return;
 
-        renderPostList(list, result.items, { ads });
+        renderPostList(list, result.items);
         if (!result.total) {
           status.textContent = '0 个结果';
           return;
