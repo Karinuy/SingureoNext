@@ -66,6 +66,7 @@ export const site = {
     { label: '月幕Galgame', href: 'https://www.ymgal.games/' },
     { label: 'ACG游戏社', href: 'https://www.acgyxs.org/' },
     { label: 'Mikiacg', href: 'https://www.mikiacg.org' },
+    { label: 'GALNAVI', href: 'https://galnavi.top/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
