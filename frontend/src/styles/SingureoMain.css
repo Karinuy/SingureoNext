@@ -135,28 +135,6 @@
     filter: brightness(var(--image-dark-brightness));
   }
 
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
-  }
-
-  html.theme-transition-dark::view-transition-old(root) {
-    z-index: 1;
-  }
-
-  html.theme-transition-dark::view-transition-new(root) {
-    z-index: 2;
-  }
-
-  html.theme-transition-light::view-transition-old(root) {
-    z-index: 2;
-  }
-
-  html.theme-transition-light::view-transition-new(root) {
-    z-index: 1;
-  }
-
   h1,
   h2,
   h3,
