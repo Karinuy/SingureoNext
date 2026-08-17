@@ -37,7 +37,7 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
 
 <header
   id="site-header"
-  class="fixed inset-x-0 top-0 z-[70] bg-[rgb(var(--color-surface)_/_0.2)] backdrop-blur-xl md:bg-transparent md:backdrop-blur-none"
+  class="fixed inset-x-0 top-0 z-[70]"
 >
   <div class="mx-auto max-w-7xl md:hidden">
     <div class="relative flex min-h-14 items-center justify-between gap-2 px-3 py-2">
@@ -46,7 +46,7 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
       </div>
       <a
         href="/"
-        class="pointer-events-auto absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center"
+        class="nav-capsule nav-capsule--logo nav-capsule--mobile-logo pointer-events-auto absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center"
       >
         <img
           src="/SingureoLogo.png"
@@ -57,7 +57,7 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
           decoding="async"
         />
       </a>
-      <div class="relative z-10 flex items-center gap-0.5">
+      <div class="nav-capsule nav-capsule--actions nav-capsule--mobile-actions relative z-10">
         <RandomButton />
         <NavSearch mode="mobile" />
         <ThemeToggle />
@@ -98,31 +98,3 @@ const navItems = site.nav.map((item) => resolveNavItem(item as NavItem));
   <NavSearch mode="dialog" />
 </header>
 
-<script>
-  (() => {
-    const key = '__desktopNavScrollBound';
-    if (window[key]) return;
-
-    const THRESHOLD = 36;
-    let raf = 0;
-
-    const sync = () => {
-      const shell = document.getElementById('desktop-nav-shell');
-      if (!shell) return;
-      shell.classList.toggle('is-scrolled', window.scrollY > THRESHOLD);
-    };
-
-    const onScroll = () => {
-      if (raf) return;
-      raf = window.requestAnimationFrame(() => {
-        raf = 0;
-        sync();
-      });
-    };
-
-    sync();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    document.addEventListener('astro:page-load', sync);
-    window[key] = true;
-  })();
-</script>

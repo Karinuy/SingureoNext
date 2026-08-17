@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArtalkComments from '../../components/ArtalkComments.astro';
+import { site } from '../../config/site';
+
+export function getStaticPaths() {
+  return site.artalk.enabled ? [{ params: { route: undefined } }] : [];
+}
+
+const title = '留言板';
+const description = '在留言板留下你的想法、反馈或建议';
+const pageKey = '/guestbook';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={[{ label: '首页', href: '/' }, { label: title }]}
+>
+  <section class="space-y-6">
+    <div class="space-y-2">
+      <h1 class="text-2xl font-semibold tracking-tight">{title}</h1>
+      <p class="text-sm text-[rgb(var(--color-text-muted))]">{description}</p>
+    </div>
+
+    <ArtalkComments pageKey={pageKey} pageTitle={title} />
+  </section>
+</BaseLayout>

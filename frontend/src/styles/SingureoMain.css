@@ -789,18 +789,33 @@ dialog[data-overlay-dialog][data-overlay-backdrop-style="dim"][data-state="open"
   height: 2.35rem;
 }
 
+.nav-capsule--mobile-trigger {
+  width: 2.75rem;
+  padding: 0.2rem;
+}
+
+.nav-capsule--mobile-logo {
+  min-height: 2.5rem;
+  height: 2.5rem;
+  padding-inline: 0.78rem;
+}
+
+.nav-capsule--mobile-actions {
+  min-height: 2.5rem;
+  height: 2.5rem;
+  padding: 0.15rem 0.22rem;
+}
+
+.nav-capsule--mobile-actions :is(button, .nav-search-trigger) {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
 #desktop-nav-shell .nav-capsule,
 #desktop-nav-shell .nav-capsule__mica {
   transition:
     background 220ms ease,
     box-shadow 220ms ease;
-}
-
-#desktop-nav-shell:not(.is-scrolled) .nav-capsule:not(.nav-capsule--menu),
-#desktop-nav-shell:not(.is-scrolled) .nav-capsule--menu .nav-capsule__mica,
-.dark #desktop-nav-shell:not(.is-scrolled) .nav-capsule:not(.nav-capsule--menu),
-.dark #desktop-nav-shell:not(.is-scrolled) .nav-capsule--menu .nav-capsule__mica {
-  box-shadow: none;
 }
 
 .desktop-nav-item {
@@ -874,22 +889,22 @@ dialog[data-overlay-dialog][data-overlay-backdrop-style="dim"][data-state="open"
   pointer-events: none;
   transform: translateY(-10px) scale(0.8);
   transform-origin: top center;
-  background: rgb(var(--color-surface-muted));
+  background: rgb(var(--color-bg));
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.88),
     0 1px 2px rgb(0 0 0 / 0.04),
-    0 8px 22px rgb(15 23 42 / 0.08);
+    0 6px 18px rgb(15 23 42 / 0.07);
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
 }
 
 .dark .desktop-nav-submenu__panel {
-  background: rgb(var(--color-surface-muted));
+  background: rgb(var(--color-bg));
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.16),
     0 0 0 1px rgb(255 255 255 / 0.1),
-    0 10px 26px rgb(0 0 0 / 0.5);
+    0 8px 22px rgb(0 0 0 / 0.45);
 }
 
 .group:hover > .desktop-nav-submenu > .desktop-nav-submenu__panel,
