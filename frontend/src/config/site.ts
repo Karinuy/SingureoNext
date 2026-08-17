@@ -67,6 +67,7 @@ export const site = {
     { label: 'ACG游戏社', href: 'https://www.acgyxs.org/' },
     { label: 'Mikiacg', href: 'https://www.mikiacg.org' },
     { label: 'GALNAVI', href: 'https://galnavi.top/' },
+    { label: '黄油仓库', href: 'https://jiuguans.com/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
