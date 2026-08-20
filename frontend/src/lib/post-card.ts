@@ -4,7 +4,11 @@ import { getEntryCategories, getEntrySlug, getEntryTags } from "./content"
 import { extractSummaryFromMarkdown } from "./markdown-summary"
 import type { PostCardData } from "@/types/post-card"
 
-export function postToCardData(entry: CollectionEntry<"post">): PostCardData {
+type PostCardOptions = {
+  includePinned?: boolean
+}
+
+export function postToCardData(entry: CollectionEntry<"post">, options: PostCardOptions = {}): PostCardData {
   const description =
     entry.data.description?.trim() ||
     extractSummaryFromMarkdown(entry.body ?? "", { maxLength: 120 })
@@ -16,6 +20,7 @@ export function postToCardData(entry: CollectionEntry<"post">): PostCardData {
     cover: entry.data.cover,
     categories: getEntryCategories(entry),
     tags: getEntryTags(entry),
+    pinned: options.includePinned && entry.data.pinned ? true : undefined,
   }
 }
 

@@ -48,13 +48,26 @@ export function getEntryPublishDate(entry: CollectionEntry<'post'>) {
   return entry.data.publishDate ?? entry.data.date;
 }
 
+function comparePostsByPublishDateDesc(a: CollectionEntry<'post'>, b: CollectionEntry<'post'>) {
+  const at = getEntryPublishDate(a)?.getTime() ?? 0;
+  const bt = getEntryPublishDate(b)?.getTime() ?? 0;
+  return bt - at;
+}
+
+export function sortPostsForHome(entries: CollectionEntry<'post'>[]) {
+  return [...entries].sort((a, b) => {
+    const pinnedDelta = Number(b.data.pinned) - Number(a.data.pinned);
+    return pinnedDelta || comparePostsByPublishDateDesc(a, b);
+  });
+}
+
+export async function getHomePosts() {
+  return sortPostsForHome(await getPosts());
+}
+
 export async function getPosts() {
   const entries = await getCollection('post', ({ data }) => !data.draft);
-  return entries.sort((a, b) => {
-    const at = getEntryPublishDate(a)?.getTime() ?? 0;
-    const bt = getEntryPublishDate(b)?.getTime() ?? 0;
-    return bt - at;
-  });
+  return entries.sort(comparePostsByPublishDateDesc);
 }
 
 export async function getAllCategories() {

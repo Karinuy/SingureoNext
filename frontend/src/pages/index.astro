@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
 import Pagination from '../components/ui/Pagination.astro';
-import { getPosts } from '../lib/content';
+import { getHomePosts } from '../lib/content';
 import { postToCardData } from '../lib/post-card';
 import { paginate, POSTS_PAGE_SIZE } from '../lib/paginate';
 import PostList from '../components/PostList.astro';
@@ -10,9 +10,9 @@ import ImageAds from '../components/ImageAds.astro';
 import LatestComments from '../components/LatestComments.astro';
 import LatestDocs from '../components/LatestDocs.astro';
 
-const games = await getPosts();
+const games = await getHomePosts();
 const pageData = paginate(games, 1, POSTS_PAGE_SIZE);
-const postCards = pageData.items.map((entry) => postToCardData(entry));
+const postCards = pageData.items.map((entry) => postToCardData(entry, { includePinned: true }));
 const homePageHref = (page: number) => (page === 1 ? '/' : `/page/${page}/`);
 ---
 

@@ -1,383 +1,195 @@
-# SingureoNext
+# 🌸 SingureoNext
 
-SingureoNext 是 Singureo 站点的新一代静态生成项目。它以 Galgame 与 ACG 资源内容整理为核心，使用 Astro 构建可部署到静态托管平台的前端站点，并通过浏览器端脚本补充搜索、收藏、每日推荐、主题切换、外链跳转确认、评论加载等交互能力。
+> 一个以 **ACGN** 为核心的 Astro 静态站点项目。
 
-项目当前没有独立后端服务目录，主要能力由以下几部分组成：
+SingureoNext 是 Singureo 网站的新一代前端实现。项目以 Astro SSG 为基础，将 Markdown / MDX 内容构建为可部署到静态托管平台的站点，并在浏览器端补充搜索、收藏、每日推荐、随机文章、外链确认、评论统计等交互能力。
 
-- Astro SSG 负责页面生成、路由、内容集合、SEO 元信息和站点地图。
-- Markdown 文章集合承载资源条目。
-- MDX 文档集合承载公告、教程和关于页面。
-- 浏览器 Web Worker 加载 `/search-index.json`，使用 FlexSearch 完成本地搜索、随机文章、收藏文章回显和每日推荐。
-- IndexedDB 保存用户本地收藏，并支持收藏导入/导出。
-- Artalk 作为外部评论系统接入。
-- vanilla-lazyload 驱动全站图片懒加载，并提供加载完成后的高斯模糊过渡动画。
+当前项目没有独立后端目录，主要能力集中在 `frontend/`。
 
-## 项目定位
+## ✨ 项目亮点
 
-SingureoNext 面向内容量较大的 Galgame/ACG 资源型站点。它的目标不是做一个重后台系统，而是用静态生成保证访问速度、可缓存性和部署简单性，同时在浏览器侧实现用户常用的个性化体验。
+- 🚀 **Astro SSG**：构建静态页面、内容集合、RSS、站点地图与 SEO 元信息。
+- 📝 **Markdown 文章**：资源文章统一放在 `frontend/src/content/post`。
+- 📚 **MDX 文档**：公告、教程、关于本站等内容放在 `frontend/src/content/docs`。
+- 📌 **首页置顶文章**：文章 frontmatter 支持 `pinned: true`，首页最新文章列表优先展示置顶内容。
+- 🔎 **本地搜索**：Web Worker + FlexSearch 加载 `/search-index.json`，不阻塞主线程。
+- ⭐ **本地收藏**：使用 IndexedDB 保存收藏，支持收藏导入 / 导出。
+- 🎲 **随机文章**：复用搜索索引，在全站文章中随机跳转。
+- 📅 **每日推荐**：优先根据本地收藏的分类和标签推荐内容。
+- 💬 **Artalk 接入**：文章评论、浏览量和评论数统计由外部 Artalk 服务提供。
+- 🖼️ **图片懒加载**：`vanilla-lazyload` + 自定义 rehype 插件处理正文与组件图片。
+- 🌓 **深浅主题**：全站统一主题变量，暗色模式下自动压低图片亮度。
+- 🧭 **外链跳转确认**：非白名单外链会进入 `/go` 离站提示页。
+- 🧩 **扩展页面**：包含收藏页、每日推荐页、AI 识图页、留言板、RSS 等。
 
-站点体验重点包括：
+## 🧱 技术栈
 
-- 首页快速浏览最新文章、轮播图和广告位。
-- 分类、标签、分页归档用于大批量内容导航。
-- 文章详情页展示封面、分类、标签、正文、下载入口、分享、收藏、相关推荐和评论。
-- 顶部搜索按钮与搜索页支持关键词检索。
-- 收藏页使用本地浏览器数据，不依赖登录账号。
-- 每日推荐根据收藏内容优先推荐相同分类或标签的文章。
-- 外链统一经过安全提示页，白名单域名可直接打开。
-- 浅色/深色主题全站统一，并对暗色模式下的图片亮度做处理。
+| 类型 | 使用 |
+| --- | --- |
+| 🧭 框架 | Astro `^7.2.1` |
+| 🧠 语言 | TypeScript |
+| 🎨 样式 | Tailwind CSS `^3.4.19` |
+| 📄 内容 | Markdown、MDX、Astro Content Collections |
+| 🔍 搜索 | FlexSearch、Web Worker |
+| 🖼️ 图片 | vanilla-lazyload、Astro passthrough image service |
+| 💬 评论 | Artalk |
+| 🧰 UI | Lucide Astro、clsx、tailwind-merge |
+| 🗺️ SEO | `@astrojs/sitemap`、RSS、Open Graph |
 
-## 技术栈
-
-核心依赖：
-
-- Astro 6：静态站点生成、文件路由、内容集合、资源处理。
-- TypeScript：前端脚本、内容工具、类型定义。
-- Tailwind CSS：全站样式系统。
-- MDX：文档内容编写。
-- FlexSearch：浏览器端全文检索。
-- vanilla-lazyload：图片懒加载。
-- Artalk：评论系统。
-- Lucide Astro：图标组件。
-- IndexedDB：本地收藏存储。
-
-Astro 配置位于 `frontend/astro.config.mjs`，当前包含：
-
-- `site: 'https://www.singureo.com'`
-- `@astrojs/sitemap`
-- `@astrojs/mdx`
-- 自定义 `rehypeLazyImages` 插件
-- `passthroughImageService`
-- Noto Sans SC、Noto Sans JP、Noto Sans Mono、Outfit 字体
-- Vite 别名 `@ -> ./src`
-
-## 仓库结构
+## 📦 仓库结构
 
 ```text
 .
-├─ README.md
-├─ package.json
-└─ frontend/
-   ├─ README.md
-   ├─ DESIGN.md
-   ├─ sample-post.md
-   ├─ package.json
-   ├─ package-lock.json
-   ├─ astro.config.mjs
-   ├─ tailwind.config.mjs
-   ├─ postcss.config.cjs
-   ├─ public/
-   │  ├─ favicon.ico
-   │  └─ robots.txt
-   ├─ scripts/
-   │  ├─ ensure-abbrlink.mjs
-   │  └─ replace_image_domain.py
-   └─ src/
-      ├─ components/
-      ├─ components/ui/
-      ├─ config/
-      ├─ content/
-      │  ├─ docs/
-      │  └─ post/
-      ├─ layouts/
-      ├─ lib/
-      ├─ pages/
-      ├─ scripts/
-      ├─ styles/
-      └─ types/
+├── README.md
+├── package.json              # 根目录仅保留项目元信息和占位脚本
+└── frontend/
+    ├── package.json          # 实际开发、构建、预览脚本
+    ├── package-lock.json
+    ├── astro.config.mjs
+    ├── tailwind.config.mjs
+    ├── postcss.config.cjs
+    ├── public/
+    ├── scripts/
+    └── src/
+        ├── components/       # 站点组件
+        ├── components/ui/    # 基础 UI 组件
+        ├── config/           # 站点配置
+        ├── content/          # post / docs 内容集合
+        ├── layouts/          # 页面布局
+        ├── lib/              # 内容、分页、搜索、slug 等工具
+        ├── pages/            # Astro 文件路由
+        ├── scripts/          # 浏览器端初始化脚本
+        ├── styles/           # 全局样式
+        └── types/            # 类型定义
 ```
 
-根目录 `package.json` 目前只保留项目级元信息和占位脚本；实际开发、构建、预览命令都在 `frontend/package.json` 中执行。
+## 🗂️ 核心目录说明
 
-## 主要目录说明
+- 🏠 `frontend/src/pages`
+  Astro 路由目录，包含首页、文章页、分类、标签、文档、搜索、收藏、每日推荐、AI 识图、留言板、外链跳转和 RSS。
 
-`frontend/src/pages`
+- 📝 `frontend/src/content/post`
+  Markdown 文章目录。每篇文章通过 frontmatter 配置标题、封面、分类、标签、下载链接、日期、短链、置顶状态等。
 
-Astro 文件路由目录，包含首页、分页、分类、标签、文章详情、文档、搜索、收藏、每日推荐、外链跳转页和搜索索引 JSON。
+- 📚 `frontend/src/content/docs`
+  MDX 文档目录。用于公告、教程、关于本站等较稳定内容。
 
-`frontend/src/content/post`
+- 🧩 `frontend/src/components`
+  站点组件目录，包括导航栏、文章卡片、文章列表、广告位、最新评论、最新文档、收藏按钮、下载按钮、评论区、搜索入口、页脚等。
 
-文章内容目录。每篇文章是一个 Markdown 文件，使用 frontmatter 描述标题、封面、分类、标签、下载链接、日期和永久短链。
+- 🎛️ `frontend/src/config/site.ts`
+  站点级配置：导航、广告、友链、页脚链接、RSS、外链白名单、Artalk、AnimeTrace 等。
 
-`frontend/src/content/docs`
+- 🧠 `frontend/src/lib`
+  通用逻辑：内容读取、首页排序、分页、slug、文章卡片数据转换、搜索 Worker、收藏 IndexedDB、外链重定向、Markdown 摘要、图片懒加载 rehype 插件等。
 
-文档内容目录。当前用于公告、关于本站、模拟器教程、Winlator 教程和镜像版安装说明。
+- 🎨 `frontend/src/styles/SingureoMain.css`
+  全局样式入口，包含 Tailwind 层、主题变量、暗色模式、滚动条、懒加载动画、弹层、导航、最新评论、文章列表网格等样式。
 
-`frontend/src/components`
+## 🧭 当前路由
 
-站点组件目录，包括导航栏、移动端抽屉、文章卡片、文章列表、首页轮播、广告位、收藏按钮、下载按钮、评论、搜索入口、返回顶部、页脚等。
+| 路由 | 用途 |
+| --- | --- |
+| `/` | 首页：广告图、最新评论、最新文档、最新文章列表 |
+| `/page/[page]/` | 首页文章分页 |
+| `/posts/[slug]/` | 文章详情页 |
+| `/categories` | 分类索引 |
+| `/categories/page/[page]/` | 分类索引分页 |
+| `/category/[slug]/` | 单个分类文章列表 |
+| `/category/[slug]/page/[page]/` | 单个分类分页 |
+| `/tags` | 标签索引 |
+| `/tags/page/[page]/` | 标签索引分页 |
+| `/tag/[slug]/` | 单个标签文章列表 |
+| `/tag/[slug]/page/[page]/` | 单个标签分页 |
+| `/docs` | 文档索引 |
+| `/docs/[...slug]/` | 文档详情页 |
+| `/search` | 搜索结果页 |
+| `/search-index.json` | 构建生成的搜索索引 |
+| `/favorites` | 本地收藏页 |
+| `/daily` | 每日推荐页 |
+| `/anime-trace/[...route]` | AI 识图页 |
+| `/guestbook/[...route]` | 留言板 |
+| `/go` | 外链跳转确认页 |
+| `/rss.xml` | RSS 订阅 |
 
-`frontend/src/components/ui`
+## 📝 文章 Frontmatter
 
-基础 UI 组件目录，包括 Button、Card、Tag、Pagination、Dialog、Drawer、Alert、Breadcrumb 等。
+文章集合定义位于 `frontend/src/content.config.ts`，来源为：
 
-`frontend/src/lib`
+```text
+frontend/src/content/post/**/*.md
+```
 
-通用逻辑目录，包括内容读取、分页、slug 处理、文章卡片数据转换、首页轮播解析、摘要提取、外链跳转、搜索 Worker、收藏 IndexedDB、图片懒加载 rehype 插件等。
+支持字段：
 
-`frontend/src/scripts`
+| 字段 | 说明 |
+| --- | --- |
+| `title` | 必填，文章标题 |
+| `description` | 可选，页面描述；缺省时从正文提取摘要 |
+| `cover` | 可选，封面图片地址 |
+| `categories` | 可选，支持字符串、字符串数组或嵌套字符串数组 |
+| `tags` | 可选，标签数组，默认 `[]` |
+| `downloads` | 可选，下载入口数组，包含 `label` 和 `url` |
+| `publishDate` | 可选，发布时间 |
+| `date` | 可选，兼容日期字段；排序会优先使用 `publishDate` |
+| `abbrlink` | 可选，稳定短链；缺省时回退到文件名生成 slug |
+| `updatedDate` | 可选，更新时间 |
+| `pinned` | 可选，首页最新文章置顶，默认 `false` |
+| `draft` | 可选，草稿标记，默认 `false` |
 
-浏览器端初始化脚本目录，包括导航搜索、搜索结果页、收藏页、每日推荐页、移动端抽屉、动态文章列表渲染、图片懒加载更新等。
-
-`frontend/src/styles`
-
-全局样式目录。当前主要文件为 `globals.css`，定义 Tailwind 基础层、主题变量、暗色模式、懒加载动画、弹层动画、对话框样式和文章正文样式。
-
-## 页面与路由
-
-当前主要路由如下：
-
-- `/`：首页，展示轮播、广告位和最新文章列表。
-- `/page/[page]/`：首页文章分页。
-- `/posts/[slug]/`：文章详情页，slug 来自文章 `abbrlink` 或文件名。
-- `/categories`：分类索引页。
-- `/categories/page/[page]/`：分类索引分页。
-- `/category/[slug]/`：单个分类文章列表。
-- `/category/[slug]/page/[page]/`：单个分类文章分页。
-- `/tags`：标签索引页。
-- `/tags/page/[page]/`：标签索引分页。
-- `/tag/[slug]/`：单个标签文章列表。
-- `/tag/[slug]/page/[page]/`：单个标签文章分页。
-- `/docs`：文档索引页。
-- `/docs/[...slug]/`：文档详情页，通常使用文档 `abbrlink`。
-- `/search`：搜索结果页。
-- `/search-index.json`：构建时生成的搜索索引。
-- `/favorites`：本地收藏页。
-- `/daily`：每日推荐页。
-- `/go`：外链跳转确认页。
-
-## 内容模型
-
-内容集合定义位于 `frontend/src/content.config.ts`。
-
-### 文章字段
-
-文章集合名为 `post`，来源为 `frontend/src/content/post/**/*.md`。当前支持字段：
-
-- `title`：必填，文章标题。
-- `description`：可选，页面描述；缺省时会从正文提取摘要。
-- `cover`：可选，封面图片地址。
-- `categories`：可选，文章分类；支持字符串、字符串数组或嵌套字符串数组。
-- `tags`：可选，标签数组，默认空数组。
-- `downloads`：可选，多下载入口数组，每项包含 `label` 和 `url`。
-- `publishDate`：可选，发布日期。
-- `date`：可选，日期字段；文章排序会使用 `publishDate`，没有则回退到 `date`。
-- `abbrlink`：可选，文章稳定短链；没有时回退到文件名生成 slug。
-- `updatedDate`：可选，更新时间。
-- `draft`：可选，草稿标记，默认 `false`。
-
-注意：当前项目以 `categories` 作为唯一分类数据字段，不再使用 `category`。
-
-### 文章示例
+### 📌 置顶示例
 
 ```md
 ---
 title: 示例文章
-cover: CoverUrl
+cover: https://example.com/cover.avif
 categories:
-  - - 示例分类
+  - Galgame
 tags:
   - 示例
 downloads:
-  - label: OneDrive下载
-    url: OneDriveDownloadUrl
+  - label: OneDrive 下载
+    url: https://example.com/download
 abbrlink: demo-001
 date: 2026-01-28 12:00:00
+pinned: true
 ---
 
 ## 游戏介绍
 
-这里是正文示例。
+这里是正文内容。
 ```
 
-### 文档字段
+置顶规则：
 
-文档集合名为 `docs`，来源为 `frontend/src/content/docs/**/*.mdx`。当前支持字段：
+- 📌 只有首页和首页分页使用置顶排序。
+- ⏱️ 置顶文章内部仍按发布时间倒序。
+- 🧾 未置顶文章保持原本的发布时间倒序。
+- 🎴 置顶文章卡片左上角会显示“置顶”标识。
 
-- `title`：必填，文档标题。
-- `description`：可选，页面描述。
-- `cover`：可选，封面图片地址。
-- `date`：可选，发布日期。
-- `updatedDate`：可选，更新时间。
-- `abbrlink`：可选，文档短链。
-- `draft`：可选，草稿标记，默认 `false`。
+## 📚 文档 Frontmatter
 
-## 核心功能
+文档集合来源为：
 
-### 静态生成
-
-项目通过 Astro 内容集合读取文章和文档，在构建阶段生成静态页面。文章、分类、标签、文档和分页路由都基于内容数据生成，适合部署到静态托管平台或 CDN。
-
-### 文章详情
-
-文章详情页提供：
-
-- 封面展示与新标签页打开原图。
-- 多分类和多标签展示。
-- 下载按钮，支持 `downloads` 多链接。
-- 分享按钮。
-- 本地收藏按钮。
-- 基于相同标签的相关推荐。
-- Artalk 评论区。
-- SEO 标题、描述、关键词和 Open Graph 图片。
-
-### 首页轮播
-
-首页轮播组件为 `frontend/src/components/HomeCarousel.astro`，解析逻辑在 `frontend/src/lib/home-carousel.ts`。
-
-布局参考常见博客首页的「左大图 + 右侧推荐列表」结构，并按本站中性设计收敛：
-
-- 桌面端：左侧展示封面、标题和全局推荐标签；右侧为推荐列表，悬停切换，点击跳转。
-- 移动端：隐藏右侧列表，改为横向滑动，并显示底部指示点。
-- 主题色使用固定中性色，用于底部渐变遮罩和右侧列表强调态。
-- 封面图片使用懒加载，裁剪以图片中心为准；暗色模式下轻微降低亮度。
-
-配置位于 `frontend/src/config/site.ts` 的 `home.carousel`：
-
-```ts
-home: {
-  carousel: {
-    tag: '站点推荐',
-    posts: ['about', 'notice', '8f7a8a7b'],
-  },
-},
+```text
+frontend/src/content/docs/**/*.mdx
 ```
 
-说明：
+支持字段：
 
-- `tag`：轮播左下角全局推荐标签，不按单项配置。
-- `posts`：按顺序填写文章或文档的唯一 ID（`abbrlink`）。
-- 系统会同时在 `post` 与 `docs` 集合中查找对应内容。
-- 自动读取标题、封面和链接；缺少封面或找不到 ID 的项会被跳过并输出构建警告。
-- 文章链接形如 `/posts/{abbrlink}/`，文档链接形如 `/docs/{abbrlink}/`。
+| 字段 | 说明 |
+| --- | --- |
+| `title` | 必填，文档标题 |
+| `description` | 可选，页面描述 |
+| `cover` | 可选，封面图片地址 |
+| `date` | 可选，发布时间 |
+| `updatedDate` | 可选，更新时间 |
+| `abbrlink` | 可选，文档短链 |
+| `draft` | 可选，草稿标记，默认 `false` |
 
-首页不再提供独立公告条组件；公告内容请使用文档页（如 `/docs/notice/`）承载。
+## ⚙️ 开发命令
 
-### 分类和标签
-
-分类与标签都由文章 frontmatter 自动聚合，不需要手动维护索引文件。索引页显示每个分类或标签下的文章数量，并在内容较多时自动分页。
-
-文章卡片中分类和标签分为两行展示：
-
-- 分类独占一行。
-- 标签独占一行。
-- 不限制显示数量。
-- 超出卡片宽度时横向滑动。
-
-### 本地搜索
-
-搜索数据由 `frontend/src/pages/search-index.json.ts` 生成。浏览器加载 `/search-index.json` 后，在 `frontend/src/lib/search-worker.js` 中使用 FlexSearch 建立索引。
-
-搜索实现特点：
-
-- 使用 Web Worker，避免阻塞主线程。
-- 对搜索文本做 NFKC 标准化、小写化和空白合并。
-- 使用 `tokenize: 'forward'` 支持前向分词。
-- 搜索字段包含标题、描述、分类、标签和正文摘要。
-- 标题、标签、分类、描述、正文有不同权重。
-- 搜索页最多返回 60 条结果。
-
-### 随机文章
-
-导航中的随机按钮复用搜索 Worker 中已加载的索引，从全站文章中随机选择一篇并跳转到对应文章详情页。
-
-### 本地收藏
-
-收藏数据保存在浏览器 IndexedDB 中，数据库名为 `singureo-favorites`。收藏记录包含：
-
-- `id`
-- `slug`
-- `createdAt`
-
-收藏页会根据本地保存的 slug 调用搜索 Worker 回查文章详情。用户可以导出收藏 JSON，也可以通过覆盖导入迁移收藏数据。
-
-### 每日推荐
-
-每日推荐页会读取本地收藏：
-
-- 如果有收藏，优先从相同分类或相同标签的文章中推荐。
-- 如果没有可用收藏或没有匹配内容，则从全站文章池推荐。
-- 使用日期和收藏 slug 生成稳定随机种子。
-- 每日最多展示 24 篇。
-- 推荐结果每天刷新一次。
-
-### 外链跳转
-
-外链处理逻辑位于 `frontend/src/lib/redirect.ts`。
-
-默认行为：
-
-- 站内链接保持原样。
-- HTTP/HTTPS 外链在新标签页打开。
-- 未命中白名单的外链会转换为 `/go?url=...`。
-- `/go` 页面展示离站提示和倒计时。
-- 白名单、倒计时和提示文案在 `frontend/src/config/site.ts` 中配置。
-
-### 评论系统
-
-文章详情页通过 Artalk 接入评论。配置位于 `frontend/src/config/site.ts`：
-
-- `artalk.enabled`
-- `artalk.server`
-
-布局会在空闲时间预加载 Artalk，并根据当前主题同步评论区暗色模式。
-
-### 图片懒加载
-
-全站图片懒加载由 `vanilla-lazyload` 驱动。
-
-相关实现：
-
-- `frontend/src/components/LazyImage.astro` 用于组件内图片。
-- `frontend/src/lib/rehype-lazy-images.mjs` 自动改写 Markdown/MDX 正文图片。
-- `frontend/src/scripts/lazyload.ts` 初始化 LazyLoad 实例。
-- LazyLoad 使用 `.lazy` 作为选择器。
-- `threshold: 0`，图片进入当前视窗范围才开始加载。
-- 动态渲染文章列表后会调用 `updateLazyImages()` 更新懒加载实例。
-
-加载动画定义在 `frontend/src/styles/globals.css`：
-
-- 未加载图片初始 `opacity: 0`。
-- 使用 `blur(32px)` 和轻微放大制造明显高斯模糊占位。
-- 加载完成后渐变到清晰状态。
-- 过渡时间较慢，滤镜与缩放约 960ms，透明度约 720ms。
-- 尊重 `prefers-reduced-motion: reduce`，减少动态效果。
-
-## 站点配置
-
-主要站点配置集中在 `frontend/src/config/site.ts`，包括：
-
-- 站点名称、标语、浏览器标签页标语。
-- SEO 关键词。
-- Logo 文本。
-- 桌面和移动端导航。
-- 首页轮播（`home.carousel.tag` 与 `home.carousel.posts`）。
-- 广告位。
-- 友情链接。
-- 页脚链接。
-- 外链跳转白名单和倒计时。
-- 评论开关。
-- Artalk 服务地址。
-
-新增页面或调整站点运营内容时，优先检查该配置文件，避免把可配置内容写死在组件里。
-
-## 视觉与交互设计
-
-项目的设计说明位于 `frontend/DESIGN.md`。当前实现遵循以下方向：
-
-- 中性、简洁、内容优先。
-- 浅色模式以白色为主，深色模式以纯黑和近黑色为主。
-- 主题色只用于关键操作、选中状态和重要反馈。
-- 卡片使用清晰边框和克制阴影。
-- 文章卡片采用上图下文结构，底部固定分类和标签区域。
-- 暗色模式下图片默认轻微压暗，避免过亮图片破坏阅读体验。
-- 弹层、抽屉、对话框使用统一的动画变量。
-- 支持浏览器 View Transition 的主题切换动画。
-- 全站隐藏滚动条，但保留滚动能力。
-
-## 开发命令
-
-进入前端目录后执行命令：
+实际命令都在 `frontend/` 目录执行：
 
 ```bash
 cd frontend
@@ -387,62 +199,84 @@ npm run dev
 
 常用脚本：
 
-```bash
-npm run dev
-npm run build
-npm run preview
-npm run astro
-npm run ensure:abbrlink
-```
+| 命令 | 作用 |
+| --- | --- |
+| `npm run dev` | 启动 Astro 开发服务器 |
+| `npm run build` | 生成生产静态站点 |
+| `npm run preview` | 本地预览构建结果 |
+| `npm run astro` | 运行 Astro CLI |
+| `npm run ensure:abbrlink` | 检查并补齐内容文件的 `abbrlink` |
 
-脚本说明：
+注意：
 
-- `npm run dev`：启动 Astro 开发服务器。
-- `npm run build`：生成生产静态站点。
-- `npm run preview`：本地预览构建结果。
-- `npm run astro`：运行 Astro CLI。
-- `npm run ensure:abbrlink`：检查并补齐内容文件中的 `abbrlink`。
+- 🧷 `predev` 会自动执行 `node scripts/ensure-abbrlink.mjs`。
+- 🧷 `prebuild` 会自动执行 `node scripts/ensure-abbrlink.mjs`。
+- 🗃️ `ensure-abbrlink.mjs` 会遍历 `src/content` 下的 Markdown / MDX 文件，确保每个内容条目都有唯一 `abbrlink`。
 
-`frontend/package.json` 中配置了：
+## 🛠️ 内容维护流程
 
-- `predev`: `node scripts/ensure-abbrlink.mjs`
-- `prebuild`: `node scripts/ensure-abbrlink.mjs`
-
-因此运行开发或构建命令前，会自动检查文章和文档的 `abbrlink` 唯一性。
-
-## 内容维护流程
-
-新增文章建议流程：
+### 📝 新增文章
 
 1. 在 `frontend/src/content/post` 新建 Markdown 文件。
-2. 按内容模型填写 frontmatter。
-3. 使用 `categories` 配置全部分类。
-4. 使用 `tags` 配置厂商、作品系列或其他检索标签。
-5. 配置 `cover`，保证卡片和详情页有稳定封面。
-6. 配置 `downloads`，优先使用多下载入口格式。
-7. 运行 `npm run ensure:abbrlink` 补齐或校验短链。
+2. 填写 `title`、`categories`、`tags`、`cover`、`downloads`、`date` 等 frontmatter。
+3. 如需首页置顶，添加 `pinned: true`。
+4. 使用 `abbrlink` 固定文章 URL；也可以交给 `ensure-abbrlink` 自动补齐。
+5. 正文图片会由懒加载插件处理。
 
-新增文档建议流程：
+### 📚 新增文档
 
-1. 在 `frontend/src/content/docs` 下创建 MDX 文件。
-2. 配置 `title`、`description`、`abbrlink`、`date` 等字段。
-3. 文档详情路由会优先使用 `abbrlink`。
-4. 如需在导航中露出入口，修改 `frontend/src/config/site.ts`。
-5. 如需出现在首页轮播，将文档 `abbrlink` 写入 `home.carousel.posts`。
+1. 在 `frontend/src/content/docs` 新建 MDX 文件。
+2. 填写 `title`、`description`、`date`、`abbrlink` 等字段。
+3. 如需导航入口，修改 `frontend/src/config/site.ts`。
+4. 文档详情路由优先使用 `abbrlink`。
 
-## 辅助脚本
+## 🔍 搜索与浏览器端数据
 
-`frontend/scripts/ensure-abbrlink.mjs`
+- 🔎 搜索索引由 `frontend/src/pages/search-index.json.ts` 生成。
+- 🧵 搜索、随机文章、收藏回查、每日推荐都复用 `frontend/src/lib/search-worker.js`。
+- ⭐ 收藏数据保存在浏览器 IndexedDB：`singureo-favorites`。
+- 🌓 主题偏好保存在 localStorage。
+- 🔐 这些数据只保存在当前浏览器，不会自动同步到服务器。
 
-用于遍历 `src/content` 下的 Markdown/MDX 文件，确保每个内容条目都有唯一 `abbrlink`。脚本使用 CRC32 生成短链，并会处理重复值。
+## 💬 评论与统计
 
-`frontend/scripts/replace_image_domain.py`
+Artalk 配置集中在 `frontend/src/config/site.ts`：
 
-用于批量替换内容文件中的图片域名。
+```ts
+artalk: {
+  enabled: true,
+  server: 'https://artalk.sin0.cc',
+}
+```
 
-## 部署说明
+文章卡片和详情页会显示浏览量 / 评论数统计；文章详情页会加载评论区，并随当前主题同步深浅色。
 
-项目可以部署到支持 Node.js 构建和静态文件托管的平台。基本流程：
+## 🚦 外链跳转
+
+外链逻辑位于 `frontend/src/lib/redirect.ts`，配置位于 `site.redirect`：
+
+- ✅ 站内链接保持原样。
+- ✅ 白名单域名可直接打开。
+- ⚠️ 非白名单 HTTP / HTTPS 外链会转换到 `/go?url=...`。
+- ⏳ `/go` 页面显示离站提示和倒计时。
+
+## 🎨 视觉风格
+
+项目当前设计倾向：
+
+- 🌿 简洁、中性、内容优先。
+- ⚪ 浅色模式以白色和浅灰为主。
+- ⚫ 深色模式以黑色和近黑色为主。
+- 🔵 主色只用于关键操作、选中状态和重点反馈。
+- 🃏 文章卡片使用清晰边框、克制圆角和封面优先布局。
+- 🌘 暗色模式下图片自动降低亮度，避免阅读时过亮。
+- 🧭 导航使用胶囊式布局，桌面端和移动端分别适配。
+
+## 🚀 部署说明
+
+项目适合部署到支持 Node.js 构建和静态文件托管的平台。
+
+基本流程：
 
 ```bash
 cd frontend
@@ -450,36 +284,23 @@ npm ci
 npm run build
 ```
 
-构建产物由 Astro 输出，通常位于 `frontend/dist`。
+构建产物通常输出到：
 
-部署前需要重点确认：
+```text
+frontend/dist
+```
 
-- `frontend/astro.config.mjs` 中的 `site` 是否为生产域名。
-- `frontend/src/config/site.ts` 中的导航、外链白名单、广告位、友链、评论服务是否正确。
-- Artalk 服务是否允许当前站点域名。
-- 内容中的外部图片域名是否可访问。
-- 下载链接是否需要进入 `/go` 离站提示。
+部署前建议确认：
 
-## SEO 与可发现性
+- 🌐 `frontend/astro.config.mjs` 中的 `site` 是否为生产域名。
+- 🧭 `frontend/src/config/site.ts` 中导航、广告、友链、页脚链接是否正确。
+- 💬 Artalk 服务是否允许当前站点域名。
+- 🖼️ 外部图片域名是否可访问。
+- 🔗 下载链接是否需要进入 `/go` 离站提示。
 
-`BaseLayout.astro` 统一处理页面 SEO：
+## 📌 项目状态备注
 
-- `title`
-- `description`
-- `keywords`
-- canonical URL
-- Open Graph
-- Twitter Card
-- robots
-- sitemap 链接
-
-文章详情页会将文章标题、分类和标签合并为关键词，并使用封面作为社交分享图。
-
-## 浏览器端数据
-
-项目会在用户浏览器中保存少量本地数据：
-
-- `theme`：当前浅色/深色主题，保存在 localStorage。
-- `singureo-favorites`：收藏数据，保存在 IndexedDB。
-
-这些数据都仅保存在当前浏览器环境，不会自动同步到服务器。
+- 根目录 `package.json` 目前只是占位，实际脚本在 `frontend/package.json`。
+- 当前样式入口是 `frontend/src/styles/SingureoMain.css`。
+- 首页当前展示的是广告图、最新评论、最新文档和最新文章列表。
+- 首页最新文章支持通过 frontmatter 的 `pinned: true` 进行置顶。

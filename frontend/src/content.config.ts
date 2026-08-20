@@ -32,6 +32,7 @@ const post = defineCollection({
     date: z.coerce.date().optional(),
     abbrlink: z.union([z.string(), z.number()]).optional(),
     updatedDate: z.coerce.date().optional(),
+    pinned: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });

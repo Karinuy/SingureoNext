@@ -5,4 +5,5 @@ export type PostCardData = {
   cover?: string;
   categories: string[];
   tags: string[];
+  pinned?: boolean;
 };

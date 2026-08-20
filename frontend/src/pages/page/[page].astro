@@ -3,12 +3,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../config/site';
 import Pagination from '../../components/ui/Pagination.astro';
 import PostList from '../../components/PostList.astro';
-import { getPosts } from '../../lib/content';
+import { getHomePosts } from '../../lib/content';
 import { postToCardData } from '../../lib/post-card';
 import { getPageCount, paginate, POSTS_PAGE_SIZE } from '../../lib/paginate';
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getHomePosts();
   const pageCount = getPageCount(posts.length, POSTS_PAGE_SIZE);
   return Array.from({ length: Math.max(0, pageCount - 1) }, (_, i) => {
     const page = i + 2;
@@ -17,9 +17,9 @@ export async function getStaticPaths() {
 }
 
 const page = Number(Astro.params.page ?? '1');
-const posts = await getPosts();
+const posts = await getHomePosts();
 const pageData = paginate(posts, page, POSTS_PAGE_SIZE);
-const postCards = pageData.items.map((entry) => postToCardData(entry));
+const postCards = pageData.items.map((entry) => postToCardData(entry, { includePinned: true }));
 const pageHref = (targetPage: number) => (targetPage === 1 ? '/' : `/page/${targetPage}/`);
 ---
 

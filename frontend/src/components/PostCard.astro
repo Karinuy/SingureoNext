@@ -45,6 +45,11 @@ const tags = data?.tags ?? [];
             <span class="text-sm text-[rgb(var(--color-text-muted))]">无封面</span>
           )}
         </div>
+        {data.pinned ? (
+          <span class="pointer-events-none absolute left-1.5 top-1.5 z-10 inline-flex items-center rounded-lg bg-red-600/90 px-1.5 py-0.5 text-[11px] font-semibold leading-none text-white shadow-sm shadow-black/10 backdrop-blur dark:bg-red-500/90">
+            <span>置顶</span>
+          </span>
+        ) : null}
         <ArtalkStatBadge pageKey={data.href} class="right-1.5 top-1.5" />
       </a>
 
