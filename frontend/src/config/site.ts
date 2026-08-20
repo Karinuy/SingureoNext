@@ -76,7 +76,7 @@ export const site = {
     { label: 'Mikiacg', href: 'https://www.mikiacg.org' },
     { label: 'GALNAVI', href: 'https://galnavi.top/' },
     { label: '黄油仓库', href: 'https://jiuguans.com/' },
-    { label: '合月亭', href: 'https://heyue-org.github.io/' },
+    { label: '合月亭', href: 'https://heyue-org.github.io/web/' },
   ],
   footerLinks: [
     { label: '联系站长', href: 'https://t.me/Miolasan' },
