@@ -42,11 +42,12 @@ export const site = {
   ads: {
     enabled: true,
     items: [
+      { title: 'lolidao', href: 'https://url.sin0.cc/vxb8f6', image: 'https://res.sin0.cc/2026/08/20/1952f63f5ec5e1214ed3ad8c6bbc8de1/1787217340-1.gif' },
       // { title: 'UACG', href: 'https://url.sin0.cc/8yykf5', image: 'https://res.sin0.cc/2026/08/13/ec0582043c07dc747a0a57f6df7578ff/1786625745-uacg.avif' },
       { title: '萌污语', href: 'https://url.sin0.cc/8yykf5', image: 'https://res.sin0.cc/2026/08/13/6c5c69157ba83b8dc8ba393bd04d3f11/1786625577-moewuyu.avif' },
-      { title: 'AI伴侣', href: 'https://url.sin0.cc/pgwbfb', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
+      { title: '电子魅魔', href: 'https://url.sin0.cc/pgwbfb', image: 'https://res.sin0.cc/2026/05/22/19f7830a77e22e86390b8788a90775d6/1779432720-dzmm.avif' },
       { title: '魔法喵VPN', href: 'https://url.sin0.cc/uj69pf', image: 'https://res.sin0.cc/2026/05/15/bcad3dfcfb51f38d1aa41f9b6b8c7674/1778824640-miaocloud.avif' },
-      { title: 'AI女友', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/08/12/6974cd50290b8b0e17d9ceff96883fc3/1786529606-aify1.avif' },
+      { title: 'AI风月', href: 'https://url.sin0.cc/g36fs7', image: 'https://res.sin0.cc/2026/08/12/6974cd50290b8b0e17d9ceff96883fc3/1786529606-aify1.avif' },
     ],
   },
   friendLinks: [
