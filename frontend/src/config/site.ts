@@ -42,6 +42,7 @@ export const site = {
   ads: {
     enabled: true,
     items: [
+      { title: '电影天堂', href: 'https://url.sin0.cc/ss9b28', image: 'https://res.sin0.cc/2026/08/21/4417b8d73e0b19f7d2f059cad03c15c9/1787326580-dytt.avif' },
       { title: 'lolidao', href: 'https://url.sin0.cc/vxb8f6', image: 'https://res.sin0.cc/2026/08/20/1952f63f5ec5e1214ed3ad8c6bbc8de1/1787217340-1.gif' },
       // { title: 'UACG', href: 'https://url.sin0.cc/8yykf5', image: 'https://res.sin0.cc/2026/08/13/ec0582043c07dc747a0a57f6df7578ff/1786625745-uacg.avif' },
       { title: '萌污语', href: 'https://url.sin0.cc/8yykf5', image: 'https://res.sin0.cc/2026/08/13/6c5c69157ba83b8dc8ba393bd04d3f11/1786625577-moewuyu.avif' },
